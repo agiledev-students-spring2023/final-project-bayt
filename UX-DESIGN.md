@@ -1,11 +1,14 @@
-<div align="center">
-    <h1>Bayt UX Design</h1>
-    <h2>App Map</h2>
-    <img src="ux-design/App_Map.png"/>
 
-</div>
-<br>
-<h2 align="center">Wireframe Diagrams</h2>
+<h1 align="center">Bayt UX Design</h1>
+
+# Prototype
+The Figma prototype link for the Bayt app is <a align="center" href="https://www.figma.com/proto/rs9sNV0nIGotnT7L5qq2jz/Bayt?node-id=14%3A2&scaling=scale-down&page-id=0%3A1&starting-point-node-id=14%3A2">here.</a>
+
+# App Map
+<img src="ux-design/App_Map.png"/>
+<br><br>
+
+# Wireframe Diagrams 
 
 | UX-Wireframe | Description |
 | --- | --- |
