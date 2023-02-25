@@ -15,8 +15,8 @@ The main users would be students in dormitories, families that work together to 
 - Alerts for tasks
 
 ## Who are we? 
-JoJo Yang: https://github.com/jojo1042
-Rami Richani: https://github.com/dolf321
+- JoJo Yang: https://github.com/jojo1042
+- Rami Richani: https://github.com/dolf321
 
 ## Project Repository
 
