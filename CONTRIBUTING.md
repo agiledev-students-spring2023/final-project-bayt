@@ -8,16 +8,16 @@ team members could be assigned 5 days in which they can take off work. But make 
 ## Sprint cadence
 - Sprint length is 2 weeks
 - Backlog grooming meeting is at least once per sprint.
-
+- When completing a task, put it in the review section of the board and reference the commit(just paste the commit hash) for the Scrum Master to review.
 ## Daily standups
 - Daily standups must be done by the end of the day and submitted to the discord channel.
 - Members must meet in person/on-line for 1-5 minutes for the standup meeting.
-- Memebers that make no progress on a task for more than two standups get reported to management.
+- Members that make no progress on a task for more than two standups get reported to management.
 
 
 # Coding/Contributing guidelines
 ## Contributing Guide
-- Never push broken code to main, make sure your code is working and tested. If you do push it, you must fix it immediately as to avoid assigning extra work to teammates.
+- Never push broken code to main, make sure your code is working and tested. If you do push it, you must fix it immediately as to avoid assigning extra work to other teammates.
 - Rarely push to the main branch, always branch and pull request your finished task to the Github. Only push to main if a change is really minor and wont cause significant merge conflicts.
 - If the pull request is related to a completed task, always put the issue number in the pull request to make it easier for fellow developers to review.
 - People assigned to review the pull request must actually read their code in order to ensure it follows team norms.
