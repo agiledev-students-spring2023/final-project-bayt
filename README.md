@@ -17,6 +17,7 @@ The main users would be students in dormitories, families that work together to 
 ## Who are we? 
 - JoJo Yang: https://github.com/jojo1042
 - Rami Richani: https://github.com/dolf321
+- Diana Yepes: https://github.com/dianaYepes
 
 ## Project Repository
 
