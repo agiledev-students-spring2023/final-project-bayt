@@ -2,18 +2,15 @@
 ## General team guidelines
 - Join the Discord VC while working to boost productivity and speed up team interactions and communications.
 - When you're stuck, **reach out** to the Scrum Master or team member. There's no harm in not knowing certain things.
-- If you have exams/busy schedules coming up, you could take up more tasks in order to do less work in the next few days. Alternatively, 
-team members could be assigned 5 days in which they can take off work. But make sure to communciate this early(3-7 days) in advance! 
-
 ## Sprint cadence
 - Sprint length is 2 weeks
+- Sprint planning meeting should be 1-2 hours in length.
 - Backlog grooming meeting is at least once per sprint.
 - When completing a task, put it in the review section of the board and reference the commit(just paste the commit hash) for the Scrum Master to review.
 ## Daily standups
-- Daily standups must be done by the end of the day and submitted to the discord channel.
-- Members must meet in person/on-line for 1-5 minutes for the standup meeting.
+- Daily standups must be done by the end of the day and submitted to the discord channel by the scrum master.
+- Members must meet in person for 1-5 minutes for the standup meeting.
 - Members that make no progress on a task for more than two standups get reported to management.
-
 
 # Coding/Contributing guidelines
 ## Contributing Guide
@@ -32,8 +29,8 @@ team members could be assigned 5 days in which they can take off work. But make 
 - Make short, straight to the point, yet descriptive commit messages.
 
 ## Coding standards - CSS
-- Do not use unecessary amount of divs and flexbox/grids when possible for more responsive design.
-- Do not write unresponsive code(that doesn't adapt to size of container)
+- Do not use unecessary amount of divs, instead use flexbox/grids when possible for more responsive design.
+- Do not write unresponsive code(that doesn't adapt to size of container).
 - Use variables for colors in CSS to make it easier to go back and edit if necessary.
 ### CSS Units
 How to decide which unit to choose(general guidelines):
