@@ -31,6 +31,17 @@ team members could be assigned 5 days in which they can take off work. But make 
 - Make granular and small commits, per feature or per bug fix.
 - Make short, straight to the point, yet descriptive commit messages.
 
+## Coding standards - CSS
+- Do not use unecessary amount of divs and flexbox/grids when possible for more responsive design.
+- Do not write unresponsive code(that doesn't adapt to size of container)
+- Use variables for colors in CSS to make it easier to go back and edit if necessary.
+### CSS Units
+How to decide which unit to choose(general guidelines):
+- Font-size = em
+- Padding and margin = rem
+- Width = em or %
+
+
 # Project Setup
 
 ## Setup the IDE
