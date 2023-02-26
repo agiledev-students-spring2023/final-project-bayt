@@ -19,6 +19,7 @@ The main users would be students in dormitories, families that work together to 
 - Rami Richani: https://github.com/dolf321
 - Diana Yepes: https://github.com/dianaYepes
 - Zander Chen: https://github.com/ccczy-czy
+- Atib Jawad Zion: https://github.com/zion-off
 
 ## Project Repository
 
