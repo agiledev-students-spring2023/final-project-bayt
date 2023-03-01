@@ -1,0 +1,94 @@
+#outer {
+    margin: 0;
+	width: 30vw;
+	height: 100vh;
+	background-color: #fff;
+	margin: auto;
+	text-align: left;
+    position: relative;
+}
+
+.logoContainer {
+    width: 100%;
+    height: 22.7%;
+    background-color: #d9d9d9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo {
+    width: 70%;
+    height: 60%;
+    background-color: #6a93e4;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.inputArea {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 10%;
+    padding-bottom: 5%;
+}
+
+.inputArea input {
+    margin-bottom: 5%;
+    padding: 0.1rem 0.5rem;
+    line-height: 2rem;
+    text-align: center;
+    border: none;
+    border-bottom: 1px solid #7d7c7c;
+}
+
+#loginBtn {
+    margin-top: 1.5rem;
+    border: 1px solid #cbcbcb;
+    background-color: #e0e0e0;
+    text-decoration: underline;
+}
+
+#loginBtn:hover {
+    cursor: pointer;
+}
+
+.signupArea {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0 10%;
+}
+
+#signupBtn {
+    text-align: center;
+    text-decoration: underline;
+    width: 4.5rem;
+    height: 2rem;
+    border: 1px solid #cbcbcb;
+    background-color: #e0e0e0;
+}
+
+#signupBtn:hover {
+    cursor: pointer;
+}
+
+
+.loginFooter {
+    width: 100%;
+    height: 10%;
+    background-color: #ededed;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    padding: 5% 0;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.loginFooter h6 {
+    margin: 0;
+}
