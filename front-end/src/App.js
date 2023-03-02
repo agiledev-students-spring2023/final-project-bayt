@@ -1,4 +1,5 @@
 import './App.css';
+import Header from "./header";
 import './css/branding.css'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -16,6 +17,7 @@ import RoomTemplate from './pages/RoomTemplate';
 function App() {
   return (
     <div className="App">
+      <Header />
       <BrowserRouter>
           <Routes>
             <Route index path="/" element={<Login />}></Route>
