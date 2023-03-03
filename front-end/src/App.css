@@ -1,5 +1,12 @@
 .App {
-  text-align: center;
+  height: 100vh;
+	font-family: Garamond, sans-serif;
+	font-size: 1.25em;
+	background-color: #222;
+	text-align: center;
+	margin: auto;
+	margin-top: 0px;
+	padding: none;
 }
 
 .App-logo {
