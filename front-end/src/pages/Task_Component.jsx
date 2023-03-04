@@ -2,10 +2,13 @@
 
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faClipboard, faDotCircle, faUser, faArrowRight} from '@fortawesome/free-solid-svg-icons'
+import { faClipboard, faLocationArrow, faUser, faArrowRight} from '@fortawesome/free-solid-svg-icons'
 import "../css/task_component.css";
+
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-import IconButton from '@mui/material/IconButton'
+import RoomIcon from '@mui/icons-material/Room';
+import PendingActionsIcon from '@mui/icons-material/PendingActions';
+import AlternateEmailIcon from '@mui/icons-material/AlternateEmail';
 /**
  * A React component that represents the task box for listing tasks
  * @param {string} room location taks is assigned to
@@ -21,15 +24,15 @@ const TaskComponent = ({ title, room, assigned }) => {
             
             <div className="task_information">
                 <div className="task_name">
-                    <FontAwesomeIcon className="task_text_icon" icon={faClipboard} /> {title}
+                    <PendingActionsIcon className="task_text_icon"/> {title}
                 </div>
 
                 <div className="task_text"> 
-                    <FontAwesomeIcon className="task_text_icon" icon={faDotCircle} /> {room}
+                    <RoomIcon className="task_text_icon"/> {room}
                 </div>
 
                 <div className="task_text"> 
-                    <FontAwesomeIcon className="task_text_icon" icon={faUser} /> {assigned}
+                    <AlternateEmailIcon className="task_text_icon"/> {assigned}
                 </div>
             </div>
        

@@ -38,6 +38,8 @@
     color: #000000;
 }
 .task_text_icon {
+    display: relative;
+    transform: translate(0,+18%);
     margin-right: 0.2em;
 }
 
