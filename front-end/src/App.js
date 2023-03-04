@@ -16,6 +16,7 @@ import Finances from "./finances";
 function App() {
   return (
     <div className="App">
+      <Header />
       <Router>
         <Header />
       <BrowserRouter>
