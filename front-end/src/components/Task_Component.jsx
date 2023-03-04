@@ -1,8 +1,6 @@
 // Login Page
 
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faClipboard, faLocationArrow, faUser, faArrowRight} from '@fortawesome/free-solid-svg-icons'
 import "../css/task_component.css";
 
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
