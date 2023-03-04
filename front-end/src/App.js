@@ -13,11 +13,14 @@ import RoomTemplate from './pages/RoomTemplate';
 // TODOS:
 // 1. The index page is login page right now. Should be set to home page once we have user authentication
 // 2. Add slug to individual task page
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import Finances from "./finances";
 
 function App() {
   return (
     <div className="App">
-      <Header />
+      <Router>
+        <Header />
       <BrowserRouter>
           <Routes>
             <Route index path="/" element={<Login />}></Route>
@@ -28,6 +31,10 @@ function App() {
             <Route index path="/room/:roomName" element={<RoomTemplate />}></Route>
           </Routes>
       </BrowserRouter>
+        <Routes>
+          <Route path="./finances" element={<Finances />} />
+        </Routes>
+      </Router>
     </div>
   );
 }
