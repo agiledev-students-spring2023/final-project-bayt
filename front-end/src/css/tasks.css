@@ -1,0 +1,21 @@
+
+.day_title {
+    display: block;
+    border-top: 0.4rem dashed gray;
+    padding-top: 0.4rem;
+    padding-bottom: 2rem;
+    padding-left: 1rem;
+    text-align: left;
+}
+
+.task_box {
+    overflow: hidden;
+    margin-top: 3rem;
+}
+
+.loading_icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
