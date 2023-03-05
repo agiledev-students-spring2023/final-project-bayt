@@ -1,5 +1,5 @@
 import './App.css';
-import Header from "./header";
+
 import './css/branding.css'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -9,18 +9,16 @@ import Home from './pages/Home';
 import IndividualTask from './pages/IndividualTask';
 import Profile from './pages/Profile';
 import RoomTemplate from './pages/RoomTemplate';
-
+import Finances from "./finances";
+import Header from "./pages/Header"
 // TODOS:
 // 1. The index page is login page right now. Should be set to home page once we have user authentication
 // 2. Add slug to individual task page
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import Finances from "./finances";
-
 function App() {
   return (
     <div className="App">
-      <Header />
-      <Router>
+      <BrowserRouter>
+        <div>
         <Header />
       <BrowserRouter>
           <Routes>
@@ -32,10 +30,12 @@ function App() {
             <Route index path="/room/:roomName" element={<RoomTemplate />}></Route>
           </Routes>
       </BrowserRouter>
-        <Routes>
-          <Route path="./finances" element={<Finances />} />
-        </Routes>
-      </Router>
+          <Routes>
+            <Route index path="/" element={<Login />}></Route>
+            <Route index path="/finances" element={<Finances />}></Route>
+          </Routes>
+        </div>
+      </BrowserRouter>
     </div>
   );
 }
