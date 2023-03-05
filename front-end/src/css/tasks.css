@@ -1,12 +1,19 @@
 
 .day_title {
     display: block;
-    border-top: 0.4rem dashed gray;
-    padding-top: 0.4rem;
+    /* border-top: 0.3rem dashed gray; */
+    background-size: 100px;
     padding-bottom: 2rem;
     padding-left: 1rem;
     text-align: left;
+    margin: 0.8rem 0rem;
 }
+
+.line {
+    height: 0.2rem;
+    background: repeating-linear-gradient(90deg,lightgray 0 2rem,#0000 0 4rem);
+}
+  
 
 .task_box {
     overflow: hidden;
