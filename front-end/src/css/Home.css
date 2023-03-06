@@ -1,0 +1,9 @@
+#outer {
+    margin: 0;
+	width: 30vw;
+	height: 100vh;
+	background-color: #fff;
+	margin: auto;
+	text-align: left;
+    position: relative;
+}
