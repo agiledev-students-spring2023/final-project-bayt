@@ -1,0 +1,27 @@
+
+.day_title {
+    display: block;
+    background-size: 100px;
+    padding-bottom: 2rem;
+    padding-left: 1rem;
+    text-align: left;
+    margin: 0.8rem 0rem;
+}
+
+.line {
+    height: 0.2rem;
+    background: repeating-linear-gradient(90deg,lightgray 0 2rem,#0000 0 4rem);
+}
+  
+
+.task_box {
+    overflow: hidden;
+    margin-top: 3rem;
+}
+
+.loading_icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

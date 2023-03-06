@@ -1,12 +1,13 @@
-
-
 .task_component {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
-    padding: 0.5rem;
+    /* padding-bottom: 0rem; */
+    /* margin: 2rem 0; */
+    margin-bottom: 1.2rem;
     background-color: lightgray;
+    border-radius: 20px 0px 0px 20px;
 }
 
 .task_component:active {
