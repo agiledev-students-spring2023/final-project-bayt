@@ -4,6 +4,7 @@ import axios from "axios";
 import "../css/tasks.css";
 import TaskComponent from "../components/Task_Component.jsx";
 import CircularProgress from "@mui/material/CircularProgress";
+import Footer from './Footer';
 
 //TESTING MODE: This is to toggle between API calls and hardcoded JSON data
 const testing_mode = true;
@@ -98,6 +99,7 @@ const Tasks = (props) => {
               room={task_data.room}
               assigned={task_data.assignee}
             />
+            <Footer />
           </div>
         );
       })}
