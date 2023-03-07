@@ -1,6 +1,5 @@
 .App {
   height: 100vh;
-	font-family: var(--main-font);
 	font-size: 1.2em;
 	background-color: --var(background-color);
 	text-align: center;
@@ -43,4 +42,3 @@
     transform: rotate(360deg);
   }
 }
-

@@ -1,8 +1,44 @@
+@font-face {
+  font-family: 'Heading';
+  src: url('./fonts/Bold.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'Body';
+  src: url('./fonts/Medium.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'Description';
+  src: url('./fonts/MediumItalic.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'Regular';
+  src: url('./fonts/Regular.otf') format('opentype');
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Heading', sans-serif;
+}
+
+p {
+  font-family: 'Body', sans-serif;
+}
+
+ul,
+ol {
+  font-family: 'Description', sans-serif;
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'Body', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -10,4 +46,41 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+button {
+  align-items: center;
+  background: #f5f5fa;
+  border: 0;
+  border-radius: 8px;
+  box-shadow: -10px -10px 30px 0 #fff, 10px 10px 30px 0 #1d0dca17;
+  box-sizing: border-box;
+  color: #2a1f62;
+  cursor: pointer;
+  font-family: 'Regular';
+  font-size: medium;
+  justify-content: center;
+  line-height: 1rem;
+  padding: 10px;
+  margin: 2vh;
+  text-align: left;
+  transition: .2s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: pre;
+  width: max-content;
+  word-break: normal;
+  word-spacing: normal;
+}
+
+button:hover {
+  background: #f8f8ff;
+  box-shadow: -15px -15px 30px 0 #fff, 15px 15px 30px 0 #1d0dca17;
+}
+
+@media (min-width: 768px) {
+  button {
+    padding: 24px;
+  }
 }
