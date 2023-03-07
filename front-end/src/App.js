@@ -32,7 +32,7 @@ function App() {
       </BrowserRouter>
           <Routes>
             <Route index path="/" element={<Login />}></Route>
-            <Route index path="/finances" element={<Finances />}></Route>
+            <Route index path="/pages/finances" element={<Finances />}></Route>
           </Routes>
         </div>
       </BrowserRouter>
