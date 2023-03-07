@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import './pages/finances.css';
+import '../css/finances.css';
+import '../index.css';
+
 
 // paid/requesting $[amount] to/from @user for [text]
 function TransactionForm({ onSubmit }) {
@@ -69,7 +71,7 @@ function Finances() {
         <div className="page-body">
             <h1>Finances</h1>
             <TransactionList transactions={transactions} />
-            <button onClick={handleButtonClick}>Add new transaction</button>
+            <button className='button' onClick={handleButtonClick}>Add new transaction</button>
             {isFormVisible && (
                 <div className="overlay">
                     <div className="form">

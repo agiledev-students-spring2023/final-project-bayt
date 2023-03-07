@@ -1,0 +1,32 @@
+@font-face {
+    font-family: 'Heading';
+    src: url('../fonts/Bold.otf') format('otf');
+}
+
+@font-face {
+    font-family: 'Body';
+    src: url('../fonts/Medium.otf') format('otf');
+}
+
+@font-face {
+    font-family: 'Description';
+    src: url('../fonts/MediumItalic.otf') format('otf');
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Heading', sans-serif;
+}
+
+p, body {
+    font-family: 'Body', sans-serif;
+}
+
+ul,
+ol {
+    font-family: 'Description', sans-serif;
+}
