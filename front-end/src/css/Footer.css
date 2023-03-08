@@ -1,11 +1,7 @@
 .footer {
-    height: var(--footer-height);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #F2CC8F;
-    position: fixed;
-    width: 100%;
+    background-color: white;
+    position: absolute;
+    width: 100vw;
     bottom: 0;
     color: white;
     font-size: 25px;

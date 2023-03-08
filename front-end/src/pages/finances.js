@@ -11,6 +11,7 @@ function TransactionForm({ onSubmit }) {
     const [toOrFrom, settoOrFrom] = useState('');
     const [user, setUser] = useState('@user');
     const [forWhat, setforWhat] = useState('purpose');
+    const [date, setDate] = useState('');
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -19,7 +20,8 @@ function TransactionForm({ onSubmit }) {
             amount,
             toOrFrom,
             user,
-            forWhat
+            forWhat,
+            date
         });
     };
 
@@ -32,7 +34,7 @@ function TransactionForm({ onSubmit }) {
                 </select>
             </label>
             <label>
-                amount $
+                 amount $
                 <input type="number" value={amount} onChange={(event) => setAmount(event.target.value)} />
             </label>
             <label>
@@ -44,8 +46,13 @@ function TransactionForm({ onSubmit }) {
             <label>
                 <input type="text" value={user} onChange={(event) => setUser(event.target.value)} />
             </label>
-            <label> for
+            <label>for</label>
+            <label>
                 <input type="text" value={forWhat} onChange={(event) => setforWhat(event.target.value)} />
+            </label>
+            <label>on</label>
+            <label>
+                <input type="date" value={date} onChange={(event) => setDate(event.target.value)} />
                 .
             </label>
             <button type="submit">Add transaction</button>
@@ -75,6 +82,7 @@ function Finances() {
 
     return (
         <div className="page-body">
+            <div className='content'>
             <h1>Finances</h1>
             <TransactionList transactions={transactions} />
             <button className='button' onClick={handleButtonClick}>Add new transaction</button>
@@ -85,6 +93,7 @@ function Finances() {
                     </div>
                 </div>
             )}
+            </div>
             <Footer/>
         </div>
     );
@@ -95,7 +104,11 @@ function TransactionList({ transactions }) {
         <ul>
             {transactions.map((transaction, index) => (
                 <li key={index}>
-                    {transaction.paidOrRequesting} {transaction.amount} {transaction.toOrFrom} {transaction.user} {transaction.forWhat}
+                    <div className='imessage'>
+                        <p className='from-me'>
+                        {transaction.paidOrRequesting} ${transaction.amount} {transaction.toOrFrom} {transaction.user} for {transaction.forWhat} on {transaction.date}
+                        </p>
+                    </div>
                 </li>
             ))}
         </ul>
