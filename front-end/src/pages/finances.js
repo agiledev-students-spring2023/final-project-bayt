@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Footer from './Footer';
 import '../css/finances.css';
 import '../index.css';
 
@@ -59,6 +60,11 @@ function Finances() {
         setIsFormVisible(true);
     };
 
+    const handleOverlayClick = (event) => {
+        if (event.target === event.currentTarget) {
+            setIsFormVisible(false);
+        }
+    };
 
     const [transactions, setTransactions] = useState([]);
 
@@ -73,12 +79,13 @@ function Finances() {
             <TransactionList transactions={transactions} />
             <button className='button' onClick={handleButtonClick}>Add new transaction</button>
             {isFormVisible && (
-                <div className="overlay">
+                <div className="overlay" onClick={handleOverlayClick}>
                     <div className="form">
                         <TransactionForm onSubmit={handleAddTransaction} />
                     </div>
                 </div>
             )}
+            <Footer/>
         </div>
     );
 }
