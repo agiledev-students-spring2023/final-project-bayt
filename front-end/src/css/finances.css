@@ -1,6 +1,15 @@
+/* Default styles for all devices */
 .content {
   width: 30vw;
   margin: 0 auto;
+}
+
+/* Media query for screens with a maximum width of 600px (typical phone width) */
+@media screen and (max-width: 600px) {
+  .content {
+    width: 90vw;
+    margin: 0 auto;
+  }
 }
 
 .overlay {
@@ -33,6 +42,16 @@
 
   li {
     list-style: none;
+  }
+
+  .sort-by-container {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+  }
+  
+  .sort-by-container label {
+    font-size: small;
   }
 
   .imessage {
@@ -123,8 +142,3 @@
     width: 10px;
   }
 
-@media (max-width: 480px) {
-  .content {
-    width: 100vw;
-  }
-}
