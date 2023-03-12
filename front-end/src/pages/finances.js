@@ -34,7 +34,7 @@ function TransactionForm({ onSubmit }) {
                 </select>
             </label>
             <label>
-                 amount $
+                amount $
                 <input type="number" value={amount} onChange={(event) => setAmount(event.target.value)} />
             </label>
             <label>
@@ -83,35 +83,61 @@ function Finances() {
     return (
         <div className="page-body">
             <div className='content'>
-            <h1>Finances</h1>
-            <TransactionList transactions={transactions} />
-            <button className='button' onClick={handleButtonClick}>Add new transaction</button>
-            {isFormVisible && (
-                <div className="overlay" onClick={handleOverlayClick}>
-                    <div className="form">
-                        <TransactionForm onSubmit={handleAddTransaction} />
+                <h1>Finances</h1>
+                <TransactionList transactions={transactions} />
+                <button className='button' onClick={handleButtonClick}>Add new transaction</button>
+                {isFormVisible && (
+                    <div className="overlay" onClick={handleOverlayClick}>
+                        <div className="form">
+                            <TransactionForm onSubmit={handleAddTransaction} />
+                        </div>
                     </div>
-                </div>
-            )}
+                )}
             </div>
-            <Footer/>
+            <Footer />
         </div>
     );
 }
 
 function TransactionList({ transactions }) {
+    const [sortOrder, setSortOrder] = useState('asc');
+
+    const sortedTransactions = transactions.slice().sort((a, b) => {
+        const dateA = new Date(a.date);
+        const dateB = new Date(b.date);
+        if (sortOrder === 'asc') {
+            return dateA - dateB;
+        } else {
+            return dateB - dateA;
+        }
+    });
+
+    const handleSortByChange = (event) => {
+        setSortOrder(event.target.value);
+      };
+
     return (
-        <ul>
-            {transactions.map((transaction, index) => (
-                <li key={index}>
-                    <div className='imessage'>
-                        <p className='from-me'>
-                        {transaction.paidOrRequesting} ${transaction.amount} {transaction.toOrFrom} {transaction.user} for {transaction.forWhat} on {transaction.date}
-                        </p>
-                    </div>
-                </li>
-            ))}
-        </ul>
+        <div>
+            <div className="sort-by-container">
+                <label htmlFor="sort-by">Sort by date: </label>
+                <select id="sort-by" value={sortOrder} onChange={handleSortByChange}>
+                    <option value="asc">ascending</option>
+                    <option value="desc">descending</option>
+                </select>
+            </div>
+            <ul>
+                {sortedTransactions.map((transaction, index) => (
+                    <li key={index}>
+                        <div className='imessage'>
+                            <p className='from-me'>
+                                {transaction.paidOrRequesting} ${transaction.amount} {transaction.toOrFrom} {transaction.user} for {transaction.forWhat} on {transaction.date}
+                            </p>
+                        </div>
+                    </li>
+                ))}
+            </ul>
+        </div>
+
     );
 }
 
