@@ -32,6 +32,7 @@ function App() {
           <Routes>
             <Route index path="/" element={<Login />}></Route>
             <Route index path="/pages/finances" element={<Finances />}></Route>
+            <Route index path="/pages/alerts" element={<Alerts />}></Route>
           </Routes>
         </div>
       </BrowserRouter>
