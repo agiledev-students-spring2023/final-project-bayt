@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Footer from './Footer';
 import '../css/finances.css';
 import '../index.css';
@@ -80,6 +80,13 @@ function Finances() {
         setIsFormVisible(false);
     };
 
+    useEffect(() => {
+        fetch('https://my.api.mockaroo.com/finances.json?key=8eff7c60')
+            .then(response => response.json())
+            .then(data => setTransactions(data))
+            .catch(error => console.log(error));
+    }, []);
+
     return (
         <div className="page-body">
             <div className='content'>
@@ -114,7 +121,7 @@ function TransactionList({ transactions }) {
 
     const handleSortByChange = (event) => {
         setSortOrder(event.target.value);
-      };
+    };
 
     return (
         <div>

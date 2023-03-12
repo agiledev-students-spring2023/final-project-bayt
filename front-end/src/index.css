@@ -86,11 +86,11 @@ button:hover {
   box-shadow: -10px -10px 50px 0 #fff, 15px 15px 30px 0 #1d0dca17;
 }
 
-@media (min-width: 768px) {
+/* @media (min-width: 768px) {
   button {
     padding: 24px;
   }
-}
+} */
 
 .wrapper .control {
   display: block;
