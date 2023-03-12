@@ -2,12 +2,13 @@ import React from 'react'
 
 import '../css/Home.css'
 
+import Header from './Header'
 import Footer from './Footer'
 
 const Home = props => {
     return (
         <div>
-            <h1>HOME</h1>
+            <Header />
             <Footer />
         </div>
     )
