@@ -13,6 +13,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Login from './pages/Login';
 import Finances from './pages/finances';
+import Alerts from './pages/alerts';
 
 // TODOS:
 // 1. The index page is login page right now. Should be set to home page once we have user authentication
@@ -34,6 +35,7 @@ function App() {
           <Routes>
             <Route index path="/" element={<Login />}></Route>
             <Route index path="/pages/finances" element={<Finances />}></Route>
+            <Route index path="/pages/alerts" element={<Alerts />}></Route>
           </Routes>
         </div>
       </BrowserRouter>

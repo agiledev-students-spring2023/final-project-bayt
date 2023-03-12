@@ -1,0 +1,35 @@
+.page-body {
+    height: 100vh;
+}
+
+li {
+    margin: 3vh;
+    text-align: left;
+}
+
+.list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 5vh;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+}
+
+/* Default styles for all devices */
+.content {
+    width: 30vw;
+    margin: 0 auto;
+  }
+  
+  /* Media query for screens with a maximum width of 600px (typical phone width) */
+  @media screen and (max-width: 600px) {
+    .content {
+      width: 90vw;
+      margin: 0 auto;
+    }
+  }

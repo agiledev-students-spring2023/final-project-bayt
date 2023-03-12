@@ -1,8 +1,7 @@
 .footer {
     background-color: white;
     position: sticky;
-    width: 100vw;
     bottom: 0;
-    color: white;
+    width: 100vw;
     font-size: 25px;
 }
