@@ -30,12 +30,12 @@
     transform: translate(-50%,-50%);
 }
 
-.line {
+.task_box .line {
     height: 0.2rem;
     background: repeating-linear-gradient(90deg,lightgray 0 2rem,#0000 0 4rem);
 }
   
-.day_title {
+.task_box .day_title {
     display: block;
     background-size: 100px;
     padding-bottom: 2rem;
@@ -44,7 +44,7 @@
     margin: 0.8rem 0rem;
 }
 
-/* .vl {
+/* .task_box .vl {
     overflow: hidden;
     position: absolute;
     z-index: -1;
