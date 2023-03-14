@@ -47,7 +47,8 @@ How to decide which unit to choose(general guidelines):
 3.  Open the repo in VS code and download the following extensions:
     - ESlint
     - React Snippets
-    - Typescript
+    - GitGraph
+    - Gitlens
 
 ### Build and launch the database
 
