@@ -3,6 +3,7 @@ import { useState, useEffect} from "react";
 import axios from "axios";
 import "../css/tasks.css";
 import TaskComponent from "../components/Task_Component.jsx";
+import Footer from './Footer'
 import {Button, CircularProgress} from "@mui/material";
 
 //TESTING MODE: This is to toggle between API calls and hardcoded JSON data
@@ -115,6 +116,7 @@ const Tasks = (props) => {
   };
 
   return (
+    <>
     <div className="task_box">
       <span className="vl"></span>
       {error && <p>{error}</p>}
@@ -136,6 +138,8 @@ const Tasks = (props) => {
       })}
       {selected.length > 0 && <><span className="transparent_box"></span><Button variant="contained" onClick={(e) => setComplete()}>Set Complete</Button></>}
     </div>
+    <Footer />
+    </>
   );
 };
 export default Tasks;

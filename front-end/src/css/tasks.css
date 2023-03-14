@@ -13,7 +13,7 @@
 .task_box>.transparent_box {
     position: fixed;
     z-index: 100;
-    bottom: 0px;
+    bottom: var(--footer-height);
     left: 50%;
     width: 100vw;
     height: 10vh;
@@ -24,7 +24,7 @@
 .task_box>Button {
     position: fixed;
     z-index: 9999;
-    bottom: 10px;
+    bottom: var(--footer-height);   
     left: 50%;
     width: 12rem;
     transform: translate(-50%,-50%);
