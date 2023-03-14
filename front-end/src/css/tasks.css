@@ -1,4 +1,40 @@
+.task_box {
+    margin-top: 3rem;
+    position: relative;
+}
 
+.loading_icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.task_box>.transparent_box {
+    position: fixed;
+    z-index: 100;
+    bottom: 0px;
+    left: 50%;
+    width: 100vw;
+    height: 10vh;
+    transform: translate(-50%,0);
+    background-image: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255, 1) 90%);
+}
+
+.task_box>Button {
+    position: fixed;
+    z-index: 9999;
+    bottom: 10px;
+    left: 50%;
+    width: 12rem;
+    transform: translate(-50%,-50%);
+}
+
+.line {
+    height: 0.2rem;
+    background: repeating-linear-gradient(90deg,lightgray 0 2rem,#0000 0 4rem);
+}
+  
 .day_title {
     display: block;
     background-size: 100px;
@@ -8,20 +44,13 @@
     margin: 0.8rem 0rem;
 }
 
-.line {
-    height: 0.2rem;
-    background: repeating-linear-gradient(90deg,lightgray 0 2rem,#0000 0 4rem);
-}
-  
-
-.task_box {
+/* .vl {
     overflow: hidden;
-    margin-top: 3rem;
-}
-
-.loading_icon {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
+    z-index: -1;
+    height: 100px;
+    width: 4px;
+    background-color: black;
+    left: 4%;
+    /* border-left: 10px black; 
+} */
