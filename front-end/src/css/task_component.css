@@ -13,21 +13,21 @@
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
 
-.selected {
+.task_component .selected {
     background-color: lightblue;
     transition: 0.1s;
 }
 
-.deselected {
+.task_component .deselected {
     background-color: lightgray;
     transition: 0.1s;
 }
 
-.complete{
+.task_component .complete{
     opacity:0.5;
     transition: 0.1s;
 }
-.incomplete{
+.task_component .incomplete{
     opacity:1;
     transition: 0.1s;
 }
@@ -37,11 +37,9 @@
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
-    /* align-items: center; */
-
 }
 
-.task_information {
+.task_component .task_information {
     display: flex;
     align-items: flex-start;
     flex-direction: column;
@@ -53,30 +51,30 @@
     line-height: 25px;
 }
 
-.task_name {
+.task_component .task_name {
     font-weight: 600;
     font-size: 1.4rem;
 }
 
-.task_text {
+.task_component .task_text {
     font-family: 'Inter';
     font-style: normal;
     font-weight: 400;
     font-size: 1.2rem;
     color: #000000;
 }
-.task_text_icon {
+.task_component .task_text_icon {
     display: relative;
     transform: translate(0,+18%);
     margin-right: 0.2em;
 }
 
-.next_button {
+.task_component .next_button {
     margin-left: auto;
     padding: 0.5em;
 }
 
-.checkbox {
+.task_box_comp .checkbox {
     transform: translate(0,-25%);
 }
 
