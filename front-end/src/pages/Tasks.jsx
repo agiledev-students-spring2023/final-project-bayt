@@ -1,45 +1,46 @@
 // Login Page
-import { useState, useEffect } from "react";
+import { useState, useEffect} from "react";
 import axios from "axios";
 import "../css/tasks.css";
 import TaskComponent from "../components/Task_Component.jsx";
-import CircularProgress from "@mui/material/CircularProgress";
-import Footer from './Footer';
+import Footer from './Footer'
+import {Button, CircularProgress} from "@mui/material";
 
 //TESTING MODE: This is to toggle between API calls and hardcoded JSON data
 const testing_mode = true;
 
+//Add checkbox to task_component https://beta.reactjs.org/learn/sharing-state-between-components add checkbox to task_component using iscomplete
 const Tasks = (props) => {
   const [data, setData] = useState([]);
   const [loaded, setLoaded] = useState(false);
   const [error, setError] = useState("");
+  const [selected, setSelected] = useState([]); // OID's of selected objects
 
-  let prev_day = "";
-  const TaskDay = (task) => {
-    const task_date = new Date(task.due_time.$date.$numberLong);
-    let day = new Intl.DateTimeFormat("en-US", { weekday: "long" }).format(
-      task_date
-    );
-    const diff = task_date.valueOf() - Date.now().valueOf();
+  // Complete the selected tasks
+  const setComplete = () => {
+    selected.forEach(selectObject => data.find(({id}) => id.$oid===selectObject.id).complete = true);
+    setSelected([]);
+  }
 
-    //Display in Month, day, year format if greater than a week
-    if (Math.abs(diff) >= 604800000) {
-      day = new Intl.DateTimeFormat("en-US", {
-        month: "long",
-        day: "numeric",
-        year: "numeric",
-      }).format(task_date);
+  const handleDS = (taskID, bool) => {
+    if (bool) {
+      handleSelect(taskID);
+    } else {
+      handleDeselect(taskID);
     }
+  };
 
-    if (day !== prev_day) {
-      prev_day = day;
-      return (
-        <>
-          <div className="line"></div>
-          <h2 className="day_title">{day}</h2>
-        </>
-      );
-    }
+  const handleSelect = (taskID) => {
+    setSelected([
+      ...selected,
+      {
+        id: taskID,
+      },
+    ]);
+  };
+
+  const handleDeselect = (taskID) => {
+    setSelected(selected.filter((x) => x.id !== taskID));
   };
 
   //Comparator for the sorting by the dates of API DATA elems
@@ -86,100 +87,207 @@ const Tasks = (props) => {
     };
   }, []);
 
+  let prev_day = "";
+  const TaskDay = (due_time) => {
+    const task_date = new Date(due_time);
+    let day = new Intl.DateTimeFormat("en-US", { weekday: "long" }).format(
+      task_date
+    );
+    const diff = task_date.valueOf() - Date.now().valueOf();
+
+    //Display in Month, day, year format if greater than a week
+    if (Math.abs(diff) >= 604800000) {
+      day = new Intl.DateTimeFormat("en-US", {
+        month: "long",
+        day: "numeric",
+        year: "numeric",
+      }).format(task_date);
+    }
+
+    if (day !== prev_day) {
+      prev_day = day;
+      return (
+        <>
+          <div className="line"></div>
+          <h2 className="day_title">{day}</h2>
+        </>
+      );
+    }
+  };
+
   return (
+    <>
     <div className="task_box">
+      <span className="vl"></span>
       {error && <p>{error}</p>}
       {!loaded && <CircularProgress className="loading_icon" />}
       {data.map((task_data) => {
         return (
-          <div key={task_data.id.$oid}>
-            {TaskDay(task_data)}
-            <TaskComponent
-              title={task_data.task_name}
-              room={task_data.room}
-              assigned={task_data.assignee}
-            />
-            <Footer />
-          </div>
+            <div key={task_data.id.$oid}>
+              {TaskDay(task_data.due_time.$date.$numberLong)}
+              <TaskComponent
+                id={task_data.id.$oid}
+                title={task_data.task_name}
+                room={task_data.room}
+                assigned={task_data.assignee}
+                completed={task_data.complete} // needs to be a state
+                SelectHandler={handleDS}
+              />
+            </div>
         );
       })}
+      {selected.length > 0 && <><span className="transparent_box"></span><Button variant="contained" onClick={(e) => setComplete()}>Set Complete</Button></>}
     </div>
+    <Footer />
+    </>
   );
 };
 export default Tasks;
 
 //MOCK DATA
 let task_json = [
-    {
-      id: { $oid: "6403e5c9f032391df0001828" },
-      task_name: "wipe floor in kitchen",
-      description: "clean properly this time",
-      room: "Vipingo Estate",
-      assignee: "Rheta",
-      due_time: { $date: { $numberLong: 165676748700 } },
-      repeat: 1,
+  {
+    id: {
+      $oid: "64055f38f032391df0001d6a",
     },
-    {
-      id: { $oid: "6403e5c9f032391df0001829" },
-      task_name: "call maintenance",
-      description: "clean properly this time",
-      room: "Mahanoro",
-      assignee: "Benedict",
-      due_time: { $date: { $numberLong: 166807471100 } },
-      repeat: 1,
+    task_name: "cook spaghetti",
+    description: "wake up dog",
+    room: "Kiana",
+    assignee: "Evania",
+    due_time: {
+      $date: {
+        $numberLong: 164717936800,
+      },
     },
-    {
-      id: { $oid: "6403e5c9f032391df000182a" },
-      task_name: "call maintenance",
-      description: "take dog on walk",
-      room: "Paso Caballos",
-      assignee: "Vergil",
-      due_time: { $date: { $numberLong: 165998506900 } },
-      repeat: 1,
+    complete: true,
+    repeat: 1,
+  },
+  {
+    id: {
+      $oid: "64055f38f032391df0001d6b",
     },
-    {
-      id: { $oid: "6403e5c9f032391df000182b" },
-      task_name: "call maintenance",
-      description: "clean properly this time",
-      room: "Ponta Grossa",
-      assignee: "Eugenius",
-      due_time: { $date: { $numberLong: 166918952900 } },
-      repeat: 1,
+    task_name: "cook spaghetti",
+    description: "wipe the bed",
+    room: "Melinda",
+    assignee: "Harrison",
+    due_time: {
+      $date: {
+        $numberLong: 164715103700,
+      },
     },
-    {
-      id: { $oid: "6403e5c9f032391df000182c" },
-      task_name: "take out trash",
-      description: "take dog on walk",
-      room: "Eureka",
-      assignee: "Gilemette",
-      due_time: { $date: { $numberLong: 167079582300 } },
-      repeat: 1,
+    complete: false,
+    repeat: 1,
+  },
+  {
+    id: {
+      $oid: "64055f38f032391df0001d6c",
     },
-    {
-      id: { $oid: "6403e5c9f032391df000182d" },
-      task_name: "wipe floor in kitchen",
-      description: "clean properly this time",
-      room: "Burns",
-      assignee: "Chrissie",
-      due_time: { $date: { $numberLong: 165918810000 } },
-      repeat: 1,
+    task_name: "wipe floor in kitchen",
+    description: "wake up dog",
+    room: "Toluca",
+    assignee: "Theo",
+    due_time: {
+      $date: {
+        $numberLong: 164705693900,
+      },
     },
-    {
-      id: { $oid: "6403e5c9f032391df000182e" },
-      task_name: "call maintenance",
-      description: "wake up dog",
-      room: "Omsk",
-      assignee: "Obadias",
-      due_time: { $date: { $numberLong: 165777791000 } },
-      repeat: 1,
+    complete: false,
+    repeat: 1,
+  },
+  {
+    id: {
+      $oid: "64055f38f032391df0001d6d",
     },
-    {
-      id: { $oid: "6403e5c9f032391df000182f" },
-      task_name: "cook spaghetti",
-      description: "clean properly this time",
-      room: "Poprad",
-      assignee: "Kelcie",
-      due_time: { $date: { $numberLong: 165402530900 } },
-      repeat: 1,
+    task_name: "take out trash",
+    description: "take dog on walk",
+    room: null,
+    assignee: "Rolland",
+    due_time: {
+      $date: {
+        $numberLong: 164652765300,
+      },
     },
-  ];
+    complete: true,
+    repeat: 1,
+  },
+  {
+    id: {
+      $oid: "64055f38f032391df0001d6e",
+    },
+    task_name: "take out trash",
+    description: "wipe the bed",
+    room: null,
+    assignee: "Twila",
+    due_time: {
+      $date: {
+        $numberLong: 164687283300,
+      },
+    },
+    complete: false,
+    repeat: 1,
+  },
+  {
+    id: {
+      $oid: "64055f38f032391df0001d6f",
+    },
+    task_name: "call maintenance",
+    description: "wake up dog",
+    room: "Elazığ",
+    assignee: "Cicily",
+    due_time: {
+      $date: {
+        $numberLong: 164670839100,
+      },
+    },
+    complete: true,
+    repeat: 1,
+  },
+  {
+    id: {
+      $oid: "64055f38f032391df0001d70",
+    },
+    task_name: "wipe floor in kitchen",
+    description: "clean properly this time",
+    room: "Villamontes",
+    assignee: "Osgood",
+    due_time: {
+      $date: {
+        $numberLong: 164655518500,
+      },
+    },
+    complete: false,
+    repeat: 1,
+  },
+  {
+    id: {
+      $oid: "64055f38f032391df0001d71",
+    },
+    task_name: "call maintenance",
+    description: "wake up dog",
+    room: "Sorriso",
+    assignee: "Garvy",
+    due_time: {
+      $date: {
+        $numberLong: 164715321100,
+      },
+    },
+    complete: false,
+    repeat: 1,
+  },
+  {
+    id: {
+      $oid: "64055f38f032391df0001d72",
+    },
+    task_name: "clean bathroom",
+    description: "wake up dog",
+    room: "Taganrog",
+    assignee: "Shaine",
+    due_time: {
+      $date: {
+        $numberLong: 164684893500,
+      },
+    },
+    complete: true,
+    repeat: 1,
+  },
+];

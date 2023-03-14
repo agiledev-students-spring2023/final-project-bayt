@@ -1,10 +1,9 @@
 .task_component {
     display: flex;
+    flex: 1 0 0;
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
-    /* padding-bottom: 0rem; */
-    /* margin: 2rem 0; */
     margin-bottom: 1.2rem;
     background-color: lightgray;
     border-radius: 20px 0px 0px 20px;
@@ -14,7 +13,33 @@
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
 
-.task_information {
+.task_component .selected {
+    background-color: lightblue;
+    transition: 0.1s;
+}
+
+.task_component .deselected {
+    background-color: lightgray;
+    transition: 0.1s;
+}
+
+.task_component,.complete{
+    opacity:0.5;
+    transition: 0.1s;
+}
+.task_component,.incomplete{
+    opacity:1;
+    transition: 0.1s;
+}
+
+.task_box_comp {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.task_component .task_information {
     display: flex;
     align-items: flex-start;
     flex-direction: column;
@@ -22,29 +47,34 @@
     overflow: hidden;
     text-overflow: ellipsis;
     min-height: 4.2rem;
-    padding: 0.2rem 0.9rem;
+    padding: 0.7rem 0.9rem;
     line-height: 25px;
 }
 
-.task_name {
+.task_component .task_name {
     font-weight: 600;
     font-size: 1.4rem;
 }
 
-.task_text {
+.task_component .task_text {
     font-family: 'Inter';
     font-style: normal;
     font-weight: 400;
     font-size: 1.2rem;
     color: #000000;
 }
-.task_text_icon {
+.task_component .task_text_icon {
     display: relative;
     transform: translate(0,+18%);
     margin-right: 0.2em;
 }
 
-.next_button {
+.task_component .next_button {
     margin-left: auto;
     padding: 0.5em;
 }
+
+.task_box_comp .checkbox {
+    transform: translate(0,-25%);
+}
+
