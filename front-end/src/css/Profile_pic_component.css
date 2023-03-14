@@ -1,17 +1,23 @@
-.img {
+.whatever {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    width: 150px;
-    height: 150px;
-    border: 1px solid black;
-  }
+    width: 130px;
+    height: 130px;
+  } 
 
+.whatever img {
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+    border-radius: 70px;  
+}
 
-  #uploadPic {
+#uploadPic {
     display: none;  
-  }
+}
 
-  .custom-file-upload {
+.custom-file-upload {
     font-size: 10px;
-  }
+}
+

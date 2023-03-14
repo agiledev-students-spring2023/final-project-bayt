@@ -1,15 +1,17 @@
 //Profile_pic component
 import "../css/Profile_pic_component.css";
 import React, { useRef, useState } from 'react';
+import prof from "./../img.svg";
 
 
-const Profile_pic = () => {
+const ProfilePic = () => {
   //get image in local storage if already uploaded, otherwise undefined (maybe change to default profile svg)
-  const [image, setImage] = useState(localStorage.getItem('img') || undefined);
+  const [image, setImage] = useState(localStorage.getItem('img') || prof);
   const fileInputRef = useRef(null);
 
   const handleChange = (event) => {
     const selectedFile = event.target.files[0];
+    
     
     if (selectedFile) {
       let reader = new FileReader();
@@ -22,7 +24,7 @@ const Profile_pic = () => {
     }
 
     else {
-      setImage(undefined);
+      setImage(prof);
       localStorage.removeItem('img');
     }
 
@@ -32,8 +34,8 @@ const Profile_pic = () => {
 
   return (
       <div>
-        <div>
-          <img src={image} className="img" alt="" />
+        <div className="whatever">
+        <img src={image} className="img" alt="" />   
         </div>
         <input type='file' id="uploadPic" ref={fileInputRef} onChange={handleChange} />
         <label htmlFor="uploadPic" className="custom-file-upload">Upload file</label>
@@ -41,7 +43,7 @@ const Profile_pic = () => {
   );
 };
 
-export default Profile_pic;
+export default ProfilePic;
 
 
 
