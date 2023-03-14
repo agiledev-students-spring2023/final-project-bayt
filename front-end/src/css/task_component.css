@@ -23,11 +23,11 @@
     transition: 0.1s;
 }
 
-.task_component .complete{
+.task_component,.complete{
     opacity:0.5;
     transition: 0.1s;
 }
-.task_component .incomplete{
+.task_component,.incomplete{
     opacity:1;
     transition: 0.1s;
 }
