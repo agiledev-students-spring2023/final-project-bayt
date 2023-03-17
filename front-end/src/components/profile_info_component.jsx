@@ -12,18 +12,18 @@ import HomeIcon from '@mui/icons-material/Home';
 export default function ProfInfo() {
   return (
     <Container maxWidth='lg'>
-    <Box margin={'auto'} sx={{ width: '20%'}}>     
+    <Box margin={'auto'} sx={{ width: '70%', maxWidth:'100%'}}>     
         <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
             <EmailIcon sx={{ color: 'action.active', mr: 2, my: 0.5 }} />
-            <TextField id="input-with-sx" label="Input Email" variant="standard" />
+            <TextField fullWidth id="input-with-sx" label="Email" variant="standard" />
         </Box>
         <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
             <Diversity3Icon sx={{ color: 'action.active', mr: 2, my: 0.5 }} />
-            <TextField id="input-with-sx" label="Household Role" variant="standard" />
+            <TextField fullWidth id="input-with-sx" label="Household Role" variant="standard" />
         </Box>
         <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
             <LockIcon sx={{ color: 'action.active', mr: 2, my: 0.5 }} />
-            <TextField
+            <TextField fullWidth
                 id="standard-password-input"
                 label="Password"
                 type="password"
@@ -33,11 +33,11 @@ export default function ProfInfo() {
         </Box>
         <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
             <PhoneIcon sx={{ color: 'action.active', mr: 2, my: 0.5 }} />
-            <TextField id="input-with-sx" label="xxx-xxx-xxxx" variant="standard" />
+            <TextField fullWidth id="input-with-sx" label="xxx-xxx-xxxx" variant="standard" />
         </Box>
         <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
             <HomeIcon sx={{ color: 'action.active', mr: 2, my: 0.5 }} />
-            <TextField id="input-with-sx" label="rooms" variant="standard" />
+            <TextField fullWidth id="input-with-sx" label="rooms" variant="standard" />
         </Box>
         </Box>
         </Container>

@@ -34,7 +34,7 @@ const ProfilePic = () => {
 
   return (
       <div>
-        <div className="whatever">
+        <div className="profileImg">
         <img src={image} className="img" alt="" />   
         </div>
         <input type='file' id="uploadPic" ref={fileInputRef} onChange={handleChange} />
