@@ -1,0 +1,85 @@
+.outer {
+    background-color: #f4f1de;
+    height: 100%;
+}
+
+.delete_this_later {
+    padding: 0;
+    margin: 0;
+}
+
+.profile-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5px;
+  }
+  
+  .edit-input {
+    width: 150px;
+    font-size: 18px;
+    padding: 5px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    background-color: transparent;
+  }
+  
+  .name-display {
+    font-size: 25px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #000;
+  }
+  
+
+.delete-account-button {
+    background-color: #3D405B;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    width: 70%;
+    margin-top: 70px;
+
+  }
+  
+  .modal {
+    background-color: #3d405b;
+    padding: 20px;
+    border-radius: 10px;
+    width: 'auto';
+    text-align: center;
+
+  }
+  
+  .header {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: aliceblue;
+  }
+  
+  .content {
+    margin-bottom: 10px;
+    color: aliceblue;
+  }
+  
+  .actions {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .button {
+    background-color: #81b29a;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    margin-right: 10px;
+  }
+  
+  .button.danger {
+    background-color:  #E07A5f;
+    color: white;
+  }
