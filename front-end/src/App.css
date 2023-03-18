@@ -2,7 +2,7 @@
   height: 100vh;
 	font-family: var(--main-font);
 	font-size: 1.2em;
-	background-color: --var(background-color);
+	/* background-color: var(--background-color); */
 	text-align: center;
 	margin: auto;
 	margin-top: 0px;
@@ -21,7 +21,7 @@
 }
 
 .App-header {
-  background-color: --var(background-color);
+  background-color: var(--background-color);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
