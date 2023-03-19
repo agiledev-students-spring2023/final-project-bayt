@@ -3,6 +3,7 @@ import axios from "axios";
 import ProfilePic from "../components/Profile_pic_component";
 import ProfInfo from "../components/Profile_info_component";
 import "../css/Profile_pic_component.css";
+import Header from './Header';
 import Footer from './Footer';
 import Popup from 'reactjs-popup';
 import '../css/Profile.css';
@@ -106,9 +107,7 @@ const Name_info = () => {
 const Profile = () => {
     return (
     <div className="outer">
-        <h1 className="delete_this_later">
-           HEADER PLACEHOLDER 
-        </h1>
+        <Header />
         <ProfilePic/>
         <Name_info/>
         <ProfInfo/>

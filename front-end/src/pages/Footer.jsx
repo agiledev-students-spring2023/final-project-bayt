@@ -11,7 +11,7 @@ import TuneIcon from '@mui/icons-material/Tune'
 
 const Footer = props => {
 
-  const variant = "outlined"
+  const variant = "text"
 
   return (
     <footer className="footer">
