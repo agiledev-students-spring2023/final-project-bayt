@@ -2,8 +2,19 @@
     margin: 0;
 	width: 30vw;
 	height: 100vh;
-	background-color: #fff;
+	background-color: var(--background-color);
 	margin: auto;
 	text-align: left;
     position: relative;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    padding-top: 10vh;
+}
+
+main {
+    overflow-y: scroll;
+    flex: auto;
 }
