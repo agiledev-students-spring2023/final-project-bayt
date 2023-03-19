@@ -2,8 +2,36 @@
     margin: 0;
 	width: 30vw;
 	height: 100vh;
-	background-color: #fff;
+	background-color: var(--background-color);
 	margin: auto;
 	text-align: left;
     position: relative;
+}
+
+main {
+    overflow-y: scroll;
+    flex: auto;
+    display: flex;
+    flex-direction: column;
+    padding-top: 9vh;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 5vw;
+}
+
+.roomButton {
+    height: 25vw;
+    width: 25vw;
+    background-color: #81B29A;
+    border-color: #3D405B;
+    font-size: 5vw;
+}
+
+.bodyButtons {
+    display: flex;
+    flex-direction: column;
 }

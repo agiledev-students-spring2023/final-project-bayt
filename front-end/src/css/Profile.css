@@ -3,11 +3,6 @@
     height: 100%;
 }
 
-.delete_this_later {
-    padding: 0;
-    margin: 0;
-}
-
 .profile-container {
     display: flex;
     flex-direction: column;
