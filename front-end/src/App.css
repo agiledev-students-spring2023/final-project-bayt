@@ -6,12 +6,13 @@
 	padding: none;
   width: 30vw;
   margin: 0 auto;
+  width: 30vw;
+  height: 100vh;
 }
 
 @media screen and (max-width: 600px) {
-  .content {
+  .App {
     width: 90vw;
-    margin: 0 auto;
   }
 }
 

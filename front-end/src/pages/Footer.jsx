@@ -1,5 +1,5 @@
 import React from "react";
-
+import "../index.css";
 import "../css/Footer.css";
 import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
@@ -13,50 +13,61 @@ const Footer = (props) => {
   const variant = "text";
 
   return (
-    <div className="page-body">
-      <footer className="footer">
+    <footer className="footer">
+      <div>
         <Button
+          className="footer-buttons"
           variant={variant}
           component={Link}
           to="/tasks"
           startIcon={<FormatListBulletedIcon />}
         >
-          Tasks
         </Button>
+      </div>
+      <div>
         <Button
+          className="footer-buttons"
           variant={variant}
           component={Link}
           to="/finances"
           startIcon={<AttachMoneyIcon />}
         >
-          Finances
         </Button>
+      </div>
+      <div>
         <Button
+          className="footer-buttons"
           variant={variant}
           component={Link}
           to="/home"
           startIcon={<HomeIcon />}
         >
-          Home
+
         </Button>
+      </div>
+      <div>
         <Button
+          className="footer-buttons"
           variant={variant}
           component={Link}
           to="/alerts"
           startIcon={<NotificationsIcon />}
         >
-          Alerts
+          
         </Button>
+      </div>
+      <div>
         <Button
+          className="footer-buttons"
           variant={variant}
           component={Link}
           to="/settings"
           startIcon={<TuneIcon />}
         >
-          Settings
+          
         </Button>
-      </footer>
-    </div>
+      </div>
+    </footer>
   );
 };
 
