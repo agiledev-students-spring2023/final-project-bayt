@@ -1,0 +1,41 @@
+.setts-info {
+    margin-top: 85px; /* or adjust the value until the content is no longer covered */
+    margin-left: 10px;
+   
+  } 
+
+.setts-info ul {
+list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  }
+  
+  .setts-info li {
+    margin: 0;
+    padding: 0.5rem 0;
+    border: 2px solid #f2cc8f; /* add border */
+    border-radius: 5%;
+    box-sizing: border-box;
+    margin-bottom: 0.5rem;
+    
+  }
+  
+  .setts-info li:nth-child(odd) {
+    background-color: #f9e9c9; /* add alternating background color */
+  }
+  
+  .setts-info a {
+    text-decoration: none;
+    color: #333;
+    display: block; /* make link fill entire list item */
+    padding: 0.5rem; /* add padding inside border */
+    width: 100%; /* set the width to fill the entire list item */
+    box-sizing: border-box; /* include padding and border in the width */
+   
+  }
+
+
