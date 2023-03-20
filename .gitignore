@@ -129,3 +129,6 @@ typings/
 ## Jekyll artifacts
 **/.jekyll-cache
 **/_site/
+
+## VScode
+.VScode
