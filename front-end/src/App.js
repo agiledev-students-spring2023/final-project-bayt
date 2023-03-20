@@ -13,6 +13,7 @@ import Profile from './pages/Profile';
 import RoomTemplate from './pages/RoomTemplate';
 import Finances from "./pages/finances";
 import Alerts from "./pages/alerts";
+import Settings from './pages/Settings';
 
 // TODOS:
 // 1. The index page is login page right now. Should be set to home page once we have user authentication
@@ -30,6 +31,7 @@ function App() {
             <Route index path="/room/:roomName" element={<RoomTemplate />}></Route>
             <Route index path="/finances" element={<Finances />}></Route>
             <Route index path="/alerts" element={<Alerts />}></Route>
+            <Route index path="/Settings" element={<Settings/>}></Route>
           </Routes>
         </BrowserRouter>
     </div>
