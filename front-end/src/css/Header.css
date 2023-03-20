@@ -3,6 +3,7 @@
     position: sticky;
     display: flex;
     flex-direction: row;
+    align-items: center;
     justify-content: space-between;
     height: var(--header-height);
     padding: 0 20px;
@@ -12,24 +13,21 @@
 
 .headerLogo {
     display: flex;
-    align-self: center;
-    justify-content: left;
     height: 8vh;
     width: 8vh;
 }
 
 .houseName {
-    color: black;
-    display: flex;
-    align-self: center;
-    justify-content: center;
-    font-size: 5vh;
+    position: relative;
+    right: -0.5vw;
+    color: #3D405B;
+    font-size: 3vh;
 }
 
 .profile {
-    color: black;
-    display: flex;
-    align-self: center;
+    position: relative;
+    right: -1vw;
+    color: #3D405B;
     width: 10vh;
     height: 10vh;
     font-size: large;

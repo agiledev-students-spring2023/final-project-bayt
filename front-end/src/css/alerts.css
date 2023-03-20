@@ -1,4 +1,5 @@
 .alertsList {
+  margin-top: 5vh;
   text-align: left;
   display: flex;
   flex-direction: column;

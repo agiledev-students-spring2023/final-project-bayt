@@ -10,7 +10,6 @@ const Home = (props) => {
     <div className="homeBody">
       <Header title="Home" />
       <div className="bodyButtons">
-        <div class="room">
           <Link to="/tasks">
             <button class="roomButton" type="button">
               Living Room
@@ -21,12 +20,9 @@ const Home = (props) => {
               Bathroom
             </button>
           </Link>
-        </div>
-        <div className="addRoom">
           <button class="roomButton" type="button">
             Add Room
           </button>
-        </div>
       </div>
       <Footer />
     </div>
