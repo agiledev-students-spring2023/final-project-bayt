@@ -62,7 +62,7 @@ function IndividualTask(props) {
 
     return (
         <div>
-            <Header></Header>
+            <Header />
             <form className='taskFormContainer' onSubmit={handleSubmit}>
                 <ThemeProvider theme={theme}>
                     <Box sx={{m: 3, mt: 8, pt: 3, maxWidth: '100%'}}>
@@ -109,7 +109,7 @@ function IndividualTask(props) {
                 </ThemeProvider>
             </form>
 
-            <Footer></Footer>
+            <Footer />
         </div>
     )
 }

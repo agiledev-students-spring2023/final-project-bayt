@@ -20,7 +20,7 @@ function App() {
             <Route index path="/" element={<Login />}></Route>
             <Route index path="/tasks" element={<Tasks />}></Route>
             <Route index path="/home" element={<Home />}></Route>
-            <Route index path="/task/add" element={<IndividualTask />}></Route>
+            <Route index path="/tasks/add" element={<IndividualTask />}></Route>
             <Route index path="/Profile" element={<Profile/>}></Route>
           </Routes>
       </BrowserRouter>

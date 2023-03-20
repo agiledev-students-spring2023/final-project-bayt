@@ -13,7 +13,7 @@ function Login(props) {
     const navigate = useNavigate();
 
     function handleClick(evt) {
-        return navigate('/tasks');
+        return navigate('/home');
     }
 
     return (
