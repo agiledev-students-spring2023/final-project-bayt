@@ -3,6 +3,7 @@ import { useState, useEffect} from "react";
 import axios from "axios";
 import "../css/tasks.css";
 import TaskComponent from "../components/Task_Component.jsx";
+import Header from './Header';
 import Footer from './Footer'
 import {Button, CircularProgress} from "@mui/material";
 
@@ -117,6 +118,7 @@ const Tasks = (props) => {
 
   return (
     <>
+    <Header />
     <div className="task_box">
       <span className="vl"></span>
       {error && <p>{error}</p>}
