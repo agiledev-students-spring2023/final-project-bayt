@@ -1,17 +1,13 @@
-#outer {
-    margin: 0;
-	width: 30vw;
-	height: 100vh;
-	background-color: var(--background-color);
-	margin: auto;
-	text-align: left;
-    position: relative;
+.homeBody {
+  background-color: #f4f1de;
+  margin: 0 auto;
+  width: 30vw;
 }
 
-main {
-    overflow-y: scroll;
-    display: flex;
-    flex-direction: column;
-    padding-top: 9vh;
-    align-items: center;
+@media screen and (max-width: 600px) {
+  .homeBody {
+    background-color: #f4f1de;
+    width: 100vw;
+    margin: 0 auto;
+  }
 }

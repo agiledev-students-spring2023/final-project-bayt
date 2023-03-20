@@ -56,7 +56,7 @@ const Footer = (props) => {
           
         </Button>
       </div>
-      <div>
+      {/* <div>
         <Button
           className="footer-buttons"
           variant={variant}
@@ -64,9 +64,8 @@ const Footer = (props) => {
           to="/settings"
           startIcon={<TuneIcon />}
         >
-          
         </Button>
-      </div>
+      </div> */}
     </footer>
   );
 };
