@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Footer from './Footer';
+import Header from "./Header";
 import '../css/alerts.css';
 import '../index.css';
 
@@ -24,7 +25,7 @@ function Alerts() {
     return (
         <div className='page-body'>
             <div className='content'>
-                <h1>Alerts</h1>
+                <Header title="Finances"/>
                 <div className='list'>
                     <ul>
                         {alerts.map((alert, index) => (

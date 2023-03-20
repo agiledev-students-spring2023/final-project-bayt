@@ -1,5 +1,4 @@
 import { useState} from "react";
-import axios from "axios";
 import ProfilePic from "../components/Profile_pic_component";
 import ProfInfo from "../components/Profile_info_component";
 import "../css/Profile_pic_component.css";
@@ -107,7 +106,7 @@ const Name_info = () => {
 const Profile = () => {
     return (
     <div className="outer">
-        <Header />
+        <Header title="Profile"/>
         <ProfilePic/>
         <Name_info/>
         <ProfInfo/>

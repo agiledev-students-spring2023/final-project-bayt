@@ -1,16 +1,13 @@
 .App {
-  height: 100vh;
-	background-color: #F4F1DE;
-	text-align: center;
-	padding: none;
-  width: 30vw;
+  display: flex;
   margin: 0 auto;
+  width: 30vw;
+  height: 100vh;
 }
 
 @media screen and (max-width: 600px) {
-  .content {
+  .App {
     width: 90vw;
-    margin: 0 auto;
   }
 }
 

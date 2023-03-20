@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom'
 const Home = props => {
     return (
         <div className="body">
-            <Header />
+            <Header title="Home"/>
             <main>
                 <div className="bodyButtons">
                     <div className="row">
