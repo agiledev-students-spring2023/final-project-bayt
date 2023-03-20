@@ -1,6 +1,6 @@
 .header {
-    position: fixed;
     top: 0;
+    position: sticky;
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -8,6 +8,7 @@
     height: var(--header-height);
     padding: 0;
     background-color: #F2CC8F;
+    z-index: 10;
 }
 
 .headerLogo {

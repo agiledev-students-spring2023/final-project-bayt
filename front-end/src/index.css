@@ -1,5 +1,3 @@
-
-
 @font-face {
   font-family: 'Heading';
   src: url('./fonts/Bold.otf') format('opentype');
@@ -21,7 +19,7 @@
 }
 
 body {
-  background-color: #F4F1DE;
+  background-color: black;
 }
 
 h1,
@@ -44,7 +42,6 @@ alt {
 }
 
 body {
-  margin: 0;
   font-family: 'Body', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

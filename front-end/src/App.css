@@ -3,9 +3,16 @@
 	font-size: 1.2em;
 	/* background-color: var(--background-color); */
 	text-align: center;
-	margin: auto;
-	margin-top: 0px;
 	padding: none;
+  width: 30vw;
+  margin: 0 auto;
+}
+
+@media screen and (max-width: 600px) {
+  .content {
+    width: 90vw;
+    margin: 0 auto;
+  }
 }
 
 .App-logo {

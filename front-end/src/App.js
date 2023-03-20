@@ -1,6 +1,8 @@
-import './App.css';
-import './css/branding.css';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+// import css
+import './App.css';
+import './index.css';
+// link other pages
 import Login from './pages/Login';
 import Tasks from './pages/Tasks';
 import Home from './pages/Home';
