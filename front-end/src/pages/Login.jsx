@@ -1,6 +1,7 @@
 // Login Page
 
 import React from 'react';
+import { useNavigate } from "react-router-dom";
 
 import "../css/Login.css";
 
@@ -9,6 +10,12 @@ import "../css/Login.css";
 // 2. Username input field retains the value user just entered if something went wrong (backend issues, wrong housecode, etc.).
 
 function Login(props) {
+    const navigate = useNavigate();
+
+    function handleClick(evt) {
+        return navigate('/home');
+    }
+
     return (
         <div id='outer'>
             <div className='logoContainer'>
@@ -18,17 +25,19 @@ function Login(props) {
             </div>
 
             <div className='inputArea'>
-                <input id='usernameInput' type="text" name='username' placeholder='USERNAME'/>
-                <input id='passwordInput' type="password" name='housecode' placeholder='HOUSE CODE' />
-                <input id='loginBtn' type="submit" value='Login' />
-            </div>
+                <div className='loginArea'>
+                    <input id='usernameInput' type="text" name='username' placeholder='USERNAME'/>
+                    <input id='passwordInput' type="password" name='housecode' placeholder='HOUSE CODE' />
+                    <input onClick={handleClick} id='loginBtn' type="submit" value='Login' />
+                </div>
 
-            <div className='signupArea'>
-                <button id='signupBtn'>Sign Up</button>
+                <div className='signupArea'>
+                    <button id='signupBtn'>Sign Up</button>
+                </div>
             </div>
 
             <footer className='loginFooter'>
-                <h6>© 2023 Bayt</h6>
+                <h5>© 2023 Bayt</h5>
             </footer>
         </div>
     );
