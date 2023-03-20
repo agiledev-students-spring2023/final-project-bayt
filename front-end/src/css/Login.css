@@ -18,9 +18,7 @@
 }
 
 .logo {
-    width: 70%;
-    height: 60%;
-    background-color: #6a93e4;
+    width: 60%;
     text-align: center;
     display: flex;
     justify-content: center;
@@ -57,18 +55,9 @@
 
 .signupArea {
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     align-items: center;
     padding: 0 10%;
-}
-
-#signupBtn {
-    text-align: center;
-    text-decoration: underline;
-    width: 4.5rem;
-    height: 2rem;
-    border: 1px solid #cbcbcb;
-    background-color: #e0e0e0;
 }
 
 #signupBtn:hover {

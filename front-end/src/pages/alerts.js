@@ -15,10 +15,7 @@ function Alerts() {
   };
 
   useEffect(() => {
-    fetch("https://my.api.mockaroo.com/alerts.json?key=8eff7c60")
-      .then((response) => response.json())
-      .then((data) => setAlerts(data))
-      .catch((error) => console.log(error));
+    setAlerts(alerts_json);
   }, []);
 
   return (
@@ -43,5 +40,18 @@ function Alerts() {
     </div>
   );
 }
+
+let alerts_json = [
+  { task: "cubilia curae", date: "9/3/2022" },
+  { task: "ligula in", date: "10/5/2022" },
+  { task: "velit", date: "3/6/2023" },
+  { task: "interdum", date: "10/8/2022" },
+  { task: "rutrum rutrum", date: "6/11/2022" },
+  { task: "dapibus augue", date: "1/5/2023" },
+  { task: "in faucibus", date: "10/7/2022" },
+  { task: "turpis elementum", date: "9/5/2022" },
+  { task: "etiam vel", date: "7/18/2022" },
+  { task: "tortor eu", date: "6/7/2022" },
+];
 
 export default Alerts;

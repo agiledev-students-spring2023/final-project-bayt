@@ -103,22 +103,19 @@ function Finances() {
   };
 
   useEffect(() => {
-    fetch("https://my.api.mockaroo.com/finances.json?key=8eff7c60")
-      .then((response) => response.json())
-      .then((data) => setTransactions(data))
-      .catch((error) => console.log(error));
+    setTransactions(finances_json)
   }, []);
 
   return (
     <div className="content">
-      <Header title="Finances"/>
+      <Header title="Finances" />
       <div className="transactionListContainer">
         <TransactionList transactions={transactions} />
       </div>
       <div className="addTransactionButton">
-      <button className="button" onClick={handleButtonClick}>
-        Add new transaction
-      </button>
+        <button className="button" onClick={handleButtonClick}>
+          Add new transaction
+        </button>
       </div>
 
       {isFormVisible && (
@@ -177,3 +174,86 @@ function TransactionList({ transactions }) {
 }
 
 export default Finances;
+
+let finances_json = [
+  {
+    paidOrRequesting: "Paid",
+    amount: 68,
+    toOrFrom: "from",
+    user: "nunc",
+    forWhat: "ut suscipit",
+    date: "6/3/2022",
+  },
+  {
+    paidOrRequesting: "Paid",
+    amount: 25,
+    toOrFrom: "to",
+    user: "nibh",
+    forWhat: "neque",
+    date: "2/28/2023",
+  },
+  {
+    paidOrRequesting: "Paid",
+    amount: 45,
+    toOrFrom: "from",
+    user: "vitae",
+    forWhat: "sit",
+    date: "4/3/2022",
+  },
+  {
+    paidOrRequesting: "Requesting",
+    amount: 47,
+    toOrFrom: "from",
+    user: "mauris",
+    forWhat: "auctor",
+    date: "8/11/2022",
+  },
+  {
+    paidOrRequesting: "Paid",
+    amount: 59,
+    toOrFrom: "from",
+    user: "diam",
+    forWhat: "nam tristique",
+    date: "8/9/2022",
+  },
+  {
+    paidOrRequesting: "Paid",
+    amount: 90,
+    toOrFrom: "from",
+    user: "justo",
+    forWhat: "sapien",
+    date: "4/18/2022",
+  },
+  {
+    paidOrRequesting: "Requesting",
+    amount: 88,
+    toOrFrom: "from",
+    user: "eu",
+    forWhat: "tempor",
+    date: "8/31/2022",
+  },
+  {
+    paidOrRequesting: "Paid",
+    amount: 15,
+    toOrFrom: "from",
+    user: "maecenas",
+    forWhat: "sapien",
+    date: "2/4/2023",
+  },
+  {
+    paidOrRequesting: "Paid",
+    amount: 87,
+    toOrFrom: "to",
+    user: "consequat",
+    forWhat: "aenean lectus",
+    date: "1/25/2023",
+  },
+  {
+    paidOrRequesting: "Paid",
+    amount: 22,
+    toOrFrom: "from",
+    user: "hac",
+    forWhat: "platea",
+    date: "11/25/2022",
+  },
+];
