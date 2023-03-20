@@ -65,7 +65,7 @@ function IndividualTask(props) {
             <Header />
             <form className='taskFormContainer' onSubmit={handleSubmit}>
                 <ThemeProvider theme={theme}>
-                    <Box sx={{m: 3, mt: 8, pt: 3, maxWidth: '100%'}}>
+                    <Box sx={{m: 3, mt: 8, pt: 4, maxWidth: '100%'}}>
                         <TextField required sx={{mb: 2}} variant="standard" fullWidth id="taskTitle-input" name="taskTitle" label="Task Title" type="text" value={formValues.taskTitle} onChange={handleInputChange} />
 
                         <TextField sx={{mb: 2}} fullWidth required id="taskDescription" name='taskDescription' label="Enter Task Description" multiline rows={4} defaultValue={formValues.taskDescription} variant="standard" onChange={handleInputChange}/>
