@@ -19,6 +19,7 @@ function RoomTemplate(props) {
     const [selected, setSelected] = useState([]); // OID's of selected objects
 
     const { roomName } = useParams();
+    console.log(roomName);
 
     // Complete the selected tasks
     const setComplete = () => {
@@ -121,7 +122,7 @@ function RoomTemplate(props) {
 
     return (
         <>
-            <RoomHeader></RoomHeader>
+            <RoomHeader room={roomName} ></RoomHeader>
 
             <Box sx={{ pb: 6 }}>
                 <div className="task_box">
@@ -131,7 +132,7 @@ function RoomTemplate(props) {
 
                     {!loaded && <CircularProgress className="loading_icon" />}
 
-                    <AddRoom room={roomName}></AddRoom>
+                    <AddRoom></AddRoom>
 
                     {data.map((task_data) => {
                         return (

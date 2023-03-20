@@ -13,27 +13,27 @@ const Home = props => {
             <main>
                 <div className="bodyButtons">
                     <div className="row">
-                        <div class="room">
-                            <Link to="/tasks">
-                                <button class="roomButton" type="button">
+                        <div className="room">
+                            <Link to="/room/livingRoom">
+                                <button className="roomButton" type="button">
                                     Living Room
                                 </button>
                             </Link>
                         </div>
-                        <div class="room">
-                            <Link to="/tasks">
-                                <button class="roomButton" type="button">
+                        <div className="room">
+                            <Link to="/room/bathroom">
+                                <button className="roomButton" type="button">
                                     Bathroom
                                 </button>
                             </Link>
                         </div>
                     </div>
                     <div className="row">
-                            <div className="addRoom">
-                                <button class="roomButton" type="button">
+                            <Link to="/tasks/add">
+                                <button className="roomButton" type="button">
                                     Add Room
                                 </button>
-                            </div>
+                            </Link>
                         </div>
                 </div>
             </main> 

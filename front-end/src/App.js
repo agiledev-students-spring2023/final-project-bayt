@@ -23,7 +23,7 @@ function App() {
             <Route index path="/home" element={<Home />}></Route>
             <Route index path="/tasks/add" element={<IndividualTask />}></Route>
             <Route index path="/Profile" element={<Profile/>}></Route>
-            <Route index path="/room" element={<RoomTemplate />}></Route>
+            <Route index path="/room/:roomName" element={<RoomTemplate />}></Route>
           </Routes>
       </BrowserRouter>
     </div>
