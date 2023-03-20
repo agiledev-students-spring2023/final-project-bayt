@@ -1,7 +1,6 @@
 import './App.css';
 import './css/branding.css';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-
 import Login from './pages/Login';
 import Tasks from './pages/Tasks';
 import Home from './pages/Home';
@@ -16,7 +15,6 @@ import Header from "./pages/Header"
 function App() {
   return (
     <div className="App">
-      <Header />
       <BrowserRouter>
         <div>
         <Header />
