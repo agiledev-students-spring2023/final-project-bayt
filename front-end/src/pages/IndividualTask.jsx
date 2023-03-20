@@ -15,7 +15,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 import '../css/IndividualTask.css';
 
-// import Header from '../components/Header';
+import Header from './Header.jsx';
 import Footer from './Footer.jsx';
 
 const defaultValues = {
@@ -62,10 +62,10 @@ function IndividualTask(props) {
 
     return (
         <div>
-            {/* <Header></Header> */}
+            <Header></Header>
             <form className='taskFormContainer' onSubmit={handleSubmit}>
                 <ThemeProvider theme={theme}>
-                    <Box sx={{m: 3, mt: 0, pt: 3, maxWidth: '100%'}}>
+                    <Box sx={{m: 3, mt: 8, pt: 3, maxWidth: '100%'}}>
                         <TextField required sx={{mb: 2}} variant="standard" fullWidth id="taskTitle-input" name="taskTitle" label="Task Title" type="text" value={formValues.taskTitle} onChange={handleInputChange} />
 
                         <TextField sx={{mb: 2}} fullWidth required id="taskDescription" name='taskDescription' label="Enter Task Description" multiline rows={4} defaultValue={formValues.taskDescription} variant="standard" onChange={handleInputChange}/>
