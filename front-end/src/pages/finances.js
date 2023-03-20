@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import Header from './Header'
 import Footer from './Footer';
 import '../css/finances.css';
 import '../index.css';
-
 
 // paid/requesting $[amount] to/from @user for [text]
 function TransactionForm({ onSubmit }) {
@@ -90,6 +90,7 @@ function Finances() {
     return (
         <div className="page-body">
             <div className='content'>
+                <Header />
                 <h1>Finances</h1>
                 <TransactionList transactions={transactions} />
                 <button className='button' onClick={handleButtonClick}>Add new transaction</button>
@@ -100,8 +101,9 @@ function Finances() {
                         </div>
                     </div>
                 )}
+                <Footer />
             </div>
-            <Footer />
+            
         </div>
     );
 }

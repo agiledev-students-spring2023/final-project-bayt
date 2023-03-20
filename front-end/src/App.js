@@ -1,11 +1,12 @@
-import './App.css';
-import './css/branding.css';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+// import css
+import './App.css';
+import './index.css';
+// link other pages
 import Login from './pages/Login';
 import Tasks from './pages/Tasks';
 import Home from './pages/Home';
 import Profile from './pages/Profile';
-import Header from './pages/Header';
 import Finances from './pages/finances';
 import Alerts from './pages/alerts';
 
