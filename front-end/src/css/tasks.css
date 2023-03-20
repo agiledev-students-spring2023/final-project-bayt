@@ -1,3 +1,17 @@
+.tasks-page-content {
+    background-color: #f4f1de;
+    margin: 0 auto;
+    width: 30vw;
+  }
+  
+  @media screen and (max-width: 600px) {
+    .tasks-page-content {
+      background-color: #f4f1de;
+      margin: 0 auto;
+      width: 100vw;
+    }
+  }
+
 .task_box {
     margin-top: 5rem;
     position: relative;

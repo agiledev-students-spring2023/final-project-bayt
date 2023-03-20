@@ -1,29 +1,27 @@
-.page-body {
-    height: 100vh;
+.alertsList {
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1vh;
 }
 
-li {
-    text-align: left;
+.alerts-page-body {
+  flex-grow: 1;
+  background-color: #f4f1de;
+  margin: 0 auto;
+  width: 30vw;
 }
 
-.list {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding-bottom: 5vh;
-}
-
-/* Default styles for all devices */
-.content {
-    width: 30vw;
+@media screen and (max-width: 600px) {
+  .alerts-page-body {
+    background-color: #f4f1de;
     margin: 0 auto;
+    width: 100vw;
   }
-  
-  /* Media query for screens with a maximum width of 600px (typical phone width) */
-  @media screen and (max-width: 600px) {
-    .content {
-      width: 90vw;
-      margin: 0 auto;
-    }
-  }
+}
+.alerts-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}

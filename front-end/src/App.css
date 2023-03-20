@@ -7,12 +7,12 @@
   width: 30vw;
   margin: 0 auto;
   width: 30vw;
-  height: 100vh;
 }
 
 @media screen and (max-width: 600px) {
   .App {
-    width: 90vw;
+    height: 100vh;
+    width: 100vw;
   }
 }
 

@@ -110,7 +110,7 @@ const Tasks = (props) => {
   };
 
   return (
-    <div className="content">
+    <div className="tasks-page-content">
       <Header title="Tasks"/>
       <div className="task_box">
         <span className="vl"></span>
