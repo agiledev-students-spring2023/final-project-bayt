@@ -1,12 +1,18 @@
 .App {
-  height: 100vh;
+  position: relative;
 	font-family: var(--main-font);
 	font-size: 1.2em;
-	background-color: --var(background-color);
 	text-align: center;
-	margin: auto;
 	margin-top: 0px;
 	padding: none;
+}
+
+.App-main {
+  overflow-y: auto;
+  padding-top: var(--header-height);
+  padding-bottom: var(--footer-height);
+  height: calc(100vh - var(--footer-height) - var(--header-height));
+	background-color: --var(background-color);
 }
 
 .App-logo {
@@ -42,4 +48,12 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
 }

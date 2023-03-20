@@ -3,8 +3,6 @@ import axios from "axios";
 import ProfilePic from "../components/Profile_pic_component";
 import ProfInfo from "../components/Profile_info_component";
 import "../css/Profile_pic_component.css";
-import Header from './Header';
-import Footer from './Footer';
 import Popup from 'reactjs-popup';
 import '../css/Profile.css';
 
@@ -44,7 +42,7 @@ const DeleteAccountButton = () => {
   
 
 //editable Name part of profile.  It renders and updates each time user changes it. 
-const Name_info = () => {
+const NameInfo = () => {
 
   const [name, setName] = useState('John Doe');
   const [isEditing, setIsEditing] = useState(false);
@@ -107,14 +105,12 @@ const Name_info = () => {
 const Profile = () => {
     return (
     <div className="outer">
-        <Header />
         <ProfilePic/>
-        <Name_info/>
+        <NameInfo/>
         <ProfInfo/>
         <div className="delete-Account">
             <DeleteAccountButton/>
         </div>
-        <Footer/>
     </div>
     
     );

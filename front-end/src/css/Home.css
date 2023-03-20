@@ -1,15 +1,13 @@
 #outer {
-    margin: 0;
+  margin: 0;
 	width: 30vw;
 	height: 100vh;
-	background-color: var(--background-color);
 	margin: auto;
 	text-align: left;
-    position: relative;
+  position: relative;
 }
 
 main {
-    overflow-y: scroll;
     flex: auto;
     display: flex;
     flex-direction: column;

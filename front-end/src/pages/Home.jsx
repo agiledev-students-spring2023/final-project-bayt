@@ -1,15 +1,11 @@
 import React from 'react'
 
 import '../css/Home.css'
-
-import Header from './Header'
-import Footer from './Footer'
 import { Link } from 'react-router-dom'
 
 const Home = props => {
     return (
         <div className="body">
-            <Header />
             <main>
                 <div className="bodyButtons">
                     <div className="row">
@@ -20,7 +16,7 @@ const Home = props => {
                                 </button>
                             </Link>
                         </div>
-                        <div class="room">
+                        <div className="room">
                             <Link to="/tasks">
                                 <button class="roomButton" type="button">
                                     Bathroom
@@ -37,7 +33,6 @@ const Home = props => {
                         </div>
                 </div>
             </main> 
-            <Footer />
         </div>
     )
 }
