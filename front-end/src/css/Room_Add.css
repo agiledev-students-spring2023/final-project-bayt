@@ -1,0 +1,14 @@
+.addRoomContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 1.2rem;
+}
+
+.addRoomComponent {
+    margin-bottom: 0;
+}
+
+.addRoomComponent:hover {
+    cursor: pointer;
+}
