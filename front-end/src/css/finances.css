@@ -3,7 +3,6 @@
 }
 
 .finances-page-content {
-  height: 100%;
   position: relative;
   top: calc(var(--header-height) + 1rem);
   padding-bottom: 3rem;
@@ -21,6 +20,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+
 }
 
 .addTransactionButton .button {
