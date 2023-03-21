@@ -1,28 +1,16 @@
+.alerts-page-body {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
 .alertsList {
-  margin-top: 5vh;
+  position: absolute;
+  top: calc(var(--header-height) + 1rem);
   text-align: left;
   display: flex;
   flex-direction: column;
   justify-content: center;
   gap: 1vh;
-}
-
-.alerts-page-body {
-  flex-grow: 1;
-  background-color: #f4f1de;
-  margin: 0 auto;
-  width: 30vw;
-}
-
-@media screen and (max-width: 600px) {
-  .alerts-page-body {
-    background-color: #f4f1de;
-    margin: 0 auto;
-    width: 100vw;
-  }
-}
-.alerts-container {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
+  margin-right: 1rem;
 }

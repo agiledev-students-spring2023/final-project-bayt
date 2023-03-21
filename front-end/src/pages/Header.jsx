@@ -9,17 +9,17 @@ import AccountCircle from "@mui/icons-material/AccountCircle";
 const Header = ({ title }) => {
   return (
     <header className="header">
-      <div className="headerLogo">
-        <img src={logo} alt="Bayt Logo" />
-      </div>
-      <div className="houseName">
-        <div className="houseName">{title}</div>
-      </div>
-      <div className="profile">
-        <IconButton component={Link} to="/profile">
-          <AccountCircle style={{ fontSize: 60 }} />
-        </IconButton>
-      </div>
+        <div className="headerLogo">
+          <img src={logo} alt="Bayt Logo" />
+        </div>
+        <div className="houseName">
+          <div className="houseName">{title}</div>
+        </div>
+        <div className="profile">
+          <IconButton component={Link} to="/profile">
+            <AccountCircle style={{ fontSize: 60 }} />
+          </IconButton>
+        </div>
     </header>
   );
 };

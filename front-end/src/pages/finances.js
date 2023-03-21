@@ -103,28 +103,30 @@ function Finances() {
   };
 
   useEffect(() => {
-    setTransactions(finances_json)
+    setTransactions(finances_json);
   }, []);
 
   return (
     <div className="content">
       <Header title="Finances" />
-      <div className="transactionListContainer">
-        <TransactionList transactions={transactions} />
-      </div>
-      <div className="addTransactionButton">
-        <button className="button" onClick={handleButtonClick}>
-          Add new transaction
-        </button>
-      </div>
-
-      {isFormVisible && (
-        <div className="overlay" onClick={handleOverlayClick}>
-          <div className="form">
-            <TransactionForm onSubmit={handleAddTransaction} />
-          </div>
+      <div className="finances-page-content">
+        <div className="transactionListContainer">
+          <TransactionList transactions={transactions} />
         </div>
-      )}
+        <div className="addTransactionButton">
+          <button className="button" onClick={handleButtonClick}>
+            Add new transaction
+          </button>
+        </div>
+
+        {isFormVisible && (
+          <div className="overlay" onClick={handleOverlayClick}>
+            <div className="form">
+              <TransactionForm onSubmit={handleAddTransaction} />
+            </div>
+          </div>
+        )}
+      </div>
       <Footer />
     </div>
   );
@@ -148,7 +150,7 @@ function TransactionList({ transactions }) {
   };
 
   return (
-    <div>
+    <div className="finances-content">
       <div className="sort-by-container">
         <label htmlFor="sort-by">Sort by date: </label>
         <select id="sort-by" value={sortOrder} onChange={handleSortByChange}>

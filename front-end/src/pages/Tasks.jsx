@@ -111,7 +111,7 @@ const Tasks = (props) => {
 
   return (
     <div className="tasks-page-content">
-      <Header title="Tasks"/>
+      <Header title="Tasks" />
       <div className="task_box">
         <span className="vl"></span>
         {error && <p>{error}</p>}

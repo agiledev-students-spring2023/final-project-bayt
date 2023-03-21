@@ -1,34 +1,48 @@
-.header {
+@media (min-width: 768px) {
+  .header {
     top: 0;
-    position: sticky;
+    position: fixed;
     display: flex;
-    flex-direction: row;
     align-items: center;
     justify-content: space-between;
     height: var(--header-height);
-    padding: 0 20px;
-    background-color: #F2CC8F;
+    width: 100%;
+    max-width: 30%;
+    background-color: #f2cc8f;
     z-index: 10;
+  }
+}
+
+@media (max-width: 767px) {
+  .header {
+    top: 0;
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: var(--header-height);
+    width: 100%;
+    max-width: 100%;
+    background-color: #f2cc8f;
+    z-index: 10;
+  }
 }
 
 .headerLogo {
-    display: flex;
-    height: 8vh;
-    width: 8vh;
+  padding-left: 1em;
+  display: flex;
+  height: 4em;
+  width: 4em;
 }
 
 .houseName {
-    position: relative;
-    right: -0.5vw;
-    color: #3D405B;
-    font-size: 3vh;
+  right: -0.5vw;
+  color: #3d405b;
+  font-size: 3vh;
 }
 
 .profile {
-    position: relative;
-    right: -1vw;
-    color: #3D405B;
-    width: 10vh;
-    height: 10vh;
-    font-size: large;
+  color: #3d405b;
+  width: 5em;
+  height: 5rem;
 }

@@ -56,7 +56,7 @@ const Footer = (props) => {
           
         </Button>
       </div>
-      {/* <div>
+      <div>
         <Button
           className="footer-buttons"
           variant={variant}
@@ -65,7 +65,7 @@ const Footer = (props) => {
           startIcon={<TuneIcon />}
         >
         </Button>
-      </div> */}
+      </div>
     </footer>
   );
 };
