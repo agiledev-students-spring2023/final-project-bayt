@@ -10,19 +10,21 @@ const Home = (props) => {
     <div className="homeBody">
       <Header title="Home" />
       <div className="bodyButtons">
-          <Link to="/tasks">
-            <button class="roomButton" type="button">
-              Living Room
-            </button>
-          </Link>
-          <Link to="/tasks">
-            <button class="roomButton" type="button">
-              Bathroom
-            </button>
-          </Link>
+        <Link to="/tasks">
+          <button class="roomButton" type="button">
+            Living Room
+          </button>
+        </Link>
+        <Link to="/tasks">
+          <button class="roomButton" type="button">
+            Bathroom
+          </button>
+        </Link>
+        <Link>
           <button class="roomButton" type="button">
             Add Room
           </button>
+        </Link>
       </div>
       <Footer />
     </div>

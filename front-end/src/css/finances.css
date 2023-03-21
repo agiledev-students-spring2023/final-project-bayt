@@ -1,20 +1,30 @@
-.finances-page-body {
-  background-color: #f4f1de;
-  margin: 0 auto;
-  width: 30vw;
+.content {
+  height: 100%;
+}
+
+.finances-page-content {
+  height: 100%;
+  position: relative;
+  top: calc(var(--header-height) + 1rem);
+  padding-bottom: 3rem;
 }
 
 .transactionListContainer {
-    width: 100%;
-    background-color: #f4f1de;
+  position: relative;
+  width: 98%;
+  background-color: #f4f1de;
 }
 
 .addTransactionButton {
-    background-color: #f4f1de;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 5vh;
+  position: relative;
+  background-color: #f4f1de;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.addTransactionButton .button {
+  margin-bottom: 2rem;
 }
 
 .overlay {
@@ -51,7 +61,6 @@ li {
 }
 
 .sort-by-container {
-  margin-top: 5vh;
   margin-right: 1vw;
   display: flex;
   justify-content: right;

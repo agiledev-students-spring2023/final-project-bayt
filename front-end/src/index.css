@@ -18,6 +18,14 @@
   src: url('./fonts/Regular.otf') format('opentype');
 }
 
+:root {
+  --header-height: 80px;
+}
+
+a {
+  text-decoration: none;
+}
+
 h1,
 h2,
 h3,
@@ -38,6 +46,7 @@ alt {
 }
 
 body {
+  margin: 0;
   background-color: #f4f1de;
   font-family: 'Body', sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -63,7 +72,7 @@ button {
   justify-content: center;
   line-height: 1rem;
   padding: 10px;
-  margin: 2vh;
+  margin: 1rem;
   text-align: left;
   transition: .2s;
   user-select: none;
