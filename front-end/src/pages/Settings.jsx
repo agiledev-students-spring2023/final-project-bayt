@@ -35,12 +35,12 @@ const Settings = () => {
         setmembersIsOpen(true)
       }
 
-      /*
       if (link==="Logout"){
-        //code to disconnect session goes here
+        console.log("logging out")
+        //code to disconnect/end session goes here
         //navigate back to login page
+        window.location.href = '/';
       }
-      */
 
       else{
         setSelectedLink(link);
@@ -100,7 +100,7 @@ const Settings = () => {
 
                 <ul>
                     <li>
-                    <a  href="#/" onClick={() => handleLinkClick('Household Information')}>{"Household Information"}</a>
+                      <a  href="#/" onClick={() => handleLinkClick('Household Information')}>{"Household Information"}</a>
                     </li>
                     {links.map(link => (
                       <li key={link.name}>
@@ -108,7 +108,7 @@ const Settings = () => {
                       </li>
                     ))}
                     <li>
-                        Logout
+                      <a  href="#/" onClick={() => handleLinkClick('Logout')}>{"Logout"}</a>
                     </li>
                 </ul>
 

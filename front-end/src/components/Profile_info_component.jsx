@@ -9,11 +9,6 @@ import PhoneIcon from '@mui/icons-material/Phone';
 import HomeIcon from '@mui/icons-material/Home';
 
 
-
-
-
-
-
 export default function ProfInfo() {
   return (
     <Container maxWidth='lg'>
