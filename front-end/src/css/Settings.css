@@ -1,36 +1,42 @@
+/* set background color for page*/
+.back {
+  background-color: #f4f1de;
+  height: 100vh;
+  padding-top: 85px;
+}
+
+/*setts-info refer to the div container that holds the list of modal links*/
 .setts-info {
-    margin-top: 85px; /* or adjust the value until the content is no longer covered */
     margin-left: 10px;
-   
   } 
 
+/*get rid of bullet points from list*/
 .setts-info ul {
-list-style-type: none;
+  list-style-type: none;
   padding: 0;
   margin: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  
-
   }
   
+  /* give each link a border and pad it*/
   .setts-info li {
     margin: 0;
     padding: 0.5rem 0;
-    border: 2px solid #f2cc8f; /* add border */
+    border: 2px solid #3d405b; 
     border-radius: 5%;
     box-sizing: border-box;
     margin-bottom: 0.5rem;
+    width: 100%;
     
   }
   
+  /*alternating colors for each link*/
   .setts-info li:nth-child(odd) {
-    background-color: #f9e9c9; /* add alternating background color */
+    background-color: #f2cc8f; /* add alternating background color */
   }
   
   .setts-info a {
     text-decoration: none;
+    text-align: left;
     color: #333;
     display: block; /* make link fill entire list item */
     padding: 0.5rem; /* add padding inside border */
@@ -39,4 +45,49 @@ list-style-type: none;
    
   }
 
+.title {
+  text-decoration: underline;
+}
+
+
+.add-member-button {
+  background-color: transparent;
+  color: #81b29a;
+  border-color: #81b29a;
+  padding: 4px 8px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition-duration: 0.4s;
+  margin-bottom: 20px;
+}
+
+.add-member-button:hover {
+  background-color: #3e8e41;
+}
+
+.add-member-button span {
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 20px;
+}
+
+
+.modal-close {
+  background-color: #e07a5f;
+  border: none;
+  color: white;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition-duration: 0.4s;
+  margin: 0 auto;
+}
 
