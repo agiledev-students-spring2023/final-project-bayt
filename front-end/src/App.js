@@ -31,7 +31,7 @@ function App() {
             <Route index path="/pages/finances" element={<Finances />}></Route>
             <Route index path="/pages/alerts" element={<Alerts />}></Route>
           </Routes>
-      </BrowserRouter>
+        </BrowserRouter>
     </div>
   );
 }
