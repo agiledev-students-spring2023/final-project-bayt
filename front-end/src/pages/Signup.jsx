@@ -3,28 +3,39 @@ import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-// import AddressForm from './AddressForm';
-// import PaymentForm from './PaymentForm';
-// import Review from './Review';
+import HouseCodeForm from '../components/HouseCodeForm';
+import CreateProfileForm from '../components/CreateProfileForm';
+import { useNavigate } from 'react-router-dom';
 
-const steps = ['Shipping address', 'Payment details', 'Review your order'];
+import '../css/Signup.css';
 
 function getStepContent(step) {
-  // switch (step) {
-  //   case 0:
-  //     return <AddressForm />;
-  //   case 1:
-  //     return <PaymentForm />;
-  //   case 2:
-  //     return <Review />;
-  //   default:
-  //     throw new Error('Unknown step');
-  // }
+  switch (step) {
+    case 0:
+      return <HouseCodeForm />;
+    case 1:
+      return <CreateProfileForm />;
+    default:
+      throw new Error('Unknown step');
+  }
 }
 
-const theme = createTheme();
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#81b29a',
+      contrastText: '#fff',
+    },
+    secondary: {
+      main: '#81b29a',
+      contrastText: '#fff',
+    },
+  },
+});
 
 export default function Checkout() {
+  const navigate = useNavigate();
+
   const [activeStep, setActiveStep] = React.useState(0);
 
   const handleNext = () => {
@@ -35,22 +46,31 @@ export default function Checkout() {
     setActiveStep(activeStep - 1);
   };
 
+  const handleNavigate = () => {
+    return navigate(-1);
+  }
+
+  const handleFinish = () => {
+    return navigate('/home');
+  }
+
   return (
-    <ThemeProvider theme={theme}>
-      <Container component="main" maxWidth="sm" sx={{ mb: 4 }}>
-        <Box sx={{ mt: 8, display: 'flex', flexDirection: 'column', alignItems: 'center', }}>
-          <h1>Sign Up</h1>
-          {activeStep === steps.length ? (<h1>Thank you</h1>) : (
-          <>
-            {getStepContent(activeStep)}
-            <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
-              {activeStep !== 0 && (<Button onClick={handleBack} sx={{ mt: 3, ml: 1 }}>Back</Button>)}
-              <Button variant="contained" onClick={handleNext} sx={{ mt: 3, ml: 1 }}>{activeStep === steps.length - 1 ? 'Finish' : 'Next'}</Button>
-            </Box>
-          </>
-          )}
-        </Box>
-      </Container>
-    </ThemeProvider>
+    <div className='signupPageContainer'>
+      <ThemeProvider theme={theme}>
+        <Container component="main" maxWidth="sm" sx={{ mb: 4 }}>
+          <Box sx={{ mt: 8, display: 'flex', flexDirection: 'column', alignItems: 'center', }}>
+            {
+              <>
+                {getStepContent(activeStep)}
+                <Box sx={{ width: '100%', display: 'flex', justifyContent: 'space-between', mt: 7 }}>
+                  {activeStep !== 0 ? (<Button fullWidth variant="contained" onClick={handleBack} sx={{ mt: 3 }}>Back</Button>) : (<Button fullWidth variant="contained" onClick={handleNavigate} sx={{ mt: 3 }}>Back</Button>)}
+                  {activeStep !== 1 ? (<Button fullWidth variant="contained" onClick={handleNext} sx={{ mt: 3, ml: 2 }}>Next</Button>) : (<Button fullWidth variant="contained" onClick={handleFinish} sx={{ mt: 3, ml: 2 }}>Finish</Button>)}
+                </Box>
+              </>
+            }
+          </Box>
+        </Container>
+      </ThemeProvider>
+    </div>
   );
 }
