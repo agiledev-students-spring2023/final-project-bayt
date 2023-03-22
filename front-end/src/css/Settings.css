@@ -8,6 +8,7 @@
 /*setts-info refer to the div container that holds the list of modal links*/
 .setts-info {
     margin-left: 10px;
+    margin-right: 10px;
   } 
 
 /*get rid of bullet points from list*/
@@ -51,18 +52,17 @@
 
 
 .add-member-button {
-  background-color: transparent;
-  color: #81b29a;
   border-color: #81b29a;
-  padding: 4px 8px;
-  text-align: center;
+  padding: 5px 10px;
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
   border-radius: 50%;
   cursor: pointer;
   transition-duration: 0.4s;
-  margin-bottom: 20px;
+  margin-left:0;
+  margin-top: 5px;
+  margin-bottom: 25px;
 }
 
 .add-member-button:hover {

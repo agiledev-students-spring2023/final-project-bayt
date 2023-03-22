@@ -1,3 +1,12 @@
-.text {
-    margin: 0 auto;
+.container {
+    margin-top: 50px;
+ 
 }
+
+.text {
+    font-size: 36px;
+    text-Align: 'center';
+    font-Size: '36px';
+    margin-Bottom:'-20px';
+}
+

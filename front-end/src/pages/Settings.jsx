@@ -60,7 +60,7 @@ const Settings = () => {
   const links = [
     {
       name: 'Permissions',
-      content: 'Here is an overview of member permissions: \n\n Admin: Admin is only user that can create a new account for a new member.  For this Admin needs to set the users name and email in the add user option.\n\n User: A user has basic add tasks permission and can do everything Admin can except create a new member account. \n\n New members must log in with the username and shared housecode that Admin gives them.',  
+      content: 'Here is an overview of member permissions: \n\n Admin: Only admins can create new accounts for new members.  For this, Admin needs to set the users name and email in the add user option.\n\n User: A user has basic add tasks permission and can do everything Admin can except create a new member account. \n\n New members must log in with the username and shared housecode that Admin gives them.',  
     },
     {
       name: 'About',
@@ -74,26 +74,30 @@ const Settings = () => {
 
 
 //the react-modal css stuff is so weird and documentation is limited
-//I didnt know how to get this to work through the stylesheets )):
-  const customStyles = {
-    content: {
-        position: 'absolute',
-        top: '40px',
-        left: '40px',
-        right: '40px',
-        bottom: '40px',
-        border: '2px solid #ccc',
-        background: '#f4f1de',
-       
-    }
-  };
+//feel free to change this shit it looks okay but not sure if its most efficient
+//modal doesnt follow the app.css media so had to trial and error view percentage
+//Also I didnt know how to get this to work through the stylesheets )):
+const customStyles = {
+  content: {
+    position: 'absolute',
+    top: '43%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    border: '2px solid #ccc',
+    background: '#f4f1de',
+    width: '90vw', /* set the width to 90% of viewport width */
+    maxWidth: '250px', 
+    maxHeight: '80%', 
+    overflow: 'auto', /* add overflow property for scrolling */
+  },
+};
 
 
   return (
     <div className='back'>
 
         <div className="contain">
-            <Header/>
+            <Header title={"Settings"}/>
         </div>
 
             <div className='setts-info'>

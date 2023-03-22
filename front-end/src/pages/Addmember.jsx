@@ -1,7 +1,6 @@
 import React from "react";
-import Footer from "./Footer";
-import Header from "./Header";
 import '../css/Addmember.css'
+import ProfilePic from "../components/Profile_pic_component";
 
 
 
@@ -9,13 +8,20 @@ import '../css/Addmember.css'
 function Addmembers(props) {
 
     return (
-        <div>
-            <Header/>
-            <h1 className="text">Add family member</h1>
-            <Footer/>
-        </div>
-    )
 
+     <div className="container">
+        <h1 className="text" style={{textAlign: 'center', fontSize: '36px', marginBottom:'-20px'}}>Add Family Member</h1>
+        <ProfilePic />
+     </div>
+
+            
+        
+
+       
+
+
+
+    )
     };
 
 export default Addmembers;
