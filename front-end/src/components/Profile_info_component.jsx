@@ -15,29 +15,30 @@ export default function ProfInfo() {
     <Box margin={'auto'} sx={{ width: '70%', maxWidth:'100%'}}>     
         <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
             <EmailIcon sx={{ color: 'action.active', mr: 2, my: 0.5 }} />
-            <TextField fullWidth id="input-with-sx" label="Email" variant="standard" />
+            <TextField fullWidth id="input-with-sx" label="Username or Email" variant="standard" defaultValue={"rufus123"} />
         </Box>
         <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
             <Diversity3Icon sx={{ color: 'action.active', mr: 2, my: 0.5 }} />
-            <TextField fullWidth id="input-with-sx" label="Household Role" variant="standard" />
+            <TextField fullWidth id="input-with-sx" label="Household Role" variant="standard" value={"Admin"} />
         </Box>
         <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
             <LockIcon sx={{ color: 'action.active', mr: 2, my: 0.5 }} />
             <TextField fullWidth
                 id="standard-password-input"
-                label="Password"
+                label="Housecode"
                 type="password"
                 autoComplete="current-password"
                 variant="standard"
+                value={"whatever"}
             />
         </Box>
         <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
             <PhoneIcon sx={{ color: 'action.active', mr: 2, my: 0.5 }} />
-            <TextField fullWidth id="input-with-sx" label="xxx-xxx-xxxx" variant="standard" />
+            <TextField fullWidth id="input-with-sx" label="xxx-xxx-xxxx" variant="standard" defaultvalue={'444-444-4444'} />
         </Box>
         <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
             <HomeIcon sx={{ color: 'action.active', mr: 2, my: 0.5 }} />
-            <TextField fullWidth id="input-with-sx" label="rooms" variant="standard" />
+            <TextField fullWidth id="input-with-sx" label="rooms" variant="standard" value={"Kitchen"} />
         </Box>
         </Box>
         </Container>

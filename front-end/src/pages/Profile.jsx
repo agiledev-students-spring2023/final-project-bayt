@@ -23,7 +23,7 @@ const DeleteAccountButton = () => {
       >
         {(close) => (
           <div className="modal">
-            <div className="header">Warning</div>
+            <div className="warn">Warning</div>
             <div className="content">
               <p>Are you sure you want to delete your account? This action is irreversible.  All account data will be lost.</p>
             </div>

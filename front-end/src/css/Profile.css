@@ -27,7 +27,7 @@
     cursor: pointer;
     display: flex;
     align-items: center;
-    border-bottom: 1px solid #000;
+    font-family: 'Inter';
   }
   
 
@@ -50,6 +50,13 @@
     width: 'auto';
     text-align: center;
 
+  }
+  
+  .warn {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: aliceblue;
   }
   
   .content {
