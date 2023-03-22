@@ -9,6 +9,7 @@ import IndividualTask from './pages/IndividualTask';
 import Profile from './pages/Profile';
 import Welcome from './pages/Welcome';
 import Signup from './pages/Signup';
+import RoomTemplate from './pages/RoomTemplate';
 
 // TODOS:
 // 1. The index page is login page right now. Should be set to home page once we have user authentication
@@ -27,6 +28,7 @@ function App() {
             <Route path="/home" element={<Home />}></Route>
             <Route path="/tasks/add" element={<IndividualTask />}></Route>
             <Route path="/Profile" element={<Profile/>}></Route>
+            <Route index path="/room/:roomName" element={<RoomTemplate />}></Route>
           </Routes>
       </BrowserRouter>
     </div>
