@@ -1,37 +1,18 @@
-#outer {
-    margin: 0;
-	width: 30vw;
-	height: 100vh;
-	background-color: var(--background-color);
-	margin: auto;
-	text-align: left;
-    position: relative;
-}
-
-main {
-    overflow-y: scroll;
-    flex: auto;
-    display: flex;
-    flex-direction: column;
-    padding-top: 9vh;
-}
-
-.row {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    padding: 5vw;
+.homeBody {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding-top: 2rem;
+  margin-bottom: 1rem;
+  justify-content: center;
+  align-content: flex-start;
+  align-items: center;
 }
 
 .roomButton {
-    height: 25vw;
-    width: 25vw;
-    background-color: #81B29A;
-    border-color: #3D405B;
-    font-size: 5vw;
-}
-
-.bodyButtons {
-    display: flex;
-    flex-direction: column;
+  text-align: center;
+  height: 6rem;
+  width: 9rem;
 }

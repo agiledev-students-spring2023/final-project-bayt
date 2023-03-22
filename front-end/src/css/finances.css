@@ -1,0 +1,160 @@
+.content {
+  height: 100%;
+}
+
+.finances-page-content {
+  position: relative;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+.transactionListContainer {
+  position: relative;
+  width: 98%;
+  background-color: #f4f1de;
+}
+
+.addTransactionButton {
+  position: relative;
+  background-color: #f4f1de;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.addTransactionButton .button {
+  margin-bottom: 2rem;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form {
+  background: #f2cc8f;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.form-container {
+  display: flex;
+  align-items: center;
+  gap: 1vw;
+}
+
+h1 {
+  color: #3d405b;
+}
+
+li {
+  background-color: #f4f1de;
+  list-style: none;
+}
+
+.sort-by-container {
+  margin-right: 1vw;
+  display: flex;
+  justify-content: right;
+  align-items: center;
+}
+
+.sort-by-container label {
+  font-size: small;
+}
+
+.imessage {
+  margin: 0 1vw;
+  background-color: #f4f1de;
+  display: flex;
+  flex-direction: column;
+  font-family: "SanFrancisco";
+  font-size: 1rem;
+  max-width: 100vw;
+}
+
+.imessage p {
+  background-color: #f4f1de;
+  border-radius: 1.15rem;
+  line-height: 1.25;
+  max-width: 75%;
+  padding: 0.5rem 0.875rem;
+  position: relative;
+  word-wrap: break-word;
+}
+
+.imessage p::before,
+.imessage p::after {
+  bottom: -0.1rem;
+  content: "";
+  height: 1rem;
+  position: absolute;
+}
+
+p.from-me {
+  text-align: left;
+  align-self: flex-end;
+  background-color: #248bf5;
+  color: #f4f1de;
+}
+
+p.from-me::before {
+  border-bottom-left-radius: 0.8rem 0.7rem;
+  border-right: 1rem solid #248bf5;
+  right: -0.35rem;
+  transform: translate(0, -0.1rem);
+}
+
+p.from-me::after {
+  background-color: #f4f1de;
+  border-bottom-left-radius: 0.5rem;
+  right: -40px;
+  transform: translate(-30px, -2px);
+  width: 10px;
+}
+
+p[class^="from-"] {
+  margin: 0.5rem 0;
+  width: fit-content;
+}
+
+p.from-me ~ p.from-me {
+  margin: 0.25rem 0 0;
+}
+
+p.from-me ~ p.from-me:not(:last-child) {
+  margin: 0.25rem 0 0;
+}
+
+p.from-me ~ p.from-me:last-child {
+  margin-bottom: 0.5rem;
+}
+
+p.from-them {
+  align-items: flex-start;
+  background-color: #e5e5ea;
+  color: #000;
+}
+
+p.from-them:before {
+  border-bottom-right-radius: 0.8rem 0.7rem;
+  border-left: 1rem solid #e5e5ea;
+  left: -0.35rem;
+  transform: translate(0, -0.1rem);
+}
+
+p.from-them::after {
+  background-color: #fff;
+  border-bottom-right-radius: 0.5rem;
+  left: 20px;
+  transform: translate(-30px, -2px);
+  width: 10px;
+}

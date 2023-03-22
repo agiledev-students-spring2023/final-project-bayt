@@ -10,6 +10,8 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useNavigate } from "react-router-dom";
 
+import logo from '../logo.png'
+import "../index.css";
 import "../css/Login.css";
 
 // TODOS:
@@ -43,6 +45,7 @@ function Login(props) {
     };
 
     return (
+<<<<<<< HEAD
         <div className='loginPageContainer'>
             <ThemeProvider theme={theme}>
                 <Container component="main" maxWidth="xs">
@@ -68,6 +71,30 @@ function Login(props) {
                     </Box>
                 </Container>
             </ThemeProvider>
+=======
+        <div id='outer'>
+            <div className='logoContainer'>
+                <div className='logo'>
+                <img src={logo} className="logo" alt="logo" />
+                </div>
+            </div>
+
+            <div className='inputArea'>
+                <div className='loginArea'>
+                    <input id='usernameInput' type="text" name='username' placeholder='USERNAME'/>
+                    <input id='passwordInput' type="password" name='housecode' placeholder='HOUSE CODE' />
+                    <input onClick={handleClick} id='loginBtn' type="submit" value='Login' />
+                </div>
+
+                <div className='signupArea'>
+                    <button id='signupBtn'>Sign Up</button>
+                </div>
+            </div>
+
+            <footer className='loginFooter'>
+                <h5>© 2023 Bayt</h5>
+            </footer>
+>>>>>>> origin
         </div>
     );
 }
