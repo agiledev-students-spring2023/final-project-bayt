@@ -46,8 +46,8 @@ function Welcome(props) {
                     <Box sx={{ boxSizing: 'border-box', px: 4, pt: 2, height: '40%' }}>
                         <Stack spacing={3} direction="column">
                             <ThemeProvider theme={theme}>
-                                <Button id='signup' onClick={handleClick} size="large" variant="outlined" style={{ border: '1.4px solid' }} sx={{ borderRadius: '2px' }} color="primary" >Create house</Button>
-                                <Button id='login' onClick={handleClick} size="large" variant="outlined" style={{ border: '1.4px solid' }} sx={{ borderRadius: '2px' }} color="secondary" >Log in</Button>
+                                <Button fullWidth id='signup' onClick={handleClick} size="large" variant="outlined" style={{ border: '1.4px solid' }} sx={{ borderRadius: '2px' }} color="primary" >Create house</Button>
+                                <Button fullWidth id='login' onClick={handleClick} size="large" variant="outlined" style={{ border: '1.4px solid' }} sx={{ borderRadius: '2px' }} color="secondary" >Log in</Button>
                             </ThemeProvider>
                         </Stack>
                     </Box>

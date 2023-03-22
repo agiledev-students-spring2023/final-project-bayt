@@ -22,7 +22,7 @@ function HouseCodeForm(props) {
             <TextField required fullWidth name="passwordConfirm" label="Confirm house code" type="password" id="passwordConfirm"/>
         </Grid>
 
-        <Grid item xs={12}>
+        <Grid className='houseCodePromptContainer' item xs={12}>
             <p className='houseCodePrompt'>All ur roomates can use this house code.</p>
         </Grid>
       </Grid>
