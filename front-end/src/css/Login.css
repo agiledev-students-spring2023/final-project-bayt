@@ -78,10 +78,15 @@
     align-items: flex-end;
     justify-content: center;
     position: fixed;
-    left: 0;
-    bottom: 0;
     padding-bottom: 1%;
 }
+
+@media (min-width: 768px) {
+    .loginFooter {
+      max-width: 428px;
+    }
+  }
+  
 
 .loginFooter h5 {
     margin: 0;

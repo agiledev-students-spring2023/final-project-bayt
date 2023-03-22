@@ -110,38 +110,40 @@ const Tasks = (props) => {
   };
 
   return (
-    <div className="tasks-page-content">
+    <>
       <Header title="Tasks" />
-      <div className="task_box">
-        <span className="vl"></span>
-        {error && <p>{error}</p>}
-        {!loaded && <CircularProgress className="loading_icon" />}
-        {data.map((task_data) => {
-          return (
-            <div key={task_data.id.$oid}>
-              {TaskDay(task_data.due_time.$date.$numberLong)}
-              <TaskComponent
-                id={task_data.id.$oid}
-                title={task_data.task_name}
-                room={task_data.room}
-                assigned={task_data.assignee}
-                completed={task_data.complete}
-                SelectHandler={handleDS}
-              />
-            </div>
-          );
-        })}
-        {selected.length > 0 && (
-          <>
-            <span className="transparent_box"></span>
-            <Button variant="contained" onClick={(e) => setComplete()}>
-              Set Complete
-            </Button>
-          </>
-        )}
+      <div className="tasks-page-content">
+        <div className="task_box">
+          <span className="vl"></span>
+          {error && <p>{error}</p>}
+          {!loaded && <CircularProgress className="loading_icon" />}
+          {data.map((task_data) => {
+            return (
+              <div key={task_data.id.$oid}>
+                {TaskDay(task_data.due_time.$date.$numberLong)}
+                <TaskComponent
+                  id={task_data.id.$oid}
+                  title={task_data.task_name}
+                  room={task_data.room}
+                  assigned={task_data.assignee}
+                  completed={task_data.complete}
+                  SelectHandler={handleDS}
+                />
+              </div>
+            );
+          })}
+          {selected.length > 0 && (
+            <>
+              <span className="transparent_box"></span>
+              <Button variant="contained" onClick={(e) => setComplete()}>
+                Set Complete
+              </Button>
+            </>
+          )}
+        </div>
       </div>
       <Footer />
-    </div>
+    </>
   );
 };
 export default Tasks;

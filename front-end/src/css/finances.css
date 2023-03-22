@@ -4,7 +4,7 @@
 
 .finances-page-content {
   position: relative;
-  top: calc(var(--header-height) + 1rem);
+  padding-top: 3rem;
   padding-bottom: 3rem;
 }
 

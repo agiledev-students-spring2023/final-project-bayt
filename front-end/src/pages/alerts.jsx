@@ -19,25 +19,27 @@ function Alerts() {
   }, []);
 
   return (
-    <div className="alerts-page-body">
+    <>
       <Header title="Alerts" />
-      <div className="list">
-        <ul className="alertsList">
-          {alerts.map((alert, index) => (
-            <li key={index}>
-              <div class="wrapper">
-                <label class="control control-checkbox">
-                  {alert.task} due by {alert.date}
-                  <input type="checkbox" />
-                  <div class="indicator"></div>
-                </label>
-              </div>
-            </li>
-          ))}
-        </ul>
+      <div className="alerts-page-body">
+        <div className="list">
+          <ul className="alertsList">
+            {alerts.map((alert, index) => (
+              <li key={index}>
+                <div class="wrapper">
+                  <label class="control control-checkbox">
+                    {alert.task} due by {alert.date}
+                    <input type="checkbox" />
+                    <div class="indicator"></div>
+                  </label>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
       <Footer />
-    </div>
+    </>
   );
 }
 

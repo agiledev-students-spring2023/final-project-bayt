@@ -13,60 +13,62 @@ const Footer = (props) => {
   const variant = "text";
 
   return (
-    <footer className="footer">
-      <div>
-        <Button
-          className="footer-buttons"
-          variant={variant}
-          component={Link}
-          to="/tasks"
-          startIcon={<FormatListBulletedIcon />}
-        >
-        </Button>
-      </div>
-      <div>
-        <Button
-          className="footer-buttons"
-          variant={variant}
-          component={Link}
-          to="/finances"
-          startIcon={<AttachMoneyIcon />}
-        >
-        </Button>
-      </div>
-      <div>
-        <Button
-          className="footer-buttons"
-          variant={variant}
-          component={Link}
-          to="/home"
-          startIcon={<HomeIcon />}
-        >
+    <>
+      <footer className="footer">
+        <div>
+          <Button
+            className="footer-buttons"
+            variant={variant}
+            component={Link}
+            to="/tasks"
+            startIcon={<FormatListBulletedIcon />}
+          >
+          </Button>
+        </div>
+        <div>
+          <Button
+            className="footer-buttons"
+            variant={variant}
+            component={Link}
+            to="/finances"
+            startIcon={<AttachMoneyIcon />}
+          >
+          </Button>
+        </div>
+        <div>
+          <Button
+            className="footer-buttons"
+            variant={variant}
+            component={Link}
+            to="/home"
+            startIcon={<HomeIcon />}
+          >
 
-        </Button>
-      </div>
-      <div>
-        <Button
-          className="footer-buttons"
-          variant={variant}
-          component={Link}
-          to="/alerts"
-          startIcon={<NotificationsIcon />}
-        >
-          
-        </Button>
-      </div>
-      <div>
-        <Button
-          className="footer-buttons"
-          variant={variant}
-          component={Link}
-          to="/settings"
-          startIcon={<TuneIcon />}
-        >
-        </Button>
-      </div>
-    </footer>
+          </Button>
+        </div>
+        <div>
+          <Button
+            className="footer-buttons"
+            variant={variant}
+            component={Link}
+            to="/alerts"
+            startIcon={<NotificationsIcon />}
+          >
+            
+          </Button>
+        </div>
+        <div>
+          <Button
+            className="footer-buttons"
+            variant={variant}
+            component={Link}
+            to="/settings"
+            startIcon={<TuneIcon />}
+          >
+          </Button>
+        </div>
+      </footer>
+    </>
   );
 };
 

@@ -107,28 +107,30 @@ function Finances() {
   }, []);
 
   return (
-    <div className="content">
+    <>
       <Header title="Finances" />
-      <div className="finances-page-content">
-        <div className="transactionListContainer">
-          <TransactionList transactions={transactions} />
-        </div>
-        <div className="addTransactionButton">
-          <button className="button" onClick={handleButtonClick}>
-            Add new transaction
-          </button>
-        </div>
-
-        {isFormVisible && (
-          <div className="overlay" onClick={handleOverlayClick}>
-            <div className="form">
-              <TransactionForm onSubmit={handleAddTransaction} />
-            </div>
+      <div className="content">
+        <div className="finances-page-content">
+          <div className="transactionListContainer">
+            <TransactionList transactions={transactions} />
           </div>
-        )}
+          <div className="addTransactionButton">
+            <button className="button" onClick={handleButtonClick}>
+              Add new transaction
+            </button>
+          </div>
+
+          {isFormVisible && (
+            <div className="overlay" onClick={handleOverlayClick}>
+              <div className="form">
+                <TransactionForm onSubmit={handleAddTransaction} />
+              </div>
+            </div>
+          )}
+        </div>
       </div>
       <Footer />
-    </div>
+    </>
   );
 }
 

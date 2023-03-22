@@ -1,3 +1,14 @@
+
+:root {
+  --main-font: 'Inter';
+  --primary-color: white;
+  --secondary-color: blue;
+  --tertiary-color: green;
+  --background-color: rgb(226, 226, 226);
+  --footer-height: 50px;
+  --header-height: 80px;
+}
+
 @font-face {
   font-family: 'Heading';
   src: url('./fonts/Bold.otf') format('opentype');
@@ -16,10 +27,6 @@
 @font-face {
   font-family: 'Regular';
   src: url('./fonts/Regular.otf') format('opentype');
-}
-
-:root {
-  --header-height: 80px;
 }
 
 a {

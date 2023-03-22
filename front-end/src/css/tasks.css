@@ -1,16 +1,16 @@
-.tasks-page-content {
+/* .tasks-page-content {
   position: relative;
   width: 100%;
   height: 100%;
   display: flex;
-  padding-top: 1rem;
+  padding-top: 2rem;
   padding-bottom: 5rem;
-}
+} */
 
 .task_box {
-  position: absolute;
-  top: calc(var(--header-height) + 1rem);
+  position: relative;
   text-align: left;
+  padding-top: 3rem;
   padding-bottom: 4rem;
   width: 100%;
 }

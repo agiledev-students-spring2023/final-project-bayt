@@ -19,7 +19,7 @@ import Alerts from "./pages/alerts";
 // 2. Add slug to individual task page
 function App() {
   return (
-    <div className="App App-content">
+    <div className="App">
       <BrowserRouter>
           <Routes>
             <Route index path="/" element={<Login />}></Route>
@@ -28,8 +28,8 @@ function App() {
             <Route index path="/tasks/add" element={<IndividualTask />}></Route>
             <Route index path="/Profile" element={<Profile/>}></Route>
             <Route index path="/room/:roomName" element={<RoomTemplate />}></Route>
-            <Route index path="/pages/finances" element={<Finances />}></Route>
-            <Route index path="/pages/alerts" element={<Alerts />}></Route>
+            <Route index path="/finances" element={<Finances />}></Route>
+            <Route index path="/alerts" element={<Alerts />}></Route>
           </Routes>
         </BrowserRouter>
     </div>
