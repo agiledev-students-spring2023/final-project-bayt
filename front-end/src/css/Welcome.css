@@ -1,0 +1,15 @@
+.welcomePageContainer {
+    background-color: #f4f1de;
+    box-sizing: 'border-box'
+}
+
+.welcomeLogoContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.welcomeLogo {
+    transform: scale(0.9);
+}
+
