@@ -1,12 +1,18 @@
 .footer {
-    height: var(--footer-height);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #F2CC8F;
-    position: fixed;
-    width: 100%;
-    bottom: 0;
-    color: white;
-    font-size: 25px;
+  position: fixed;
+  bottom: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--footer-height);
+  background-color: white;
+  width: 100%;
+}
+
+
+@media (min-width: 768px) {
+  .footer {
+    max-width: 428px;
+  }
 }

@@ -1,3 +1,5 @@
+# zion's files #
+
 # Compiled source #
 ###################
 *.com
@@ -127,3 +129,6 @@ typings/
 ## Jekyll artifacts
 **/.jekyll-cache
 **/_site/
+
+## VScode
+.vscode

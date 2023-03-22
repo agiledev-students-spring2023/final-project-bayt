@@ -1,6 +1,4 @@
 #outer {
-    margin: 0;
-	width: 100vw !important;
 	height: 100vh;
 	background-color: #fff;
 	text-align: left;
@@ -17,9 +15,7 @@
 }
 
 .logo {
-    width: 76%;
-    height: 61%;
-    background-color: #6a93e4;
+    width: 60%;
     text-align: center;
     display: flex;
     justify-content: center;
@@ -63,18 +59,9 @@
     box-sizing: border-box;
     width: 100%;
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     align-items: center;
-    padding: 0 8%;
-}
-
-#signupBtn {
-    text-align: center;
-    text-decoration: underline;
-    width: 4.5rem;
-    height: 2rem;
-    border: 1px solid #cbcbcb;
-    background-color: #e0e0e0;
+    padding: 0 10%;
 }
 
 #signupBtn:hover {
@@ -91,10 +78,15 @@
     align-items: flex-end;
     justify-content: center;
     position: fixed;
-    left: 0;
-    bottom: 0;
     padding-bottom: 1%;
 }
+
+@media (min-width: 768px) {
+    .loginFooter {
+      max-width: 428px;
+    }
+  }
+  
 
 .loginFooter h5 {
     margin: 0;

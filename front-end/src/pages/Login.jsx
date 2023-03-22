@@ -3,6 +3,8 @@
 import React from 'react';
 import { useNavigate } from "react-router-dom";
 
+import logo from '../logo.png'
+import "../index.css";
 import "../css/Login.css";
 
 // TODOS:
@@ -20,7 +22,7 @@ function Login(props) {
         <div id='outer'>
             <div className='logoContainer'>
                 <div className='logo'>
-                    <p>LOGO</p>
+                <img src={logo} className="logo" alt="logo" />
                 </div>
             </div>
 

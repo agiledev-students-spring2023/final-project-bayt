@@ -1,18 +1,21 @@
-.App {
-  height: 100vh;
-	font-family: var(--main-font);
-	font-size: 1.2em;
-	/* background-color: var(--background-color); */
-	text-align: center;
-	margin: auto;
-	margin-top: 0px;
-	padding: none;
-}
-
 .App-logo {
   height: 40vmin;
   pointer-events: none;
 }
+
+.App {
+  position: relative;
+  margin: 0 auto;
+  height: 100vh;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .App {
+    max-width: 428px;
+  }
+}
+
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {

@@ -1,5 +1,4 @@
 import { useState} from "react";
-import axios from "axios";
 import ProfilePic from "../components/Profile_pic_component";
 import ProfInfo from "../components/Profile_info_component";
 import "../css/Profile_pic_component.css";
@@ -106,17 +105,21 @@ const Name_info = () => {
 //replace h1 with header and delete from css
 const Profile = () => {
     return (
-    <div className="outer">
-        <Header />
-        <ProfilePic/>
-        <Name_info/>
-        <ProfInfo/>
-        <div className="delete-Account">
-            <DeleteAccountButton/>
+    <>
+      <Header title="Profile"/>
+      <div>
+        <div className="outer">
+            <ProfilePic/>
+            <Name_info/>
+            <ProfInfo/>
+            <div className="delete-Account">
+                <DeleteAccountButton/>
+            </div>
+          
         </div>
-        <Footer/>
-    </div>
-    
+      </div>
+      <Footer/>
+    </>  
     );
 };
 
