@@ -1,12 +1,9 @@
-.container {
-    margin-top: 50px;
- 
+.addMembersContainer {
+        height: 100vh;
+        background-color: #f4f1de;
+   
 }
 
 .text {
-    font-size: 36px;
-    text-Align: 'center';
-    font-Size: '36px';
-    margin-Bottom:'-20px';
+    margin-bottom: -20px;
 }
-
