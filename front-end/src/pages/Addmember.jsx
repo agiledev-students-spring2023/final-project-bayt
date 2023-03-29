@@ -1,5 +1,5 @@
 import React from "react";
-import '../css/Addmember.css'
+import '../css/AddMember.css'
 import ProfilePic from "../components/Profile_pic_component";
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
@@ -29,7 +29,7 @@ const theme = createTheme({
   });
 
 
-function Addmembers(props) {
+function AddMembers(props) {
 
     const navigate = useNavigate();
 
@@ -81,4 +81,4 @@ function Addmembers(props) {
     )
     };
 
-export default Addmembers;
+export default AddMembers;

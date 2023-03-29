@@ -16,7 +16,7 @@ import RoomTemplate from './pages/RoomTemplate';
 import Finances from "./pages/finances";
 import Alerts from "./pages/alerts";
 import Settings from './pages/Settings';
-import Addmembers from './pages/Addmember';
+import AddMembers from './pages/AddMember';
 
 // TODOS:
 // 1. The index page is login page right now. Should be set to home page once we have user authentication
@@ -38,7 +38,7 @@ function App() {
             <Route index path="/finances" element={<Finances />}></Route>
             <Route index path="/alerts" element={<Alerts />}></Route>
             <Route index path="/Settings" element={<Settings/>}></Route>
-            <Route index path="/Addmembers" element={<Addmembers/>}></Route>
+            <Route index path="/AddMembers" element={<AddMembers/>}></Route>
             
           </Routes>
         </BrowserRouter>
