@@ -1,17 +1,6 @@
 .App {
   height: 100vh;
-	font-family: var(--main-font);
-	font-size: 1.2em;
-	/* background-color: var(--background-color); */
-	text-align: center;
-	margin: auto;
-	margin-top: 0px;
-	padding: none;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+  width: var(--max-width);
 }
 
 @media (prefers-reduced-motion: no-preference) {
