@@ -108,7 +108,6 @@ function IndividualTask(props) {
                     </Box>
                 </ThemeProvider>
             </form>
-
             <Footer />
         </>
     )
