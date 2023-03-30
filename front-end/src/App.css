@@ -1,6 +1,6 @@
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.App {
+  height: 100vh;
+  width: var(--max-width);
 }
 
 .App {
