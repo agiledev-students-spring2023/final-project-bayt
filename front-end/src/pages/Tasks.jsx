@@ -21,7 +21,7 @@ const Tasks = (props) => {
   return (
     <>
       <Header title="Tasks" />
-      <div class="tasks_page">
+      <div className="tasks_page">
         <TaskListComponent
           filterFunction={filterFunctionn}
           sortComparator={sortAscending}

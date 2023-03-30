@@ -26,11 +26,11 @@ function Alerts() {
           <ul className="alertsList">
             {alerts.map((alert, index) => (
               <li key={index}>
-                <div class="wrapper">
-                  <label class="control control-checkbox">
+                <div className="wrapper">
+                  <label className="control control-checkbox">
                     {alert.task} due by {alert.date}
                     <input type="checkbox" />
-                    <div class="indicator"></div>
+                    <div className="indicator"></div>
                   </label>
                 </div>
               </li>

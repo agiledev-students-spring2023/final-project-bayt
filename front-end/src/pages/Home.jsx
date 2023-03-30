@@ -12,17 +12,17 @@ const Home = (props) => {
       <div>
         <div className="homeBody">
             <Link to="/tasks">
-              <button class="roomButton" type="button">
+              <button className="roomButton" type="button">
                 Living Room
               </button>
             </Link>
             <Link to="/tasks">
-              <button class="roomButton" type="button">
+              <button className="roomButton" type="button">
                 Bathroom
               </button>
             </Link>
             <Link>
-              <button class="roomButton" type="button">
+              <button className="roomButton" type="button">
                 Add Room
               </button>
             </Link>
