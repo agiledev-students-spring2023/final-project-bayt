@@ -7,6 +7,14 @@
   --background-color: rgb(226, 226, 226);
   --footer-height: 50px;
   --header-height: 80px;
+  --max-width: 100%;
+}
+
+
+@media (min-width: 768px) {
+  :root {
+    --max-width: 428px;
+  }
 }
 
 @font-face {
