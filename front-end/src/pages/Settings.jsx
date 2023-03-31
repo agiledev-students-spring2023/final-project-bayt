@@ -80,14 +80,15 @@ const Settings = () => {
 const customStyles = {
   content: {
     position: 'absolute',
-    top: '43%',
+    top: '50%',
+    right:'40px',
+    bottom:'-150px',
     left: '50%',
     transform: 'translate(-50%, -50%)',
     border: '2px solid #ccc',
     background: '#f4f1de',
     width: '90vw', /* set the width to 90% of viewport width */
     maxWidth: '250px', 
-    maxHeight: '80%', 
     overflow: 'auto', /* add overflow property for scrolling */
   },
 };
