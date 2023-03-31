@@ -1,13 +1,13 @@
 const taskService = require("../services/task.service.js");
 
-// get task by id
-async function getTask(req, res) {
-  const task = await taskService.get(req.params.id);
+// get task by id taskSer
+async function get(req, res) {
+  const task = await taskService.getTask(req.params.id);
   res.json(task);
 }
 
 // list all tasks in the database
-async function getTasks(req, res) {
+async function gets(req, res) {
   try {
     const tasks = await taskService.getTasks();
     res.json(tasks);
@@ -47,9 +47,10 @@ async function update(req, res) {
 }
 
 module.exports = {
-  getTask,
-  getTasks,
-  create,
-  remove,
-  update,
-};
+    get,
+    gets,
+    create,
+    update,
+    remove,
+  };
+  

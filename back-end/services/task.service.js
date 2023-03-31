@@ -41,6 +41,14 @@ async function removeTask(task_id) {
   return message;
 }
 
+module.exports = {
+  getTask,
+  getTasks,
+  createTask,
+  updateTask,
+  removeTask,
+};
+
 let task_json = [
   {
     id: {
