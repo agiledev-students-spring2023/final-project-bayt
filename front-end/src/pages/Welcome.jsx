@@ -5,9 +5,9 @@ import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useNavigate } from "react-router-dom";
+import logo from "./logo.png";
 
 import '../css/Welcome.css';
-import {ReactComponent as Logo} from '../logo.svg';
 
 const theme = createTheme({
     palette: {
@@ -40,7 +40,7 @@ function Welcome(props) {
             <Container maxWidth="sm">
                 <Box sx={{ height: '100vh' }}>
                     <Box className='welcomeLogoContainer' sx={{ boxSizing: 'border-box', pt: 10, height: '60%'}}>
-                        <Logo className='welcomeLogo'/>
+                        <img src={logo} className='welcomeLogo' alt="Bayt Logo" />
                     </Box>
 
                     <Box sx={{ boxSizing: 'border-box', px: 4, pt: 2, height: '40%' }}>

@@ -10,6 +10,7 @@
 }
 
 .welcomeLogo {
-    transform: scale(0.9);
+    position: relative;
+    width: 15rem;
 }
 
