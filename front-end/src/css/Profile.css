@@ -1,5 +1,5 @@
 .outer {
-    background-color: #f4f1de;
+    background-color: white;
     height: 100%;
     display: flex;
     justify-content: center;
@@ -70,10 +70,8 @@
   }
   
   .button {
-    background-color: #81b29a;
     color: white;
     padding: 10px;
-    border-radius: 5px;
     border: none;
     margin-right: 10px;
   }

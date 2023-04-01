@@ -23,7 +23,7 @@ function HouseCodeForm(props) {
         </Grid>
 
         <Grid className='houseCodePromptContainer' item xs={12}>
-            <p className='houseCodePrompt'>All ur roomates can use this house code.</p>
+            <p className='houseCodePrompt'>All your roomates can use this house code.</p>
         </Grid>
       </Grid>
     </>
