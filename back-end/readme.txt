@@ -15,6 +15,6 @@
 │       ├── routes/         # Contains unit tests for route handlers
 │       ├── utils/          # Contains unit tests for utility functions and modules
 │       └── setup.js        # Setup file for running tests
-│   ├── node_modules/       # Contains all installed node modules
-│   ├── package.json        # Contains metadata about the project and its dependencies
-│   └──README.md            # Contains documentation for the project
+├── node_modules/           # Contains all installed node modules
+├── package.json            # Contains metadata about the project and its dependencies
+└── README.md               # Contains documentation for the project
