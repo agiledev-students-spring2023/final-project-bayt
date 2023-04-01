@@ -11,12 +11,12 @@
 .transactionListContainer {
   position: relative;
   width: 98%;
-  background-color: #f4f1de;
+  background-color: white;
 }
 
 .addTransactionButton {
   position: relative;
-  background-color: #f4f1de;
+  background-color: white;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -40,7 +40,7 @@
 }
 
 .form {
-  background: #f2cc8f;
+  background: #dd0100;
   padding: 20px;
   border-radius: 5px;
 }
@@ -56,7 +56,7 @@ h1 {
 }
 
 li {
-  background-color: #f4f1de;
+  background-color: white;
   list-style: none;
 }
 
@@ -73,7 +73,7 @@ li {
 
 .imessage {
   margin: 0 1vw;
-  background-color: #f4f1de;
+  background-color: white;
   display: flex;
   flex-direction: column;
   font-family: "SanFrancisco";
@@ -82,7 +82,7 @@ li {
 }
 
 .imessage p {
-  background-color: #f4f1de;
+  background-color: white;
   border-radius: 1.15rem;
   line-height: 1.25;
   max-width: 75%;
@@ -103,7 +103,7 @@ p.from-me {
   text-align: left;
   align-self: flex-end;
   background-color: #248bf5;
-  color: #f4f1de;
+  color: white;
 }
 
 p.from-me::before {
@@ -114,7 +114,7 @@ p.from-me::before {
 }
 
 p.from-me::after {
-  background-color: #f4f1de;
+  background-color: white;
   border-bottom-left-radius: 0.5rem;
   right: -40px;
   transform: translate(-30px, -2px);

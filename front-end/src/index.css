@@ -1,6 +1,5 @@
-
 :root {
-  --main-font: 'Inter';
+  --main-font: "Inter";
   --primary-color: white;
   --secondary-color: blue;
   --tertiary-color: green;
@@ -10,7 +9,6 @@
   --max-width: 100%;
 }
 
-
 @media (min-width: 768px) {
   :root {
     --max-width: 428px;
@@ -18,23 +16,23 @@
 }
 
 @font-face {
-  font-family: 'Heading';
-  src: url('./fonts/Bold.otf') format('opentype');
+  font-family: "Heading";
+  src: url("./fonts/Bold.otf") format("opentype");
 }
 
 @font-face {
-  font-family: 'Body';
-  src: url('./fonts/Medium.otf') format('opentype');
+  font-family: "Body";
+  src: url("./fonts/Medium.otf") format("opentype");
 }
 
 @font-face {
-  font-family: 'Description';
-  src: url('./fonts/MediumItalic.otf') format('opentype');
+  font-family: "Description";
+  src: url("./fonts/MediumItalic.otf") format("opentype");
 }
 
 @font-face {
-  font-family: 'Regular';
-  src: url('./fonts/Regular.otf') format('opentype');
+  font-family: "Regular";
+  src: url("./fonts/Regular.otf") format("opentype");
 }
 
 a {
@@ -47,49 +45,47 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'Heading', sans-serif;
+  font-family: "Heading", sans-serif;
 }
 
 p,
 ul,
 ol {
-  font-family: 'Body', sans-serif;
+  font-family: "Body", sans-serif;
 }
 
 alt {
-  font-family: 'Description', sans-serif;
+  font-family: "Description", sans-serif;
 }
 
 body {
   margin: 0;
-  background-color: #f4f1de;
-  font-family: 'Body', sans-serif;
+  background-color: white;
+  font-family: "Body", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
 
 button {
   align-items: center;
-  background: #6e9884;
+  background: #6B8E23;
   border: 0;
-  border-radius: 8px;
-  box-shadow: -5px -5px 50px 0 #fff, 10px 10px 30px 0 #1d0dca17;
   box-sizing: border-box;
   color: #ffffff;
   cursor: pointer;
-  font-family: 'Regular';
+  font-family: "Regular";
   font-size: medium;
   justify-content: center;
   line-height: 1rem;
   padding: 10px;
   margin: 1rem;
   text-align: left;
-  transition: .2s;
+  transition: 0.2s;
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
@@ -100,8 +96,9 @@ button {
 }
 
 button:hover {
-  background: #688d7b;
-  box-shadow: -10px -10px 50px 0 #fff, 15px 15px 30px 0 #1d0dca17;
+  background: #eaefe9;
+  color: #050103;
+  border: 2px solid black;
 }
 
 .wrapper .control {
@@ -127,33 +124,33 @@ button:hover {
   background: #e6e6e6;
 }
 
-.wrapper .control:hover input~.indicator,
-.wrapper .control input:focus~.indicator {
-  background: #688d7b;
+.wrapper .control:hover input ~ .indicator,
+.wrapper .control input:focus ~ .indicator {
+  background: #dd0100;
 }
 
-.wrapper .control input:checked~.indicator {
-  background: #6e9884;
+.wrapper .control input:checked ~ .indicator {
+  background: #fac901;
 }
 
-.wrapper .control:hover input:not([disabled]):checked~.indicator,
-.wrapper .control input:checked:focus~.indicator {
-  background: #81B29A;
+.wrapper .control:hover input:not([disabled]):checked ~ .indicator,
+.wrapper .control input:checked:focus ~ .indicator {
+  background: #fac901;
 }
 
-.wrapper .control input:disabled~.indicator {
+.wrapper .control input:disabled ~ .indicator {
   background: #e6e6e6;
   opacity: 0.6;
   pointer-events: none;
 }
 
 .wrapper .indicator:after {
-  content: '';
+  content: "";
   position: absolute;
   display: none;
 }
 
-.wrapper .control input:checked~.indicator:after {
+.wrapper .control input:checked ~ .indicator:after {
   display: block;
 }
 
@@ -167,6 +164,6 @@ button:hover {
   transform: rotate(45deg);
 }
 
-.wrapper .control-checkbox input:disabled~.indicator:after {
+.wrapper .control-checkbox input:disabled ~ .indicator:after {
   border-color: #7b7b7b;
 }

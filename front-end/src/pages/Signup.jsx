@@ -1,11 +1,11 @@
 import React from 'react';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
-import Button from '@mui/material/Button';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import HouseCodeForm from '../components/HouseCodeForm';
 import CreateProfileForm from '../components/CreateProfileForm';
 import { useNavigate } from 'react-router-dom';
+import "../index.css";
 
 import '../css/Signup.css';
 
@@ -63,8 +63,8 @@ export default function Checkout() {
               <>
                 {getStepContent(activeStep)}
                 <Box sx={{ width: '100%', display: 'flex', justifyContent: 'space-between', mt: 7 }}>
-                  {activeStep !== 0 ? (<Button fullWidth variant="contained" onClick={handleBack} sx={{ mt: 3 }}>Back</Button>) : (<Button fullWidth variant="contained" onClick={handleNavigate} sx={{ mt: 3 }}>Back</Button>)}
-                  {activeStep !== 1 ? (<Button fullWidth variant="contained" onClick={handleNext} sx={{ mt: 3, ml: 2 }}>Next</Button>) : (<Button fullWidth variant="contained" onClick={handleFinish} sx={{ mt: 3, ml: 2 }}>Finish</Button>)}
+                  {activeStep !== 0 ? (<button onClick={handleBack}>Back</button>) : (<button onClick={handleNavigate} >Back</button>)}
+                  {activeStep !== 1 ? (<button onClick={handleNext}>Next</button>) : (<button onClick={handleFinish} >Finish</button>)}
                 </Box>
               </>
             }

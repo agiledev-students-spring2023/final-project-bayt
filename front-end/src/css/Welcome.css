@@ -1,9 +1,19 @@
 .welcomePageContainer {
-    background-color: #f4f1de;
-    box-sizing: 'border-box'
+    background-color: white;
+    box-sizing: 'border-box';
+    display: flex;
+    flex-direction: column;
+    padding-top: 5rem;
 }
 
 .welcomeLogoContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 8rem;
+}
+
+.welcomeButtonsContainer {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -14,3 +24,8 @@
     width: 15rem;
 }
 
+.welcomePageButtons {
+    text-align: center;
+    width: 15rem;
+    height: 3rem;
+}

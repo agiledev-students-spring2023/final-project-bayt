@@ -1,6 +1,6 @@
 /* set background color for page*/
 .back {
-  background-color: #f4f1de;
+  background-color: white;
   height: 100vh;
   padding-top: 85px;
 }
@@ -23,7 +23,6 @@
     margin: 0;
     padding: 0.5rem 0;
     border: 2px solid #3d405b; 
-    border-radius: 5%;
     box-sizing: border-box;
     margin-bottom: 0.5rem;
     width: 100%;
@@ -32,7 +31,7 @@
   
   /*alternating colors for each link*/
   .setts-info li:nth-child(odd) {
-    background-color: #f2cc8f; /* add alternating background color */
+    background-color: #B5B35C; /* add alternating background color */
   }
   
   .setts-info a {
@@ -52,12 +51,11 @@
 
 
 .add-member-button {
-  border-color: #81b29a;
+  border-color: #225095;
   padding: 5px 10px;
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
-  border-radius: 50%;
   cursor: pointer;
   transition-duration: 0.4s;
   margin-left:0;
@@ -66,7 +64,7 @@
 }
 
 .add-member-button:hover {
-  background-color: #3e8e41;
+  background-color: #1e4682;
 }
 
 .add-member-button span {
@@ -85,7 +83,6 @@
   text-decoration: none;
   display: inline-block;
   font-size: 15px;
-  border-radius: 5px;
   cursor: pointer;
   transition-duration: 0.4s;
   margin: 0 auto;
