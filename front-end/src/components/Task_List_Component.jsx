@@ -14,10 +14,31 @@ const TaskListComponent = ({filterFunction, sortComparator, enableCheckbox, cent
   const [selected, setSelected] = useState([]);
 
   const setComplete = () => {
-    selected.forEach(
-      (selectObject) =>
-        (data.find(({ id }) => id.$oid === selectObject.id).complete = true)
-    );
+
+    // Update each selected task to complete
+    let temp_func = (selectObject) => {
+      let taskoi = data.find(({ id }) => id.$oid === selectObject.id); // find task
+      taskoi.complete = true; // set task to complete
+      axios
+        .put(
+          `http://localhost:8000/tasks/` + selectObject.id,
+          taskoi
+        )
+        .then((response) => {
+          // console.log(response); 
+        })
+        .catch((err) => {
+          setError(`error: ${err}`);
+        });
+    };
+
+    if (testing_mode) {
+      temp_func = (selectObject) => {
+        data.find(({ id }) => id.$oid === selectObject.id).complete = true;
+      };
+    }
+
+    selected.forEach(temp_func);
     setSelected([]);
   };
 
@@ -44,24 +65,18 @@ const TaskListComponent = ({filterFunction, sortComparator, enableCheckbox, cent
 
   const fetchData = () => {
     if (testing_mode) {
-      setData(task_json);
-
-      // Filter and Sort Data
-      data.sort(sortComparator);
-      data.filter(filterFunction);
-
+      task_json.sort(sortComparator);
+      setData(task_json.filter(filterFunction));
       setLoaded(true);
     } else {
       axios
-        .get(`${process.env.REACT_APP_API_TASKS}`)
+        .get(`http://localhost:8000/tasks`)
         .then((response) => {
-          const data = response.data;
+          let task_arr = response.data;
 
           // Filter and Sort Data
-          data.sort(sortComparator);
-          data.filter(filterFunction);
-
-          setData(data);
+          task_arr.sort(sortComparator);
+          setData(task_arr.filter(filterFunction));
         })
         .catch((err) => {
           setError(err);
