@@ -13,7 +13,7 @@ function TransactionForm({ onSubmit }) {
   const [forWhat, setforWhat] = useState("purpose");
   const [date, setDate] = useState("");
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     onSubmit({
       paidOrRequesting,
@@ -23,6 +23,15 @@ function TransactionForm({ onSubmit }) {
       forWhat,
       date,
     });
+    const response = await fetch("/api/transactions", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(transaction),
+    });
+    const newTransaction = await response.json();
+    onSubmit(newTransaction);
   };
 
   return (
@@ -30,8 +39,7 @@ function TransactionForm({ onSubmit }) {
       <label>
         <select
           value={paidOrRequesting}
-          onChange={(event) => setPaidOrRequesting(event.target.value)}
-        >
+          onChange={(event) => setPaidOrRequesting(event.target.value)}>
           <option value="Paid">Paid</option>
           <option value="Requesting">Requesting</option>
         </select>
@@ -47,8 +55,7 @@ function TransactionForm({ onSubmit }) {
       <label>
         <select
           value={toOrFrom}
-          onChange={(event) => settoOrFrom(event.target.value)}
-        >
+          onChange={(event) => settoOrFrom(event.target.value)}>
           <option value="to">to</option>
           <option value="from">from</option>
         </select>
@@ -102,8 +109,18 @@ function Finances() {
     setIsFormVisible(false);
   };
 
+
+  // useEffect(() => {
+  //   setTransactions(finances_json);
+  // }, []);
+
   useEffect(() => {
-    setTransactions(finances_json);
+    const fetchTransactions = async () => {
+      const response = await fetch("/api/transactions");
+      const transactions = await response.json();
+      setTransactions(transactions);
+    };
+    fetchTransactions();
   }, []);
 
   return (
