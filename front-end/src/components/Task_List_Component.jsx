@@ -5,19 +5,45 @@ import "../index.css";
 import TaskComponent from "./Task_Component.jsx";
 import { Button, CircularProgress } from "@mui/material";
 
-const testing_mode = true;
+const testing_mode = false;
 
-const TaskListComponent = ({filterFunction, sortComparator, enableCheckbox, centerButton}) => {
+const TaskListComponent = ({
+  filterFunction,
+  sortComparator,
+  enableCheckbox,
+  centerButton,
+}) => {
   const [data, setData] = useState([]);
   const [loaded, setLoaded] = useState(false);
   const [error, setError] = useState("");
   const [selected, setSelected] = useState([]);
 
   const setComplete = () => {
-    selected.forEach(
-      (selectObject) =>
-        (data.find(({ id }) => id.$oid === selectObject.id).complete = true)
-    );
+
+    // Update each selected task to complete
+    let temp_func = (selectObject) => {
+      let taskoi = data.find(({ id }) => id.$oid === selectObject.id); // find task
+      taskoi.complete = true; // set task to complete
+      axios
+        .put(
+          `${process.env.REACT_APP_SERVER_HOSTNAME}/tasks/` + selectObject.id,
+          taskoi
+        )
+        .then((response) => {
+          // console.log(response); 
+        })
+        .catch((err) => {
+          setError(`error: ${err}`);
+        });
+    };
+
+    if (testing_mode) {
+      temp_func = (selectObject) => {
+        data.find(({ id }) => id.$oid === selectObject.id).complete = true;
+      };
+    }
+
+    selected.forEach(temp_func);
     setSelected([]);
   };
 
@@ -45,7 +71,6 @@ const TaskListComponent = ({filterFunction, sortComparator, enableCheckbox, cent
   const fetchData = () => {
     if (testing_mode) {
       setData(task_json);
-
       // Filter and Sort Data
       data.sort(sortComparator);
       data.filter(filterFunction);
@@ -53,15 +78,14 @@ const TaskListComponent = ({filterFunction, sortComparator, enableCheckbox, cent
       setLoaded(true);
     } else {
       axios
-        .get(`${process.env.REACT_APP_API_TASKS}`)
+        .get(`${process.env.REACT_APP_SERVER_HOSTNAME}/tasks`)
         .then((response) => {
-          const data = response.data;
+          let task_arr = response.data;
+          setData(task_arr);
 
           // Filter and Sort Data
           data.sort(sortComparator);
           data.filter(filterFunction);
-
-          setData(data);
         })
         .catch((err) => {
           setError(err);
@@ -71,7 +95,7 @@ const TaskListComponent = ({filterFunction, sortComparator, enableCheckbox, cent
         });
     }
   };
-  
+
   useEffect(() => {
     fetchData();
 
@@ -137,7 +161,11 @@ const TaskListComponent = ({filterFunction, sortComparator, enableCheckbox, cent
         {selected.length > 0 && (
           <>
             <span className="transparent_box"></span>
-            <Button className={(centerButton ? "center_button" : "left_button")} variant="contained" onClick={(e) => setComplete()}>
+            <Button
+              className={centerButton ? "center_button" : "left_button"}
+              variant="contained"
+              onClick={(e) => setComplete()}
+            >
               Set Complete
             </Button>
           </>
