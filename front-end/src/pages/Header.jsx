@@ -20,7 +20,7 @@ const Header = ({ title }) => {
         </div>
         <div className="profile">
           <IconButton component={Link} to="/profile">
-            <AccountCircle style={{ fontSize: 60 }} />
+            <AccountCircle style={{ fontSize: 60, color: 'white' }} />
           </IconButton>
         </div>
     </header>

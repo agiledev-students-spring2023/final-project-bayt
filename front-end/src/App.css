@@ -8,6 +8,7 @@
   margin: 0 auto;
   height: 100vh;
   width: var(--max-width);
+  border: 2px solid rgb(111, 111, 111, 0.2);
 }
 
 

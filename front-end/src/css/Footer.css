@@ -6,6 +6,10 @@
   align-items: center;
   justify-content: space-between;
   height: var(--footer-height);
-  background-color: white;
+  background-color: #225095;
   width: var(--max-width);
+}
+
+.footer a {
+  color: white;
 }

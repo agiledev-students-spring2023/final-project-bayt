@@ -4,6 +4,7 @@ import Footer from './Footer';
 import Modal from 'react-modal';
 import '../css/Settings.css'
 import {useState} from "react";
+import "../index.css";
 
 Modal.setAppElement('#root');
 
@@ -86,7 +87,7 @@ const customStyles = {
     left: '50%',
     transform: 'translate(-50%, -50%)',
     border: '2px solid #ccc',
-    background: '#f4f1de',
+    background: 'white',
     width: '90vw', /* set the width to 90% of viewport width */
     maxWidth: '250px', 
     overflow: 'auto', /* add overflow property for scrolling */

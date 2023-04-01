@@ -1,7 +1,6 @@
 // Login Page
 
 import React from 'react';
-import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
@@ -9,8 +8,6 @@ import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useNavigate } from "react-router-dom";
-
-import logo from '../logo.png'
 import "../index.css";
 import "../css/Login.css";
 
@@ -56,12 +53,12 @@ function Login(props) {
 
                             <TextField margin="normal" required fullWidth name="password" label="Password" type="password" id="password"/>
 
-                            <Button type="submit" color='primary' fullWidth variant="contained" sx={{ mt: 3, mb: 2 }} >Log In</Button>
+                            <button type="submit" >Log In</button>
 
                             <Grid container>
                                 <Grid item xs={9}></Grid>
                                 <Grid item>
-                                    <Link href="/signup" variant="body2">
+                                    <Link href="/signup" color="#225095" variant="body2">
                                         Create House
                                     </Link>
                                 </Grid>

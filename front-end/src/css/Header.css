@@ -6,7 +6,7 @@
   align-items: center;
   justify-content: space-between;
   height: var(--header-height);
-  background-color: #f2cc8f;
+  background-color: #225095;
   width: var(--max-width);
 }
 
@@ -25,12 +25,12 @@
 
 .houseName {
   right: -0.5vw;
-  color: #3d405b;
-  font-size: 3vh;
+  color: #EAEFE9;
+  font-size: 1.8rem;
 }
 
 .profile {
-  color: #3d405b;
+  color: #fac901;
   width: 5em;
   height: 5rem;
 }
