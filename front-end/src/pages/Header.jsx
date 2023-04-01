@@ -9,9 +9,12 @@ import AccountCircle from "@mui/icons-material/AccountCircle";
 const Header = ({ title }) => {
   return (
     <header className="header">
-        <div className="headerLogo">
-          <img src={logo} alt="Bayt Logo" />
-        </div>
+        <Link to="/home">
+          <div className="headerLogo">
+            <img src={logo} alt="Bayt Logo" />
+          </div>
+        </Link>
+        
         <div className="houseName">
           <div className="houseName">{title}</div>
         </div>

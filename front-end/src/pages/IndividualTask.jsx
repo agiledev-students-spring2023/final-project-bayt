@@ -101,7 +101,7 @@ function IndividualTask(props) {
                         </FormControl>
 
                         <LocalizationProvider dateAdapter={AdapterDayjs}>
-                            <DatePicker required label="Select Date" sx={{mb: 2, width: '100%'}} componentsProps={{ textField: { required: true, fullWidth: true } }} onChange={date => handleInputChange(null, date)} />
+                            <DatePicker required label="Select Date" sx={{mb: 2, width: '100%'}} slotProps={{ textField: { required: true, fullWidth: true } }} onChange={date => handleInputChange(null, date)} />
                         </LocalizationProvider>
                         
                         <Button variant="contained" fullWidth={true} endIcon={<LibraryAddIcon />} color="primary" type="submit">Save</Button>
