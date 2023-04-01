@@ -9,14 +9,13 @@ import Footer from "./Footer";
 
 function RoomTemplate(props) {
   const { roomName } = useParams();
-  console.log(roomName);
 
   //Comparator for the sorting by the dates of API DATA elems
   const sortAscending = (a, b) => {
     return a.due_time.$date.$numberLong - b.due_time.$date.$numberLong;
   };
   const filterFunctionn = (task_data) => {
-    return task_data.Room === roomName;
+    return task_data.room === roomName;
   };
   return (
     <>

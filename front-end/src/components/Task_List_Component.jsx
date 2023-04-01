@@ -26,7 +26,7 @@ const TaskListComponent = ({
       taskoi.complete = true; // set task to complete
       axios
         .put(
-          `${process.env.REACT_APP_SERVER_HOSTNAME}/tasks/` + selectObject.id,
+          `http://localhost:8000/tasks/` + selectObject.id,
           taskoi
         )
         .then((response) => {
@@ -70,22 +70,18 @@ const TaskListComponent = ({
 
   const fetchData = () => {
     if (testing_mode) {
-      setData(task_json);
-      // Filter and Sort Data
-      data.sort(sortComparator);
-      data.filter(filterFunction);
-
+      task_json.sort(sortComparator);
+      setData(task_json.filter(filterFunction));
       setLoaded(true);
     } else {
       axios
-        .get(`${process.env.REACT_APP_SERVER_HOSTNAME}/tasks`)
+        .get(`http://localhost:8000/tasks`)
         .then((response) => {
           let task_arr = response.data;
-          setData(task_arr);
 
           // Filter and Sort Data
-          data.sort(sortComparator);
-          data.filter(filterFunction);
+          task_arr.sort(sortComparator);
+          setData(task_arr.filter(filterFunction));
         })
         .catch((err) => {
           setError(err);
