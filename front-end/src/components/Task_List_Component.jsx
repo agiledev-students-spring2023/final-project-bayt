@@ -5,7 +5,8 @@ import "../index.css";
 import TaskComponent from "./Task_Component.jsx";
 import { Button, CircularProgress } from "@mui/material";
 
-const testing_mode = true;
+const testing_mode = false;
+const backend_route ='http://localhost:8000/tasks/';
 
 const TaskListComponent = ({filterFunction, sortComparator, enableCheckbox, centerButton}) => {
   const [data, setData] = useState([]);
@@ -21,7 +22,7 @@ const TaskListComponent = ({filterFunction, sortComparator, enableCheckbox, cent
       taskoi.complete = true; // set task to complete
       axios
         .put(
-          `http://localhost:8000/tasks/` + selectObject.id,
+          backend_route + selectObject.id,
           taskoi
         )
         .then((response) => {
@@ -70,7 +71,7 @@ const TaskListComponent = ({filterFunction, sortComparator, enableCheckbox, cent
       setLoaded(true);
     } else {
       axios
-        .get(`http://localhost:8000/tasks`)
+        .get(backend_route)
         .then((response) => {
           let task_arr = response.data;
 
