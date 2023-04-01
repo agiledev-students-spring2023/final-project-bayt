@@ -1,8 +1,7 @@
 #!/usr/bin/env node
 const app = require("./app")
 const server = require("./app") // load up the web server
-const port = 8000 // the port to listen to for incoming requests
-
+const port = 3000 // the port to listen to for incoming requests
 // call express's listen function to start listening to the port
 const listener = server.listen(port, function () {
   console.log(`Server running on port: ${port}`)
@@ -12,13 +11,6 @@ const close = () => {
   listener.close()
 }
 
-/* Error handler middleware from https://github.com/geshan/expressjs-structure/blob/master/index.js */ 
-app.use((err, req, res, next) => {
-  const statusCode = err.statusCode;
-  console.error(err.message, err.stack);
-  res.status(statusCode).json({'message': err.message});
-  next();
-});
 
 module.exports = {
   close: close,
