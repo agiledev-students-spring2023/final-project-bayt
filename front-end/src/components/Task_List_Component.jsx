@@ -6,6 +6,7 @@ import TaskComponent from "./Task_Component.jsx";
 import { Button, CircularProgress } from "@mui/material";
 
 const testing_mode = false;
+const backend_route ='http://localhost:8000/tasks/';
 
 const TaskListComponent = ({
   filterFunction,
@@ -26,7 +27,7 @@ const TaskListComponent = ({
       taskoi.complete = true; // set task to complete
       axios
         .put(
-          `http://localhost:8000/tasks/` + selectObject.id,
+          backend_route + selectObject.id,
           taskoi
         )
         .then((response) => {
@@ -75,7 +76,7 @@ const TaskListComponent = ({
       setLoaded(true);
     } else {
       axios
-        .get(`http://localhost:8000/tasks`)
+        .get(backend_route)
         .then((response) => {
           let task_arr = response.data;
 
