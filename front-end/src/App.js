@@ -1,10 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-
-// import css
 import "./App.css";
 import "./index.css";
-
-// link other pages
 import Login from './pages/Login';
 import Tasks from './pages/Tasks';
 import Home from './pages/Home';
@@ -18,9 +14,6 @@ import Alerts from "./pages/alerts";
 import Settings from './pages/Settings';
 import AddMembers from './pages/AddMember';
 
-// TODOS:
-// 1. The index page is login page right now. Should be set to home page once we have user authentication
-// 2. Add slug to individual task page
 function App() {
   return (
     <div className="App">

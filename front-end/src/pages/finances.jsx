@@ -3,6 +3,7 @@ import Header from "./Header";
 import Footer from "./Footer";
 import "../css/finances.css";
 import "../index.css";
+import axios from "axios";
 
 // paid/requesting $[amount] to/from @user for [text]
 function TransactionForm({ onSubmit }) {
@@ -15,23 +16,23 @@ function TransactionForm({ onSubmit }) {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    onSubmit({
+    const transaction = {
       paidOrRequesting,
       amount,
       toOrFrom,
       user,
       forWhat,
       date,
-    });
-    const response = await fetch("/api/transactions", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(transaction),
-    });
-    const newTransaction = await response.json();
-    onSubmit(newTransaction);
+    };
+    try {
+      const response = await axios.post(
+        "http://localhost:8000/finances",
+        transaction
+      );
+      onSubmit(response.data);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
@@ -45,8 +46,8 @@ function TransactionForm({ onSubmit }) {
         </select>
       </label>
       <label>
-        amount $
-        <input
+        $  
+        <input className="amount-field"
           type="number"
           value={amount}
           onChange={(event) => setAmount(event.target.value)}
@@ -91,6 +92,7 @@ function TransactionForm({ onSubmit }) {
 
 function Finances() {
   const [isFormVisible, setIsFormVisible] = useState(false);
+  const [transactions, setTransactions] = useState([]);
 
   const handleButtonClick = () => {
     setIsFormVisible(true);
@@ -102,26 +104,26 @@ function Finances() {
     }
   };
 
-  const [transactions, setTransactions] = useState([]);
+  useEffect(() => {
+    const fetchTransactions = async () => {
+      try {
+        const response = await fetch("http://localhost:8000/finances");
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        const transactions = await response.json();
+        setTransactions(transactions);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchTransactions();
+  }, []);
 
   const handleAddTransaction = (transaction) => {
     setTransactions([...transactions, transaction]);
     setIsFormVisible(false);
   };
-
-
-  // useEffect(() => {
-  //   setTransactions(finances_json);
-  // }, []);
-
-  useEffect(() => {
-    const fetchTransactions = async () => {
-      const response = await fetch("/api/transactions");
-      const transactions = await response.json();
-      setTransactions(transactions);
-    };
-    fetchTransactions();
-  }, []);
 
   return (
     <>
@@ -195,86 +197,3 @@ function TransactionList({ transactions }) {
 }
 
 export default Finances;
-
-let finances_json = [
-  {
-    paidOrRequesting: "Paid",
-    amount: 68,
-    toOrFrom: "from",
-    user: "nunc",
-    forWhat: "ut suscipit",
-    date: "6/3/2022",
-  },
-  {
-    paidOrRequesting: "Paid",
-    amount: 25,
-    toOrFrom: "to",
-    user: "nibh",
-    forWhat: "neque",
-    date: "2/28/2023",
-  },
-  {
-    paidOrRequesting: "Paid",
-    amount: 45,
-    toOrFrom: "from",
-    user: "vitae",
-    forWhat: "sit",
-    date: "4/3/2022",
-  },
-  {
-    paidOrRequesting: "Requesting",
-    amount: 47,
-    toOrFrom: "from",
-    user: "mauris",
-    forWhat: "auctor",
-    date: "8/11/2022",
-  },
-  {
-    paidOrRequesting: "Paid",
-    amount: 59,
-    toOrFrom: "from",
-    user: "diam",
-    forWhat: "nam tristique",
-    date: "8/9/2022",
-  },
-  {
-    paidOrRequesting: "Paid",
-    amount: 90,
-    toOrFrom: "from",
-    user: "justo",
-    forWhat: "sapien",
-    date: "4/18/2022",
-  },
-  {
-    paidOrRequesting: "Requesting",
-    amount: 88,
-    toOrFrom: "from",
-    user: "eu",
-    forWhat: "tempor",
-    date: "8/31/2022",
-  },
-  {
-    paidOrRequesting: "Paid",
-    amount: 15,
-    toOrFrom: "from",
-    user: "maecenas",
-    forWhat: "sapien",
-    date: "2/4/2023",
-  },
-  {
-    paidOrRequesting: "Paid",
-    amount: 87,
-    toOrFrom: "to",
-    user: "consequat",
-    forWhat: "aenean lectus",
-    date: "1/25/2023",
-  },
-  {
-    paidOrRequesting: "Paid",
-    amount: 22,
-    toOrFrom: "from",
-    user: "hac",
-    forWhat: "platea",
-    date: "11/25/2022",
-  },
-];
