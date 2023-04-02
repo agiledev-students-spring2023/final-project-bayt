@@ -11,49 +11,68 @@ import Button from '@mui/material/Button';
 import DeleteAccountButton from './ProfileDelete';
 import axios from 'axios';
 
-export default function ProfInfo() {
+const ProfInfo = () => {
   const [isEditable, setIsEditable] = React.useState(false);
-  const [username, setUsername] = React.useState('');
-  const [householdRole, setHouseholdRole] = React.useState('Admin');
-  const [housecode, setHousecode] = React.useState('whatever');
-  const [phone, setPhone] = React.useState('444-444-4444');
-  const [rooms, setRooms] = React.useState('Kitchen');
+  const [email, setEmail] = React.useState('');
+  const [householdRole, setHouseholdRole] = React.useState('');
+  const [housecode, setHousecode] = React.useState("password");
+  const [phone, setPhone] = React.useState('');
+  const [rooms, setRooms] = React.useState('');
 
 
+
+  //axios to get data fetched by backend
+  React.useEffect(() => {
+      axios
+          .get(`http://localhost:8000/Profile`)
+          .then(response => {
+              setEmail(response.data.email);
+              setHouseholdRole(response.data.role);
+              setPhone(response.data.telephone);
+              setRooms(response.data.rooms);
+          })
+      .catch (err => {
+      console.log(err);
+      })
+  }, [])
   
-
-    const fetchData = async () => {
-        try {
-            console.log('fetching data');
-        const response = await axios.get("back-end/HardCode.json");
-        const data = response.data[0]; // assuming the file contains only one object
-        // set the data in the state variables
-        setUsername(data.username);
-        setHouseholdRole(data.role);
-        setPhone(data.telephone);
-        setRooms(data.rooms);
-        } catch (error) {
-        console.log(error);
-        }
-    };
-  
-    
-    React.useEffect(() => {
-        fetchData();
-      }, []);
 
 
   const handleEditClick = () => {
     setIsEditable(true);
-  
   };
+
+  
 
   const handleSaveClick = () => {
     setIsEditable(false);
-   //send and save to back end database whatever kms
+   //axios to update data in backend
+    axios
+    .post(`http://localhost:8000/Profile`, {
+      email,
+      role: householdRole,
+      password: housecode,
+      telephone: phone,
+      rooms
+    })
 
+    //this needs to be updated to reflect data recieved from database
+    .then(response => {
+      console.log(response);
+      // Update the state variables with the updated data from the response
+      //rn it doesnt actually do shit as we are using json file in backend and browser ignores updated values until new session
+      setEmail(response.data.email);
+      setHouseholdRole(response.data.role);
+      setPhone(response.data.telephone);
+      setRooms(response.data.rooms);
+    })
 
+    .catch(error => {
+      console.log(error);
+    });
   };
+
+
 
   return (
     <Container maxWidth='lg'>
@@ -63,11 +82,11 @@ export default function ProfInfo() {
           <TextField
             fullWidth
             id="username"
-            label="Username or Email"
+            label="Email"
             variant="standard"
-            value={username}
+            value={email}
             disabled={!isEditable}
-            onChange={(e) => setUsername(e.target.value)}
+            onChange={(e) => setEmail(e.target.value)}
           />
         </Box>
         <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
@@ -122,18 +141,16 @@ export default function ProfInfo() {
         </Box>
        
         <Box sx={{ display: 'flex', alignItems: 'center',flexDirection: 'column', justifyContent:'center', marginTop: '30px' }}>
-            {isEditable ? (<Button variant="contained" sx={{ backgroundColor: '#6e9884', '&:hover': { backgroundColor: '#3D405B' }  }} onClick={handleSaveClick}>Save</Button>):(<Button variant="contained" sx={{ backgroundColor: '#6e9884', '&:hover': { backgroundColor: '#3D405B' }, width: '150px' }} onClick={handleEditClick}>Edit</Button>)}
+            {isEditable ? (<Button variant="contained" sx={{ backgroundColor: '#3D405B', '&:hover': { backgroundColor: '#eaefe9' }  }} onClick={handleSaveClick}>Save</Button>):(<Button variant="contained" sx={{ backgroundColor: '#3D405B', '&:hover': { backgroundColor: '#eaefe9' }, width: '200px' }} onClick={handleEditClick}>Edit</Button>)}
             {isEditable && (
             <>
             <DeleteAccountButton/>
             </> 
             )}
         </Box>
-
-
-
-
         </Box>
         </Container>
   );
 }
+
+export default ProfInfo;
