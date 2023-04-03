@@ -22,13 +22,27 @@ import '../css/IndividualTask.css';
 import Header from './Header.jsx';
 import Footer from './Footer.jsx';
 
+function generateOId() {
+    let timestamp = (new Date().getTime() / 1000 | 0).toString(16);
+    return timestamp + 'xxxxxxxxxxxxxxxx'.replace(/[x]/g, function() {
+        return (Math.random() * 16 | 0).toString(16);
+    }).toLowerCase();
+};
+
 const defaultValues = {
-    taskTitle: "",
+    id: {
+        $oid: generateOId(),
+    },
+    task_name: "",
     room:"",
-    assign:"",
+    assignee:"",
     repeat: "",
-    userDate: new Date(),
-    taskDescription: "",
+    due_time: {
+        $date: {
+          $numberLong: new Date().valueOf(),
+        },
+    },
+    description: "",
     complete: false,
 };
 
@@ -66,12 +80,13 @@ function IndividualTask(props) {
             async function fetchAndSet() {
                 const taskData = await fetchData(id);
                 setFormValues({
-                    taskTitle: taskData['task_name'] ? taskData['task_name'] : '',
+                    id: {$oid: id},
+                    task_name: taskData['task_name'] ? taskData['task_name'] : '',
                     room: taskData['room'] ? taskData['room'] : '',
-                    assign: taskData['assignee'] ? taskData['assignee'] : '',
+                    assignee: taskData['assignee'] ? taskData['assignee'] : '',
                     repeat: taskData['repeat'] ? taskData['repeat'] : '',
-                    userDate: taskData['due_time']['$date']['$numberLong'] ? new Date(taskData['due_time']['$date']['$numberLong']) : new Date(),
-                    taskDescription: taskData['description'] ? taskData['description'] : '',
+                    due_time: taskData['due_time']['$date']['$numberLong'] ? { $date: { $numberLong: taskData['due_time']['$date']['$numberLong'] } } : { $date: { $numberLong: new Date().valueOf() } },
+                    description: taskData['description'] ? taskData['description'] : '',
                     complete: taskData['complete'],
                 });
             }
@@ -88,7 +103,7 @@ function IndividualTask(props) {
         if (e == null && date != null) {
             setFormValues({
                 ...formValues,
-                userDate: date['$d']
+                due_time: { $date: { $numberLong: new Date(date['$d']).valueOf() } },
             });
         }
         else {
@@ -102,6 +117,7 @@ function IndividualTask(props) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        
         console.log(formValues);
     };
 
@@ -120,11 +136,11 @@ function IndividualTask(props) {
             <form className='taskFormContainer' onSubmit={handleSubmit}>
                 <ThemeProvider theme={theme}>
                     <Box sx={{m: 3, mt: 1, pt: 4, maxWidth: '100%'}}>
-                        <TextField disabled={formValues['complete']} required sx={{mb: 2}} variant="standard" fullWidth id="taskTitle-input" name="taskTitle" label="Task Title" type="text" value={formValues.taskTitle} onChange={handleInputChange} />
+                        <TextField disabled={formValues['complete']} required sx={{mb: 2}} variant="standard" fullWidth id="task_name_input" name="task_name" label="Task Title" type="text" value={formValues.task_name} onChange={handleInputChange} />
 
-                        <TextField disabled={formValues['complete']} value={formValues.taskDescription} sx={{mb: 2}} fullWidth required id="taskDescription" name='taskDescription' label="Enter Task Description" multiline rows={4} variant="standard" onChange={handleInputChange}/>
+                        <TextField disabled={formValues['complete']} value={formValues.description} sx={{mb: 2}} fullWidth required id="description" name='description' label="Enter Task Description" multiline rows={4} variant="standard" onChange={handleInputChange}/>
                         
-                        <FormControl required variant="standard" sx={{mb: 2, width: '100%'}}>
+                        <FormControl variant="standard" sx={{mb: 2, width: '100%'}}>
                             <InputLabel id="room-label">Select Room</InputLabel>
                             <Select disabled={formValues['complete']} defaultValue={defaultValues.room} required name="room" labelId="room-label" id="room-select-helper" value={formValues.room} label="room" onChange={handleInputChange}>
                                 {id ? <MenuItem value={`${formValues.room}`}>{`${formValues.room}`}</MenuItem> : ''}
@@ -136,8 +152,8 @@ function IndividualTask(props) {
 
                         <FormControl required variant="standard" sx={{mb: 2, width: '100%'}}>
                             <InputLabel id="assign-label">Assign To</InputLabel>
-                            <Select disabled={formValues['complete']} required name="assign" labelId="assign-label" id="assign-select-helper" value={formValues.assign} label="assign" onChange={handleInputChange}>
-                                {id ? <MenuItem value={`${formValues.assign}`}>{`${formValues.assign}`}</MenuItem> : ''}
+                            <Select disabled={formValues['complete']} required name="assignee" labelId="assign-label" id="assign-select-helper" value={formValues.assignee} label="assign" onChange={handleInputChange}>
+                                {id ? <MenuItem value={`${formValues.assignee}`}>{`${formValues.assignee}`}</MenuItem> : ''}
                                 <MenuItem value={'tom'}>Tom</MenuItem>
                                 <MenuItem value={'james'}>James</MenuItem>
                                 <MenuItem value={'aaron'}>Aaron</MenuItem>
@@ -147,18 +163,18 @@ function IndividualTask(props) {
                         <FormControl required variant="standard" sx={{mb: 2, width: '100%'}}>
                             <InputLabel id="repeat-label">Repeat Every</InputLabel>
                             <Select disabled={formValues['complete']} required name="repeat" labelId="repeat-label" id="repeat-select-helper" value={formValues.repeat} label="repeat" onChange={handleInputChange}>
-                                {id ? <MenuItem value={formValues.repeat}>{`Every ${formValues.repeat} Day`}</MenuItem> : ''}
-                                <MenuItem value={'never'}>Never</MenuItem>
-                                <MenuItem value={'everyday'}>Every Day</MenuItem>
-                                <MenuItem value={'everyweek'}>Every Week</MenuItem>
-                                <MenuItem value={'every2week'}>Every 2 Weeks</MenuItem>
-                                <MenuItem value={'everymonth'}>Every Month</MenuItem>
-                                <MenuItem value={'everyyear'}>Every Year</MenuItem>
+                                {id && [0,1,7,14,30,365].indexOf(formValues.repeat) === -1 ? <MenuItem value={formValues.repeat}>{`Every ${formValues.repeat} Day`}</MenuItem> : ''}
+                                <MenuItem value={0}>Never</MenuItem>
+                                <MenuItem value={1}>Every Day</MenuItem>
+                                <MenuItem value={7}>Every Week</MenuItem>
+                                <MenuItem value={14}>Every 2 Weeks</MenuItem>
+                                <MenuItem value={30}>Every Month</MenuItem>
+                                <MenuItem value={365}>Every Year</MenuItem>
                             </Select>
                         </FormControl>
 
                         <LocalizationProvider dateAdapter={AdapterDayjs}>
-                            <DatePicker disabled={formValues['complete']} value={dayjs(formValues.userDate)} required label="Select Date" sx={{mb: 2, width: '100%'}} slotProps={{ textField: { required: true, fullWidth: true } }} onChange={date => handleInputChange(null, date)} />
+                            <DatePicker disabled={formValues['complete']} value={dayjs(new Date(formValues['due_time']['$date']['$numberLong']))} required label="Select Date" sx={{mb: 2, width: '100%'}} slotProps={{ textField: { required: true, fullWidth: true } }} onChange={date => handleInputChange(null, date)} />
                         </LocalizationProvider>
                         
                         <Button disabled={formValues['complete']} sx={{"&:hover": {color: '#fff', border: '0px #fff solid'}}} variant="contained" fullWidth={true} endIcon={<LibraryAddIcon />} color="primary" type="submit">Save</Button>
