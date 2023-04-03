@@ -183,7 +183,7 @@ function TransactionList({ transactions }) {
         {sortedTransactions.map((transaction, index) => (
           <li key={index}>
             <div className="imessage">
-              <p className="from-me">
+              <p className={transaction.toOrFrom === "to" ? "from-me" : "from-them"}>
                 {transaction.paidOrRequesting} ${transaction.amount}{" "}
                 {transaction.toOrFrom} {transaction.user} for{" "}
                 {transaction.forWhat} on {transaction.date}
