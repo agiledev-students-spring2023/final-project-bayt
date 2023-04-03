@@ -4,66 +4,58 @@ import ProfInfo from "../components/Profile_info_component";
 import "../css/Profile_pic_component.css";
 import Header from './Header';
 import Footer from './Footer';
-import Popup from 'reactjs-popup';
 import '../css/Profile.css';
-
-//Delete account button and modal component
-const DeleteAccountButton = () => {
-    const handleDelete = () => {
-      // Code to delete the account info from database goes here
-      console.log('Account deleted');
-    };
-  
-    return (
-      <Popup
-        trigger={<button className="delete-account-button">Delete Account</button>}
-        modal
-        overlayStyle={{ background: 'rgba(0, 0, 0, 0.5)' }}
-        nested
-      >
-        {(close) => (
-          <div className="modal">
-            <div className="warn">Warning</div>
-            <div className="content">
-              <p>Are you sure you want to delete your account? This action is irreversible.  All account data will be lost.</p>
-            </div>
-            <div className="actions">
-              <button className="button" onClick={close}>
-                Cancel
-              </button>
-              <button className="button danger" onClick={handleDelete}>
-                Delete Account
-              </button>
-            </div>
-          </div>
-        )}
-      </Popup>
-    );
-  };
-  
+import * as React from 'react';
+import axios from 'axios';
 
 //editable Name part of profile.  It renders and updates each time user changes it. 
-const Name_info = () => {
+const NameInfo = () => {
 
-  const [name, setName] = useState('John Doe');
+  const [name, setName] = useState('');
   const [isEditing, setIsEditing] = useState(false);
   const [tempName, setTempName] = useState('');
+
+
+  React.useEffect(() => {
+    axios
+        .get(`http://localhost:8000/Profile`)
+        .then(response => {
+         setName(response.data.username);   
+        })
+    .catch (err => {
+    console.log(err);
+    })
+}, [])
+
 
   const handleNameClick = () => {
     setIsEditing(true);
     setTempName(name);
   };
 
+
   const handleNameChange = (event) => {
     setTempName(event.target.value);
   };
 
+
   const handleNameKeyPress = (event) => {
     if (event.key === 'Enter') {
       setIsEditing(false);
+
       if (tempName.trim() !== '') {
         setName(tempName.trim());
-      } else {
+        axios
+          .post(`http://localhost:8000/Profile`, { username: tempName.trim() })
+          .then((response) => {
+            console.log(response.data);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      } 
+
+      else {
         setTempName(name);
       }
     }
@@ -73,9 +65,20 @@ const Name_info = () => {
     setIsEditing(false);
     if (tempName.trim() !== '') {
       setName(tempName.trim());
-    } else {
+      axios
+        .post(`http://localhost:8000/Profile`, { username: tempName.trim() })
+        .then((response) => {
+          console.log(response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    } 
+
+    else {
       setTempName(name);
     }
+
   };
   
   return (
@@ -102,20 +105,22 @@ const Name_info = () => {
 
 
 
+
 //replace h1 with header and delete from css
 const Profile = () => {
+
+
+
+
+
     return (
     <>
       <Header title="Profile"/>
       <div>
         <div className="outer">
             <ProfilePic/>
-            <Name_info/>
+            <NameInfo/>
             <ProfInfo/>
-            <div className="delete-Account">
-                <DeleteAccountButton/>
-            </div>
-          
         </div>
       </div>
       <Footer/>

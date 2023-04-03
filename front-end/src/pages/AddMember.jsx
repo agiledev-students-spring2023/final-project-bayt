@@ -48,7 +48,7 @@ function AddMembers(props) {
          <ThemeProvider theme={theme}>
          <Container component="main" maxWidth="sm" sx={{ mb: 4 }}>
             <Box sx={{ mt: 8, display: 'flex', flexDirection: 'column', alignItems: 'center', }}>
-                <h1 className="text" >Add Family Member</h1>
+                <h1 className="text" sx={{mb: 4}}  >Add Family Member</h1>
                 <ProfilePic />
                 <Grid container spacing={3} sx={{ mt: 1 }} >
                     <Grid item xs={12}>
