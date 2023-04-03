@@ -2,6 +2,7 @@
 import "../css/Profile_pic_component.css";
 import React, { useRef, useState } from 'react';
 import prof from "./../img.svg";
+import axios from "axios";
 
 
 const ProfilePic = () => {
@@ -9,7 +10,7 @@ const ProfilePic = () => {
   const [image, setImage] = useState(localStorage.getItem('img') || prof);
   const fileInputRef = useRef(null);
 
-  const handleChange = (event) => {
+  const handleChange = async (event) => {
     const selectedFile = event.target.files[0];
     
     
@@ -17,9 +18,27 @@ const ProfilePic = () => {
       let reader = new FileReader();
       reader.readAsDataURL(selectedFile);
       //render image and we want it to persist so set to local storage (will change this when working with mockaroo)
-      reader.onload = (e) => {
+      reader.onload =async (e) => {
         setImage(e.target.result);
         localStorage.setItem('img', e.target.result);
+
+        // Create a FormData object and append the file to it
+        const formData = new FormData();
+        formData.append('file', selectedFile);
+
+        // Send a POST request to the /profile endpoint with the FormData object
+        try {
+          const response = await axios.post(`http://localhost:8000/Profile`, formData, {
+            headers: {
+              'Content-Type': 'multipart/form-data'
+            }
+          });
+          console.log(response.data);
+          console.log("yea word");
+        }
+        catch (error) {
+          console.error(error);
+        }
       };
     }
 
