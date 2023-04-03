@@ -91,9 +91,8 @@ function IndividualTask(props) {
                 });
             }
             fetchAndSet();
-            return () => fetchAndSet();
         }
-    });
+    }, []);
 
     const handleNavigate = () => {
         return navigate(-1);
@@ -117,8 +116,30 @@ function IndividualTask(props) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        
-        console.log(formValues);
+
+        if (id) {
+            axios
+            .put(backend_route + `${id}`, formValues)
+            .then((res) => {
+                console.log(res);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+        }
+        else {
+            axios
+            .post(backend_route, formValues)
+            .then((res) => {
+                console.log(res);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+        }
+
+        setFormValues(defaultValues);
+        navigate('/home');
     };
 
     return (
@@ -142,7 +163,7 @@ function IndividualTask(props) {
                         
                         <FormControl variant="standard" sx={{mb: 2, width: '100%'}}>
                             <InputLabel id="room-label">Select Room</InputLabel>
-                            <Select disabled={formValues['complete']} defaultValue={defaultValues.room} required name="room" labelId="room-label" id="room-select-helper" value={formValues.room} label="room" onChange={handleInputChange}>
+                            <Select disabled={formValues['complete']} defaultValue={defaultValues.room} name="room" labelId="room-label" id="room-select-helper" value={formValues.room} label="room" onChange={handleInputChange}>
                                 {id ? <MenuItem value={`${formValues.room}`}>{`${formValues.room}`}</MenuItem> : ''}
                                 <MenuItem value={'bathroom'}>Bathroom</MenuItem>
                                 <MenuItem value={'kitchen'}>Kitchen</MenuItem>
