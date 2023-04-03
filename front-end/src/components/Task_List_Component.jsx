@@ -131,7 +131,7 @@ const TaskListComponent = ({filterFunction, sortComparator, enableCheckbox, cent
   return (
     <>
       <div className="task_box">
-        <span className="vl"></span>
+        {/* <span className="vl"></span> */}
         {error && <p>{error}</p>}
         {!loaded && <CircularProgress className="loading_icon" />}
         {data.map((task_data) => {
