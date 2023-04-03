@@ -1,6 +1,7 @@
 // Login Page
 
 import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "../css/task_component.css";
 
 import {
@@ -21,10 +22,17 @@ import Checkbox from "@mui/material/Checkbox";
 const TaskComponent = ({id, title, room, assigned, completed, SelectHandler, enableCheckbox}) => {
   const [isChecked, setIsChecked] = React.useState(false);
 
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    return navigate(`/tasks/${id}`);
+  };
+
   return (
     <div className={"task_box_comp "+(completed?"complete":"incomplete")}>
       {enableCheckbox && (<Checkbox className="checkbox" checked={isChecked && !completed} onChange={e => {setIsChecked(e.target.checked); SelectHandler(id, e.target.checked && !completed)}}/>)}
-      <div className={"task_component "+(isChecked && !completed ?"selected":"deselected")}>
+      
+      <div onClick={handleClick} className={"task_component "+(isChecked && !completed ?"selected":"deselected")}>
         <div className="task_information">
           <div className="task_name">
             <PendingActions className="task_text_icon" /> {title}

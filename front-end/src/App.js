@@ -33,6 +33,7 @@ function App() {
             <Route path="/tasks" element={<Tasks />}></Route>
             <Route path="/home" element={<Home />}></Route>
             <Route path="/tasks/add" element={<IndividualTask />}></Route>
+            <Route path="/tasks/:id" element={<IndividualTask />}></Route>
             <Route path="/Profile" element={<Profile/>}></Route>
             <Route index path="/room/:roomName" element={<RoomTemplate />}></Route>
             <Route index path="/finances" element={<Finances />}></Route>
