@@ -10,7 +10,7 @@
 
 .transactionListContainer {
   position: relative;
-  width: 98%;
+  width: 100%;
   background-color: white;
 }
 
@@ -76,6 +76,7 @@ li {
 
 .sort-by-container {
   margin-right: 1vw;
+  margin-left: 1vw;
   display: flex;
   justify-content: right;
   align-items: center;
@@ -90,7 +91,6 @@ li {
   background-color: white;
   display: flex;
   flex-direction: column;
-  font-family: "SanFrancisco";
   font-size: 1rem;
   max-width: 100vw;
 }
