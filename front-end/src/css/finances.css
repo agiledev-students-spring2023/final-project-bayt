@@ -45,6 +45,12 @@
   border-radius: 5px;
 }
 
+.form-items {
+  display: flex;
+  flex-direction: column;
+  gap: 1vw;
+}
+
 .form-container {
   display: flex;
   flex-direction: column;
@@ -52,9 +58,29 @@
   gap: 1vw;
 }
 
+.form-container .sendorreceive-field {
+  margin-right: 1em;
+}
+
 .form-container .amount-field {
   margin-left: 1em;
 } 
+
+.form-container .tofrom-field {
+  margin-right: 1em;
+} 
+
+.form-container .for-field {
+  margin-left: 1em;
+} 
+
+.form-container .on-field {
+  margin-left: 1em;
+} 
+
+.form-container button {
+  align-self: center;
+}
 
 @media (min-width: 768px) {
   .form-container {

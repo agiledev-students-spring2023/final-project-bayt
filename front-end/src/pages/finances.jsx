@@ -13,7 +13,7 @@ function TransactionForm({ onSubmit }) {
   const [user, setUser] = useState("@user");
   const [forWhat, setforWhat] = useState("purpose");
   const [date, setDate] = useState("");
-
+  
   const handleSubmit = async (event) => {
     event.preventDefault();
     const transaction = {
@@ -37,54 +37,64 @@ function TransactionForm({ onSubmit }) {
 
   return (
     <form onSubmit={handleSubmit} className="form-container">
-      <label>
-        <select
-          value={paidOrRequesting}
-          onChange={(event) => setPaidOrRequesting(event.target.value)}>
-          <option value="Paid">Paid</option>
-          <option value="Requesting">Requesting</option>
-        </select>
-      </label>
-      <label>
-        $  
-        <input className="amount-field"
-          type="number"
-          value={amount}
-          onChange={(event) => setAmount(event.target.value)}
-        />
-      </label>
-      <label>
-        <select
-          value={toOrFrom}
-          onChange={(event) => settoOrFrom(event.target.value)}>
-          <option value="to">to</option>
-          <option value="from">from</option>
-        </select>
-      </label>
-      <label>
-        <input
-          type="text"
-          value={user}
-          onChange={(event) => setUser(event.target.value)}
-        />
-      </label>
-      <label>for</label>
-      <label>
-        <input
-          type="text"
-          value={forWhat}
-          onChange={(event) => setforWhat(event.target.value)}
-        />
-      </label>
-      <label>on</label>
-      <label>
-        <input
-          type="date"
-          value={date}
-          onChange={(event) => setDate(event.target.value)}
-        />
-        .
-      </label>
+      <div className="form-items">
+        <div className="pay">
+          <label>
+            <select className="sendorreceive-field"
+              value={paidOrRequesting}
+              onChange={(event) => setPaidOrRequesting(event.target.value)}>
+              <option value="Paid">Paid</option>
+              <option value="Requesting">Requesting</option>
+            </select>
+          </label>
+          <label>
+            $
+            <input
+              className="amount-field"
+              type="number"
+              value={amount}
+              onChange={(event) => setAmount(event.target.value)}
+            />
+          </label>
+        </div>
+        <div className="user">
+          <label>
+            <select
+              className="tofrom-field"
+              value={toOrFrom}
+              onChange={(event) => settoOrFrom(event.target.value)}>
+              <option value="to">to</option>
+              <option value="from">from</option>
+            </select>
+            <input
+              type="text"
+              value={user}
+              onChange={(event) => setUser(event.target.value)}
+            />
+          </label>
+        </div>
+        <label>
+          for
+          <input
+            className="for-field"
+            type="text"
+            value={forWhat}
+            onChange={(event) => setforWhat(event.target.value)}
+          />
+        </label>
+        <div className="date">
+          <label>
+            on
+            <input
+              className="on-field"
+              type="date"
+              value={date}
+              onChange={(event) => setDate(event.target.value)}
+            />
+            .
+          </label>
+        </div>
+      </div>
       <button type="submit">Add transaction</button>
     </form>
   );
@@ -183,7 +193,10 @@ function TransactionList({ transactions }) {
         {sortedTransactions.map((transaction, index) => (
           <li key={index}>
             <div className="imessage">
-              <p className={transaction.toOrFrom === "to" ? "from-me" : "from-them"}>
+              <p
+                className={
+                  transaction.toOrFrom === "to" ? "from-me" : "from-them"
+                }>
                 {transaction.paidOrRequesting} ${transaction.amount}{" "}
                 {transaction.toOrFrom} {transaction.user} for{" "}
                 {transaction.forWhat} on {transaction.date}
