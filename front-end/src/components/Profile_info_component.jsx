@@ -48,7 +48,7 @@ const ProfInfo = () => {
     setIsEditable(false);
    //axios to update data in backend
     axios
-    .post(`http://localhost:8000/Profile`, {
+    .put(`http://localhost:8000/Profile`, {
       email,
       role: householdRole,
       password: housecode,
