@@ -2,11 +2,11 @@
   "name": "back-end",
   "version": "1.0.0",
   "description": "The back-end of your project will live in this directory.",
-  "main": "server.js",
+  "main": "./src/server.js",
   "scripts": {
-    "start": "npx nodemon server",
+    "start": "npx nodemon ./src/server.js",
     "test": "npx mocha --recursive",
-    "coverage": "npx nyc --all --include '*/**' --exclude '**/test/**' --reporter lcov --reporter text npm run test"
+    "coverage": "npx nyc npm test"
   },
   "author": "",
   "license": "ISC",
@@ -16,8 +16,8 @@
     "chai-http": "^4.3.0",
     "cors": "^2.8.5",
     "express": "^4.18.2",
-    "multer": "^1.4.5-lts.1",
-    "istanbul": "^0.4.5"
+    "istanbul": "^0.4.5",
+    "multer": "^1.4.5-lts.1"
   },
   "devDependencies": {
     "mocha": "^10.2.0",
