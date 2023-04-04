@@ -6,12 +6,14 @@
   "scripts": {
     "start": "npx nodemon server",
     "test": "npx mocha --recursive",
-    "coverage": "npx nyc npm run test"
+    "coverage": "npx nyc --all --include '*/**' --exclude '**/test/**' --reporter lcov --reporter text npm run test"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.20.2",
+    "chai": "^4.3.7",
+    "chai-http": "^4.3.0",
     "cors": "^2.8.5",
     "express": "^4.18.2",
     "multer": "^1.4.5-lts.1"

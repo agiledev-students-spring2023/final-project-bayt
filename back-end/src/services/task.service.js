@@ -13,35 +13,26 @@ async function getTask(task_id) {
 
 // add task data to task data json array if it does not exist
 async function createTask(task_data) {
+  if(task_data.hasOwnProperty("id") === false) throw new Error("Task id not found");
   const task = await getTask(task_data.id.$oid);
-  let message = "Task already exists";
-  if (task === undefined) {
-    task_json.push(task_data);
-    message = "Task created successfully";
-  }
-  return message;
+  if (task !== undefined) throw new Error("Task already exists");
+  task_json.push(task_data);
+  return "Task created successfully";
 }
 
 // find and update the task data array based off task_data json object
 async function updateTask(task_id, task_data) {
-  let message = "Error in updating task";
   const indexToUpdate = task_json.findIndex((task) => task.id.$oid === task_id);
-  if(indexToUpdate !== -1) {
-    task_json[indexToUpdate] = task_data;
-    message = "Task updated successfully";
-  }
-  return message;
+  if (indexToUpdate === -1) throw new Error("Error in updating task");
+  task_json[indexToUpdate] = task_data;
+  return "Task updated successfully";
 }
 
 async function removeTask(task_id) {
   const indexToRemove = task_json.findIndex((task) => task.id.$oid === task_id);
-  let message = "Error in deleting task";
-  if (indexToRemove !== -1) {
-    task_json.splice(indexToRemove, 1);
-    message = "Task deleted successfully";
-  }
-
-  return message;
+  if (indexToRemove === -1) throw new Error("Error in deleting task");
+  task_json.splice(indexToRemove, 1);
+  return "Task deleted successfully";
 }
 
 module.exports = {
