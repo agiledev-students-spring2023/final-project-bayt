@@ -6,7 +6,7 @@
   "scripts": {
     "start": "npx nodemon ./src/server.js",
     "test": "npx mocha --recursive",
-    "coverage": "npx nyc npm test"
+    "coverage": "npx nyc --all --include '*/**' --exclude '**/test/**' --reporter lcov --reporter text npm run test"
   },
   "author": "",
   "license": "ISC",
