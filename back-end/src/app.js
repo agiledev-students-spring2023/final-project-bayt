@@ -26,8 +26,5 @@ app.use('/finances', financesRouter);
 app.use('/alerts', alertsRouter);
 //parse settings data
 app.use('/settings', settingsRouter);
-//parse alerts data
-app.use('/alerts', alertsRouter);
-
 // export the express app we created to make it available to other modules
 module.exports = app
