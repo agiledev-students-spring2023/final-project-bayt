@@ -1,4 +1,4 @@
-const info = require('../HardCode.json')
+const info = require('../utils/hardcode.json')
 const fs = require('fs');
 const multer = require('multer');
 const path = require('path');
