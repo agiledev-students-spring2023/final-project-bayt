@@ -5,5 +5,6 @@ const prof_controller = require('../controllers/prof.controller.js');
 
 
 router.get('/', prof_controller.gets);
-router.post('/', prof_controller.update);
+router.post('/', prof_controller.store);
+router.put('/',prof_controller.update)
 module.exports = router;

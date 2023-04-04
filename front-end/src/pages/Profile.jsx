@@ -46,7 +46,7 @@ const NameInfo = () => {
       if (tempName.trim() !== '') {
         setName(tempName.trim());
         axios
-          .post(`http://localhost:8000/Profile`, { username: tempName.trim() })
+          .put(`http://localhost:8000/Profile`, { username: tempName.trim() })
           .then((response) => {
             console.log(response.data);
           })
@@ -66,7 +66,7 @@ const NameInfo = () => {
     if (tempName.trim() !== '') {
       setName(tempName.trim());
       axios
-        .post(`http://localhost:8000/Profile`, { username: tempName.trim() })
+        .put(`http://localhost:8000/Profile`, { username: tempName.trim() })
         .then((response) => {
           console.log(response.data);
         })
