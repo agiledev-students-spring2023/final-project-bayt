@@ -3,8 +3,7 @@ const express = require("express") // CommonJS import style!
 const bodyParser = require('body-parser');
 const taskRouter = require('./routes/task.route.js');
 const cors = require('cors') // middleware for enabling CORS (Cross-Origin Resource Sharing) requests.
-const fs = require('fs');
-const profRouter = require('./routes/prof.routes.js');
+const profRouter = require('./routes/prof.route.js');
 
 const app = express() // instantiate an Express object
 
