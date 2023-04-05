@@ -30,11 +30,8 @@ async function gets(req, res) {
       }
   };
 
-  //change all this when we use database.  Will be a lot simpler.
-  async function update(req, res) {
-    let data = JSON.parse(fs.readFileSync(require.resolve('../HardCode.json')));
-    const updatedData = req.body;
-
+  //handle user uploading files
+  async function store(req,res){
     // Check if there are any existing files in the uploads folder
     const uploadDir = path.join(__dirname, '../uploads');
     const files = fs.readdirSync(uploadDir);
@@ -55,6 +52,15 @@ async function gets(req, res) {
         }
         
         console.log('File uploaded successfully.');
+  })
+};
+
+
+  //change all this when we use database.  Will be a lot simpler.
+  async function update(req, res) {
+    let data = JSON.parse(fs.readFileSync(require.resolve('../utils/HardCode.json')));
+    const updatedData = req.body;
+
     
         // Update the existing data with the updated fields
         Object.keys(updatedData).forEach((key) => {
@@ -62,16 +68,15 @@ async function gets(req, res) {
         });
     
         // Write the updated data back to the JSON file
-        fs.writeFileSync(require.resolve('../HardCode.json'), JSON.stringify(data));
+        fs.writeFileSync(require.resolve('../utils/HardCode.json'), JSON.stringify(data));
     
         // Send a success response to the client-side application
         res.send(data);
-      });
-
   };
 
 
   module.exports = {
     gets,
-    update
+    update,
+    store
   };
