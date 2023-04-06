@@ -1,4 +1,4 @@
-const mydata = require('../utils/household_info.json');
+const mydata = require('../json/household_info.json');
 
 async function gets(req, res) {
     try{

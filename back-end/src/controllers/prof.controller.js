@@ -1,4 +1,4 @@
-const info = require('../utils/hardcode.json')
+const info = require('../json/hardcode.json')
 const fs = require('fs');
 const multer = require('multer');
 const path = require('path');
@@ -14,8 +14,6 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-
-//change all this shit once we implement database.
 //ideally we query with mongoose and pull object using ID
 async function gets(req, res) {
     try{
