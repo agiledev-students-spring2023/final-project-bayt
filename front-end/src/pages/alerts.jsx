@@ -49,13 +49,12 @@ function Alerts() {
               {alerts.map((alert, index) => (
                 <li key={index}>
                   <div className="wrapper">
-                    <Link to={`/tasks/${alert.id}`}>
                       <label className="control control-checkbox">
-                        {alert.task} due by {alert.date}
+                      <Link to={`/tasks/${alert.id}`}> {alert.task} due by {alert.date} </Link>
                         <input type="checkbox" />
                         <div className="indicator"></div>
                       </label>
-                    </Link>
+                    
                   </div>
                 </li>
               ))}
