@@ -10,9 +10,9 @@ async function getTask(task_id) {
 
 // add task data to task data json array if it does not exist
 async function createTask(task_data) {
-  const task = getTask(task_data.id.$oid);
+  const task = await getTask(task_data.id.$oid);
   let message = "Task already exists";
-  if (task === undefined) {
+  if (task == undefined) {
     task_json.push(task_data);
     message = "Task created successfully";
   }
