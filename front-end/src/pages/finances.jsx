@@ -26,7 +26,11 @@ function TransactionForm({ onSubmit }) {
     };
     try {
       const response = await axios.post(
+<<<<<<< HEAD
         "/api/finances",
+=======
+        "api/finances",
+>>>>>>> 757a4d4 (Added proxying to avoid direct url hardcoding)
         transaction
       );
       onSubmit(response.data);
@@ -118,7 +122,11 @@ function Finances() {
   useEffect(() => {
     const fetchTransactions = async () => {
       try {
+<<<<<<< HEAD
         const response = await fetch("/api/finances");
+=======
+        const response = await fetch("api/finances");
+>>>>>>> 757a4d4 (Added proxying to avoid direct url hardcoding)
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }

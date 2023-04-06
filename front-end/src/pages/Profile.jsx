@@ -18,7 +18,11 @@ const NameInfo = () => {
 
   React.useEffect(() => {
     axios
+<<<<<<< HEAD
         .get(`/api/Profile`)
+=======
+        .get(`api/Profile`)
+>>>>>>> 757a4d4 (Added proxying to avoid direct url hardcoding)
         .then(response => {
          setName(response.data.username);   
         })
@@ -46,7 +50,11 @@ const NameInfo = () => {
       if (tempName.trim() !== '') {
         setName(tempName.trim());
         axios
+<<<<<<< HEAD
           .put(`/api/Profile`, { username: tempName.trim() })
+=======
+          .put(`api/Profile`, { username: tempName.trim() })
+>>>>>>> 757a4d4 (Added proxying to avoid direct url hardcoding)
           .then((response) => {
             console.log(response.data);
           })
@@ -66,7 +74,11 @@ const NameInfo = () => {
     if (tempName.trim() !== '') {
       setName(tempName.trim());
       axios
+<<<<<<< HEAD
         .put(`/api/Profile`, { username: tempName.trim() })
+=======
+        .put(`api/Profile`, { username: tempName.trim() })
+>>>>>>> 757a4d4 (Added proxying to avoid direct url hardcoding)
         .then((response) => {
           console.log(response.data);
         })

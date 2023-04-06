@@ -24,7 +24,11 @@ const ProfInfo = () => {
   //axios to get data fetched by backend
   React.useEffect(() => {
       axios
+<<<<<<< HEAD
           .get(`/api/Profile`)
+=======
+          .get(`api/Profile`)
+>>>>>>> 757a4d4 (Added proxying to avoid direct url hardcoding)
           .then(response => {
               setEmail(response.data.email);
               setHouseholdRole(response.data.role);
@@ -48,7 +52,11 @@ const ProfInfo = () => {
     setIsEditable(false);
    //axios to update data in backend
     axios
+<<<<<<< HEAD
     .put(`/api/Profile`, {
+=======
+    .put(`api/Profile`, {
+>>>>>>> 757a4d4 (Added proxying to avoid direct url hardcoding)
       email,
       role: householdRole,
       password: housecode,

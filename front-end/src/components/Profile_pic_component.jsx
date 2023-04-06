@@ -28,7 +28,11 @@ const ProfilePic = () => {
 
         // Send a POST request to the /profile endpoint with the FormData object
         try {
+<<<<<<< HEAD
           const response = await axios.post(`/api/Profile`, formData, {
+=======
+          const response = await axios.post(`api/Profile`, formData, {
+>>>>>>> 757a4d4 (Added proxying to avoid direct url hardcoding)
             headers: {
               'Content-Type': 'multipart/form-data'
             }

@@ -56,7 +56,11 @@ const theme = createTheme({
     },
 });
 
+<<<<<<< HEAD
 const backend_route =`/api/tasks/`;
+=======
+const backend_route ='api/tasks/';
+>>>>>>> 757a4d4 (Added proxying to avoid direct url hardcoding)
 
 function IndividualTask(props) {
     const navigate = useNavigate();
