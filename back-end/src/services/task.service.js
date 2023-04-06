@@ -39,6 +39,7 @@ module.exports = {
   createTask,
   updateTask,
   removeTask,
+<<<<<<< HEAD
 };
 
 let task_json = [
@@ -188,3 +189,6 @@ let task_json = [
   },
 ];
 >>>>>>> 21a755e (Refactored, improved file structure, improved resp)
+=======
+};
+>>>>>>> b515602 (Localized hardcoded json data to json files)
