@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import Footer from "./Footer";
 import Header from "./Header";
 import "../css/alerts.css";
 import "../index.css";
-import alertsData from '../json/alerts_list.json';
+import alertsData from "../json/alerts_list.json";
 let alerts_json = alertsData;
 
 function Alerts() {
-
   const [alerts, setAlerts] = useState([]);
 
   useEffect(() => {
@@ -39,21 +39,29 @@ function Alerts() {
     <>
       <Header title="Alerts" />
       <div className="alerts-page-body">
-        <div className="list">
-          <ul className="alertsList">
-            {alerts.map((alert, index) => (
-              <li key={index}>
-                <div className="wrapper">
-                  <label className="control control-checkbox">
-                    {alert.task} due by {alert.date}
-                    <input type="checkbox" checked={alert.complete} onChange={(event) => handleCompleteChange(event, index)}/>
-                    <div className="indicator"></div>
-                  </label>
-                </div>
-              </li>
-            ))}
-          </ul>
-        </div>
+        {alerts.length === 0 ? (
+          <div className="no-alerts">
+            <p>No incomplete tasks! Good job : )</p>
+          </div>
+        ) : (
+          <div className="list">
+            <ul className="alertsList">
+              {alerts.map((alert, index) => (
+                <li key={index}>
+                  <div className="wrapper">
+                    <Link to={`/tasks/${alert.id}`}>
+                      <label className="control control-checkbox">
+                        {alert.task} due by {alert.date}
+                        <input type="checkbox" />
+                        <div className="indicator"></div>
+                      </label>
+                    </Link>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
       </div>
       <Footer />
     </>
