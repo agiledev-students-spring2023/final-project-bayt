@@ -41,7 +41,7 @@ const theme = createTheme({
     },
 });
 
-const backend_route ='http://localhost:8000/tasks/';
+const backend_route ='api/tasks/';
 
 function IndividualTask(props) {
     const navigate = useNavigate();
