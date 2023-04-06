@@ -4,8 +4,6 @@ import Footer from "./Footer";
 import Header from "./Header";
 import "../css/alerts.css";
 import "../index.css";
-import alertsData from "../json/alerts_list.json";
-let alerts_json = alertsData;
 
 function Alerts() {
   const [alerts, setAlerts] = useState([]);
@@ -26,14 +24,24 @@ function Alerts() {
     fetchAlerts();
   }, []);
 
-  const handleCompleteChange = (event, alertIndex) => {
-    const isChecked = event.target.checked;
-    setAlerts((prevAlerts) =>
-      prevAlerts.map((alert, index) =>
-        index === alertIndex ? { ...alert, complete: isChecked } : alert
-      )
-    );
+  const handleCheckboxClick = async (event, alert) => {
+    console.log(alert);
+    try {
+      const isChecked = event.target.checked;
+      const alertId = alert.id; // Extract the id value from the alert object
+      const response = await fetch(`http://localhost:8000/alerts/update`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ alertId, isChecked }),
+      });
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+    } catch (error) {
+      console.error(error);
+    }
   };
+  
 
   return (
     <>
@@ -49,12 +57,17 @@ function Alerts() {
               {alerts.map((alert, index) => (
                 <li key={index}>
                   <div className="wrapper">
-                      <label className="control control-checkbox">
-                      <Link to={`/tasks/${alert.id}`}> {alert.task} due by {alert.date} </Link>
-                        <input type="checkbox" />
-                        <div className="indicator"></div>
-                      </label>
-                    
+                    <label className="control control-checkbox">
+                      <Link to={`/tasks/${alert.id}`}>
+                        {" "}
+                        {alert.task} due by {alert.date}{" "}
+                      </Link>
+                      <input
+                        type="checkbox"
+                        onClick={(event) => handleCheckboxClick(event, alert)}
+                      />
+                      <div className="indicator"></div>
+                    </label>
                   </div>
                 </li>
               ))}

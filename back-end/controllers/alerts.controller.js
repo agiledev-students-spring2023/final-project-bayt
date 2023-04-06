@@ -9,14 +9,17 @@ const getAlerts = async (req, res, next) => {
   }
 };
 
-async function updateAlert(req, res) {
-  const alertId = req.params.id;
-  const updatedAlert = req.body;
-  const message = await alertsService.updateAlert(alertId, updatedAlert);
-  res.send({ message });
-}
+const updateAlertState = async (req, res, next) => {
+  try {
+    const { alertId, isChecked } = req.body;
+    await alertsService.logAlertState(alertId, isChecked); // call logAlertState from alerts.service.js with the alertId and isChecked values
+    res.sendStatus(200);
+  } catch (error) {
+    next(error);
+  }
+};
 
 module.exports = {
   getAlerts,
-  updateAlert
+  updateAlertState,
 };
