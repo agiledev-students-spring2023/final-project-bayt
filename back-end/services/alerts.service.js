@@ -16,24 +16,23 @@ async function getAlerts() {
       return {
         task: alert.task_name,
         date: date,
+        id: alert.id,
       };
     });
   return filteredAlerts;
 }
 
-async function updateAlert(alertId, updatedAlert) {
-    const alertsData = JSON.parse(fs.readFileSync(alertsDataPath));
-    const indexToUpdate = alertsData.findIndex((alert) => alert.id === alertId);
-    let message = "Error in updating alert";
-    if (indexToUpdate !== -1) {
-      alertsData[indexToUpdate] = updatedAlert;
-      fs.writeFileSync(alertsDataPath, JSON.stringify(alertsData, null, 2));
-      message = "Alert updated successfully";
-    }
-    return message;
+function logAlertState(alertId, isChecked) {
+  console.log(`Alert ID: ${alertId}, Checked: ${isChecked}`);
+  const alertIndex = alertsData.findIndex(alert => alert.id.$oid === alertId.$oid);
+  if (alertIndex >= 0) {
+    alertsData[alertIndex].complete = isChecked;
+    fs.writeFileSync(alertsDataPath, JSON.stringify(alertsData));
   }
+}
+
 
 module.exports = {
   getAlerts,
-  updateAlert,
+  logAlertState,
 };
