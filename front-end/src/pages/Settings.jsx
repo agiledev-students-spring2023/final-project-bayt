@@ -1,10 +1,11 @@
-import React from 'react';
+import * as React from 'react';
 import Header from './Header';
 import Footer from './Footer';
 import Modal from 'react-modal';
 import '../css/Settings.css'
 import {useState} from "react";
 import "../index.css";
+import axios from 'axios';
 
 Modal.setAppElement('#root');
 
@@ -31,9 +32,19 @@ const Settings = () => {
       if (link==="Household Information"){
         //code to fetch household data goes here.  Will probably just call a function that retreives using axios and whatnot
         //mock data for now
-        let membersString =formatMembersInfo(membersInfo_json);
-        setMembs(membersString)
-        setmembersIsOpen(true)
+          axios
+              .get(`api/settings`)
+              .then(response => {
+                console.log(response);
+                let membersString =formatMembersInfo(response.data);
+                setMembs(membersString);
+                setmembersIsOpen(true);   
+              })
+          .catch (err => {
+          console.log(err);
+          })
+      
+
       }
 
       if (link==="Logout"){
@@ -149,56 +160,3 @@ const customStyles = {
 };
 
 export default Settings;
-
-
-
-//MOCK DATA
-//I assume this is data obtained using the shard housecode to retrieve all members using said code
-let membersInfo_json = [
-    {
-      id: {
-        $oid: "64055f38f032391df0001d6a",
-      },
-      member_name: "Zander",
-      username: "zander123",
-      role: "User",
-      contact: "555-555-5555",
-    },
-    {
-      id: {
-        $oid: "64055f38f032391df0001d6b",
-      },
-      member_name: "Rami",
-      username: "rami123",
-      role: "Admin",
-      contact: "666-666-6666",
-    },
-    {
-      id: {
-        $oid: "64055f38f032391df0001d6c",
-      },
-      member_name: "Jojo",
-      username: "jojo123",
-      role: "user",
-      contact: "666-666-6666",
-    },
-    {
-      id: {
-        $oid: "64055f38f032391df0001d6d",
-      },
-      member_name: "Zion",
-      username: "zion123",
-      role: "user",
-      contact: "666-666-6666",
-    },
-    {
-      id: {
-        $oid: "64055f38f032391df0001d6e",
-      },
-      member_name: "Diana",
-      username: "diana123",
-      role: "user",
-      contact: "666-666-6666",
-    },
-  ];
-  

@@ -1,9 +1,4 @@
 .App {
-  height: 100vh;
-  width: var(--max-width);
-}
-
-.App {
   position: relative;
   margin: 0 auto;
   height: 100vh;
