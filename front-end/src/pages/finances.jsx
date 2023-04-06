@@ -26,7 +26,7 @@ function TransactionForm({ onSubmit }) {
     };
     try {
       const response = await axios.post(
-        "http://localhost:8000/finances",
+        "api/finances",
         transaction
       );
       onSubmit(response.data);
@@ -118,7 +118,7 @@ function Finances() {
   useEffect(() => {
     const fetchTransactions = async () => {
       try {
-        const response = await fetch("http://localhost:8000/finances");
+        const response = await fetch("api/finances");
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
