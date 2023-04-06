@@ -3,20 +3,37 @@ import Footer from "./Footer";
 import Header from "./Header";
 import "../css/alerts.css";
 import "../index.css";
+import alertsData from '../json/alerts_list.json';
+let alerts_json = alertsData;
 
 function Alerts() {
-  const [task, setTask] = useState("");
-  const [date, setDate] = useState("");
 
   const [alerts, setAlerts] = useState([]);
 
-  const handleAddAlert = (alert) => {
-    setAlerts([...alerts, alert]);
-  };
-
   useEffect(() => {
-    setAlerts(alerts_json);
+    const fetchAlerts = async () => {
+      try {
+        const response = await fetch("http://localhost:8000/alerts");
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        const alerts = await response.json();
+        setAlerts(alerts);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchAlerts();
   }, []);
+
+  const handleCompleteChange = (event, alertIndex) => {
+    const isChecked = event.target.checked;
+    setAlerts((prevAlerts) =>
+      prevAlerts.map((alert, index) =>
+        index === alertIndex ? { ...alert, complete: isChecked } : alert
+      )
+    );
+  };
 
   return (
     <>
@@ -29,7 +46,7 @@ function Alerts() {
                 <div className="wrapper">
                   <label className="control control-checkbox">
                     {alert.task} due by {alert.date}
-                    <input type="checkbox" />
+                    <input type="checkbox" checked={alert.complete} onChange={(event) => handleCompleteChange(event, index)}/>
                     <div className="indicator"></div>
                   </label>
                 </div>
@@ -42,18 +59,5 @@ function Alerts() {
     </>
   );
 }
-
-let alerts_json = [
-  { task: "cubilia curae", date: "9/3/2022" },
-  { task: "ligula in", date: "10/5/2022" },
-  { task: "velit", date: "3/6/2023" },
-  { task: "interdum", date: "10/8/2022" },
-  { task: "rutrum rutrum", date: "6/11/2022" },
-  { task: "dapibus augue", date: "1/5/2023" },
-  { task: "in faucibus", date: "10/7/2022" },
-  { task: "turpis elementum", date: "9/5/2022" },
-  { task: "etiam vel", date: "7/18/2022" },
-  { task: "tortor eu", date: "6/7/2022" },
-];
 
 export default Alerts;

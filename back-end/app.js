@@ -6,6 +6,7 @@ const fs = require('fs');
 const taskRouter = require('./routes/task.routes.js');
 const profRouter = require('./routes/prof.routes.js');
 const financesRouter = require('./routes/finances.routes.js');
+const alertsRouter = require('./routes/alerts.routes.js');
 const app = express() // instantiate an Express object
 
 // parse application/json
@@ -19,6 +20,8 @@ app.use('/Profile', profRouter);
 app.use('/tasks', taskRouter);
 //parse finances data
 app.use('/finances', financesRouter);
+//parse alerts data
+app.use('/alerts', alertsRouter);
 
 // export the express app we created to make it available to other modules
 module.exports = app

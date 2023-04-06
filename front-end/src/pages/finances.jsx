@@ -13,7 +13,7 @@ function TransactionForm({ onSubmit }) {
   const [user, setUser] = useState("@user");
   const [forWhat, setforWhat] = useState("purpose");
   const [date, setDate] = useState("");
-  
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     const transaction = {
@@ -40,7 +40,8 @@ function TransactionForm({ onSubmit }) {
       <div className="form-items">
         <div className="pay">
           <label>
-            <select className="sendorreceive-field"
+            <select
+              className="sendorreceive-field"
               value={paidOrRequesting}
               onChange={(event) => setPaidOrRequesting(event.target.value)}>
               <option value="Paid">Paid</option>
