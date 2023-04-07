@@ -8,6 +8,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import dayjs from 'dayjs';
+import Alert from '@mui/material/Alert';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
@@ -55,17 +56,18 @@ const theme = createTheme({
     },
 });
 
-const backend_route ='api/tasks/';
+const backend_route =`${process.env.REACT_APP_SERVER_HOSTNAME}/tasks/`;
 
 function IndividualTask(props) {
     const navigate = useNavigate();
     const { id } = useParams();
 
     const [formValues, setFormValues] = useState(defaultValues);
+    const [errorMessage, setErrorMessage] = useState('');
 
     const fetchData =  async (id) => {
         return await axios
-        .get(backend_route + `/${id}`)
+        .get(backend_route + `${id}`)
         .then((response) => {
             const taskData = response.data;
             return taskData;
@@ -79,17 +81,28 @@ function IndividualTask(props) {
         if (id) {
             async function fetchAndSet() {
                 const taskData = await fetchData(id);
-                setFormValues({
-                    id: {$oid: id},
-                    task_name: taskData['task_name'] ? taskData['task_name'] : '',
-                    room: taskData['room'] ? taskData['room'] : '',
-                    assignee: taskData['assignee'] ? taskData['assignee'] : '',
-                    repeat: taskData['repeat'] ? taskData['repeat'] : '',
-                    due_time: taskData['due_time']['$date']['$numberLong'] ? { $date: { $numberLong: taskData['due_time']['$date']['$numberLong'] } } : { $date: { $numberLong: new Date().valueOf() } },
-                    description: taskData['description'] ? taskData['description'] : '',
-                    complete: taskData['complete'],
-                });
+
+                if (!taskData.response) {
+                    setFormValues({
+                        id: {$oid: id},
+                        task_name: taskData['task_name'] ? taskData['task_name'] : '',
+                        room: taskData['room'] ? taskData['room'] : '',
+                        assignee: taskData['assignee'] ? taskData['assignee'] : '',
+                        repeat: taskData['repeat'] ? taskData['repeat'] : '',
+                        due_time: taskData['due_time']['$date']['$numberLong'] ? { $date: { $numberLong: taskData['due_time']['$date']['$numberLong'] } } : { $date: { $numberLong: new Date().valueOf() } },
+                        description: taskData['description'] ? taskData['description'] : '',
+                        complete: taskData['complete'],
+                    });
+                }
+                else {
+                    setErrorMessage(<Alert severity="error">{`${taskData.response.data.message}`}</Alert>);
+                    
+                    setTimeout(() => {
+                        navigate('/tasks');
+                    }, 2000);
+                }
             }
+
             fetchAndSet();
         }
     }, []);
@@ -153,6 +166,8 @@ function IndividualTask(props) {
                     </Button>
                 </Box>
             </ThemeProvider>
+
+            {errorMessage}
 
             <form className='taskFormContainer' onSubmit={handleSubmit}>
                 <ThemeProvider theme={theme}>
