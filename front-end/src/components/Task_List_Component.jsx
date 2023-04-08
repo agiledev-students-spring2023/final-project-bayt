@@ -8,11 +8,7 @@ import tasksData from '../json/task_list.json';
 let task_json = tasksData;
 
 const testing_mode = false;
-<<<<<<< HEAD
 const backend_route ='/api/tasks/';
-=======
-const backend_route ='api/tasks/';
->>>>>>> 757a4d4 (Added proxying to avoid direct url hardcoding)
 
 const TaskListComponent = ({filterFunction, sortComparator, enableCheckbox, centerButton}) => {
   const [data, setData] = useState([]);

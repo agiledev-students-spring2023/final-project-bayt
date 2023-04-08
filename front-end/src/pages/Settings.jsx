@@ -33,11 +33,7 @@ const Settings = () => {
         //code to fetch household data goes here.  Will probably just call a function that retreives using axios and whatnot
         //mock data for now
           axios
-<<<<<<< HEAD
               .get(`/api/settings`)
-=======
-              .get(`api/settings`)
->>>>>>> 757a4d4 (Added proxying to avoid direct url hardcoding)
               .then(response => {
                 console.log(response);
                 let membersString =formatMembersInfo(response.data);
