@@ -29,56 +29,72 @@ const theme = createTheme({
   });
 
 
-function AddMembers(props) {
+    function AddMembers(props) {
 
-    const navigate = useNavigate();
+        const navigate = useNavigate();
 
-    //change this to navigate back to most prev page (probs settings op)
-    const handleFinish = () => {
-    return navigate('/home');
-    }
+        //change this to navigate back to most prev page (probs settings op)
+        const handleFinish = () => {
+        
+        const username = document.getElementById('username').value;
+        const email = document.getElementById('email').value;
+        const role = document.getElementById('role-select').value;
+        axios.post('/api/addMember', { username, email, role })
+            .then(response => {
+                // Handle the response from the backend
+                console.log(response);
+                navigate('/home');
+            })
+            .catch(error => {
+                // Handle errors
+                console.log(error);
+            });
 
-    const handleCancel = () => {
-        return navigate('/Settings');
-    }
 
-    return (
+        return navigate('/home');
+        }
 
-     <div className="addMembersContainer">
-         <ThemeProvider theme={theme}>
-         <Container component="main" maxWidth="sm" sx={{ mb: 4 }}>
-            <Box sx={{ mt: 8, display: 'flex', flexDirection: 'column', alignItems: 'center', }}>
-                <h1 className="text" sx={{mb: 4}}  >Add Family Member</h1>
-                <ProfilePic />
-                <Grid container spacing={3} sx={{ mt: 1 }} >
-                    <Grid item xs={12}>
-                        <TextField required id="username" name="username" label="Enter roomate username" fullWidth />
+        const handleCancel = () => {
+            return navigate('/Settings');
+        }
+
+        return (
+
+        <div className="addMembersContainer">
+            <ThemeProvider theme={theme}>
+            <Container component="main" maxWidth="sm" sx={{ mb: 4 }}>
+                <Box sx={{ mt: 8, display: 'flex', flexDirection: 'column', alignItems: 'center', }}>
+                    <h1 className="text" sx={{mb: 4}}  >Add Family Member</h1>
+                    <ProfilePic />
+                    <Grid container spacing={3} sx={{ mt: 1 }} >
+                        <Grid item xs={12}>
+                            <TextField required id="username" name="username" label="Enter roomate username" fullWidth />
+                        </Grid>
+
+                        <Grid item xs={12}>
+                            <TextField required fullWidth id="email" label="Enter roomate email address" name="email"/>
+                        </Grid>
+
+                        <Grid item xs={12}>
+                            <FormControl fullWidth>
+                                <InputLabel id="role-select-label">Role</InputLabel>
+                                <Select labelId="role-select-label" id="role-select" label="Role">
+                                    <MenuItem value={'admin'}>Admin</MenuItem>
+                                    <MenuItem value={'roomate'}>Roomate</MenuItem>
+                                </Select>
+                            </FormControl>
+                        </Grid>
+                    
                     </Grid>
-
-                    <Grid item xs={12}>
-                        <TextField required fullWidth id="email" label="Enter roomate email address" name="email"/>
-                    </Grid>
-
-                    <Grid item xs={12}>
-                        <FormControl fullWidth>
-                            <InputLabel id="role-select-label">Role</InputLabel>
-                            <Select labelId="role-select-label" id="role-select" label="Role">
-                                <MenuItem value={'admin'}>Admin</MenuItem>
-                                <MenuItem value={'roomate'}>Roomate</MenuItem>
-                            </Select>
-                        </FormControl>
-                    </Grid>
-                
-                </Grid>
-                <Box sx={{ width: '100%', display: 'flex', justifyContent: 'space-between', mt: 7 }}>
-                    <Button fullWidth variant="contained" onClick={handleCancel} sx={{ mt: 3 }}>Cancel</Button>
-                    <Button fullWidth variant="contained" onClick={handleFinish} sx={{ mt: 3, ml: 2 }}>Finish</Button>
+                    <Box sx={{ width: '100%', display: 'flex', justifyContent: 'space-between', mt: 7 }}>
+                        <Button fullWidth variant="contained" onClick={handleCancel} sx={{ mt: 3 }}>Cancel</Button>
+                        <Button fullWidth variant="contained" onClick={handleFinish} sx={{ mt: 3, ml: 2 }}>Finish</Button>
+                    </Box>
                 </Box>
-            </Box>
-            </Container>
-            </ThemeProvider> 
-     </div>
-    )
-    };
+                </Container>
+                </ThemeProvider> 
+        </div>
+        )
+        };
 
-export default AddMembers;
+    export default AddMembers;

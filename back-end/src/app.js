@@ -7,6 +7,7 @@ const taskRouter = require('./routes/task.route.js');
 const profRouter = require('./routes/prof.route.js');
 const financesRouter = require('./routes/finances.route.js');
 const settingsRouter = require('./routes/settings.route.js');
+const addMembersRouter = require('./routes/addmembers.route.js');
 
 const app = express() // instantiate an Express object
 
@@ -23,6 +24,8 @@ app.use('/tasks', taskRouter);
 app.use('/finances', financesRouter);
 //parse settings data
 app.use('/settings',settingsRouter);
+//parse addMembers data
+//app.use('/addMembers',addMembersRouter);
 
 // export the express app we created to make it available to other modules
 module.exports = app
