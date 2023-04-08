@@ -56,7 +56,7 @@ const theme = createTheme({
     },
 });
 
-const backend_route =`${process.env.REACT_APP_SERVER_HOSTNAME}/tasks/`;
+const backend_route =`/api/tasks/`;
 
 function IndividualTask(props) {
     const navigate = useNavigate();

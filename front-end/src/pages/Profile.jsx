@@ -18,7 +18,7 @@ const NameInfo = () => {
 
   React.useEffect(() => {
     axios
-        .get(`api/Profile`)
+        .get(`/api/Profile`)
         .then(response => {
          setName(response.data.username);   
         })
@@ -46,7 +46,7 @@ const NameInfo = () => {
       if (tempName.trim() !== '') {
         setName(tempName.trim());
         axios
-          .put(`api/Profile`, { username: tempName.trim() })
+          .put(`/api/Profile`, { username: tempName.trim() })
           .then((response) => {
             console.log(response.data);
           })
@@ -66,7 +66,7 @@ const NameInfo = () => {
     if (tempName.trim() !== '') {
       setName(tempName.trim());
       axios
-        .put(`api/Profile`, { username: tempName.trim() })
+        .put(`/api/Profile`, { username: tempName.trim() })
         .then((response) => {
           console.log(response.data);
         })
