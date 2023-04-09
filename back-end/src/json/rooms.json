@@ -1,4 +1,6 @@
 [
-    {"roomName": "Living Room"},
-    {"roomName": "Bathroom"}
+    {"roomName": "Living Room", 
+    "url": "livingRoom"},
+    {"roomName": "Bathroom",
+    "url": "bathroom"}
 ]

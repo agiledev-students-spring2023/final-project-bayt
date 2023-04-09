@@ -31,6 +31,13 @@ const Home = (props) => {
   const [rooms, setRooms] = useState([])
   const [name, setName] = useState('')
 
+  function camelize(str) {
+    return str.replace(/(?:^\w|[A-Z]|\b\w|\s+)/g, function(match, index) {
+      if (+match === 0) return ""; // or if (/\s+/.test(match)) for white spaces
+      return index === 0 ? match.toLowerCase() : match.toUpperCase();
+    });
+  }
+
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -71,9 +78,12 @@ const Home = (props) => {
   const handleSubmit = e => {
     e.preventDefault()
 
+    const roomUrl = camelize(name)
+    
     axios
       .post("/api/home", {
         roomName: name,
+        url: roomUrl
       })
       .then(response => {
         addRoomToList(response.data.room)
@@ -92,7 +102,7 @@ const Home = (props) => {
       <Header title="Home" />
       <div>
         <div className="homeBody">
-        {rooms.map((room, index) => (<Link to="/tasks">
+        {rooms.map((room, index) => (<Link to={`/room/${room.url}`}>
                <button key={index} className="roomButton" type="button">
                  {room.roomName}
                </button>
