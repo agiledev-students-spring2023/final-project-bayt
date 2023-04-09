@@ -9,6 +9,7 @@ const financesRouter = require('./routes/finances.route.js');
 const settingsRouter = require('./routes/settings.route.js');
 const loginRouter = require('./routes/login.route.js');
 const addMembersRouter = require('./routes/addmembers.route.js');
+const alertsRouter = require('./routes/alerts.route.js');
 
 const app = express() // instantiate an Express object
 
@@ -23,6 +24,8 @@ app.use('/Profile', profRouter);
 app.use('/tasks', taskRouter);
 //parse finances data
 app.use('/finances', financesRouter);
+//parse alerts data
+app.use('/alerts', alertsRouter);
 //parse settings data
 app.use('/settings',settingsRouter);
 // parse login data
