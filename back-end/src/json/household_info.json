@@ -5,7 +5,7 @@
     },
     "member_name": "Zander",
     "username": "zander123",
-    "role": "User",
+    "role": "roomate",
     "contact": "555-555-5555"
   },
   {
@@ -23,7 +23,7 @@
     },
     "member_name": "Jojo",
     "username": "jojo123",
-    "role": "user",
+    "role": "roomate",
     "contact": "666-666-6666"
   },
   {
@@ -32,7 +32,7 @@
     },
     "member_name": "Zion",
     "username": "zion123",
-    "role": "user",
+    "role": "roomate",
     "contact": "666-666-6666"
   },
   {
@@ -41,7 +41,7 @@
     },
     "member_name": "Diana",
     "username": "diana123",
-    "role": "user",
+    "role": "roomate",
     "contact": "666-666-6666"
   }
 ]
