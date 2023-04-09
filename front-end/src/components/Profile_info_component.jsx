@@ -24,7 +24,7 @@ const ProfInfo = () => {
   //axios to get data fetched by backend
   React.useEffect(() => {
       axios
-          .get(`api/Profile`)
+          .get(`/api/Profile`)
           .then(response => {
               setEmail(response.data.email);
               setHouseholdRole(response.data.role);
@@ -48,7 +48,7 @@ const ProfInfo = () => {
     setIsEditable(false);
    //axios to update data in backend
     axios
-    .put(`api/Profile`, {
+    .put(`/api/Profile`, {
       email,
       role: householdRole,
       password: housecode,

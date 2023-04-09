@@ -30,7 +30,13 @@ const theme = createTheme({
   });
 
 
-    function AddMembers(props) {
+    function AddMembers() {
+
+        const [age, setAge] = React.useState('');
+
+        const handleChange = (evt) => {
+            setAge(evt.target.value);
+        };
 
         const navigate = useNavigate();
 
@@ -39,16 +45,17 @@ const theme = createTheme({
         
         const username = document.getElementById('username').value;
         const email = document.getElementById('email').value;
-        const role = document.getElementById('role-select').value;
-        axios.post('/api/addMember', { username, email, role })
+        const role = age;
+      
+        axios.post(`/api/addMembers`, {username, email, role})
             .then(response => {
-                // Handle the response from the backend
                 console.log(response);
                 navigate('/home');
             })
             .catch(error => {
                 // Handle errors
-                console.log(error);
+                console.log(error.response.data);
+                console.log("not getting through")
             });
 
 
@@ -79,7 +86,7 @@ const theme = createTheme({
                         <Grid item xs={12}>
                             <FormControl fullWidth>
                                 <InputLabel id="role-select-label">Role</InputLabel>
-                                <Select labelId="role-select-label" id="role-select" label="Role">
+                                <Select labelId="role-select-label" id="role-select" value={age} label="Role" onChange={handleChange}>
                                     <MenuItem value={'admin'}>Admin</MenuItem>
                                     <MenuItem value={'roomate'}>Roomate</MenuItem>
                                 </Select>

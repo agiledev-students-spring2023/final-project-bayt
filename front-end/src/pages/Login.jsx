@@ -1,13 +1,15 @@
 // Login Page
 
-import React from 'react';
+import React, { useState } from 'react';
 import TextField from '@mui/material/TextField';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
+import Alert from '@mui/material/Alert';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import "../index.css";
 import "../css/Login.css";
 
@@ -28,17 +30,38 @@ const theme = createTheme({
     },
 });
 
+const backend_route =`/api/login/`;
+
+const defaultValues = {
+    username: '',
+    password: '',
+};
+
 function Login(props) {
+    const [formValues, setFormValues] = useState(defaultValues);
+    const [errorMessage, setErrorMessage] = useState('');
     const navigate = useNavigate();
+
+    const handleInputChange = (evt) => {
+        const { name, value } = evt.target;
+        setFormValues({
+            ...formValues,
+            [name]: value,
+        });
+    };
 
     const handleSubmit = (evt) => {
         evt.preventDefault();
-        // const data = new FormData(evt.currentTarget);
-        // console.log({
-        //   email: data.get('email'),
-        //   password: data.get('password'),
-        // });
-        navigate('/home');
+
+        axios
+            .post(backend_route, formValues)
+            .then((res) => {
+                setErrorMessage('');
+                navigate('/home');
+            })
+            .catch((err) => {
+                setErrorMessage(<Alert severity="error">{`${err.response.data.message}`}</Alert>);
+        });
     };
 
     return (
@@ -48,10 +71,12 @@ function Login(props) {
                     <Box sx={{ mt: 8, display: 'flex', flexDirection: 'column', alignItems: 'center' }} >
                         <h1>Login</h1>
 
-                        <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-                            <TextField margin="normal" required fullWidth id="email" label="Email Address" name="email"/>
+                        {errorMessage}
 
-                            <TextField margin="normal" required fullWidth name="password" label="Password" type="password" id="password"/>
+                        <Box component="form" onSubmit={handleSubmit} sx={{ mt: 1 }}>
+                            <TextField margin="normal" required fullWidth id="username" label="Username" name="username" onChange={handleInputChange}/>
+
+                            <TextField margin="normal" required fullWidth name="password" label="Password" type="password" id="password" onChange={handleInputChange}/>
 
                             <button type="submit" >Log In</button>
 
