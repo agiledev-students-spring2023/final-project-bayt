@@ -21,7 +21,7 @@ const Settings = () => {
     function formatMembersInfo(members) {
         let formattedString = '';
         for (let i = 0; i < members.length; i++) {
-          formattedString += `${members[i].member_name} - ${members[i].role}\n`;
+          formattedString += `${members[i].username} - ${members[i].role}\n`;
         }
         return formattedString;
       }

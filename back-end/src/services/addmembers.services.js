@@ -9,13 +9,13 @@ async function savingUser(userinfo) {
         role: userinfo.role
       };
 
-      fs.readFile(require.resolve('../json/adding_members.json'), (err, data) => {
+      fs.readFile(require.resolve('../json/household_info.json'), (err, data) => {
         if (err) throw err;
     
         const users = JSON.parse(data);
         users.push(newUser);
     
-        fs.writeFile(require.resolve('../json/adding_members.json'), JSON.stringify(users, null, 2), err => {
+        fs.writeFile(require.resolve('../json/household_info.json'), JSON.stringify(users, null, 2), err => {
           if (err) throw err;
           console.log('New user added!');
         });
