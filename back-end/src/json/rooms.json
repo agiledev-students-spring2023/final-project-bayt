@@ -1,0 +1,74 @@
+[
+    {
+      "name": "Living Room",
+      "id": {
+        "$oid": "64124a89fc13ak36ed89e12c"
+      },
+      "tasks": [
+        {
+          "id": {
+            "$oid": "64325684fc13ae12406b0ed6"
+          },
+          "task_name": "clean bathroom",
+          "description": "clean properly this time",
+          "room": "Living Room",
+          "assignee": "Teena",
+          "due_time": {
+            "$date": {
+              "$numberLong": 164711482600
+            }
+          },
+          "complete": false,
+          "repeat": 1
+        }
+      ]
+    },
+    {
+      "name": "Bathroom",
+      "id": {
+        "$oid": "6403e5a6f032395a76001a9b"
+      },
+      "tasks": [
+        {
+          "id": {
+            "$oid": "64325684fc13ae12406b0ede"
+          },
+          "task_name": "call maintenance",
+          "description": "clean properly this time",
+          "room": "Cocoa Beach",
+          "assignee": "Benjamin",
+          "due_time": {
+            "$date": {
+              "$numberLong": 164662831300
+            }
+          },
+          "complete": true,
+          "repeat": 1
+        }
+      ]
+    },
+    {
+      "name": "Kitchen",
+      "id": {
+        "$oid": "643253c0fc13ae12406b0ece"
+      },
+      "tasks": [
+        {
+          "id": {
+            "$oid": "64325684fc13ae12406b0edb"
+          },
+          "task_name": "cook spaghetti",
+          "description": "clean properly this time",
+          "room": "Seletar",
+          "assignee": "Dag",
+          "due_time": {
+            "$date": {
+              "$numberLong": 164645043600
+            }
+          },
+          "complete": false,
+          "repeat": 1
+        }
+      ]
+    }
+]
