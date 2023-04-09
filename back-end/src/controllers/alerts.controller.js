@@ -13,7 +13,7 @@ const updateAlertState = async (req, res, next) => {
   try {
     const { alertId, isChecked } = req.body;
     await alertsService.logAlertState(alertId, isChecked); // call logAlertState from alerts.service.js with the alertId and isChecked values
-    res.sendStatus(200);
+    res.json({ success: true });
   } catch (error) {
     next(error);
   }
