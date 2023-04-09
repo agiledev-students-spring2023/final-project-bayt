@@ -1,0 +1,764 @@
+[
+    {
+      "id": {
+        "$oid": "67320bd0fc12ac1e606b8ke0"
+      },
+      "username": "fishc0",
+      "first_name": "Zander",
+      "last_name": "Chen",
+      "email": "zc2122@nyu.edu",
+      "assigned_tasks": [
+        {
+          "id": {
+            "$oid": "64320bf0fc13ae1e696b0ee1"
+          },
+          "task_name": "cook spaghetti",
+          "description": "wake up dog",
+          "room": "Kadanwari",
+          "assignee": {
+            "$oid": "64320bf0fc13ae1e696b0ee2"
+          },
+          "due_time": {
+            "$date": {
+              "$numberLong": 166467332400
+            }
+          },
+          "repeat": 1
+        }
+      ],
+      "houses": [
+        {
+          "id": {
+            "$oid": "64320bf0fc13ae1e696b0efc"
+          },
+          "code": "12345",
+          "name": "Gloriane",
+          "users": [
+            {
+              "user": "Kaylyn"
+            },
+            {
+              "user": "Jacynth"
+            },
+            {
+              "user": "Joel"
+            },
+            {
+              "user": "Hervey"
+            },
+            {
+              "user": "Hashim"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": {
+        "$oid": "64320bf0fc13ae1e696b0ee0"
+      },
+      "username": "adevuyst0",
+      "first_name": "Alice",
+      "last_name": "De Vuyst",
+      "email": "adevuyst0@jimdo.com",
+      "assigned_tasks": [
+        {
+          "id": {
+            "$oid": "64320bf0fc13ae1e696b0ee1"
+          },
+          "task_name": "cook spaghetti",
+          "description": "wake up dog",
+          "room": "Kadanwari",
+          "assignee": {
+            "$oid": "64320bf0fc13ae1e696b0ee2"
+          },
+          "due_time": {
+            "$date": {
+              "$numberLong": 166467332400
+            }
+          },
+          "repeat": 1
+        }
+      ],
+      "houses": []
+    },
+    {
+      "id": {
+        "$oid": "64320bf0fc13ae1e696b0ee3"
+      },
+      "username": "mcampanelli1",
+      "first_name": "Mirelle",
+      "last_name": "Campanelli",
+      "email": "mcampanelli1@bandcamp.com",
+      "assigned_tasks": [
+        {
+          "id": {
+            "$oid": "64320bf0fc13ae1e696b0ee4"
+          },
+          "task_name": "take out trash",
+          "description": "wake up dog",
+          "room": "La Fortuna/San Carlos",
+          "assignee": {
+            "$oid": "64320bf0fc13ae1e696b0ee5"
+          },
+          "due_time": {
+            "$date": {
+              "$numberLong": 164710094300
+            }
+          },
+          "repeat": 1
+        },
+        {
+          "id": {
+            "$oid": "64320bf0fc13ae1e696b0ee6"
+          },
+          "task_name": "take out trash",
+          "description": "clean properly this time",
+          "room": "Wedau",
+          "assignee": {
+            "$oid": "64320bf0fc13ae1e696b0ee7"
+          },
+          "due_time": {
+            "$date": {
+              "$numberLong": 166704991400
+            }
+          },
+          "repeat": 1
+        },
+        {
+          "id": {
+            "$oid": "64320bf0fc13ae1e696b0ee8"
+          },
+          "task_name": "buy an air fryer",
+          "description": "clean properly this time",
+          "room": "Pweto",
+          "assignee": {
+            "$oid": "64320bf0fc13ae1e696b0ee9"
+          },
+          "due_time": {
+            "$date": {
+              "$numberLong": 165771165900
+            }
+          },
+          "repeat": 1
+        }
+      ],
+      "houses": [
+        {
+          "id": {
+            "$oid": "64320bf0fc13ae1e696b0eea"
+          },
+          "code": "AKRHSR",
+          "name": "Jamima",
+          "users": [
+            {
+              "user": "Lexine"
+            },
+            {
+              "user": "Eliza"
+            },
+            {
+              "user": "Jennica"
+            },
+            {
+              "user": "Cacilie"
+            }
+          ]
+        },
+        {
+          "id": {
+            "$oid": "64320bf0fc13ae1e696b0eeb"
+          },
+          "code": "FSHLBQ",
+          "name": "Lorraine",
+          "users": [
+            {
+              "user": "Stillmann"
+            },
+            {
+              "user": "Katlin"
+            },
+            {
+              "user": "Eloise"
+            },
+            {
+              "user": "Randee"
+            },
+            {
+              "user": "Ambrosi"
+            }
+          ]
+        },
+        {
+          "id": {
+            "$oid": "64320bf0fc13ae1e696b0eec"
+          },
+          "code": "JCBGKO",
+          "name": "Misty",
+          "users": [
+            {
+              "user": "Shanna"
+            },
+            {
+              "user": "Emelen"
+            },
+            {
+              "user": "Bathsheba"
+            },
+            {
+              "user": "Delcine"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": {
+        "$oid": "64320bf0fc13ae1e696b0eed"
+      },
+      "username": "ckirman2",
+      "first_name": "Celle",
+      "last_name": "Kirman",
+      "email": "ckirman2@abc.net.au",
+      "assigned_tasks": [
+        {
+          "id": {
+            "$oid": "64320bf0fc13ae1e696b0eee"
+          },
+          "task_name": "clean bathroom",
+          "description": "wipe the bed",
+          "room": "Sui",
+          "assignee": {
+            "$oid": "64320bf0fc13ae1e696b0eef"
+          },
+          "due_time": {
+            "$date": {
+              "$numberLong": 167461307000
+            }
+          },
+          "repeat": 1
+        }
+      ],
+      "houses": []
+    },
+    {
+      "id": {
+        "$oid": "64320bf0fc13ae1e696b0ef0"
+      },
+      "username": "ctanser3",
+      "first_name": "Charline",
+      "last_name": "Tanser",
+      "email": "ctanser3@princeton.edu",
+      "assigned_tasks": [],
+      "houses": [
+        {
+          "id": {
+            "$oid": "64320bf0fc13ae1e696b0ef1"
+          },
+          "code": "JWBMQF",
+          "name": "Iorgo",
+          "users": [
+            {
+              "user": "Libbi"
+            },
+            {
+              "user": "Mead"
+            },
+            {
+              "user": "Spike"
+            },
+            {
+              "user": "Weston"
+            },
+            {
+              "user": "Maud"
+            },
+            {
+              "user": "Jourdain"
+            },
+            {
+              "user": "Riva"
+            }
+          ]
+        },
+        {
+          "id": {
+            "$oid": "64320bf0fc13ae1e696b0ef2"
+          },
+          "code": "MTGQXH",
+          "name": "Joyous",
+          "users": [
+            {
+              "user": "Hedvig"
+            },
+            {
+              "user": "Vita"
+            },
+            {
+              "user": "Katheryn"
+            },
+            {
+              "user": "Danyette"
+            },
+            {
+              "user": "Gonzales"
+            },
+            {
+              "user": "Fayina"
+            },
+            {
+              "user": "Cyril"
+            }
+          ]
+        },
+        {
+          "id": {
+            "$oid": "64320bf0fc13ae1e696b0ef3"
+          },
+          "code": "LUXUPF",
+          "name": "Ira",
+          "users": [
+            {
+              "user": "Sunny"
+            },
+            {
+              "user": "Genevra"
+            },
+            {
+              "user": "Kareem"
+            },
+            {
+              "user": "Milicent"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": {
+        "$oid": "64320bf0fc13ae1e696b0ef4"
+      },
+      "username": "nroalfe4",
+      "first_name": "Niel",
+      "last_name": "Roalfe",
+      "email": "nroalfe4@sina.com.cn",
+      "assigned_tasks": [
+        {
+          "id": {
+            "$oid": "64320bf0fc13ae1e696b0ef5"
+          },
+          "task_name": "take out trash",
+          "description": "clean properly this time",
+          "room": "RCAF Station Saglek",
+          "assignee": {
+            "$oid": "64320bf0fc13ae1e696b0ef6"
+          },
+          "due_time": {
+            "$date": {
+              "$numberLong": 165979454400
+            }
+          },
+          "repeat": 1
+        }
+      ],
+      "houses": [
+        {
+          "id": {
+            "$oid": "64320bf0fc13ae1e696b0ef7"
+          },
+          "code": "HGTFSJ",
+          "name": "Leland",
+          "users": [
+            {
+              "user": "Sadye"
+            },
+            {
+              "user": "Kameko"
+            },
+            {
+              "user": "Hercules"
+            },
+            {
+              "user": "Margie"
+            },
+            {
+              "user": "Alejandra"
+            },
+            {
+              "user": "Gaspard"
+            },
+            {
+              "user": "Nicoli"
+            }
+          ]
+        },
+        {
+          "id": {
+            "$oid": "64320bf0fc13ae1e696b0ef8"
+          },
+          "code": "NDNRPM",
+          "name": "Aleece",
+          "users": [
+            {
+              "user": "Pate"
+            },
+            {
+              "user": "Linnell"
+            },
+            {
+              "user": "Peterus"
+            },
+            {
+              "user": "Gates"
+            },
+            {
+              "user": "Alfy"
+            },
+            {
+              "user": "Geralda"
+            },
+            {
+              "user": "Boothe"
+            }
+          ]
+        },
+        {
+          "id": {
+            "$oid": "64320bf0fc13ae1e696b0ef9"
+          },
+          "code": "DKXDOM",
+          "name": "Dona",
+          "users": [
+            {
+              "user": "Gradey"
+            },
+            {
+              "user": "Nikkie"
+            },
+            {
+              "user": "Waite"
+            },
+            {
+              "user": "Friedrich"
+            },
+            {
+              "user": "Leda"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": {
+        "$oid": "64320bf0fc13ae1e696b0efa"
+      },
+      "username": "eclemitt5",
+      "first_name": "Esdras",
+      "last_name": "Clemitt",
+      "email": "eclemitt5@stumbleupon.com",
+      "assigned_tasks": [],
+      "houses": [
+        {
+          "id": {
+            "$oid": "64320bf0fc13ae1e696b0efb"
+          },
+          "code": "GOYLPY",
+          "name": "Zolly",
+          "users": [
+            {
+              "user": "Linnell"
+            },
+            {
+              "user": "Shirlene"
+            },
+            {
+              "user": "Shari"
+            },
+            {
+              "user": "Kippie"
+            },
+            {
+              "user": "Jonathon"
+            }
+          ]
+        },
+        {
+          "id": {
+            "$oid": "64320bf0fc13ae1e696b0efc"
+          },
+          "code": "CKZLMB",
+          "name": "Gloriane",
+          "users": [
+            {
+              "user": "Kaylyn"
+            },
+            {
+              "user": "Jacynth"
+            },
+            {
+              "user": "Joel"
+            },
+            {
+              "user": "Hervey"
+            },
+            {
+              "user": "Hashim"
+            }
+          ]
+        },
+        {
+          "id": {
+            "$oid": "64320bf0fc13ae1e696b0efd"
+          },
+          "code": "PMUYWO",
+          "name": "Miof mela",
+          "users": [
+            {
+              "user": "Greta"
+            },
+            {
+              "user": "Daryn"
+            },
+            {
+              "user": "Rex"
+            },
+            {
+              "user": "Allie"
+            },
+            {
+              "user": "Sibyl"
+            },
+            {
+              "user": "Dido"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": {
+        "$oid": "64320bf0fc13ae1e696b0efe"
+      },
+      "username": "kaves6",
+      "first_name": "Koressa",
+      "last_name": "Aves",
+      "email": "kaves6@1und1.de",
+      "assigned_tasks": [
+        {
+          "id": {
+            "$oid": "64320bf0fc13ae1e696b0eff"
+          },
+          "task_name": "call maintenance",
+          "description": "take dog on walk",
+          "room": "Lancang Lahu Autonomous County",
+          "assignee": {
+            "$oid": "64320bf0fc13ae1e696b0f00"
+          },
+          "due_time": {
+            "$date": {
+              "$numberLong": 165529202400
+            }
+          },
+          "repeat": 1
+        },
+        {
+          "id": {
+            "$oid": "64320bf0fc13ae1e696b0f01"
+          },
+          "task_name": "cook spaghetti",
+          "description": "wipe the bed",
+          "room": "Tumbang Samba-Borneo Island",
+          "assignee": {
+            "$oid": "64320bf0fc13ae1e696b0f02"
+          },
+          "due_time": {
+            "$date": {
+              "$numberLong": 165551333700
+            }
+          },
+          "repeat": 1
+        }
+      ],
+      "houses": []
+    },
+    {
+      "id": {
+        "$oid": "64320bf0fc13ae1e696b0f03"
+      },
+      "username": "cfoot7",
+      "first_name": "Cissiee",
+      "last_name": "Foot",
+      "email": "cfoot7@xrea.com",
+      "assigned_tasks": [
+        {
+          "id": {
+            "$oid": "64320bf0fc13ae1e696b0f04"
+          },
+          "task_name": "take out trash",
+          "description": "wipe the bed",
+          "room": "Minot",
+          "assignee": {
+            "$oid": "64320bf0fc13ae1e696b0f05"
+          },
+          "due_time": {
+            "$date": {
+              "$numberLong": 166904083300
+            }
+          },
+          "repeat": 1
+        },
+        {
+          "id": {
+            "$oid": "64320bf0fc13ae1e696b0f06"
+          },
+          "task_name": "call maintenance",
+          "description": "clean properly this time",
+          "room": "Ghanzi",
+          "assignee": {
+            "$oid": "64320bf0fc13ae1e696b0f07"
+          },
+          "due_time": {
+            "$date": {
+              "$numberLong": 166697320900
+            }
+          },
+          "repeat": 1
+        }
+      ],
+      "houses": []
+    },
+    {
+      "id": {
+        "$oid": "64320bf0fc13ae1e696b0f08"
+      },
+      "username": "dleyzell8",
+      "first_name": "Durand",
+      "last_name": "Leyzell",
+      "email": "dleyzell8@uiuc.edu",
+      "assigned_tasks": [],
+      "houses": [
+        {
+          "id": {
+            "$oid": "64320bf0fc13ae1e696b0f09"
+          },
+          "code": "FGJLXO",
+          "name": "West",
+          "users": [
+            {
+              "user": "Mandi"
+            },
+            {
+              "user": "Lenora"
+            },
+            {
+              "user": "Eamon"
+            },
+            {
+              "user": "Madeleine"
+            },
+            {
+              "user": "Jessie"
+            },
+            {
+              "user": "Merwin"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": {
+        "$oid": "64320bf0fc13ae1e696b0f0a"
+      },
+      "username": "jcolmer9",
+      "first_name": "Jillian",
+      "last_name": "Colmer",
+      "email": "jcolmer9@diigo.com",
+      "assigned_tasks": [
+        {
+          "id": {
+            "$oid": "64320bf0fc13ae1e696b0f0b"
+          },
+          "task_name": "cook spaghetti",
+          "description": "wipe the bed",
+          "room": "Hong Kong",
+          "assignee": {
+            "$oid": "64320bf0fc13ae1e696b0f0c"
+          },
+          "due_time": {
+            "$date": {
+              "$numberLong": 165220069700
+            }
+          },
+          "repeat": 1
+        },
+        {
+          "id": {
+            "$oid": "64320bf0fc13ae1e696b0f0d"
+          },
+          "task_name": "call maintenance",
+          "description": "wipe the bed",
+          "room": null,
+          "assignee": {
+            "$oid": "64320bf0fc13ae1e696b0f0e"
+          },
+          "due_time": {
+            "$date": {
+              "$numberLong": 165024307900
+            }
+          },
+          "repeat": 1
+        }
+      ],
+      "houses": [
+        {
+          "id": {
+            "$oid": "64320bf0fc13ae1e696b0f0f"
+          },
+          "code": "XYLSHU",
+          "name": "Netta",
+          "users": [
+            {
+              "user": "Christina"
+            },
+            {
+              "user": "Fabien"
+            },
+            {
+              "user": "Hanni"
+            },
+            {
+              "user": "Bron"
+            },
+            {
+              "user": "Shaun"
+            }
+          ]
+        },
+        {
+          "id": {
+            "$oid": "64320bf0fc13ae1e696b0f10"
+          },
+          "code": "HCBHSL",
+          "name": "Huntley",
+          "users": [
+            {
+              "user": "Marquita"
+            },
+            {
+              "user": "Emma"
+            },
+            {
+              "user": "Nolly"
+            },
+            {
+              "user": "Roger"
+            },
+            {
+              "user": "Cullen"
+            }
+          ]
+        }
+      ]
+    }
+]
