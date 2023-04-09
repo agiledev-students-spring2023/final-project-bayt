@@ -28,7 +28,7 @@ app.use('/settings',settingsRouter);
 // parse login data
 app.use('/login', loginRouter);
 //parse addMembers data
-//app.use('/addMembers',addMembersRouter);
+app.use('/addMembers',addMembersRouter);
 
 // export the express app we created to make it available to other modules
 module.exports = app

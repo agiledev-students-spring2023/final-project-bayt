@@ -40,7 +40,7 @@ const theme = createTheme({
         const username = document.getElementById('username').value;
         const email = document.getElementById('email').value;
         const role = document.getElementById('role-select').value;
-        axios.post('/api/addMember', { username, email, role })
+        axios.post(`api/addMembers`, {username, email, role })
             .then(response => {
                 // Handle the response from the backend
                 console.log(response);
