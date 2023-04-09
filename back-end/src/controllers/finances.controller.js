@@ -16,7 +16,7 @@ async function getAllTransactions(req, res) {
 async function addTransaction(req, res) {
   const transaction = req.body;
   const newTransaction = await financesService.addTransaction(transaction);
-  res.status(200).send(JSON.stringify(newTransaction));
+  res.status(200).json(newTransaction);
 }
 
 module.exports = {
