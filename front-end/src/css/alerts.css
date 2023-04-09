@@ -14,3 +14,15 @@
   gap: 1vh;
   margin-right: 1rem;
 }
+
+.no-alerts {
+  width: 100%;
+  height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.alertsList li a {
+  text-decoration: none;
+}
