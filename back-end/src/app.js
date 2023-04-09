@@ -9,6 +9,7 @@ const financesRouter = require('./routes/finances.route.js');
 const settingsRouter = require('./routes/settings.route.js');
 const loginRouter = require('./routes/login.route.js');
 const addMembersRouter = require('./routes/addmembers.route.js');
+const homeRouter = require('./routes/home.route.js');
 
 const app = express() // instantiate an Express object
 
@@ -29,6 +30,8 @@ app.use('/settings',settingsRouter);
 app.use('/login', loginRouter);
 //parse addMembers data
 app.use('/addMembers',addMembersRouter);
+// parse home data
+app.use('/home', homeRouter);
 
 // export the express app we created to make it available to other modules
 module.exports = app

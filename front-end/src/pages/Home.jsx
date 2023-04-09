@@ -12,6 +12,8 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 const theme = createTheme({
   palette: {
@@ -23,7 +25,11 @@ const theme = createTheme({
 });
 
 const Home = (props) => {
-  const [open, setOpen] = React.useState(false);
+
+  const [open, setOpen] = React.useState(false)
+
+  const [rooms, setRooms] = useState([])
+  const [name, setName] = useState('')
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -32,22 +38,65 @@ const Home = (props) => {
   const handleClose = () => {
     setOpen(false);
   };
+
+  const fetchRooms = () => {
+    axios
+      .get("/api/home")
+      .then(response => {
+        const rooms = response.data
+        setRooms(rooms)
+      })
+      .catch(err => {
+        console.log("Bad room fetch")
+      })
+  }
+
+  const addRoomToList = room => {
+    const newRooms = [...rooms, room]
+    setRooms(newRooms)
+  }
+
+  useEffect(() => {
+    fetchRooms()
+
+    const intervalHandle = setInterval(() => {
+      fetchRooms()
+    }, 5000)
+
+    return e => {
+      clearInterval(intervalHandle)
+    }
+  }, [])
+
+  const handleSubmit = e => {
+    e.preventDefault()
+
+    axios
+      .post("/api/home", {
+        roomName: name,
+      })
+      .then(response => {
+        addRoomToList(response.data.room)
+      })
+      .catch(err => {
+        console.log("Submit error")
+      })
+
+    setName('')
+    window.location.reload()
+  }
+
+
   return (
     <>
       <Header title="Home" />
       <div>
         <div className="homeBody">
-          <Link to="/tasks">
-            <button className="roomButton" type="button">
-              Living Room
-            </button>
-          </Link>
-          
-          <Link to="/tasks">
-            <button className="roomButton" type="button">
-              Bathroom
-            </button>
-          </Link>
+        {rooms.map((room, index) => (<Link to="/tasks">
+               <button key={index} className="roomButton" type="button">
+                 {room.roomName}
+               </button>
+             </Link>))}
 
           <button className="roomButton" type="button" onClick={handleClickOpen}>
             Add Room
@@ -56,19 +105,16 @@ const Home = (props) => {
           <ThemeProvider theme={theme}>
             <Dialog maxWidth='xs'open={open} onClose={handleClose}>
               <DialogTitle>Add Your Room!</DialogTitle>
-
+              
+              <form method="post" onSubmit={handleSubmit} className="form-container">
               <DialogContent>
-                <DialogContentText>
-                  Enter the room name here.
-                </DialogContentText>
-
-                <TextField autoFocus margin="dense" id="roomName" label="Room Name" fullWidth variant="standard"/>
+              <input type="text" placeholder="Enter room name here" value={name} onChange={e => setName(e.target.value)} />
               </DialogContent>
-
               <DialogActions>
                 <Button disableRipple disableElevation disableFocusRipple sx={{ borderRadius: '0', "&:hover": {backgroundColor: "#6B8E23", border: '0px solid #fff'} }} variant="contained" onClick={handleClose}>Cancel</Button>
-                <Button disableRipple disableElevation disableFocusRipple sx={{ borderRadius: '0', "&:hover": {backgroundColor: "#6B8E23", border: '0px solid #fff'} }} variant="contained" onClick={handleClose}>Save</Button>
+                <Button type="submit" disableRipple disableElevation disableFocusRipple sx={{ borderRadius: '0', "&:hover": {backgroundColor: "#6B8E23", border: '0px solid #fff'} }} variant="contained" onClick={handleClose}>Save</Button>
               </DialogActions>
+              </form>
             </Dialog>
           </ThemeProvider>
         </div>
