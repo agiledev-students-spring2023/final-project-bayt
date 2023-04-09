@@ -1,8 +1,8 @@
-const alertsData = require("../../front-end/src/json/task_list.json");
-const userData = require("../../HardCode.json");
+const alertsData = require("../json/tasklist.json");
+const userData = require("../json/hardcode.json");
 const fs = require("fs");
 const path = require("path");
-const alertsDataPath = path.join(__dirname, "../../front-end/src/json/task_list.json");
+const alertsDataPath = path.join(__dirname, "../json/tasklist.json");
 
 async function getAlerts() {
   const user = userData;

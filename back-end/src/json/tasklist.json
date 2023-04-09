@@ -4,7 +4,7 @@
     "task_name": "call maintenance",
     "description": "clean properly this time",
     "room": "Ilaka",
-    "assignee": "Willy",
+    "assignee": "badbunny",
     "due_time": { "$date": { "$numberLong": 164707834700 } },
     "complete": true,
     "repeat": 1

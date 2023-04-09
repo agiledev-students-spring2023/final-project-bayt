@@ -1,9 +1,6 @@
 // SERVICE HARDCODED(AT LEAST TEMPORARILY) TASK DATA
 let task_json = require('../json/tasklist.json')
 
-const tasksData = require('../../front-end/src/json/task_list.json');
-let task_json = tasksData;
-
 async function getTasks() {
   return task_json;
 }
