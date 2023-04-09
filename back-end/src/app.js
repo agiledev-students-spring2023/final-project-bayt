@@ -2,9 +2,9 @@
 const express = require("express") // CommonJS import style!
 const bodyParser = require('body-parser');
 const cors = require('cors') // middleware for enabling CORS (Cross-Origin Resource Sharing) requests.
-
-const taskRouter = require('./routes/task.route.js');
-const profRouter = require('./routes/prof.route.js');
+const fs = require('fs');
+const taskRouter = require('./routes/task.routes.js');
+const profRouter = require('./routes/prof.routes.js');
 const financesRouter = require('./routes/finances.routes.js');
 const alertsRouter = require('./routes/alerts.routes.js');
 const app = express() // instantiate an Express object
@@ -24,6 +24,8 @@ app.use('/finances', financesRouter);
 app.use('/alerts', alertsRouter);
 //parse settings data
 app.use('/settings',settingsRouter);
+//parse alerts data
+app.use('/alerts', alertsRouter);
 
 // export the express app we created to make it available to other modules
 module.exports = app

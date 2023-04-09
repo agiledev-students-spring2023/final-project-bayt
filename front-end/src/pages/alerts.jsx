@@ -4,8 +4,14 @@ import Footer from "./Footer";
 import Header from "./Header";
 import "../css/alerts.css";
 import "../index.css";
+import alertsData from '../json/alerts_list.json';
+let alerts_json = alertsData;
 
 function Alerts() {
+<<<<<<< HEAD
+=======
+
+>>>>>>> eebf4e3 (completed alerts routing)
   const [alerts, setAlerts] = useState([]);
 
   useEffect(() => {
@@ -47,6 +53,7 @@ function Alerts() {
     <>
       <Header title="Alerts" />
       <div className="alerts-page-body">
+<<<<<<< HEAD
         {alerts.length === 0 ? (
           <div className="no-alerts">
             <p>No incomplete tasks! Good job : )</p>
@@ -74,6 +81,23 @@ function Alerts() {
             </ul>
           </div>
         )}
+=======
+        <div className="list">
+          <ul className="alertsList">
+            {alerts.map((alert, index) => (
+              <li key={index}>
+                <div className="wrapper">
+                  <label className="control control-checkbox">
+                    {alert.task} due by {alert.date}
+                    <input type="checkbox" checked={alert.complete} onChange={(event) => handleCompleteChange(event, index)}/>
+                    <div className="indicator"></div>
+                  </label>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+>>>>>>> eebf4e3 (completed alerts routing)
       </div>
       <Footer />
     </>
