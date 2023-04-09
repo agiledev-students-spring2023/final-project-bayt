@@ -1,59 +1,87 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import Footer from "./Footer";
 import Header from "./Header";
 import "../css/alerts.css";
 import "../index.css";
 
 function Alerts() {
-  const [task, setTask] = useState("");
-  const [date, setDate] = useState("");
-
   const [alerts, setAlerts] = useState([]);
 
-  const handleAddAlert = (alert) => {
-    setAlerts([...alerts, alert]);
-  };
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   useEffect(() => {
-    setAlerts(alerts_json);
+    const fetchAlerts = async () => {
+      try {
+        const response = await fetch("http://localhost:8000/alerts");
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        const alerts = await response.json();
+        setAlerts(alerts);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchAlerts();
   }, []);
+
+  const handleCheckboxClick = async (event, alert) => {
+    console.log(alert);
+    try {
+      const isChecked = event.target.checked;
+      const alertId = alert.id; // Extract the id value from the alert object
+      const response = await fetch(`http://localhost:8000/alerts/update`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ alertId, isChecked }),
+      });
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  
 
   return (
     <>
       <Header title="Alerts" />
       <div className="alerts-page-body">
-        <div className="list">
-          <ul className="alertsList">
-            {alerts.map((alert, index) => (
-              <li key={index}>
-                <div className="wrapper">
-                  <label className="control control-checkbox">
-                    {alert.task} due by {alert.date}
-                    <input type="checkbox" />
-                    <div className="indicator"></div>
-                  </label>
-                </div>
-              </li>
-            ))}
-          </ul>
-        </div>
+        {alerts.length === 0 ? (
+          <div className="no-alerts">
+            <p>No incomplete tasks! Good job : )</p>
+          </div>
+        ) : (
+          <div className="list">
+            <ul className="alertsList">
+              {alerts.map((alert, index) => (
+                <li key={index}>
+                  <div className="wrapper">
+                    <label className="control control-checkbox">
+                      <Link to={`/tasks/${alert.id.$oid}`}>
+                        {" "}
+                        {alert.task} due by {alert.date}{" "}
+                      </Link>
+                      <input
+                        type="checkbox"
+                        onClick={(event) => handleCheckboxClick(event, alert)}
+                      />
+                      <div className="indicator"></div>
+                    </label>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
       </div>
       <Footer />
     </>
   );
 }
-
-let alerts_json = [
-  { task: "cubilia curae", date: "9/3/2022" },
-  { task: "ligula in", date: "10/5/2022" },
-  { task: "velit", date: "3/6/2023" },
-  { task: "interdum", date: "10/8/2022" },
-  { task: "rutrum rutrum", date: "6/11/2022" },
-  { task: "dapibus augue", date: "1/5/2023" },
-  { task: "in faucibus", date: "10/7/2022" },
-  { task: "turpis elementum", date: "9/5/2022" },
-  { task: "etiam vel", date: "7/18/2022" },
-  { task: "tortor eu", date: "6/7/2022" },
-];
 
 export default Alerts;
