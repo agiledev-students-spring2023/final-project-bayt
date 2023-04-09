@@ -31,6 +31,8 @@ app.use('/settings',settingsRouter);
 app.use('/login', loginRouter);
 //parse alerts data
 app.use('/alerts', alertsRouter);
+//parse settings data
+app.use('/settings',settingsRouter);
 
 // export the express app we created to make it available to other modules
 module.exports = app
