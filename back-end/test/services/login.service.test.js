@@ -21,85 +21,132 @@ const loginUserNotFound = {
   password: "00000",
 };
 
-const houseCodeWrong = {}
+const housesData = [
+  {
+    "id": {
+      "$oid": "64320bf0fc13ae1e696b0eea"
+    },
+    "code": "AKRHSR",
+    "name": "Jamima",
+    "users": [
+      {
+        "user": "Lexine"
+      },
+      {
+        "user": "Eliza"
+      },
+      {
+        "user": "Jennica"
+      },
+      {
+        "user": "Cacilie"
+      }
+    ]
+  },
+  {
+    "id": {
+      "$oid": "64320bf0fc13ae1e696b0eeb"
+    },
+    "code": "FSHLBQ",
+    "name": "Lorraine",
+    "users": [
+      {
+        "user": "Stillmann"
+      },
+      {
+        "user": "Katlin"
+      },
+      {
+        "user": "Eloise"
+      },
+      {
+        "user": "Randee"
+      },
+      {
+        "user": "Ambrosi"
+      }
+    ]
+  },
+  {
+    "id": {
+      "$oid": "64320bf0fc13ae1e696b0eec"
+    },
+    "code": "JCBGKO",
+    "name": "Misty",
+    "users": [
+      {
+        "user": "Shanna"
+      },
+      {
+        "user": "Emelen"
+      },
+      {
+        "user": "Bathsheba"
+      },
+      {
+        "user": "Delcine"
+      }
+    ]
+  }
+];
+
+const houseCodeCorrect = ["AKRHSR"];
+const houseCodeWrong = ["00000"];
 
 
 describe("Login Service", () => {
   describe("#findHouseCode(houses, password)", () => {
-    it("should return an array of tasks", async () => {
-      const tasks = await taskService.getTasks();
-      assert(Array.isArray(tasks));
+    it("should return the house object with matching house code", async () => {
+      const house = await loginService.findHouseCode(housesData, houseCodeCorrect[0]);
+      assert.strictEqual(typeof house, "object");
+    });
+
+    it("should return the undefined if no matching house code is found", async () => {
+      const house = await loginService.findHouseCode(housesData, houseCodeWrong[0]);
+      assert.strictEqual(house, undefined);
     });
   });
 
-  describe("#getTask(task_id)", () => {
-    it("should return the task with the matching task_id", async () => {
-      const task = await taskService.getTask(existingTaskData.id.$oid);
-      assert.strictEqual(task.id.$oid, existingTaskData.id.$oid);
+  describe("#getUser(input_data)", () => {
+    it('should return "Login successfully" if username and password are correct', async () => {
+      const message = await loginService.getUser(loginSuccess);
+      assert.strictEqual(message, "Login successfully");
     });
 
-    it("should return undefined if no task with matching task_id is found", async () => {
-      const task = await taskService.getTask("nonexistent-task-id");
-      assert.strictEqual(task, undefined);
-    });
-  });
-
-  describe("#createTask(task_data)", () => {
-    it("should add the task_data to the task_json array if it does not already exist", async () => {
-      
-      const message = await taskService.createTask(newTaskData);
-      assert.strictEqual(message, "Task created successfully");
-      const task = await taskService.getTask("test-new-task-id");
-      assert.deepStrictEqual(task, newTaskData);
-    });
-
-    it('should return "Task already exists" if the task_data already exists in the task_json array', async () => {
+    it('should return "Wrong password" if only the password is wrong', async () => {
       await assert.rejects(
         async () => {
-          await taskService.createTask(existingTaskData);
+          await loginService.getUser(loginWrongPassword);
         },
         {
           name: "Error",
-          message: "Task already exists",
+          message: "Wrong password",
         }
       );
     });
-  });
 
-  describe("#updateTask(task_id, task_data)", () => {
-    it("should update the task_data in the task_json array for the task with the matching task_id", async () => {
-      const taskDataToUpdate = {
-        id: {
-          $oid: existingTaskData.id.$oid,
+    it('should return "User has not been invited into a house" if the user has empty houses array', async () => {
+      await assert.rejects(
+        async () => {
+          await loginService.getUser(loginEmptyHouse);
         },
-        task_name: "updated task",
-        description: "updated task description",
-        room: "updated room",
-        assignee: "updated assignee",
-        due_time: {
-          $date: {
-            $numberLong: 164717936800,
-          },
-        },
-        complete: false,
-        repeat: 2,
-      };
-      const message = await taskService.updateTask(
-        existingTaskData.id.$oid,
-        taskDataToUpdate
+        {
+          name: "Error",
+          message: "User has not been invited into a house",
+        }
       );
-      assert.strictEqual(message, "Task updated successfully");
-      const task = await taskService.getTask(existingTaskData.id.$oid);
-      assert.deepStrictEqual(task, taskDataToUpdate);
     });
-  });
 
-  describe("#removeTask(task_id)", () => {
-    it("should remove the task with the matching task_id from the task_json array", async () => {
-      const message = await taskService.removeTask("test-new-task-id");
-      assert.strictEqual(message, "Task deleted successfully");
-      const task = await taskService.getTask("test-new-task-id");
-      assert.strictEqual(task, undefined);
+    it('should return "Username not found" if the username is not found', async () => {
+      await assert.rejects(
+        async () => {
+          await loginService.getUser(loginUserNotFound);
+        },
+        {
+          name: "Error",
+          message: "Username not found",
+        }
+      );
     });
   });
 });
