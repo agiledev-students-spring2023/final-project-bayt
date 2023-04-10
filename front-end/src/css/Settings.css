@@ -34,10 +34,9 @@
     background-color: #6B8E23;
   }
   
-  /*alternating colors for each link*/
-  .setts-info li:nth-child(odd) {
-    background-color: #6a8e23c2; /* add alternating background color */
-  }
+  /* .setts-info li:nth-child(odd) {
+    background-color: #6a8e23c2; 
+  } */
   
   .setts-info a {
     font-family: 'Heading2';
