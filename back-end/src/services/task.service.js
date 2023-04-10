@@ -39,4 +39,5 @@ module.exports = {
   createTask,
   updateTask,
   removeTask,
+  task_json,
 };
