@@ -88,8 +88,8 @@ const Settings = () => {
       transform: "translate(-50%, -50%)",
       border: "2px solid #ccc",
       background: "white",
-      width: "90vw" /* set the width to 90% of viewport width */,
-      maxWidth: "250px",
+      width: "calc(0.85 * var(--max-width))" /* set the width to 85% of the max display width */,
+      maxWidth: "600px",
       overflow: "auto" /* add overflow property for scrolling */,
     },
   };
