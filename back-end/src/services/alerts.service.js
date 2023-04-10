@@ -1,12 +1,10 @@
-const alertsData = require("../json/tasklist.json");
+// Import json array from task.service.js
+let {task_json} = require("./task.service.js")
 const userData = require("../json/hardcode.json");
-const fs = require("fs");
-const path = require("path");
-const alertsDataPath = path.join(__dirname, "../json/tasklist.json");
 
 async function getAlerts() {
   const user = userData;
-  const filteredAlerts = alertsData
+  const filteredAlerts = task_json
     .filter((alert) => {
       return !alert.complete && alert.assignee === user.username;
     })
@@ -22,12 +20,11 @@ async function getAlerts() {
   return filteredAlerts;
 }
 
-function logAlertState(alertId, isChecked) {
+async function logAlertState(alertId, isChecked) {
   console.log(`Alert ID: ${alertId}, Checked: ${isChecked}`);
-  const alertIndex = alertsData.findIndex(alert => alert.id.$oid === alertId.$oid);
-  if (alertIndex >= 0) {
-    alertsData[alertIndex].complete = isChecked;
-    fs.writeFileSync(alertsDataPath, JSON.stringify(alertsData));
+  const alertIndex = task_json.findIndex(alert => alert.id.$oid === alertId.$oid);
+  if (alertIndex>=0) {
+    task_json[alertIndex].complete = isChecked;
   }
 }
 

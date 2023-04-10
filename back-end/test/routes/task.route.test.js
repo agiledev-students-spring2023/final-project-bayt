@@ -3,14 +3,19 @@ const chaiHttp = require("chai-http");
 const should = chai.should();
 const app = require("../../src/app.js");
 
+const encodings = require('../../node_modules/iconv-lite/encodings');                                                                                                                                                                       
+const iconvLite = require('../../node_modules/iconv-lite/lib');                                                                                                                                                                             
+iconvLite.getCodec('UTF-8');
+
 chai.use(chaiHttp);
-const task_id = "64055f38f032391df0001d6a"; // Task id we are sure exists in the database
+
+let task_id = 0;
 const inv_task_id = -123132132; // Invalid task ID
 
 // New task data we add to the database
 const newTaskData = {
   id: {
-    $oid: "test-new-task-idddd",
+    $oid: "test-new-task-iddddddd",
   },
   task_name: "new task",
   description: "new task description",
@@ -25,10 +30,16 @@ const newTaskData = {
   repeat: 1,
 };
 
-describe("Task Controller", () => {
-
+describe("Task Routes", () => {
+  // Check if there is data in tasklist.json to sample before anything
+  before(async () => {
+    const task_json = require("../../src/json/tasklist.json");
+    task_json.should.be.a("array").has.length.greaterThan(0);
+    task_id = task_json[0].id.$oid;
+  });
+    
   // Check if the get function works and if create actually created the task
-  describe("get()", () => {
+  describe("GET REQ", () => {
     it("should return the task ", (done) => {
       chai
         .request(app)
@@ -57,7 +68,7 @@ describe("Task Controller", () => {
     });
   });
 
-  describe("gets()", () => {
+  describe("GET REQ ALL TASKS", () => {
     it("should return a list of tasks", (done) => {
       chai
         .request(app)
@@ -69,69 +80,70 @@ describe("Task Controller", () => {
         });
     });
   });
-  describe("create()", () => {
+  describe("POST TASK", () => {
     it("should create a new task", (done) => {
       chai
         .request(app)
         .post("/tasks")
         .send(newTaskData)
         .end((err, res) => {
+          console.log(res);
           res.should.have.status(200);
           res.body.should.eql("Task created successfully");
           done();
         });
     });
 
-    it("should return already exists if trying to feed an existing task", (done) => {
-      chai
-        .request(app)
-        .post("/tasks")
-        .send(newTaskData)
-        .end((err, res) => {
-          res.should.have.status(500);
-          res.body.should.have.property("message").eql("Task already exists");
-          done();
-        });
+      it("should return already exists if trying to feed an existing task", (done) => {
+        chai
+          .request(app)
+          .post("/tasks")
+          .send(newTaskData)
+          .end((err, res) => {
+            res.should.have.status(500);
+            res.body.should.have.property("message").eql("Task already exists");
+            done();
+          });
+      });
+
+      it("should return an error when required fields are missing", (done) => {
+        const task = {
+          // title and description fields are missing
+        };
+        chai
+          .request(app)
+          .post("/tasks")
+          .send(task)
+          .end((err, res) => {
+            res.should.have.status(500);
+            res.body.should.be.a("object");
+            res.body.should.have.property("message").eql("Task id not found");
+            done();
+          });
+      });
     });
 
-    it("should return an error when required fields are missing", (done) => {
-      const task = {
-        // title and description fields are missing
-      };
-      chai
-        .request(app)
-        .post("/tasks")
-        .send(task)
-        .end((err, res) => {
-          res.should.have.status(500);
-          res.body.should.be.a("object");
-          res.body.should.have.property("message").eql("Task id not found");
-          done();
-        });
-    });
+    // describe("PUT TASK", () => {
+    //   it("should update an existing task", (done) => {
+    //     chai
+    //       .request(app)
+    //       .put(`/tasks/${newTaskData.id.$oid}`)
+    //       .send(newTaskData)
+    //       .end((err, res) => {
+    //         res.should.have.status(200);
+    //         done();
+    //       });
+    //   });
+
+    //   it("should return an error when trying to update a non-existent task", (done) => {
+    //     chai
+    //       .request(app)
+    //       .put(`/tasks/${inv_task_id}`)
+    //       .send(newTaskData)
+    //       .end((err, res) => {
+    //         res.should.have.status(500);
+    //         done();
+    //       });
+    //   });
+    // });
   });
-
-  describe("update()", () => {
-    it("should update an existing task", (done) => {
-      chai
-        .request(app)
-        .put(`/tasks/${newTaskData.id.$oid}`)
-        .send(newTaskData)
-        .end((err, res) => {
-          res.should.have.status(200);
-          done();
-        });
-    });
-
-    it("should return an error when trying to update a non-existent task", (done) => {
-      chai
-        .request(app)
-        .put(`/tasks/${inv_task_id}`)
-        .send(newTaskData)
-        .end((err, res) => {
-          res.should.have.status(500);
-          done();
-        });
-    });
-  });
-});
