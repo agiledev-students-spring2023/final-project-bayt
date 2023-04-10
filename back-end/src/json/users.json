@@ -772,5 +772,17 @@
         "name": "Boomers"
       }
     ]
+  },
+  {
+    "username": "advad",
+    "email": "adv",
+    "role": "admin",
+    "houses": [
+      {
+        "code": "adv",
+        "codeConfirm": "adv",
+        "name": "asdv"
+      }
+    ]
   }
 ]
