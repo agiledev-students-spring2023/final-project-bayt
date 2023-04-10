@@ -22,9 +22,14 @@ The main users would be students in dormitories, families that work together to 
 - Atib Jawad Zion: https://github.com/zion-off
 
 ## Setup instructions
-
 - [Frontend setup](./front-end/README.md)
 - [Backend setup](./back-end/README.md)
+
+PLease note if you are facing any issues connecting to the Backend from the Frontend on **Mac** do the following:
+- Enter the frontend directory.
+- Delete its node_modules folder.
+- Run `npm install`.
+- Then restart your computer.
 
 ## Project Repository
 
