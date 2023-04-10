@@ -1,44 +1,31 @@
 const assert = require("assert");
 const loginService = require("../../src/services/login.service.js");
 
-// New Task data we add to the database
-const newLoginData = {
-  id: {
-    $oid: "test-new-task-id",
-  },
-  task_name: "new task",
-  description: "new task description",
-  room: "new room",
-  assignee: "new assignee",
-  due_time: {
-    $date: {
-      $numberLong: 164717936800,
-    },
-  },
-  complete: false,
-  repeat: 1,
+const loginSuccess = {
+  username: "fishc0",
+  password: "12345",
 };
 
-// Data we're sure already exists in database
-const existingTaskData = {
-  id: {
-    $oid: "64055f38f032391df0001d6a",
-  },
-  task_name: "cook spaghetti",
-  description: "wake up dog",
-  room: "Kiana",
-  assignee: "Evania",
-  due_time: {
-    $date: {
-      $numberLong: 164717936800,
-    },
-  },
-  complete: true,
-  repeat: 1,
+const loginWrongPassword = {
+  username: "fishc0",
+  password: "00000",
 };
 
-describe("Task Service", () => {
-  describe("#getTasks()", () => {
+const loginEmptyHouse = {
+  username: "adevuyst0",
+  password: "00000",
+};
+
+const loginUserNotFound = {
+  username: "ppp1",
+  password: "00000",
+};
+
+const houseCodeWrong = {}
+
+
+describe("Login Service", () => {
+  describe("#findHouseCode(houses, password)", () => {
     it("should return an array of tasks", async () => {
       const tasks = await taskService.getTasks();
       assert(Array.isArray(tasks));
