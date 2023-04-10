@@ -104,13 +104,6 @@ const Home = (props) => {
                  {room.roomName}
                </button>
              </Link>))}
-          {rooms.map((room, index) => (
-            <Link to={`/room/${room.url}`}>
-              <button key={index} className="roomButton" type="button">
-                {room.roomName}
-              </button>
-            </Link>
-          ))}
 
           <button
             className="roomButton"
