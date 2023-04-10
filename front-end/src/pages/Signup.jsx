@@ -6,19 +6,22 @@ import HouseCodeForm from '../components/HouseCodeForm';
 import CreateProfileForm from '../components/CreateProfileForm';
 import { useNavigate } from 'react-router-dom';
 import "../index.css";
+import Alert from '@mui/material/Alert';
+import axios from 'axios';
 
 import '../css/Signup.css';
 
-function getStepContent(step) {
+function getStepContent(step, setFormValues,errorMessage) {
   switch (step) {
     case 0:
-      return <HouseCodeForm />;
+      return <HouseCodeForm setFormValues={setFormValues} errorMessage={errorMessage}/>;
     case 1:
-      return <CreateProfileForm />;
+      return <CreateProfileForm setFormValues={setFormValues} errorMessage={errorMessage}/>;
     default:
       throw new Error('Unknown step');
   }
 }
+
 
 const theme = createTheme({
   palette: {
@@ -33,13 +36,35 @@ const theme = createTheme({
   },
 });
 
+
+const defaultValues = {
+  houseName: '',
+  password:'',
+  passwordConfirm: '',
+  username:'',
+  email:'',
+  role:''
+};
+
+
 export default function Checkout() {
   const navigate = useNavigate();
 
+  const [formValues, setFormValues] = React.useState(defaultValues);
+  const [errorMessage, setErrorMessage] = React.useState(''); //finish this part
   const [activeStep, setActiveStep] = React.useState(0);
 
   const handleNext = () => {
-    setActiveStep(activeStep + 1);
+    if ((formValues.houseName.length<1)||(formValues.password.length<1)){
+      setErrorMessage(<Alert severity="error">{`Please fill out all fields`}</Alert>);
+    }
+    else if (formValues.passwordConfirm!==formValues.password){
+      setErrorMessage(<Alert severity="error">{`Passwords do not match`}</Alert>);
+    }
+    else{
+      setErrorMessage('');
+      setActiveStep(activeStep + 1);
+    }
   };
 
   const handleBack = () => {
@@ -51,8 +76,21 @@ export default function Checkout() {
   }
 
   const handleFinish = () => {
-    return navigate('/home');
-  }
+    if ((formValues.username.length<1)||(formValues.email.length<1)||(formValues.role.length<1)){
+      setErrorMessage(<Alert severity="error">{`Please fill out all fields`}</Alert>);
+    }
+    else{
+      axios
+      .post(`/api/signup/`, formValues)
+      .then((res) => {
+          setErrorMessage('');
+          navigate('/home');
+      })
+      .catch((err) => {
+          console.error(err);
+        })
+  };
+};
 
   return (
     <div className='signupPageContainer'>
@@ -61,11 +99,12 @@ export default function Checkout() {
           <Box sx={{ mt: 8, display: 'flex', flexDirection: 'column', alignItems: 'center', }}>
             {
               <>
-                {getStepContent(activeStep)}
+                {getStepContent(activeStep, setFormValues,errorMessage)}
                 <Box sx={{ width: '100%', display: 'flex', justifyContent: 'space-between', mt: 7 }}>
                   {activeStep !== 0 ? (<button onClick={handleBack}>Back</button>) : (<button onClick={handleNavigate} >Back</button>)}
                   {activeStep !== 1 ? (<button onClick={handleNext}>Next</button>) : (<button onClick={handleFinish} >Finish</button>)}
                 </Box>
+  
               </>
             }
           </Box>
@@ -73,4 +112,4 @@ export default function Checkout() {
       </ThemeProvider>
     </div>
   );
-}
+} 
