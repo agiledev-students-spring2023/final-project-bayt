@@ -21,6 +21,11 @@ The main users would be students in dormitories, families that work together to 
 - Zander Chen: https://github.com/ccczy-czy
 - Atib Jawad Zion: https://github.com/zion-off
 
+## Setup instructions
+
+- [Frontend setup](./front-end/README.md)
+- [Backend setup](./back-end/README.md)
+
 ## Project Repository
 
 This repository will be used for team projects.

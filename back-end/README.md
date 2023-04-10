@@ -1,4 +1,4 @@
-# File Structure
+# Backend File Structure
     .
     ├── src/                # Contains the main application code
     │   ├── controllers/        # Contains controller functions for handling requests
@@ -19,3 +19,19 @@
     ├── node_modules/           # Contains all installed node modules
     ├── package.json            # Contains metadata about the project and its dependencies
     └── README.md               # Contains documentation for the project
+
+# Deploying Instructions
+
+Run `npm install` when in this directory before running any other command.
+
+### `npm start`
+
+Used to initialize the backend with nodemon.
+
+### `npm test`
+
+Used to run the Mocha Unit Tests of the system.
+
+### `npm coverage` 
+
+Used to run the unit tests as well as show code coverage using Istanbul(nyc).
