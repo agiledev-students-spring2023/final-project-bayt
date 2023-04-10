@@ -38,14 +38,22 @@ const TaskComponent = ({
   return (
     <div className={"task_box_comp " + (completed ? "complete" : "incomplete")}>
       {enableCheckbox && (
-        <Checkbox
-          className="control control-checkbox"
-          checked={isChecked && !completed}
-          onChange={(e) => {
-            setIsChecked(e.target.checked);
-            SelectHandler(id, e.target.checked && !completed);
-          }}
-        />
+        <div className="checkbox-fix">
+          <div class="wrapper">
+            <label class="control control-checkbox">
+              <input
+                type="checkbox"
+                className="control control-checkbox"
+                checked={isChecked && !completed}
+                onChange={(e) => {
+                  setIsChecked(e.target.checked);
+                  SelectHandler(id, e.target.checked && !completed);
+                }}
+              />
+              <div class="indicator"></div>
+            </label>
+          </div>
+        </div>
       )}
 
       <div

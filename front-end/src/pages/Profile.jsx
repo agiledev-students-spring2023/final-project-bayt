@@ -7,6 +7,7 @@ import Footer from './Footer';
 import '../css/Profile.css';
 import * as React from 'react';
 import axios from 'axios';
+import "../index.css"
 
 //editable Name part of profile.  It renders and updates each time user changes it. 
 const NameInfo = () => {

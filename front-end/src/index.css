@@ -80,6 +80,7 @@ button {
   align-items: center;
   background: #6B8E23;
   border: 0;
+  border-radius: 0.5rem;
   box-sizing: border-box;
   color: #ffffff;
   cursor: pointer;

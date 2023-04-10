@@ -29,13 +29,16 @@ const Tasks = (props) => {
           centerButton={false}
         />
 
+        {/* <a href="/tasks/add">
+          <img className="add_tasks_button" src={icon}></img>
+        </a> */}
+
         <button
           className="add_tasks_button"
           variant="contained"
           startIcon={<AddIcon />}
-          onClick={() => navigate("/tasks/add")}
-        >
-          Add Tasks
+          onClick={() => navigate("/tasks/add")}>
+          +
         </button>
       </div>
       <Footer />

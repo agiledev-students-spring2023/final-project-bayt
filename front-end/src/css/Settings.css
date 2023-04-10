@@ -13,17 +13,24 @@
 /*get rid of bullet points from list*/
 .setts-info ul {
   list-style-type: none;
+  flex-wrap: wrap;
+  display: flex;
+  align-items: center;
   padding: 0;
   margin: 0;
   }
   
   /* give each link a border and pad it*/
   .setts-info li {
-    margin: 0;
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    width: 11rem;
+    height: 6rem;
+    margin: 0.5rem;
     padding: 0.5rem 0;
     box-sizing: border-box;
     margin-bottom: 0.5rem;
-    width: 100%;
     background-color: #6B8E23;
   }
   

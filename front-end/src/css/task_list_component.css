@@ -34,6 +34,7 @@
   z-index: 9999;
   bottom: var(--footer-height);
   left: calc(50% - var(--max-width) * 0.2);
+  height: 3rem;
   width: 12rem;
   transform: translate(-50%, -50%);
   text-align: center;

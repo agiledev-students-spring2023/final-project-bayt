@@ -1,4 +1,5 @@
 import Popup from 'reactjs-popup';
+import "../index.css"
 
 
 //Delete account button and modal component

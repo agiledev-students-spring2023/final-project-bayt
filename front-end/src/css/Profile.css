@@ -1,82 +1,81 @@
 .outer {
-    background-color: white;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
+  background-color: white;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding-top: 5rem;
+  padding-bottom: 5rem;
 }
 
 .profile-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 5px;
-  }
-  
-  .edit-input {
-    width: 150px;
-    font-size: 18px;
-    padding: 5px;
-    border: 2px solid #ccc;
-    border-radius: 5px;
-    background-color: transparent;
-  }
-  
-  .name-display {
-    font-size: 25px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    font-family: 'Inter';
-  }
-  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5px;
+}
+
+.edit-input {
+  width: 150px;
+  font-size: 18px;
+  padding: 5px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  background-color: transparent;
+}
+
+.name-display {
+  font-size: 25px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  font-family: "Inter";
+}
 
 .delete-account-button {
   display: block;
-  background-color: #3D405B;
   color: white;
   padding: 10px;
   border-radius: 5px;
   border: none;
   width: 70%;
   text-align: center;
-  margin: 30px auto;
-  }
-  
-  .modal {
-    background-color: #3d405b;
-    padding: 20px;
-    border-radius: 10px;
-    width: 'auto';
-    text-align: center;
+  margin: 5rem;
+}
 
-  }
-  
-  .warn {
-    font-size: 20px;
-    font-weight: bold;
-    margin-bottom: 10px;
-    color: aliceblue;
-  }
-  
-  .content {
-    margin-bottom: 10px;
-    color: aliceblue;
-  }
-  
-  .actions {
-    display: flex;
-    justify-content: center;
-  }
-  
-  .button {
-    color: white;
-    padding: 10px;
-    border: none;
-    margin-right: 10px;
-  }
-  
-  .button.danger {
-    background-color:  #E07A5f;
-    color: white;
-  }
+.modal {
+  background-color: #3d405b;
+  padding: 20px;
+  border-radius: 10px;
+  width: "auto";
+  text-align: center;
+}
+
+.warn {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: aliceblue;
+}
+
+.content {
+  margin-bottom: 10px;
+  color: aliceblue;
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+}
+
+.button {
+  color: white;
+  padding: 10px;
+  border: none;
+  margin-right: 10px;
+}
+
+.button.danger {
+  background-color: #e07a5f;
+  color: white;
+}
