@@ -1,8 +1,8 @@
 const assert = require("assert");
-const taskService = require("../../src/services/task.service.js");
+const loginService = require("../../src/services/login.service.js");
 
 // New Task data we add to the database
-const newTaskData = {
+const newLoginData = {
   id: {
     $oid: "test-new-task-id",
   },
