@@ -2,10 +2,10 @@ import "../css/tasks.css";
 import "../index.css";
 import TaskListComponent from "../components/Task_List_Component";
 import AddIcon from "@mui/icons-material/Add";
-import { Button } from "@mui/material";
 import Header from "./Header";
 import Footer from "./Footer";
 import { useNavigate } from "react-router-dom";
+import "../index.css";
 
 const Tasks = (props) => {
   const navigate = useNavigate();
@@ -29,14 +29,14 @@ const Tasks = (props) => {
           centerButton={false}
         />
 
-        <Button
+        <button
           className="add_tasks_button"
           variant="contained"
           startIcon={<AddIcon />}
           onClick={() => navigate("/tasks/add")}
         >
           Add Tasks
-        </Button>
+        </button>
       </div>
       <Footer />
     </>

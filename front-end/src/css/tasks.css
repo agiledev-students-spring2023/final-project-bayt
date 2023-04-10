@@ -3,7 +3,6 @@
   z-index: 9999;
   bottom: var(--footer-height);
   left: calc(50% + var(--max-width) * 0.28);
-  border-radius: 15em;
   transform: translate(-50%, -50%);
 }
 

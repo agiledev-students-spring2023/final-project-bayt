@@ -3,7 +3,8 @@ import axios from "axios";
 import "../css/task_list_component.css";
 import "../index.css";
 import TaskComponent from "./Task_Component.jsx";
-import { Button, CircularProgress } from "@mui/material";
+import { CircularProgress } from "@mui/material";
+import "../index.css";
 
 const testing_mode = false;
 const backend_route ='/api/tasks/';
@@ -121,7 +122,6 @@ const TaskListComponent = ({filterFunction, sortComparator, enableCheckbox, cent
       prev_day = day;
       return (
         <>
-          <div className="line"></div>
           <h2 className="day_title">{day}</h2>
         </>
       );
@@ -153,9 +153,9 @@ const TaskListComponent = ({filterFunction, sortComparator, enableCheckbox, cent
         {selected.length > 0 && (
           <>
             <span className="transparent_box"></span>
-            <Button className={(centerButton ? "center_button" : "left_button")} variant="contained" onClick={(e) => setComplete()}>
+            <button className={(centerButton ? "center_button" : "left_button")} variant="contained" onClick={(e) => setComplete()}>
               Set Complete
-            </Button>
+            </button>
           </>
         )}
       </div>

@@ -5,8 +5,8 @@
     align-items: center;
     justify-content: flex-start;
     margin-bottom: 1.2rem;
-    background-color: lightgray;
-    border-radius: 20px 0px 0px 20px;
+    background-color: #fac80160;
+    color: rgb(2, 2, 2);
 }
 
 .task_component:active {

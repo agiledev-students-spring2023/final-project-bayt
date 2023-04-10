@@ -4,8 +4,8 @@
 
 .finances-page-content {
   position: relative;
-  padding-top: 3rem;
-  padding-bottom: 3rem;
+  padding-top: 2rem;
+  padding-bottom: 1rem;
 }
 
 .transactionListContainer {
@@ -24,7 +24,7 @@
 }
 
 .addTransactionButton .button {
-  margin-bottom: 2rem;
+  margin-bottom: 0.5rem;
 }
 
 .overlay {
@@ -98,6 +98,11 @@ h1 {
 li {
   background-color: white;
   list-style: none;
+}
+
+.finances-content ul {
+  padding-left: 0.2rem;
+  padding-right: 0.2rem;
 }
 
 .sort-by-container {

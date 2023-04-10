@@ -25,7 +25,9 @@
 }
 
 .welcomePageButtons {
+    font-family: "Heading2";
     text-align: center;
     width: 15rem;
-    height: 3rem;
+    height: 2.5rem;
+    margin: 0.3rem;
 }

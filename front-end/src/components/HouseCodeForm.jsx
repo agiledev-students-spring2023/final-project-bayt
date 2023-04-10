@@ -1,7 +1,7 @@
 import React from 'react';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
-
+import "../index.css";
 import '../css/HouseCodeForm.css';
 
 function HouseCodeForm(props) {

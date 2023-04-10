@@ -45,7 +45,6 @@ function Alerts() {
       console.error(error);
     }
   };
-  
 
   return (
     <>
