@@ -27,7 +27,7 @@ function RoomHeader(props) {
 
     return (
         <Box className="header">
-            <Grid container sx={{ alignItems: 'center', color: '#fff', backgroundColor: '#225095' }}>
+            <Grid container sx={{ alignItems: 'center', color: '#fff' }}>
                 <Grid item xs={2} sx={{ p: 1, textAlign: 'left' }}>
                     <ArrowBackIosNewTwoToneIcon onClick={handleClick} sx={{color: '#fff', backgroundColor: '#3d405b', borderRadius: '0.4rem' }} style={{fontSize: '3rem'}} ></ArrowBackIosNewTwoToneIcon>
                 </Grid>

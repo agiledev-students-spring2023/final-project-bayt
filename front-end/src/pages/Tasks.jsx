@@ -36,7 +36,7 @@ const Tasks = (props) => {
         <button
           className="add_tasks_button"
           variant="contained"
-          startIcon={<AddIcon />}
+          starticon={<AddIcon />}
           onClick={() => navigate("/tasks/add")}>
           +
         </button>

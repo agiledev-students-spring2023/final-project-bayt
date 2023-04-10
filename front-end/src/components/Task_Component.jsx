@@ -39,8 +39,8 @@ const TaskComponent = ({
     <div className={"task_box_comp " + (completed ? "complete" : "incomplete")}>
       {enableCheckbox && (
         <div className="checkbox-fix">
-          <div class="wrapper">
-            <label class="control control-checkbox">
+          <div className="wrapper">
+            <label className="control control-checkbox">
               <input
                 type="checkbox"
                 className="control control-checkbox"
@@ -50,7 +50,7 @@ const TaskComponent = ({
                   SelectHandler(id, e.target.checked && !completed);
                 }}
               />
-              <div class="indicator"></div>
+              <div className="indicator"></div>
             </label>
           </div>
         </div>
