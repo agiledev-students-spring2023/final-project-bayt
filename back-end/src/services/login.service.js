@@ -24,4 +24,5 @@ async function getUser(input_data) {
 
 module.exports = {
     getUser,
+    findHouseCode,
 };
