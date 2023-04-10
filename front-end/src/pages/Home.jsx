@@ -114,7 +114,7 @@ const Home = (props) => {
 
           <ThemeProvider theme={theme}>
             <Dialog maxWidth="xs" open={open} onClose={handleClose}>
-              <DialogTitle>Add Your Room!</DialogTitle>
+              <DialogTitle className="add-room-form">Add Your Room!</DialogTitle>
 
               <form
                 method="post"
@@ -130,6 +130,7 @@ const Home = (props) => {
                 </DialogContent>
                 <DialogActions>
                   <button
+                  type="button"
                     disableRipple
                     disableElevation
                     disableFocusRipple

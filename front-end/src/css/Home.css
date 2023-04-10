@@ -16,3 +16,7 @@
   width: 12rem;
   margin: 0.5rem;
 }
+
+DialogTitle .add-room-form {
+  font-family: 'Heading2';
+}
