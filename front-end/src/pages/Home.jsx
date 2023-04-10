@@ -102,7 +102,7 @@ const Home = (props) => {
       <Header title="Home" />
       <div>
         <div className="homeBody">
-        {rooms.map((room, index) => (<Link to={`/room/${room.url}`}>
+        {rooms.map((room, index) => (<Link key={index} to={`/room/${room.url}`}>
                <button key={index} className="roomButton" type="button">
                  {room.roomName}
                </button>
