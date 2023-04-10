@@ -55,10 +55,6 @@ export default function Checkout() {
   const [activeStep, setActiveStep] = React.useState(0);
 
   const handleNext = () => {
-<<<<<<< HEAD
-    console.log(formValues);
-=======
->>>>>>> 744425f154fc4de9ba443803d5b83d8f984092c3
     if ((formValues.houseName.length<1)||(formValues.password.length<1)){
       setErrorMessage(<Alert severity="error">{`Please fill out all fields`}</Alert>);
     }
@@ -66,10 +62,7 @@ export default function Checkout() {
       setErrorMessage(<Alert severity="error">{`Passwords do not match`}</Alert>);
     }
     else{
-<<<<<<< HEAD
-=======
       setErrorMessage('');
->>>>>>> 744425f154fc4de9ba443803d5b83d8f984092c3
       setActiveStep(activeStep + 1);
     }
   };
