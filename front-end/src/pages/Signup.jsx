@@ -55,7 +55,6 @@ export default function Checkout() {
   const [activeStep, setActiveStep] = React.useState(0);
 
   const handleNext = () => {
-    console.log(formValues);
     if ((formValues.houseName.length<1)||(formValues.password.length<1)){
       setErrorMessage(<Alert severity="error">{`Please fill out all fields`}</Alert>);
     }
@@ -63,6 +62,7 @@ export default function Checkout() {
       setErrorMessage(<Alert severity="error">{`Passwords do not match`}</Alert>);
     }
     else{
+      setErrorMessage('');
       setActiveStep(activeStep + 1);
     }
   };
@@ -76,8 +76,6 @@ export default function Checkout() {
   }
 
   const handleFinish = () => {
-    // Make post request here with houseCodeData and profileData
-    console.log(formValues);
     if ((formValues.username.length<1)||(formValues.email.length<1)||(formValues.role.length<1)){
       setErrorMessage(<Alert severity="error">{`Please fill out all fields`}</Alert>);
     }
@@ -85,6 +83,7 @@ export default function Checkout() {
       axios
       .post(`/api/signup/`, formValues)
       .then((res) => {
+          setErrorMessage('');
           navigate('/home');
       })
       .catch((err) => {
