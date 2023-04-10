@@ -1,75 +1,65 @@
-/* set background color for page*/
-.back {
-  background-color: white;
-  height: 100vh;
-  padding-top: 85px;
-}
-
 /*setts-info refer to the div container that holds the list of modal links*/
 .setts-info {
-    margin: 1rem;
-  } 
+  text-align: center;
+  margin: 1rem;
+}
 
 /*get rid of bullet points from list*/
-.setts-info ul {
-  list-style-type: none;
-  flex-wrap: wrap;
+.links-container {
   display: flex;
+  justify-content: left;
   align-items: center;
+  text-align: center;
+  flex-wrap: wrap;
   padding: 0;
-  margin: 0;
-  }
-  
-  /* give each link a border and pad it*/
-  .setts-info li {
-    border-radius: 0.5rem;
-    display: flex;
-    align-items: center;
-    width: 11rem;
-    height: 6rem;
-    margin: 0.5rem;
-    padding: 0.5rem 0;
-    box-sizing: border-box;
-    margin-bottom: 0.5rem;
-    background-color: #6B8E23;
-  }
-  
-  /* .setts-info li:nth-child(odd) {
-    background-color: #6a8e23c2; 
-  } */
-  
-  .setts-info a {
-    font-family: 'Heading2';
-    text-decoration: none;
-    text-align: center;
-    color: white;
-    display: block; /* make link fill entire list item */
-    padding: 0.5rem; /* add padding inside border */
-    width: 100%; /* set the width to fill the entire list item */
-    box-sizing: border-box; /* include padding and border in the width */
-   
-  }
+  gap: 0.1rem;
+}
+
+/* give each link a border and pad it*/
+.setts-info button {
+  text-align: center;
+  border-radius: 0.5rem;
+  width: calc(50% - 1rem);
+  height: 6rem;
+  box-sizing: border-box;
+  background-color: #6B8E23;
+  margin: 0.4rem;
+}
+
+.setts-info button:hover{
+  background-color: #eaefe9;
+  transition: background-color 0s;
+}
+
+.setts-info button:hover li {
+  background-color: #eaefe9;
+  transition: background-color 0s;
+}
+
+.setts-info li {
+  font-family: "Heading2";
+  background-color: #6B8E23;
+}
 
 .title {
   text-decoration: underline;
 }
 
-
 .add-member-button {
-  border-color: #225095;
+  border-color: #5b7a1e;
   padding: 5px 10px;
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
   cursor: pointer;
   transition-duration: 0.4s;
-  margin-left:0;
+  margin-left: 0;
   margin-top: 5px;
   margin-bottom: 25px;
 }
 
 .add-member-button:hover {
-  background-color: #1e4682;
+  background-color: #6B8E23;
 }
 
 .add-member-button span {
@@ -77,7 +67,6 @@
   font-size: 24px;
   line-height: 20px;
 }
-
 
 .modal-close {
   background-color: #e07a5f;
