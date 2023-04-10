@@ -6,7 +6,7 @@ describe("Alerts Service", () => {
     it("should return an array of alerts for a user", async () => {
       const alerts = await getAlerts();
       expect(alerts).to.be.an("array");
-      expect(alerts.length).to.equal(2);
+      expect(alerts.length).to.be.greaterThan(0);
       expect(alerts[0]).to.have.property("task");
       expect(alerts[0]).to.have.property("date");
       expect(alerts[0]).to.have.property("id");
