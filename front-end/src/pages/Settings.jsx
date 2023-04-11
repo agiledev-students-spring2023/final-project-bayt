@@ -96,69 +96,62 @@ const Settings = () => {
 
   return (
     <div className="back">
-      <div className="contain">
-        <Header title={"Settings"} />
-      </div>
+      <Header title={"Settings"} />
 
       <div className="setts-info">
         <ul className="links-container">
-          <li>
-            <a
-              href="#/"
-              onClick={() => handleLinkClick("Household Information")}>
-              {"Household Information"}
-            </a>
-          </li>
+          <button
+            href="#/"
+            onClick={() => handleLinkClick("Household Information")}>
+            <li>{"Household Information"}</li>
+          </button>
           {links.map((link) => (
-            <li key={link.name}>
-              <a href="#/" onClick={() => handleLinkClick(link)}>
-                {link.name}
-              </a>
-            </li>
-          ))}
-          <li>
-            <a href="#/" onClick={() => handleLinkClick("Logout")}>
-              {"Logout"}
-            </a>
-          </li>
-        </ul>
-
-        <Modal
-          style={customStyles}
-          isOpen={modalIsOpen}
-          onRequestClose={handleModalClose}>
-          <h2 className="title">{selectedLink.name}</h2>
-          <p style={{ whiteSpace: "pre-line" }}>{selectedLink.content}</p>
-          {/* display any other properties you added to the link object */}
-          <button className="modal-close" onClick={handleModalClose}>
-            Close
-          </button>
-        </Modal>
-
-        <Modal
-          style={customStyles}
-          isOpen={membersIsOpen}
-          onRequestClose={handleModalClose}>
-          <h2 className="title">Household Information</h2>
-          <h3>Household Name:</h3>
-          <p>Ravenclaw</p>
-          {/*delete hardcoded RavenClaw later and pull name from database*/}
-          <h3>Your Household Members:</h3>
-          <p style={{ whiteSpace: "pre-line" }}>{membs}</p>
-          <div className="add-member-button-container">
-            <h3>Add a Member</h3>
-            <p>This will allow everyone to stay connected and up to date</p>
-            <button
-              className="add-member-button"
-              onClick={() => (window.location.href = "/Addmembers")}>
-              <span>+</span>
+            <button href="#/" onClick={() => handleLinkClick(link)}>
+              <li key={link.name}>{link.name}</li>
             </button>
-          </div>
-          <button className="modal-close" onClick={handleModalClose}>
-            Close
+          ))}
+
+          <button href="#/" onClick={() => handleLinkClick("Logout")}>
+            <li>{"Logout"}</li>
           </button>
-        </Modal>
+        </ul>
       </div>
+
+      <Modal
+        style={customStyles}
+        isOpen={modalIsOpen}
+        onRequestClose={handleModalClose}>
+        <h2 className="title">{selectedLink.name}</h2>
+        <p style={{ whiteSpace: "pre-line" }}>{selectedLink.content}</p>
+        {/* display any other properties you added to the link object */}
+        <button className="modal-close" onClick={handleModalClose}>
+          Close
+        </button>
+      </Modal>
+
+      <Modal
+        style={customStyles}
+        isOpen={membersIsOpen}
+        onRequestClose={handleModalClose}>
+        <h2 className="title">Household Information</h2>
+        <h3>Household Name:</h3>
+        <p>Ravenclaw</p>
+        {/*delete hardcoded RavenClaw later and pull name from database*/}
+        <h3>Your Household Members:</h3>
+        <p style={{ whiteSpace: "pre-line" }}>{membs}</p>
+        <div className="add-member-button-container">
+          <h3>Add a Member</h3>
+          <p>This will allow everyone to stay connected and up to date</p>
+          <button
+            className="add-member-button"
+            onClick={() => (window.location.href = "/Addmembers")}>
+            <span>+</span>
+          </button>
+        </div>
+        <button className="modal-close" onClick={handleModalClose}>
+          Close
+        </button>
+      </Modal>
       <Footer />
     </div>
   );
