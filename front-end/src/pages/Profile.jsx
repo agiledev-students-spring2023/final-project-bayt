@@ -15,10 +15,14 @@ const NameInfo = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [tempName, setTempName] = useState('');
 
+  //This will be changed the moment we set authentication and database up
+  //But since we do not yet, we must rely on hardcoded username in front-end to retreive this persons profile nformation
+  //ideally we would retrieve the user's username once they start a database session and store it safely
+  const username = "badbunny";
 
   React.useEffect(() => {
     axios
-        .get(`/api/Profile`)
+        .get(`/api/Profile/${username}`)
         .then(response => {
          setName(response.data.username);   
         })
@@ -46,7 +50,7 @@ const NameInfo = () => {
       if (tempName.trim() !== '') {
         setName(tempName.trim());
         axios
-          .put(`/api/Profile`, { username: tempName.trim() })
+          .put(`/api/Profile/${username}`, { username: tempName.trim() })
           .then((response) => {
             console.log(response.data);
           })
@@ -66,7 +70,7 @@ const NameInfo = () => {
     if (tempName.trim() !== '') {
       setName(tempName.trim());
       axios
-        .put(`/api/Profile`, { username: tempName.trim() })
+        .put(`/api/Profile/${username}`, { username: tempName.trim() })
         .then((response) => {
           console.log(response.data);
         })
