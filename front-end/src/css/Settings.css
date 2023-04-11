@@ -28,12 +28,12 @@
 
 .setts-info button:hover{
   background-color: #eaefe9;
-  transition: background-color 0s;
+  transition: background-color 0s ease-in-out;
 }
 
 .setts-info button:hover li {
   background-color: #eaefe9;
-  transition: background-color 0s;
+  transition: background-color 0s ease-in-out;
 }
 
 .setts-info li {
