@@ -122,6 +122,7 @@ const TaskListComponent = ({filterFunction, sortComparator, enableCheckbox, cent
       prev_day = day;
       return (
         <>
+          <div className="line"></div>
           <h2 className="day_title">{day}</h2>
         </>
       );

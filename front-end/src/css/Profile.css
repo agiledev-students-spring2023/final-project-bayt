@@ -33,26 +33,29 @@
   cursor: pointer;
   display: flex;
   align-items: center;
-  font-family: "Inter";
+  font-family: 'Inter';
 }
 
+
 .delete-account-button {
-  display: block;
-  color: white;
-  padding: 10px;
-  border-radius: 5px;
-  border: none;
-  width: 70%;
-  text-align: center;
-  margin: 5rem;
+display: block;
+background-color: #3D405B;
+color: white;
+padding: 10px;
+border-radius: 5px;
+border: none;
+width: 70%;
+text-align: center;
+margin: 30px auto;
 }
 
 .modal {
   background-color: #3d405b;
   padding: 20px;
   border-radius: 10px;
-  width: "auto";
+  width: 'auto';
   text-align: center;
+
 }
 
 .warn {
@@ -80,13 +83,6 @@
 }
 
 .button.danger {
-  background-color: #e07a5f;
+  background-color:  #E07A5f;
   color: white;
-}
-
-.edit-button {
-  font-family: "Body";
-  background-color: #3D405B;
-  border-radius: 0;
-
 }
