@@ -19,6 +19,7 @@
 }
 
 .edit-input {
+  font-family: "Body";
   width: 150px;
   font-size: 18px;
   padding: 5px;
@@ -81,4 +82,11 @@
 .button.danger {
   background-color: #e07a5f;
   color: white;
+}
+
+.edit-button {
+  font-family: "Body";
+  background-color: #3D405B;
+  border-radius: 0;
+
 }
