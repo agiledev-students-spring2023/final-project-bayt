@@ -18,13 +18,12 @@
 }
 
 .custom-file-upload {
-    font-size: 10px;
     display: block;
     margin: 10px auto;
     text-align: center;
     background-color: #3D405B;
     color: white;
-    width: 3rem;
+    width: 5rem;
     padding: 0.5rem;
 }
 

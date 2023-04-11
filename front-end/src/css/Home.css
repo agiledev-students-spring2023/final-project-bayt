@@ -2,17 +2,21 @@
   position: relative;
   width: 100%;
   display: flex;
-  flex-direction: row;
   flex-wrap: wrap;
   padding-top: 2rem;
   margin-bottom: 1rem;
-  justify-content: center;
-  align-content: flex-start;
+  justify-content: left;
   align-items: center;
 }
 
 .roomButton {
+  font-family: 'Heading2';
   text-align: center;
   height: 6rem;
-  width: 9rem;
+  width: 12rem;
+  margin: 0.5rem;
+}
+
+DialogTitle .add-room-form {
+  font-family: 'Heading2';
 }

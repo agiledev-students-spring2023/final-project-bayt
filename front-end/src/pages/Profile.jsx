@@ -108,11 +108,6 @@ const NameInfo = () => {
 
 //replace h1 with header and delete from css
 const Profile = () => {
-
-
-
-
-
     return (
     <>
       <Header title="Profile"/>
@@ -129,4 +124,3 @@ const Profile = () => {
 };
 
 export default Profile
-

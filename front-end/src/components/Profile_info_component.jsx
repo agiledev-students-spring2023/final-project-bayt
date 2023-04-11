@@ -19,8 +19,6 @@ const ProfInfo = () => {
   const [phone, setPhone] = React.useState('');
   const [rooms, setRooms] = React.useState('');
 
-
-
   //axios to get data fetched by backend
   React.useEffect(() => {
       axios
@@ -35,14 +33,10 @@ const ProfInfo = () => {
       console.log(err);
       })
   }, [])
-  
-
 
   const handleEditClick = () => {
     setIsEditable(true);
   };
-
-  
 
   const handleSaveClick = () => {
     setIsEditable(false);
