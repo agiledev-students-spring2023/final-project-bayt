@@ -33,7 +33,7 @@ const TaskSchema = new Schema({
         type: String,
         required: true
     },
-    assignee: { // this should be an array of type user and populated user's
+    assignee: { // this should be user assigned
         type: mongoose.ObjectId,
         ref: usersModel
     },
