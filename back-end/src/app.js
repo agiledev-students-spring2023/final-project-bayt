@@ -1,7 +1,17 @@
 // import and instantiate express
-const express = require("express") // CommonJS import style!
+const express = require("express")
 const bodyParser = require('body-parser');
 const cors = require('cors') // middleware for enabling CORS (Cross-Origin Resource Sharing) requests.
+
+// import and instantiate mongoose
+const mongoose = require("mongoose") 
+// require('dotenv/config');
+
+// // connect to database
+// mongoose
+//   .connect(`${process.env.DB_CONNECTION_STRING}`)
+//   .then(data => console.log(`Connected to MongoDB`))
+//   .catch(err => console.error(`Failed to connect to MongoDB: ${err}`))
 
 const taskRouter = require('./routes/task.route.js');
 const profRouter = require('./routes/prof.route.js');
