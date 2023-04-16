@@ -1,4 +1,4 @@
-const info = require('../json/hardcode.json')
+const userData = require('../json/hardcode.json')
 const fs = require('fs');
 const multer = require('multer');
 const path = require('path');
@@ -16,16 +16,21 @@ const upload = multer({ storage: storage });
 
 //ideally we query with mongoose and pull object using ID
 async function gets(req, res) {
-    try{
-        res.json(info)
-      }
-      catch (err) {
-        console.error(err)
-        res.status(400).json({
-          error: err,
-          status: 'failed to retrieve data',
-        })
-      }
+  try {
+    const username = req.params.username;
+    if (userData.username !== username) {
+      return res.status(404).json({
+        message: 'User not found',
+      });
+    }
+    res.json(userData);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({
+      error: err,
+      message: 'Failed to retrieve data',
+    });
+  }
   };
 
   //handle user uploading files
@@ -56,20 +61,29 @@ async function gets(req, res) {
 
   //change all this when we use database.  Will be a lot simpler.
   async function update(req, res) {
-    let data = JSON.parse(fs.readFileSync(require.resolve('../json/hardCode.json')));
-    const updatedData = req.body;
-
-    
-        // Update the existing data with the updated fields
-        Object.keys(updatedData).forEach((key) => {
-          data[key] = updatedData[key];
+    try {
+      const username = req.params.username;
+      if (userData.username !== username) {
+        return res.status(404).json({
+          error: 'User not found',
+          status: 'failed to update data',
         });
-    
-        // Write the updated data back to the JSON file
-        fs.writeFileSync(require.resolve('../json/hardCode.json'), JSON.stringify(data));
-    
-        // Send a success response to the client-side application
-        res.send(data);
+      }
+      const updatedData = req.body;
+      console.log(updatedData)
+      // Update the existing data with the updated fields
+      Object.assign(userData, updatedData);
+      // Write the updated data back to the JSON file
+      fs.writeFileSync(require.resolve('../json/hardCode.json'), JSON.stringify(userData));
+      // Send a success response to the client-side application
+      res.send(userData);
+    } catch (err) {
+      console.error(err);
+      res.status(400).json({
+        error: err,
+        status: 'failed to update data',
+      });
+    }
   };
 
 
