@@ -9,7 +9,7 @@ describe("Alerts Service", () => {
       expect(alerts.length).to.be.greaterThan(0);
       expect(alerts[0]).to.have.property("task");
       expect(alerts[0]).to.have.property("date");
-      expect(alerts[0]).to.have.property("id");
+      expect(alerts[0]).to.have.property("_id");
     });
   });
 
