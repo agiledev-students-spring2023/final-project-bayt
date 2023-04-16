@@ -43,7 +43,6 @@ describe("Login Routes", () => {
         .post("/login")
         .send(loginSuccess)
         .end((err, res) => {
-          console.log(res);
           res.should.have.status(200);
           res.body.should.eql("Login successfully");
           done();

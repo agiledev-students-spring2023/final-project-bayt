@@ -60,9 +60,9 @@ describe("Task Routes", () => {
         .request(app)
         .get(`/tasks/${inv_task_id}`)
         .end((err, res) => {
-          res.should.have.status(500);
+          res.should.have.status(400);
           res.body.should.be.a("object");
-          res.body.should.have.property("message").eql("Task not found");
+          res.body.should.have.property("errors");
           done();
         });
     });
@@ -87,7 +87,6 @@ describe("Task Routes", () => {
         .post("/tasks")
         .send(newTaskData)
         .end((err, res) => {
-          console.log(res);
           res.should.have.status(200);
           res.body.should.eql("Task created successfully");
           done();
@@ -115,35 +114,35 @@ describe("Task Routes", () => {
           .post("/tasks")
           .send(task)
           .end((err, res) => {
-            res.should.have.status(500);
+            res.should.have.status(400);
             res.body.should.be.a("object");
-            res.body.should.have.property("message").eql("Task id not found");
+            res.body.should.have.property("errors");
             done();
           });
       });
     });
 
-    // describe("PUT TASK", () => {
-    //   it("should update an existing task", (done) => {
-    //     chai
-    //       .request(app)
-    //       .put(`/tasks/${newTaskData.id.$oid}`)
-    //       .send(newTaskData)
-    //       .end((err, res) => {
-    //         res.should.have.status(200);
-    //         done();
-    //       });
-    //   });
+    describe("PUT TASK", () => {
+      it("should update an existing task", (done) => {
+        chai
+          .request(app)
+          .put(`/tasks/${newTaskData.id.$oid}`)
+          .send(newTaskData)
+          .end((err, res) => {
+            res.should.have.status(200);
+            done();
+          });
+      });
 
-    //   it("should return an error when trying to update a non-existent task", (done) => {
-    //     chai
-    //       .request(app)
-    //       .put(`/tasks/${inv_task_id}`)
-    //       .send(newTaskData)
-    //       .end((err, res) => {
-    //         res.should.have.status(500);
-    //         done();
-    //       });
-    //   });
-    // });
+      it("should return an error when trying to update a non-existent task", (done) => {
+        chai
+          .request(app)
+          .put(`/tasks/${inv_task_id}`)
+          .send(newTaskData)
+          .end((err, res) => {
+            res.should.have.status(500);
+            done();
+          });
+      });
+    });
   });
