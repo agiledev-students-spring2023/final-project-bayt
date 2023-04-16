@@ -15,7 +15,7 @@ function Alerts() {
   useEffect(() => {
     const fetchAlerts = async () => {
       try {
-        const response = await fetch("http://localhost:8000/alerts");
+        const response = await fetch("/api/alerts");
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
@@ -33,7 +33,7 @@ function Alerts() {
     try {
       const isChecked = event.target.checked;
       const alertId = alert._id; // Extract the id value from the alert object
-      const response = await fetch(`http://localhost:8000/alerts/update`, {
+      const response = await fetch(`/api/alerts/update`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ alertId, isChecked }),

@@ -19,7 +19,7 @@ const TaskListComponent = ({filterFunction, sortComparator, enableCheckbox, cent
 
     // Update each selected task to complete
     let temp_func = (selectObject) => {
-      let taskoi = data.find(({ id }) => id.$oid === selectObject._id); // find task
+      let taskoi = data.find(({ _id }) => _id.$oid === selectObject._id); // find task
       taskoi.complete = true; // set task to complete
       axios
         .put(
