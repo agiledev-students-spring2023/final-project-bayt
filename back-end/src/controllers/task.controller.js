@@ -5,7 +5,6 @@ async function get(req, res) {
   try {
     const task = await taskService.getTask(req.params.id);
 
-    // POPULATE DATA???!
     if (process.env.NODE_ENV === 'production') {
       if (task === null) throw new Error("Task not found");
     } else {
