@@ -19,15 +19,10 @@ const ProfInfo = () => {
   const [phone, setPhone] = React.useState('');
   const [rooms, setRooms] = React.useState('');
 
-  //This will be changed the moment we set authentication and database up
-  //But since we do not yet, we must rely on hardcoded username in front-end to retreive this persons profile nformation
-  //ideally we would retrieve the user's username once they start a database session and store it safely
-  const username = "badbunny";
-
   //axios to get data fetched by backend
   React.useEffect(() => {
       axios
-          .get(`/api/Profile/${username}`)
+          .get(`/api/Profile`)
           .then(response => {
               setEmail(response.data.email);
               setHouseholdRole(response.data.role);
@@ -47,7 +42,7 @@ const ProfInfo = () => {
     setIsEditable(false);
    //axios to update data in backend
     axios
-    .put(`/api/Profile/${username}`, {
+    .put(`/api/Profile`, {
       email,
       role: householdRole,
       password: housecode,
