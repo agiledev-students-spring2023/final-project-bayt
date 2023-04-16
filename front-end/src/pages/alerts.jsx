@@ -32,7 +32,7 @@ function Alerts() {
     console.log(alert);
     try {
       const isChecked = event.target.checked;
-      const alertId = alert.id; // Extract the id value from the alert object
+      const alertId = alert._id; // Extract the id value from the alert object
       const response = await fetch(`http://localhost:8000/alerts/update`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -61,7 +61,7 @@ function Alerts() {
                 <li key={index}>
                   <div className="wrapper">
                     <label className="control control-checkbox">
-                      <Link to={`/tasks/${alert.id.$oid}`}>
+                      <Link to={`/tasks/${alert._id.$oid}`}>
                         {" "}
                         {alert.task} due by {alert.date}{" "}
                       </Link>
