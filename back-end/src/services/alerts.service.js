@@ -14,7 +14,7 @@ async function getAlerts() {
       return {
         task: alert.task_name,
         date: date,
-        id: alert._id,
+        _id: alert._id,
       };
     });
   return filteredAlerts;
