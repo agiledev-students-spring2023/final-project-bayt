@@ -4,7 +4,13 @@ const taskService = require("../services/task.service.js");
 async function get(req, res) {
   try {
     const task = await taskService.getTask(req.params.id);
-    if (task === undefined) throw new Error("Task not found");
+
+    // POPULATE DATA???!
+    if (process.env.NODE_ENV === 'production') {
+      if (task === null) throw new Error("Task not found");
+    } else {
+      if (task === undefined) throw new Error("Task not found");
+    }
     res.status(200).json(task);
   } catch (err) {
     res.status(500).json({ message: err.message });
