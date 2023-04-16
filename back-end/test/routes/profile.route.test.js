@@ -10,7 +10,7 @@ describe("Profile Routes", () => {
 
   before(async () => {
     const hardcode_json = require("../../src/json/hardcode.json");
-    hardcode_json.should.be.a("array").has.length.greaterThan(0);
+    hardcode_json.should.be.a("object").that.is.not.empty;
   });
 
 

@@ -22,7 +22,7 @@ const ProfInfo = () => {
   //This will be changed the moment we set authentication and database up
   //But since we do not yet, we must rely on hardcoded username in front-end to retreive this persons profile nformation
   //ideally we would retrieve the user's username once they start a database session and store it safely
-  const username = "bad";
+  const username = "badbunny";
 
   //axios to get data fetched by backend
   React.useEffect(() => {

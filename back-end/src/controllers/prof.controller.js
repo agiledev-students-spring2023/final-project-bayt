@@ -1,4 +1,4 @@
-const info = require('../json/hardcode.json')
+const userData = require('../json/hardcode.json')
 const fs = require('fs');
 const multer = require('multer');
 const path = require('path');
@@ -18,8 +18,7 @@ const upload = multer({ storage: storage });
 async function gets(req, res) {
   try {
     const username = req.params.username;
-    const userData = info.find((data) => data.username === username);
-    if (!userData) {
+    if (userData.username !== username) {
       return res.status(404).json({
         message: 'User not found',
       });
@@ -64,21 +63,18 @@ async function gets(req, res) {
   async function update(req, res) {
     try {
       const username = req.params.username;
-      const data = JSON.parse(fs.readFileSync(require.resolve('../json/hardCode.json')));
-      const userData = data.find(obj => obj.username === username);
-      if (!userData) {
+      if (userData.username !== username) {
         return res.status(404).json({
           error: 'User not found',
           status: 'failed to update data',
         });
       }
       const updatedData = req.body;
+      console.log(updatedData)
       // Update the existing data with the updated fields
-      Object.keys(updatedData).forEach((key) => {
-        userData[key] = updatedData[key];
-      });
+      Object.assign(userData, updatedData);
       // Write the updated data back to the JSON file
-      fs.writeFileSync(require.resolve('../json/hardCode.json'), JSON.stringify(data));
+      fs.writeFileSync(require.resolve('../json/hardCode.json'), JSON.stringify(userData));
       // Send a success response to the client-side application
       res.send(userData);
     } catch (err) {
