@@ -31,7 +31,7 @@ function generateOId() {
 };
 
 const defaultValues = {
-    id: {
+    _id: {
         $oid: generateOId(),
     },
     task_name: "",
@@ -84,7 +84,7 @@ function IndividualTask(props) {
 
                 if (!taskData.response) {
                     setFormValues({
-                        id: {$oid: id},
+                        _id: {$oid: id},
                         task_name: taskData['task_name'] ? taskData['task_name'] : '',
                         room: taskData['room'] ? taskData['room'] : '',
                         assignee: taskData['assignee'] ? taskData['assignee'] : '',
@@ -141,6 +141,7 @@ function IndividualTask(props) {
             });
         }
         else {
+            console.log(formValues);
             axios
             .post(backend_route, formValues)
             .then((res) => {
