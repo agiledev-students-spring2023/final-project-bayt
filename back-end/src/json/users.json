@@ -1,6 +1,6 @@
 [
   {
-    "id": {
+    "_id": {
       "$oid": "67320bd0fc12ac1e606b8ke0"
     },
     "username": "fishc0",
@@ -9,7 +9,7 @@
     "email": "zc2122@nyu.edu",
     "assigned_tasks": [
       {
-        "id": {
+        "_id": {
           "$oid": "64320bf0fc13ae1e696b0ee1"
         },
         "task_name": "cook spaghetti",
@@ -28,7 +28,7 @@
     ],
     "houses": [
       {
-        "id": {
+        "_id": {
           "$oid": "64320bf0fc13ae1e696b0efc"
         },
         "code": "12345",
@@ -54,7 +54,7 @@
     ]
   },
   {
-    "id": {
+    "_id": {
       "$oid": "64320bf0fc13ae1e696b0ee0"
     },
     "username": "adevuyst0",
@@ -63,7 +63,7 @@
     "email": "adevuyst0@jimdo.com",
     "assigned_tasks": [
       {
-        "id": {
+        "_id": {
           "$oid": "64320bf0fc13ae1e696b0ee1"
         },
         "task_name": "cook spaghetti",
@@ -83,7 +83,7 @@
     "houses": []
   },
   {
-    "id": {
+    "_id": {
       "$oid": "64320bf0fc13ae1e696b0ee3"
     },
     "username": "mcampanelli1",
@@ -92,7 +92,7 @@
     "email": "mcampanelli1@bandcamp.com",
     "assigned_tasks": [
       {
-        "id": {
+        "_id": {
           "$oid": "64320bf0fc13ae1e696b0ee4"
         },
         "task_name": "take out trash",
@@ -109,7 +109,7 @@
         "repeat": 1
       },
       {
-        "id": {
+        "_id": {
           "$oid": "64320bf0fc13ae1e696b0ee6"
         },
         "task_name": "take out trash",
@@ -126,7 +126,7 @@
         "repeat": 1
       },
       {
-        "id": {
+        "_id": {
           "$oid": "64320bf0fc13ae1e696b0ee8"
         },
         "task_name": "buy an air fryer",
@@ -145,7 +145,7 @@
     ],
     "houses": [
       {
-        "id": {
+        "_id": {
           "$oid": "64320bf0fc13ae1e696b0eea"
         },
         "code": "AKRHSR",
@@ -166,7 +166,7 @@
         ]
       },
       {
-        "id": {
+        "_id": {
           "$oid": "64320bf0fc13ae1e696b0eeb"
         },
         "code": "FSHLBQ",
@@ -190,7 +190,7 @@
         ]
       },
       {
-        "id": {
+        "_id": {
           "$oid": "64320bf0fc13ae1e696b0eec"
         },
         "code": "JCBGKO",
@@ -213,7 +213,7 @@
     ]
   },
   {
-    "id": {
+    "_id": {
       "$oid": "64320bf0fc13ae1e696b0eed"
     },
     "username": "ckirman2",
@@ -222,7 +222,7 @@
     "email": "ckirman2@abc.net.au",
     "assigned_tasks": [
       {
-        "id": {
+        "_id": {
           "$oid": "64320bf0fc13ae1e696b0eee"
         },
         "task_name": "clean bathroom",
@@ -242,7 +242,7 @@
     "houses": []
   },
   {
-    "id": {
+    "_id": {
       "$oid": "64320bf0fc13ae1e696b0ef0"
     },
     "username": "ctanser3",
@@ -252,7 +252,7 @@
     "assigned_tasks": [],
     "houses": [
       {
-        "id": {
+        "_id": {
           "$oid": "64320bf0fc13ae1e696b0ef1"
         },
         "code": "JWBMQF",
@@ -282,7 +282,7 @@
         ]
       },
       {
-        "id": {
+        "_id": {
           "$oid": "64320bf0fc13ae1e696b0ef2"
         },
         "code": "MTGQXH",
@@ -312,7 +312,7 @@
         ]
       },
       {
-        "id": {
+        "_id": {
           "$oid": "64320bf0fc13ae1e696b0ef3"
         },
         "code": "LUXUPF",
@@ -335,7 +335,7 @@
     ]
   },
   {
-    "id": {
+    "_id": {
       "$oid": "64320bf0fc13ae1e696b0ef4"
     },
     "username": "nroalfe4",
@@ -344,7 +344,7 @@
     "email": "nroalfe4@sina.com.cn",
     "assigned_tasks": [
       {
-        "id": {
+        "_id": {
           "$oid": "64320bf0fc13ae1e696b0ef5"
         },
         "task_name": "take out trash",
@@ -363,7 +363,7 @@
     ],
     "houses": [
       {
-        "id": {
+        "_id": {
           "$oid": "64320bf0fc13ae1e696b0ef7"
         },
         "code": "HGTFSJ",
@@ -393,7 +393,7 @@
         ]
       },
       {
-        "id": {
+        "_id": {
           "$oid": "64320bf0fc13ae1e696b0ef8"
         },
         "code": "NDNRPM",
@@ -423,7 +423,7 @@
         ]
       },
       {
-        "id": {
+        "_id": {
           "$oid": "64320bf0fc13ae1e696b0ef9"
         },
         "code": "DKXDOM",
@@ -449,7 +449,7 @@
     ]
   },
   {
-    "id": {
+    "_id": {
       "$oid": "64320bf0fc13ae1e696b0efa"
     },
     "username": "eclemitt5",
@@ -459,7 +459,7 @@
     "assigned_tasks": [],
     "houses": [
       {
-        "id": {
+        "_id": {
           "$oid": "64320bf0fc13ae1e696b0efb"
         },
         "code": "GOYLPY",
@@ -483,7 +483,7 @@
         ]
       },
       {
-        "id": {
+        "_id": {
           "$oid": "64320bf0fc13ae1e696b0efc"
         },
         "code": "CKZLMB",
@@ -507,7 +507,7 @@
         ]
       },
       {
-        "id": {
+        "_id": {
           "$oid": "64320bf0fc13ae1e696b0efd"
         },
         "code": "PMUYWO",
@@ -536,7 +536,7 @@
     ]
   },
   {
-    "id": {
+    "_id": {
       "$oid": "64320bf0fc13ae1e696b0efe"
     },
     "username": "kaves6",
@@ -545,7 +545,7 @@
     "email": "kaves6@1und1.de",
     "assigned_tasks": [
       {
-        "id": {
+        "_id": {
           "$oid": "64320bf0fc13ae1e696b0eff"
         },
         "task_name": "call maintenance",
@@ -562,7 +562,7 @@
         "repeat": 1
       },
       {
-        "id": {
+        "_id": {
           "$oid": "64320bf0fc13ae1e696b0f01"
         },
         "task_name": "cook spaghetti",
@@ -582,7 +582,7 @@
     "houses": []
   },
   {
-    "id": {
+    "_id": {
       "$oid": "64320bf0fc13ae1e696b0f03"
     },
     "username": "cfoot7",
@@ -591,7 +591,7 @@
     "email": "cfoot7@xrea.com",
     "assigned_tasks": [
       {
-        "id": {
+        "_id": {
           "$oid": "64320bf0fc13ae1e696b0f04"
         },
         "task_name": "take out trash",
@@ -608,7 +608,7 @@
         "repeat": 1
       },
       {
-        "id": {
+        "_id": {
           "$oid": "64320bf0fc13ae1e696b0f06"
         },
         "task_name": "call maintenance",
@@ -628,7 +628,7 @@
     "houses": []
   },
   {
-    "id": {
+    "_id": {
       "$oid": "64320bf0fc13ae1e696b0f08"
     },
     "username": "dleyzell8",
@@ -638,7 +638,7 @@
     "assigned_tasks": [],
     "houses": [
       {
-        "id": {
+        "_id": {
           "$oid": "64320bf0fc13ae1e696b0f09"
         },
         "code": "FGJLXO",
@@ -667,7 +667,7 @@
     ]
   },
   {
-    "id": {
+    "_id": {
       "$oid": "64320bf0fc13ae1e696b0f0a"
     },
     "username": "jcolmer9",
@@ -676,7 +676,7 @@
     "email": "jcolmer9@diigo.com",
     "assigned_tasks": [
       {
-        "id": {
+        "_id": {
           "$oid": "64320bf0fc13ae1e696b0f0b"
         },
         "task_name": "cook spaghetti",
@@ -693,7 +693,7 @@
         "repeat": 1
       },
       {
-        "id": {
+        "_id": {
           "$oid": "64320bf0fc13ae1e696b0f0d"
         },
         "task_name": "call maintenance",
@@ -712,7 +712,7 @@
     ],
     "houses": [
       {
-        "id": {
+        "_id": {
           "$oid": "64320bf0fc13ae1e696b0f0f"
         },
         "code": "XYLSHU",
@@ -736,7 +736,7 @@
         ]
       },
       {
-        "id": {
+        "_id": {
           "$oid": "64320bf0fc13ae1e696b0f10"
         },
         "code": "HCBHSL",

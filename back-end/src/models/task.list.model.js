@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const usersModel = require('./users.model');
 const Schema = mongoose.Schema
 
 // Schema for tasks matching this json object format:
@@ -9,8 +8,8 @@ const Schema = mongoose.Schema
 //     },
 //     "task_name": "call maintenance",
 //     "description": "clean properly this time",
-//     "room": "Ilaka",
-//     "assignee": "badbunny",
+//     "room": "Ilaka", // Should be a room id when PUT/POST
+//     "assignee": "badbunny", or ID OF USER FOR POST AND ID FOR PUT/POST
 //     "due_time": {
 //         "$date": {
 //             "$numberLong": 164707834700
@@ -29,13 +28,13 @@ const TaskSchema = new Schema({
         type: String,
         required: true
     },
-    room: {
-        type: String,
-        required: true
-    },
-    assignee: { // this should be user assigned
+    room: { // have to populate these two
         type: mongoose.ObjectId,
-        ref: usersModel
+        ref: 'room'
+    },
+    assignee: {
+        type: mongoose.ObjectId,
+        ref: 'user'
     },
     due_time: { // MongoDB date type
         type: Date,

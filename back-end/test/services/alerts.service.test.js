@@ -19,7 +19,7 @@ describe("Alerts Service", () => {
       logAlertState(alertId, true);
 
       const alerts = require("../../src/json/tasklist.json");
-      const updatedAlert = alerts.find((alert) => alert.id.$oid === alertId.$oid);
+      const updatedAlert = alerts.find((alert) => alert._id.$oid === alertId.$oid);
       expect(updatedAlert).to.have.property("complete");
       expect(updatedAlert.complete).to.be.true;
     });
