@@ -21,7 +21,7 @@ async function getAlerts() {
 }
 
 async function logAlertState(alertId, isChecked) {
-  console.log(`Alert ID: ${alertId}, Checked: ${isChecked}`);
+  // console.log(`Alert ID: ${alertId}, Checked: ${isChecked}`);
   const alertIndex = task_json.findIndex(alert => alert.id.$oid === alertId.$oid);
   if (alertIndex>=0) {
     task_json[alertIndex].complete = isChecked;

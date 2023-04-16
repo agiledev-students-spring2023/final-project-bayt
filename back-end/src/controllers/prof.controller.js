@@ -39,7 +39,7 @@ async function gets(req, res) {
             fs.unlinkSync(path.join(uploadDir, file));
         }
         
-        console.log('Existing files deleted successfully.');
+        // console.log('Existing files deleted successfully.');
     }
 
     // Handle file upload with Multer
@@ -49,14 +49,14 @@ async function gets(req, res) {
           return res.status(500).send(err);
         }
         
-        console.log('File uploaded successfully.');
+        // console.log('File uploaded successfully.');
   })
 };
 
 
   //change all this when we use database.  Will be a lot simpler.
   async function update(req, res) {
-    let data = JSON.parse(fs.readFileSync(require.resolve('../json/hardCode.json')));
+    let data = JSON.parse(fs.readFileSync(require.resolve('../json/hardcode.json')));
     const updatedData = req.body;
 
     
@@ -66,7 +66,7 @@ async function gets(req, res) {
         });
     
         // Write the updated data back to the JSON file
-        fs.writeFileSync(require.resolve('../json/hardCode.json'), JSON.stringify(data));
+        fs.writeFileSync(require.resolve('../json/hardcode.json'), JSON.stringify(data));
     
         // Send a success response to the client-side application
         res.send(data);

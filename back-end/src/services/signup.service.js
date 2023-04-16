@@ -21,7 +21,6 @@ async function addUser(userinfo) {
     
         fs.writeFile(require.resolve('../json/users.json'), JSON.stringify(users, null, 2), err => {
           if (err) throw err;
-          console.log('New user added!');
         });
       });
 }
