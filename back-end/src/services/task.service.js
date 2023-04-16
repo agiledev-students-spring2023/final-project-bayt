@@ -7,11 +7,11 @@ const Task = require('../models/task.list.model.js');
 //Import the task
 if (process.env.NODE_ENV === 'production') {
   getTasks = async () => {
-    return Task.find({});
+    return Task.find({}).populate('assignee', 'first_name');
   };
 
   getTask = async (task_id) => {
-    return Task.findById(task_id);
+    return Task.findById(task_id).populate('assignee', 'first_name');
   };
 
   // make sure task doesnt exist in database then add the task to the Task
