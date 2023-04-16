@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 const taskModel = require('./task.list.model');
+const houseModel = require('./house.model');
 const Schema = mongoose.Schema
 // Should be a schema for users of the form:
 // {
@@ -51,7 +52,11 @@ const UserSchema = new Schema({
     assigned_tasks: [{
         type: mongoose.ObjectId,
         ref: taskModel
-    }]
+    }],
+    houses: [{
+        type: mongoose.ObjectId,
+        ref: houseModel
+    }],
 });
 
 module.exports = User = mongoose.model('user', UserSchema);

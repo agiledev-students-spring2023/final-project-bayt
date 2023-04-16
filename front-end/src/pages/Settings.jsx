@@ -100,7 +100,7 @@ const Settings = () => {
 
       <div className="setts-info">
         <ul className="links-container">
-          <button
+          <button className=""
             href="#/"
             onClick={() => handleLinkClick("Household Information")}>
             <li>{"Household Information"}</li>
