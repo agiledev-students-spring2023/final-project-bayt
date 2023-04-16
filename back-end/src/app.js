@@ -1,3 +1,4 @@
+require('dotenv').config({ silent: true }) // load environmental variables from a hidden file named .env
 // import and instantiate express
 const express = require("express")
 const bodyParser = require('body-parser');
@@ -21,14 +22,16 @@ app.use(passport.initialize())
 
 // import and instantiate mongoose
 const mongoose = require("mongoose")
-require('dotenv').config({ silent: true }) // load environmental variables from a hidden file named .env
 
-// // connect to database
-if (process.env.NODE_ENV === 'test') {
+// connect to database
+if (process.env.NODE_ENV === "production") {
+    console.log("Production mode activated.");
     mongoose
         .connect(`${process.env.DB_CONNECTION_STRING}`)
         .then(data => console.log(`Connected to MongoDB`))
-        .catch(err => console.error(`Failed to connect to MongoDB: ${err}`))
+        .catch(err => console.error(`Failed to connect to MongoDB: ${err}`));
+} else {
+    console.log("Testing mode activated.");
 }
 
 const taskRouter = require('./routes/task.route.js');
