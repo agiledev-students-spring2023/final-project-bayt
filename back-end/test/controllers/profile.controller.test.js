@@ -6,7 +6,7 @@ describe('gets', function () {
     const req = { params: { username: 'badbunny' } };
     const res = { json: function (data) { this.data = data } };
     await gets(req, res);
-    const expectedProps = ['id','username', 'email', 'role', 'telephone', 'rooms', 'password'];
+    const expectedProps = ['_id','username', 'email', 'role', 'telephone', 'rooms', 'password'];
     const userProps = Object.keys(res.data);
     assert.deepStrictEqual(userProps, expectedProps);
   });

@@ -19,11 +19,11 @@ const TaskListComponent = ({filterFunction, sortComparator, enableCheckbox, cent
 
     // Update each selected task to complete
     let temp_func = (selectObject) => {
-      let taskoi = data.find(({ id }) => id.$oid === selectObject.id); // find task
+      let taskoi = data.find(({ _id }) => _id.$oid === selectObject._id); // find task
       taskoi.complete = true; // set task to complete
       axios
         .put(
-          backend_route + selectObject.id,
+          backend_route + selectObject._id,
           taskoi
         )
         .then((response) => {
@@ -36,7 +36,7 @@ const TaskListComponent = ({filterFunction, sortComparator, enableCheckbox, cent
 
     if (testing_mode) {
       temp_func = (selectObject) => {
-        data.find(({ id }) => id.$oid === selectObject.id).complete = true;
+        data.find(({ id }) => id.$oid === selectObject._id).complete = true;
       };
     }
 
@@ -56,13 +56,13 @@ const TaskListComponent = ({filterFunction, sortComparator, enableCheckbox, cent
     setSelected([
       ...selected,
       {
-        id: taskID,
+        _id: taskID,
       },
     ]);
   };
 
   const handleDeselect = (taskID) => {
-    setSelected(selected.filter((x) => x.id !== taskID));
+    setSelected(selected.filter((x) => x._id !== taskID));
   };
 
   const fetchData = () => {
@@ -137,10 +137,10 @@ const TaskListComponent = ({filterFunction, sortComparator, enableCheckbox, cent
         {!loaded && <CircularProgress className="loading_icon" />}
         {data.map((task_data) => {
           return (
-            <div key={task_data.id.$oid}>
+            <div key={task_data._id.$oid}>
               {TaskDay(task_data.due_time.$date.$numberLong)}
               <TaskComponent
-                id={task_data.id.$oid}
+                id={task_data._id.$oid}
                 title={task_data.task_name}
                 room={task_data.room}
                 assigned={task_data.assignee}
@@ -167,7 +167,7 @@ export default TaskListComponent;
 
 let task_json = [
   {
-    id: {
+    _id: {
       $oid: "64055f38f032391df0001d6a",
     },
     task_name: "cook spaghetti",
@@ -183,7 +183,7 @@ let task_json = [
     repeat: 1,
   },
   {
-    id: {
+    _id: {
       $oid: "64055f38f032391df0001d6b",
     },
     task_name: "cook spaghetti",
@@ -199,7 +199,7 @@ let task_json = [
     repeat: 1,
   },
   {
-    id: {
+    _id: {
       $oid: "64055f38f032391df0001d6c",
     },
     task_name: "wipe floor in kitchen",
@@ -215,7 +215,7 @@ let task_json = [
     repeat: 1,
   },
   {
-    id: {
+    _id: {
       $oid: "64055f38f032391df0001d6d",
     },
     task_name: "take out trash",
@@ -231,7 +231,7 @@ let task_json = [
     repeat: 1,
   },
   {
-    id: {
+    _id: {
       $oid: "64055f38f032391df0001d6e",
     },
     task_name: "take out trash",
@@ -247,7 +247,7 @@ let task_json = [
     repeat: 1,
   },
   {
-    id: {
+    _id: {
       $oid: "64055f38f032391df0001d6f",
     },
     task_name: "call maintenance",
@@ -263,7 +263,7 @@ let task_json = [
     repeat: 1,
   },
   {
-    id: {
+    _id: {
       $oid: "64055f38f032391df0001d70",
     },
     task_name: "wipe floor in kitchen",
@@ -279,7 +279,7 @@ let task_json = [
     repeat: 1,
   },
   {
-    id: {
+    _id: {
       $oid: "64055f38f032391df0001d71",
     },
     task_name: "call maintenance",
@@ -295,7 +295,7 @@ let task_json = [
     repeat: 1,
   },
   {
-    id: {
+    _id: {
       $oid: "64055f38f032391df0001d72",
     },
     task_name: "clean bathroom",
@@ -311,3 +311,4 @@ let task_json = [
     repeat: 1,
   },
 ];
+
