@@ -4,9 +4,9 @@
   "description": "The back-end of your project will live in this directory.",
   "main": "./src/server.js",
   "scripts": {
-    "start": "export NODE_ENV=production || set NODE_ENV=production&& nodemon ./src/server.js",
-    "test": "export NODE_ENV=production || set NODE_ENV=test&& mocha --recursive",
-    "coverage": "export NODE_ENV=production || set NODE_ENV=test&& npx nyc npm test"
+    "start": "set NODE_ENV=production && npx nodemon ./src/server.js",
+    "test": "set NODE_ENV=test && npx mocha --recursive",
+    "coverage": "set NODE_ENV=test && npx nyc npm test"
   },
   "author": "",
   "license": "ISC",
