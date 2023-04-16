@@ -11,16 +11,14 @@ import axios from 'axios';
 //editable Name part of profile.  It renders and updates each time user changes it. 
 const NameInfo = () => {
 
-  const [name, setName] = useState(''); 
+  const [name, setName] = useState('');
+  const [isEditing, setIsEditing] = useState(false);
+  const [tempName, setTempName] = useState('');
 
-  //This will be changed the moment we set authentication and database up
-  //But since we do not yet, we must rely on hardcoded username in front-end to retreive this persons profile nformation
-  //ideally we would retrieve the user's username once they start a database session and store it safely
-  const username = "badbunny";
 
   React.useEffect(() => {
     axios
-        .get(`/api/Profile/${username}`)
+        .get(`/api/Profile`)
         .then(response => {
          setName(response.data.username);   
         })
@@ -29,16 +27,84 @@ const NameInfo = () => {
     })
 }, [])
 
+
+  const handleNameClick = () => {
+    setIsEditing(true);
+    setTempName(name);
+  };
+
+
+  const handleNameChange = (event) => {
+    setTempName(event.target.value);
+  };
+
+
+  const handleNameKeyPress = (event) => {
+    if (event.key === 'Enter') {
+      setIsEditing(false);
+
+      if (tempName.trim() !== '') {
+        setName(tempName.trim());
+        axios
+          .put(`/api/Profile`, { username: tempName.trim() })
+          .then((response) => {
+            console.log(response.data);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      } 
+
+      else {
+        setTempName(name);
+      }
+    }
+  };
+
+  const handleNameBlur = () => {
+    setIsEditing(false);
+    if (tempName.trim() !== '') {
+      setName(tempName.trim());
+      axios
+        .put(`/api/Profile`, { username: tempName.trim() })
+        .then((response) => {
+          console.log(response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    } 
+
+    else {
+      setTempName(name);
+    }
+
+  };
   
   return (
     <div className="profile-container">
-        <h2 className="name-display">
+      {isEditing ? (
+        <input
+          type="text"
+          value={tempName}
+          onChange={handleNameChange}
+          onKeyDown={handleNameKeyPress}
+          onBlur={handleNameBlur}
+          autoFocus
+          className="edit-input"
+        />
+      ) : (
+        <h2 onClick={handleNameClick} className="name-display">
           {name}
         </h2>
+      )}
     </div>
   );
     
 }
+
+
+
 
 //replace h1 with header and delete from css
 const Profile = () => {

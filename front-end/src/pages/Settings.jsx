@@ -106,7 +106,7 @@ const Settings = () => {
             <li>{"Household Information"}</li>
           </button>
           {links.map((link) => (
-            <button key={link.name} href="#/" onClick={() => handleLinkClick(link)}>
+            <button href="#/" onClick={() => handleLinkClick(link)}>
               <li key={link.name}>{link.name}</li>
             </button>
           ))}
