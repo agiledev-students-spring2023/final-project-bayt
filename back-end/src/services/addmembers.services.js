@@ -17,7 +17,6 @@ async function savingUser(userinfo) {
     
         fs.writeFile(require.resolve('../json/household_info.json'), JSON.stringify(users, null, 2), err => {
           if (err) throw err;
-          console.log('New user added!');
         });
       });
 }

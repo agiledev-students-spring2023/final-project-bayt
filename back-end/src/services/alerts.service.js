@@ -14,15 +14,15 @@ async function getAlerts() {
       return {
         task: alert.task_name,
         date: date,
-        id: alert.id,
+        _id: alert._id,
       };
     });
   return filteredAlerts;
 }
 
 async function logAlertState(alertId, isChecked) {
-  console.log(`Alert ID: ${alertId}, Checked: ${isChecked}`);
-  const alertIndex = task_json.findIndex(alert => alert.id.$oid === alertId.$oid);
+  // console.log(`Alert ID: ${alertId}, Checked: ${isChecked}`);
+  const alertIndex = task_json.findIndex(alert => alert._id.$oid === alertId.$oid);
   if (alertIndex>=0) {
     task_json[alertIndex].complete = isChecked;
   }

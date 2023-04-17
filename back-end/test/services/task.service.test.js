@@ -4,7 +4,7 @@ const taskService = require("../../src/services/task.service.js");
 // New Task data we add to the database
 let existingTaskData = {};
 const newTaskData = {
-  id: {
+  _id: {
     $oid: "test-new-task-id-1",
   },
   task_name: "new task",
@@ -37,8 +37,8 @@ describe("Task Service", () => {
 
   describe("#getTask(task_id)", () => {
     it("should return the task with the matching task_id", async () => {
-      const task = await taskService.getTask(existingTaskData.id.$oid);
-      assert.strictEqual(task.id.$oid, existingTaskData.id.$oid);
+      const task = await taskService.getTask(existingTaskData._id.$oid);
+      assert.strictEqual(task._id.$oid, existingTaskData._id.$oid);
     });
 
     it("should return undefined if no task with matching task_id is found", async () => {
@@ -51,7 +51,7 @@ describe("Task Service", () => {
     it("should add the task_data to the task_json array if it does not already exist", async () => {
       const message = await taskService.createTask(newTaskData);
       assert.strictEqual(message, "Task created successfully");
-      const task = await taskService.getTask(newTaskData.id.$oid);
+      const task = await taskService.getTask(newTaskData._id.$oid);
       assert.deepStrictEqual(task, newTaskData);
     });
 
@@ -71,8 +71,8 @@ describe("Task Service", () => {
   describe("#updateTask(task_id, task_data)", () => {
     it("should update the task_data in the task_json array for the task with the matching task_id", async () => {
       const taskDataToUpdate = {
-        id: {
-          $oid: existingTaskData.id.$oid,
+        _id: {
+          $oid: existingTaskData._id.$oid,
         },
         task_name: "updated task",
         description: "updated task description",
@@ -87,11 +87,11 @@ describe("Task Service", () => {
         repeat: 2,
       };
       const message = await taskService.updateTask(
-        existingTaskData.id.$oid,
+        existingTaskData._id.$oid,
         taskDataToUpdate
       );
       assert.strictEqual(message, "Task updated successfully");
-      const task = await taskService.getTask(existingTaskData.id.$oid);
+      const task = await taskService.getTask(existingTaskData._id.$oid);
       assert.deepStrictEqual(task, taskDataToUpdate);
     });
   });
@@ -107,9 +107,9 @@ describe("Task Service", () => {
     });
 
     it("should remove the task with the matching task_id from the task_json array", async () => {
-      const message = await taskService.removeTask(newTaskData.id.$oid);
+      const message = await taskService.removeTask(newTaskData._id.$oid);
       assert.strictEqual(message, "Task deleted successfully");
-      const task = await taskService.getTask(newTaskData.id.$oid);
+      const task = await taskService.getTask(newTaskData._id.$oid);
       assert.strictEqual(task, undefined);
     });
   });

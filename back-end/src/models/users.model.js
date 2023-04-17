@@ -15,7 +15,7 @@ const houseModel = require('./house.model');
 //     "first_name": "Zander",
 //     "last_name": "Chen",
 //     "email": "zc2122@nyu.edu",
-//     "assigned_tasks": [
+//     "assigned_tasks": [ // array of task ids to be populated
 //       {
 //         "id": {
 //           "$oid": "64320bf0fc13ae1e696b0ee1"
@@ -61,6 +61,11 @@ const UserSchema = new Schema({
         type: mongoose.ObjectId,
         ref: taskModel
     }],
+    role: {
+        type: String,
+        required: true
+    },
+
     houses: [{
         type: mongoose.ObjectId,
         ref: houseModel

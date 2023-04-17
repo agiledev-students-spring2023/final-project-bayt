@@ -23,7 +23,7 @@ const loginUserNotFound = {
 
 const housesData = [
   {
-    "id": {
+    "_id": {
       "$oid": "64320bf0fc13ae1e696b0eea"
     },
     "code": "AKRHSR",
@@ -44,7 +44,7 @@ const housesData = [
     ]
   },
   {
-    "id": {
+    "_id": {
       "$oid": "64320bf0fc13ae1e696b0eeb"
     },
     "code": "FSHLBQ",
@@ -68,7 +68,7 @@ const housesData = [
     ]
   },
   {
-    "id": {
+    "_id": {
       "$oid": "64320bf0fc13ae1e696b0eec"
     },
     "code": "JCBGKO",
