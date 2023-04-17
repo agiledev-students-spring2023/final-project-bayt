@@ -11,12 +11,12 @@ import axios from 'axios';
 
 import '../css/Signup.css';
 
-function getStepContent(step, setFormValues,errorMessage) {
+function getStepContent(step, formValues, setFormValues, errorMessage) {
   switch (step) {
     case 0:
-      return <HouseCodeForm setFormValues={setFormValues} errorMessage={errorMessage}/>;
+      return <HouseCodeForm formValues={formValues} setFormValues={setFormValues} errorMessage={errorMessage}/>;
     case 1:
-      return <CreateProfileForm setFormValues={setFormValues} errorMessage={errorMessage}/>;
+      return <CreateProfileForm formValues={formValues} setFormValues={setFormValues} errorMessage={errorMessage}/>;
     default:
       throw new Error('Unknown step');
   }
@@ -99,7 +99,7 @@ export default function Checkout() {
           <Box sx={{ mt: 8, display: 'flex', flexDirection: 'column', alignItems: 'center', }}>
             {
               <>
-                {getStepContent(activeStep, setFormValues,errorMessage)}
+                {getStepContent(activeStep, formValues, setFormValues, errorMessage)}
                 <Box sx={{ width: '100%', display: 'flex', justifyContent: 'space-between', mt: 7 }}>
                   {activeStep !== 0 ? (<button onClick={handleBack}>Back</button>) : (<button onClick={handleNavigate} >Back</button>)}
                   {activeStep !== 1 ? (<button onClick={handleNext}>Next</button>) : (<button onClick={handleFinish} >Finish</button>)}

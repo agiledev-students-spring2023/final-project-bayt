@@ -1,11 +1,49 @@
-const loginService = require("../services/login.service.js");
+const mongoose = require("mongoose");
+const userModel = require("../models/users.model.js");
 
 async function login(req, res) {
+    const username = req.body.username;
+    const password = req.body.password;
+
+    if (!username || !password) {
+        res.status(401).json({ success: false, message: `No username or password supplied.` });
+    }
+
     try {
-        const user = await loginService.getUser(req.body);
-        res.status(200).json(user);
+        const user = await userModel.findOne({ username: username }).exec();
+        // check if user was found
+        if (!user) {
+          console.log(`User not found.`)
+          return res.status(401).json({
+            success: false,
+            message: "User not found.",
+          });
+        }
+        // if user exists, check if password is correct
+        else if (!user.validPassword(password)) {
+          console.log(`Incorrect password.`);
+          return res.status(401).json({
+            success: false,
+            message: "Incorrect password.",
+          });
+        }
+        // user found and password is correct... send a success response
+        console.log("User logged in successfully.");
+        const token = user.generateJWT(); // generate a signed token
+        res.json({
+          success: true,
+          message: "User logged in successfully.",
+          token: token,
+          username: user.username,
+        }); // send the token to the client to store
     } catch (err) {
-        res.status(500).json({ message: err.message });
+        // check error
+        console.log(`Error looking up user: ${err}`);
+        return res.status(500).json({
+          success: false,
+          message: "Error looking up user in database.",
+          error: err,
+        });
     }
 }
 

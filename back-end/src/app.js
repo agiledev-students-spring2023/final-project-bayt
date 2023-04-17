@@ -11,21 +11,22 @@ const jwt = require("jsonwebtoken")
 const passport = require("passport")
 
 // use JWT strategy for authentication
-const jwtStrategy = require("./config/jwt.config.js")
+const jwtStrategy = require("./configs/jwt.config.js")
 passport.use(jwtStrategy)
+
+const app = express() // instantiate an Express object
 
 // use passport middleware
 app.use(passport.initialize())
 
 // import and instantiate mongoose
 const mongoose = require("mongoose") 
-// require('dotenv/config');
 
-// // connect to database
-// mongoose
-//   .connect(`${process.env.DB_CONNECTION_STRING}`)
-//   .then(data => console.log(`Connected to MongoDB`))
-//   .catch(err => console.error(`Failed to connect to MongoDB: ${err}`))
+// connect to database
+mongoose
+  .connect(`${process.env.DB_CONNECTION_STRING}`)
+  .then(() => console.log(`Connected to MongoDB`))
+  .catch(err => console.error(`Failed to connect to MongoDB: ${err}`));
 
 const taskRouter = require('./routes/task.route.js');
 const profRouter = require('./routes/prof.route.js');
@@ -38,9 +39,8 @@ const alertsRouter = require('./routes/alerts.route.js');
 const signupRouter = require('./routes/signup.route.js');
 const authenticationRouter = require("./routes/authentication.route.js");
 const cookieRouter = require("./routes/cookie.route.js");
-const protectedContentRouter = require("./routes/protectedcontent.route.js");
+const protectedContentRouter = require("./routes/protectcontent.route.js");
 
-const app = express() // instantiate an Express object
 
 // parse application/json
 app.use(bodyParser.json())
@@ -67,9 +67,8 @@ app.use('/home', homeRouter);
 // parse signup data
 app.use(`/signup`,signupRouter);
 
-app.use("/auth", authenticationRouter());
-app.use("/cookie", cookieRouter());
-app.use("/protected", protectedContentRouter());
+// app.use("/cookie", cookieRouter());
+// app.use("/protected", protectedContentRouter());
 
 // export the express app we created to make it available to other modules
 module.exports = app

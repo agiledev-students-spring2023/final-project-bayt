@@ -2,10 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const jwtStrategy = require("../config/jwt.config.js");
 
-const taskModel = require('./task.list.model');
-const houseModel = require('./house.model');
 // Should be a schema for users of the form:
 // {
 //     "id": {
@@ -58,8 +55,8 @@ const UserSchema = new Schema({
         required: true,
     },
     assigned_tasks: [{
-        type: mongoose.ObjectId,
-        ref: taskModel
+        type: Schema.Types.ObjectId,
+        ref: 'task',
     }],
     role: {
         type: String,
@@ -67,8 +64,8 @@ const UserSchema = new Schema({
     },
 
     houses: [{
-        type: mongoose.ObjectId,
-        ref: houseModel
+        type: Schema.Types.ObjectId,
+        ref: 'house',
     }],
 });
 
@@ -91,8 +88,8 @@ UserSchema.methods.validPassword = function (password) {
 
 // return a JWT token for the user
 UserSchema.methods.generateJWT = function () {
-    const today = new Date()
-    const exp = new Date(today)
+    const today = new Date();
+    const exp = new Date(today);
     exp.setDate(today.getDate() + process.env.JWT_EXP_DAYS);
 
     return jwt.sign(
@@ -110,7 +107,7 @@ UserSchema.methods.toAuthJSON = function () {
     return {
         username: this.username,
         token: this.generateJWT(),
-    }
+    };
 }
 
 module.exports = User = mongoose.model('user', UserSchema);

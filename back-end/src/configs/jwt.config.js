@@ -11,7 +11,6 @@ let jwtOptions = {
   jwtFromRequest: ExtractJwt.fromAuthHeaderWithScheme("jwt"), // look for the Authorization request header
   secretOrKey: process.env.JWT_SECRET,
 }
-console.log(jwtOptions) // debug to make sure the secret from the .env file is loaded correctly
 
 // payload of JWT token
 const jwtVerifyToken = async function (jwt_payload, next) {
