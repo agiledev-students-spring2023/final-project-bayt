@@ -39,7 +39,6 @@ const alertsRouter = require('./routes/alerts.route.js');
 const signupRouter = require('./routes/signup.route.js');
 const authenticationRouter = require("./routes/authentication.route.js");
 const cookieRouter = require("./routes/cookie.route.js");
-const protectedContentRouter = require("./routes/protectcontent.route.js");
 
 
 // parse application/json
