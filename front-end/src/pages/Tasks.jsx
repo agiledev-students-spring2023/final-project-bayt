@@ -11,7 +11,7 @@ const Tasks = (props) => {
   const navigate = useNavigate();
 
   const sortAscending = (a, b) => {
-    return a.due_time.$date.$numberLong - b.due_time.$date.$numberLong;
+    return a.due_time - b.due_time;
   };
 
   const filterFunctionn = (task_data) => {

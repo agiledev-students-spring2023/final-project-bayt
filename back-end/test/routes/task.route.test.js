@@ -14,18 +14,12 @@ const inv_task_id = -123132132; // Invalid task ID
 
 // New task data we add to the database
 const newTaskData = {
-  _id: {
-    $oid: "test-new-task-iddddddd",
-  },
+  _id: "test-new-task-iddddddd",
   task_name: "new task",
   description: "new task description",
   room: "new room",
   assignee: "new assignee",
-  due_time: {
-    $date: {
-      $numberLong: 164717936800,
-    },
-  },
+  due_time: 164717936800,
   complete: false,
   repeat: 1,
 };
@@ -35,7 +29,7 @@ describe("Task Routes", () => {
   before(async () => {
     const task_json = require("../../src/json/tasklist.json");
     task_json.should.be.a("array").has.length.greaterThan(0);
-    task_id = task_json[0]._id.$oid;
+    task_id = task_json[0]._id;
   });
     
   // Check if the get function works and if create actually created the task
@@ -49,7 +43,6 @@ describe("Task Routes", () => {
           res.body.should.be.a("object");
           res.body.should.have
             .property("_id")
-            .have.property("$oid")
             .eql(task_id);
           done();
         });
@@ -126,7 +119,7 @@ describe("Task Routes", () => {
       it("should update an existing task", (done) => {
         chai
           .request(app)
-          .put(`/tasks/${newTaskData._id.$oid}`)
+          .put(`/tasks/${newTaskData._id}`)
           .send(newTaskData)
           .end((err, res) => {
             res.should.have.status(200);

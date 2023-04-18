@@ -61,7 +61,7 @@ function Alerts() {
                 <li key={index}>
                   <div className="wrapper">
                     <label className="control control-checkbox">
-                      <Link to={`/tasks/${alert._id.$oid}`}>
+                      <Link to={`/tasks/${alert._id}`}>
                         {" "}
                         {alert.task} due by {alert.date}{" "}
                       </Link>

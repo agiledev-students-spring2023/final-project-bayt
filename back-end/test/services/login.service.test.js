@@ -23,9 +23,7 @@ const loginUserNotFound = {
 
 const housesData = [
   {
-    "_id": {
-      "$oid": "64320bf0fc13ae1e696b0eea"
-    },
+    "_id": "64320bf0fc13ae1e696b0eea",
     "code": "AKRHSR",
     "name": "Jamima",
     "users": [
@@ -44,9 +42,7 @@ const housesData = [
     ]
   },
   {
-    "_id": {
-      "$oid": "64320bf0fc13ae1e696b0eeb"
-    },
+    "_id": "64320bf0fc13ae1e696b0eeb",
     "code": "FSHLBQ",
     "name": "Lorraine",
     "users": [
@@ -68,9 +64,7 @@ const housesData = [
     ]
   },
   {
-    "_id": {
-      "$oid": "64320bf0fc13ae1e696b0eec"
-    },
+    "_id": "64320bf0fc13ae1e696b0eec",
     "code": "JCBGKO",
     "name": "Misty",
     "users": [

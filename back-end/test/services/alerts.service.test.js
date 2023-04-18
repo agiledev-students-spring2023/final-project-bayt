@@ -15,11 +15,11 @@ describe("Alerts Service", () => {
 
   describe("logAlertState", () => {
     it("should update the complete state of an alert", () => {
-      const alertId = { $oid: "642e3662fc13ae490678cb3a" };
+      const alertId = "642e3662fc13ae490678cb3a";
       logAlertState(alertId, true);
 
       const alerts = require("../../src/json/tasklist.json");
-      const updatedAlert = alerts.find((alert) => alert._id.$oid === alertId.$oid);
+      const updatedAlert = alerts.find((alert) => alert._id === alertId);
       expect(updatedAlert).to.have.property("complete");
       expect(updatedAlert.complete).to.be.true;
     });

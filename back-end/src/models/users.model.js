@@ -2,29 +2,19 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 // Should be a schema for users of the form:
 // {
-//     "id": {
-//       "$oid": "67320bd0fc12ac1e606b8ke0"
-//     },
+//     "_id": "67320bd0fc12ac1e606b8ke0",
 //     "username": "fishc0",
 //     "first_name": "Zander",
 //     "last_name": "Chen",
 //     "email": "zc2122@nyu.edu",
 //     "assigned_tasks": [ // array of task ids to be populated
 //       {
-//         "id": {
-//           "$oid": "64320bf0fc13ae1e696b0ee1"
-//         },
+//         "_id": "64320bf0fc13ae1e696b0ee1"
 //         "task_name": "cook spaghetti",
 //         "description": "wake up dog",
 //         "room": "Kadanwari",
-//         "assignee": {
-//           "$oid": "64320bf0fc13ae1e696b0ee2"
-//         },
-//         "due_time": {
-//           "$date": {
-//             "$numberLong": 166467332400
-//           }
-//         },
+//         "assignee": 64320bf0fc13ae1e696b0ee2",
+//         "due_time": 166467332400
 //         "repeat": 1
 //       }
 //     ]

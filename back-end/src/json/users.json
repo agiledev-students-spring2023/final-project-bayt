@@ -1,36 +1,24 @@
 [
   {
-    "_id": {
-      "$oid": "67320bd0fc12ac1e606b8ke0"
-    },
+    "_id": "67320bd0fc12ac1e606b8ke0",
     "username": "fishc0",
     "first_name": "Zander",
     "last_name": "Chen",
     "email": "zc2122@nyu.edu",
     "assigned_tasks": [
       {
-        "_id": {
-          "$oid": "64320bf0fc13ae1e696b0ee1"
-        },
+        "_id":"64320bf0fc13ae1e696b0ee1",
         "task_name": "cook spaghetti",
         "description": "wake up dog",
         "room": "Kadanwari",
-        "assignee": {
-          "$oid": "64320bf0fc13ae1e696b0ee2"
-        },
-        "due_time": {
-          "$date": {
-            "$numberLong": 166467332400
-          }
-        },
+        "assignee":"64320bf0fc13ae1e696b0ee2",
+        "due_time": 166467332400,
         "repeat": 1
       }
     ],
     "houses": [
       {
-        "_id": {
-          "$oid": "64320bf0fc13ae1e696b0efc"
-        },
+        "_id":"64320bf0fc13ae1e696b0efc",
         "code": "12345",
         "name": "Gloriane",
         "users": [
@@ -54,100 +42,62 @@
     ]
   },
   {
-    "_id": {
-      "$oid": "64320bf0fc13ae1e696b0ee0"
-    },
+    "_id": "64320bf0fc13ae1e696b0ee0",
     "username": "adevuyst0",
     "first_name": "Alice",
     "last_name": "De Vuyst",
     "email": "adevuyst0@jimdo.com",
     "assigned_tasks": [
       {
-        "_id": {
-          "$oid": "64320bf0fc13ae1e696b0ee1"
-        },
+        "_id":"64320bf0fc13ae1e696b0ee1",
         "task_name": "cook spaghetti",
         "description": "wake up dog",
         "room": "Kadanwari",
-        "assignee": {
-          "$oid": "64320bf0fc13ae1e696b0ee2"
-        },
-        "due_time": {
-          "$date": {
-            "$numberLong": 166467332400
-          }
-        },
+        "assignee":"64320bf0fc13ae1e696b0ee2",
+        "due_time": 166467332400,
         "repeat": 1
       }
     ],
     "houses": []
   },
   {
-    "_id": {
-      "$oid": "64320bf0fc13ae1e696b0ee3"
-    },
+    "_id": "64320bf0fc13ae1e696b0ee3",
     "username": "mcampanelli1",
     "first_name": "Mirelle",
     "last_name": "Campanelli",
     "email": "mcampanelli1@bandcamp.com",
     "assigned_tasks": [
       {
-        "_id": {
-          "$oid": "64320bf0fc13ae1e696b0ee4"
-        },
+        "_id":"64320bf0fc13ae1e696b0ee4",
         "task_name": "take out trash",
         "description": "wake up dog",
         "room": "La Fortuna/San Carlos",
-        "assignee": {
-          "$oid": "64320bf0fc13ae1e696b0ee5"
-        },
-        "due_time": {
-          "$date": {
-            "$numberLong": 164710094300
-          }
-        },
+        "assignee":"64320bf0fc13ae1e696b0ee5",
+        "due_time": 164710094300,
         "repeat": 1
       },
       {
-        "_id": {
-          "$oid": "64320bf0fc13ae1e696b0ee6"
-        },
+        "_id":"64320bf0fc13ae1e696b0ee6",
         "task_name": "take out trash",
         "description": "clean properly this time",
         "room": "Wedau",
-        "assignee": {
-          "$oid": "64320bf0fc13ae1e696b0ee7"
-        },
-        "due_time": {
-          "$date": {
-            "$numberLong": 166704991400
-          }
-        },
+        "assignee":"64320bf0fc13ae1e696b0ee7",
+        "due_time": 166704991400,
         "repeat": 1
       },
       {
-        "_id": {
-          "$oid": "64320bf0fc13ae1e696b0ee8"
-        },
+        "_id":"64320bf0fc13ae1e696b0ee8",
         "task_name": "buy an air fryer",
         "description": "clean properly this time",
         "room": "Pweto",
-        "assignee": {
-          "$oid": "64320bf0fc13ae1e696b0ee9"
-        },
-        "due_time": {
-          "$date": {
-            "$numberLong": 165771165900
-          }
-        },
+        "assignee":"64320bf0fc13ae1e696b0ee9",
+        "due_time": 165771165900,
         "repeat": 1
       }
     ],
     "houses": [
       {
-        "_id": {
-          "$oid": "64320bf0fc13ae1e696b0eea"
-        },
+        "_id":"64320bf0fc13ae1e696b0eea",
         "code": "AKRHSR",
         "name": "Jamima",
         "users": [
@@ -166,9 +116,7 @@
         ]
       },
       {
-        "_id": {
-          "$oid": "64320bf0fc13ae1e696b0eeb"
-        },
+        "_id":"64320bf0fc13ae1e696b0eeb",
         "code": "FSHLBQ",
         "name": "Lorraine",
         "users": [
@@ -190,9 +138,7 @@
         ]
       },
       {
-        "_id": {
-          "$oid": "64320bf0fc13ae1e696b0eec"
-        },
+        "_id":"64320bf0fc13ae1e696b0eec",
         "code": "JCBGKO",
         "name": "Misty",
         "users": [
@@ -213,38 +159,26 @@
     ]
   },
   {
-    "_id": {
-      "$oid": "64320bf0fc13ae1e696b0eed"
-    },
+    "_id": "64320bf0fc13ae1e696b0eed",
     "username": "ckirman2",
     "first_name": "Celle",
     "last_name": "Kirman",
     "email": "ckirman2@abc.net.au",
     "assigned_tasks": [
       {
-        "_id": {
-          "$oid": "64320bf0fc13ae1e696b0eee"
-        },
+        "_id":"64320bf0fc13ae1e696b0eee",
         "task_name": "clean bathroom",
         "description": "wipe the bed",
         "room": "Sui",
-        "assignee": {
-          "$oid": "64320bf0fc13ae1e696b0eef"
-        },
-        "due_time": {
-          "$date": {
-            "$numberLong": 167461307000
-          }
-        },
+        "assignee":"64320bf0fc13ae1e696b0eef",
+        "due_time": 167461307000,
         "repeat": 1
       }
     ],
     "houses": []
   },
   {
-    "_id": {
-      "$oid": "64320bf0fc13ae1e696b0ef0"
-    },
+    "_id": "64320bf0fc13ae1e696b0ef0",
     "username": "ctanser3",
     "first_name": "Charline",
     "last_name": "Tanser",
@@ -252,9 +186,7 @@
     "assigned_tasks": [],
     "houses": [
       {
-        "_id": {
-          "$oid": "64320bf0fc13ae1e696b0ef1"
-        },
+        "_id":"64320bf0fc13ae1e696b0ef1",
         "code": "JWBMQF",
         "name": "Iorgo",
         "users": [
@@ -282,9 +214,7 @@
         ]
       },
       {
-        "_id": {
-          "$oid": "64320bf0fc13ae1e696b0ef2"
-        },
+        "_id":"64320bf0fc13ae1e696b0ef2",
         "code": "MTGQXH",
         "name": "Joyous",
         "users": [
@@ -312,9 +242,7 @@
         ]
       },
       {
-        "_id": {
-          "$oid": "64320bf0fc13ae1e696b0ef3"
-        },
+        "_id":"64320bf0fc13ae1e696b0ef3",
         "code": "LUXUPF",
         "name": "Ira",
         "users": [
@@ -335,37 +263,25 @@
     ]
   },
   {
-    "_id": {
-      "$oid": "64320bf0fc13ae1e696b0ef4"
-    },
+    "_id": "64320bf0fc13ae1e696b0ef4",
     "username": "nroalfe4",
     "first_name": "Niel",
     "last_name": "Roalfe",
     "email": "nroalfe4@sina.com.cn",
     "assigned_tasks": [
       {
-        "_id": {
-          "$oid": "64320bf0fc13ae1e696b0ef5"
-        },
+        "_id":"64320bf0fc13ae1e696b0ef5",
         "task_name": "take out trash",
         "description": "clean properly this time",
         "room": "RCAF Station Saglek",
-        "assignee": {
-          "$oid": "64320bf0fc13ae1e696b0ef6"
-        },
-        "due_time": {
-          "$date": {
-            "$numberLong": 165979454400
-          }
-        },
+        "assignee":"64320bf0fc13ae1e696b0ef6",
+        "due_time": 165979454400,
         "repeat": 1
       }
     ],
     "houses": [
       {
-        "_id": {
-          "$oid": "64320bf0fc13ae1e696b0ef7"
-        },
+        "_id":"64320bf0fc13ae1e696b0ef7",
         "code": "HGTFSJ",
         "name": "Leland",
         "users": [
@@ -393,9 +309,7 @@
         ]
       },
       {
-        "_id": {
-          "$oid": "64320bf0fc13ae1e696b0ef8"
-        },
+        "_id":"64320bf0fc13ae1e696b0ef8",
         "code": "NDNRPM",
         "name": "Aleece",
         "users": [
@@ -423,9 +337,7 @@
         ]
       },
       {
-        "_id": {
-          "$oid": "64320bf0fc13ae1e696b0ef9"
-        },
+        "_id":"64320bf0fc13ae1e696b0ef9",
         "code": "DKXDOM",
         "name": "Dona",
         "users": [
@@ -449,9 +361,7 @@
     ]
   },
   {
-    "_id": {
-      "$oid": "64320bf0fc13ae1e696b0efa"
-    },
+    "_id": "64320bf0fc13ae1e696b0efa",
     "username": "eclemitt5",
     "first_name": "Esdras",
     "last_name": "Clemitt",
@@ -459,9 +369,7 @@
     "assigned_tasks": [],
     "houses": [
       {
-        "_id": {
-          "$oid": "64320bf0fc13ae1e696b0efb"
-        },
+        "_id":"64320bf0fc13ae1e696b0efb",
         "code": "GOYLPY",
         "name": "Zolly",
         "users": [
@@ -483,9 +391,7 @@
         ]
       },
       {
-        "_id": {
-          "$oid": "64320bf0fc13ae1e696b0efc"
-        },
+        "_id":"64320bf0fc13ae1e696b0efc",
         "code": "CKZLMB",
         "name": "Gloriane",
         "users": [
@@ -507,9 +413,7 @@
         ]
       },
       {
-        "_id": {
-          "$oid": "64320bf0fc13ae1e696b0efd"
-        },
+        "_id":"64320bf0fc13ae1e696b0efd",
         "code": "PMUYWO",
         "name": "Miof mela",
         "users": [
@@ -536,101 +440,63 @@
     ]
   },
   {
-    "_id": {
-      "$oid": "64320bf0fc13ae1e696b0efe"
-    },
+    "_id": "64320bf0fc13ae1e696b0efe",
     "username": "kaves6",
     "first_name": "Koressa",
     "last_name": "Aves",
     "email": "kaves6@1und1.de",
     "assigned_tasks": [
       {
-        "_id": {
-          "$oid": "64320bf0fc13ae1e696b0eff"
-        },
+        "_id":"64320bf0fc13ae1e696b0eff",
         "task_name": "call maintenance",
         "description": "take dog on walk",
         "room": "Lancang Lahu Autonomous County",
-        "assignee": {
-          "$oid": "64320bf0fc13ae1e696b0f00"
-        },
-        "due_time": {
-          "$date": {
-            "$numberLong": 165529202400
-          }
-        },
+        "assignee":"64320bf0fc13ae1e696b0f00",
+        "due_time": 165529202400,
         "repeat": 1
       },
       {
-        "_id": {
-          "$oid": "64320bf0fc13ae1e696b0f01"
-        },
+        "_id":"64320bf0fc13ae1e696b0f01",
         "task_name": "cook spaghetti",
         "description": "wipe the bed",
         "room": "Tumbang Samba-Borneo Island",
-        "assignee": {
-          "$oid": "64320bf0fc13ae1e696b0f02"
-        },
-        "due_time": {
-          "$date": {
-            "$numberLong": 165551333700
-          }
-        },
+        "assignee":"64320bf0fc13ae1e696b0f02",
+        "due_time": 165551333700,
         "repeat": 1
       }
     ],
     "houses": []
   },
   {
-    "_id": {
-      "$oid": "64320bf0fc13ae1e696b0f03"
-    },
+    "_id": "64320bf0fc13ae1e696b0f03",
     "username": "cfoot7",
     "first_name": "Cissiee",
     "last_name": "Foot",
     "email": "cfoot7@xrea.com",
     "assigned_tasks": [
       {
-        "_id": {
-          "$oid": "64320bf0fc13ae1e696b0f04"
-        },
+        "_id":"64320bf0fc13ae1e696b0f04",
         "task_name": "take out trash",
         "description": "wipe the bed",
         "room": "Minot",
-        "assignee": {
-          "$oid": "64320bf0fc13ae1e696b0f05"
-        },
-        "due_time": {
-          "$date": {
-            "$numberLong": 166904083300
-          }
-        },
+        "assignee":"64320bf0fc13ae1e696b0f05",
+        "due_time": 166904083300,
         "repeat": 1
       },
       {
-        "_id": {
-          "$oid": "64320bf0fc13ae1e696b0f06"
-        },
+        "_id":"64320bf0fc13ae1e696b0f06",
         "task_name": "call maintenance",
         "description": "clean properly this time",
         "room": "Ghanzi",
-        "assignee": {
-          "$oid": "64320bf0fc13ae1e696b0f07"
-        },
-        "due_time": {
-          "$date": {
-            "$numberLong": 166697320900
-          }
-        },
+        "assignee":"64320bf0fc13ae1e696b0f07",
+        "due_time": 166697320900,
         "repeat": 1
       }
     ],
     "houses": []
   },
   {
-    "_id": {
-      "$oid": "64320bf0fc13ae1e696b0f08"
-    },
+    "_id": "64320bf0fc13ae1e696b0f08",
     "username": "dleyzell8",
     "first_name": "Durand",
     "last_name": "Leyzell",
@@ -638,9 +504,7 @@
     "assigned_tasks": [],
     "houses": [
       {
-        "_id": {
-          "$oid": "64320bf0fc13ae1e696b0f09"
-        },
+        "_id":"64320bf0fc13ae1e696b0f09",
         "code": "FGJLXO",
         "name": "West",
         "users": [
@@ -667,54 +531,34 @@
     ]
   },
   {
-    "_id": {
-      "$oid": "64320bf0fc13ae1e696b0f0a"
-    },
+    "_id": "64320bf0fc13ae1e696b0f0a",
     "username": "jcolmer9",
     "first_name": "Jillian",
     "last_name": "Colmer",
     "email": "jcolmer9@diigo.com",
     "assigned_tasks": [
       {
-        "_id": {
-          "$oid": "64320bf0fc13ae1e696b0f0b"
-        },
+        "_id":"64320bf0fc13ae1e696b0f0b",
         "task_name": "cook spaghetti",
         "description": "wipe the bed",
         "room": "Hong Kong",
-        "assignee": {
-          "$oid": "64320bf0fc13ae1e696b0f0c"
-        },
-        "due_time": {
-          "$date": {
-            "$numberLong": 165220069700
-          }
-        },
+        "assignee":"64320bf0fc13ae1e696b0f0c",
+        "due_time": 165220069700,
         "repeat": 1
       },
       {
-        "_id": {
-          "$oid": "64320bf0fc13ae1e696b0f0d"
-        },
+        "_id":"64320bf0fc13ae1e696b0f0d",
         "task_name": "call maintenance",
         "description": "wipe the bed",
         "room": null,
-        "assignee": {
-          "$oid": "64320bf0fc13ae1e696b0f0e"
-        },
-        "due_time": {
-          "$date": {
-            "$numberLong": 165024307900
-          }
-        },
+        "assignee":"64320bf0fc13ae1e696b0f0e",
+        "due_time": 165024307900,
         "repeat": 1
       }
     ],
     "houses": [
       {
-        "_id": {
-          "$oid": "64320bf0fc13ae1e696b0f0f"
-        },
+        "_id":"64320bf0fc13ae1e696b0f0f",
         "code": "XYLSHU",
         "name": "Netta",
         "users": [
@@ -736,9 +580,7 @@
         ]
       },
       {
-        "_id": {
-          "$oid": "64320bf0fc13ae1e696b0f10"
-        },
+        "_id":"64320bf0fc13ae1e696b0f10",
         "code": "HCBHSL",
         "name": "Huntley",
         "users": [
