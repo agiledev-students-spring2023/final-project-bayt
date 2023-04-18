@@ -64,6 +64,7 @@ function IndividualTask(props) {
         .get(backend_route + `${id}`)
         .then((response) => {
             const taskData = response.data;
+            console.log(taskData);
             return taskData;
         })
         .catch((err) => {

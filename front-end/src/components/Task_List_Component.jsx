@@ -24,7 +24,9 @@ const TaskListComponent = ({filterFunction, sortComparator, enableCheckbox, cent
       axios
         .put(
           backend_route + selectObject._id,
-          taskoi
+          {
+            complete: true,
+          },
         )
         .then((response) => {
           // console.log(response); 
@@ -36,7 +38,7 @@ const TaskListComponent = ({filterFunction, sortComparator, enableCheckbox, cent
 
     if (testing_mode) {
       temp_func = (selectObject) => {
-        data.find(({ id }) => id === selectObject._id).complete = true;
+        data.find(({ _id }) => _id === selectObject._id).complete = true;
       };
     }
 
