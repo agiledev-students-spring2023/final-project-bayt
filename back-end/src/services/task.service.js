@@ -16,7 +16,7 @@ if (process.env.NODE_ENV === 'production') {
 
   // make sure task doesnt exist in database then add the task to the Task
   createTask = async (task_data) => {
-    const task_query = await getTask(task_data.id);
+    const task_query = await getTask(task_data._id);
     if (task_query !== null) throw new Error("Task already exists");
     await Task.create(task_data);
     return "Task created successfully";
