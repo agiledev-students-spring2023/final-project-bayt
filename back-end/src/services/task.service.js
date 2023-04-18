@@ -16,7 +16,7 @@ if (process.env.NODE_ENV === 'production') {
 
   // make sure task doesnt exist in database then add the task to the Task
   createTask = async (task_data) => {
-    const task_query = await getTask(task_data.id.$oid);
+    const task_query = await getTask(task_data.id);
     if (task_query !== null) throw new Error("Task already exists");
     await Task.create(task_data);
     return "Task created successfully";
@@ -51,12 +51,12 @@ if (process.env.NODE_ENV === 'production') {
   };
 
   getTask = async (task_id) => {
-    return task_json.find((task) => task._id.$oid === task_id);
+    return task_json.find((task) => task._id === task_id);
   };
 
   // add task data to task data json array if it does not exist
   createTask = async (task_data) => {
-    const task = await getTask(task_data._id.$oid);
+    const task = await getTask(task_data._id);
     if (task !== undefined) throw new Error("Task already exists");
     task_json.push(task_data);
     return "Task created successfully";
@@ -64,14 +64,14 @@ if (process.env.NODE_ENV === 'production') {
 
   // find and update the task data array based off task_data json object
   updateTask = async (task_id, task_data) => {
-    const indexToUpdate = task_json.findIndex((task) => task._id.$oid === task_id);
+    const indexToUpdate = task_json.findIndex((task) => task._id === task_id);
     if (indexToUpdate === -1) throw new Error("Error in updating task");
     task_json[indexToUpdate] = task_data;
     return "Task updated successfully";
   };
 
   removeTask = async (task_id) => {
-    const indexToRemove = task_json.findIndex((task) => task._id.$oid === task_id);
+    const indexToRemove = task_json.findIndex((task) => task._id === task_id);
     if (indexToRemove === -1) throw new Error("Error in deleting task");
     task_json.splice(indexToRemove, 1);
     return "Task deleted successfully";

@@ -38,8 +38,8 @@ const taskDataValidationSchema = {
         errorMessage: "assignee must be a string",
     },
     //needs to be mongodb date type
-    $numberLong: {
-        in: ["body.due_time.$date"],
+    due_time: {
+        in: ["body"],
         exists: true,
         isInt: true,
         notEmpty: true,

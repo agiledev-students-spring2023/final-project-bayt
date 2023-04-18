@@ -19,7 +19,7 @@ const TaskListComponent = ({filterFunction, sortComparator, enableCheckbox, cent
 
     // Update each selected task to complete
     let temp_func = (selectObject) => {
-      let taskoi = data.find(({ _id }) => _id.$oid === selectObject._id); // find task
+      let taskoi = data.find(({ _id }) => _id === selectObject._id); // find task
       taskoi.complete = true; // set task to complete
       axios
         .put(
@@ -36,7 +36,7 @@ const TaskListComponent = ({filterFunction, sortComparator, enableCheckbox, cent
 
     if (testing_mode) {
       temp_func = (selectObject) => {
-        data.find(({ id }) => id.$oid === selectObject._id).complete = true;
+        data.find(({ id }) => id === selectObject._id).complete = true;
       };
     }
 
@@ -137,10 +137,10 @@ const TaskListComponent = ({filterFunction, sortComparator, enableCheckbox, cent
         {!loaded && <CircularProgress className="loading_icon" />}
         {data.map((task_data) => {
           return (
-            <div key={task_data._id.$oid}>
-              {TaskDay(task_data.due_time.$date.$numberLong)}
+            <div key={task_data._id}>
+              {TaskDay(task_data.due_time)}
               <TaskComponent
-                id={task_data._id.$oid}
+                id={task_data._id}
                 title={task_data.task_name}
                 room={task_data.room}
                 assigned={task_data.assignee}
@@ -167,146 +167,92 @@ export default TaskListComponent;
 
 let task_json = [
   {
-    _id: {
-      $oid: "64055f38f032391df0001d6a",
-    },
+    _id: "64055f38f032391df0001d6a",
     task_name: "cook spaghetti",
     description: "wake up dog",
     room: "Kiana",
     assignee: "Evania",
-    due_time: {
-      $date: {
-        $numberLong: 164717936800,
-      },
-    },
+    due_time: 164717936800,
     complete: true,
     repeat: 1,
   },
   {
-    _id: {
-      $oid: "64055f38f032391df0001d6b",
-    },
+    _id: "64055f38f032391df0001d6b",
     task_name: "cook spaghetti",
     description: "wipe the bed",
     room: "Melinda",
     assignee: "Harrison",
-    due_time: {
-      $date: {
-        $numberLong: 164715103700,
-      },
-    },
+    due_time: 164715103700,
     complete: false,
     repeat: 1,
   },
   {
-    _id: {
-      $oid: "64055f38f032391df0001d6c",
-    },
+    _id: "64055f38f032391df0001d6c",
     task_name: "wipe floor in kitchen",
     description: "wake up dog",
     room: "Toluca",
     assignee: "Theo",
-    due_time: {
-      $date: {
-        $numberLong: 164705693900,
-      },
-    },
+    due_time: 164705693900,
     complete: false,
     repeat: 1,
   },
   {
-    _id: {
-      $oid: "64055f38f032391df0001d6d",
-    },
+    _id: "64055f38f032391df0001d6d",
     task_name: "take out trash",
     description: "take dog on walk",
     room: null,
     assignee: "Rolland",
-    due_time: {
-      $date: {
-        $numberLong: 164652765300,
-      },
-    },
+    due_time: 164652765300,
     complete: true,
     repeat: 1,
   },
   {
-    _id: {
-      $oid: "64055f38f032391df0001d6e",
-    },
+    _id: "64055f38f032391df0001d6e",
     task_name: "take out trash",
     description: "wipe the bed",
     room: null,
     assignee: "Twila",
-    due_time: {
-      $date: {
-        $numberLong: 164687283300,
-      },
-    },
+    due_time: 164687283300,
     complete: false,
     repeat: 1,
   },
   {
-    _id: {
-      $oid: "64055f38f032391df0001d6f",
-    },
+    _id: "64055f38f032391df0001d6f",
     task_name: "call maintenance",
     description: "wake up dog",
     room: "Elazığ",
     assignee: "Cicily",
-    due_time: {
-      $date: {
-        $numberLong: 164670839100,
-      },
-    },
+    due_time: 164670839100,
     complete: true,
     repeat: 1,
   },
   {
-    _id: {
-      $oid: "64055f38f032391df0001d70",
-    },
+    _id: "64055f38f032391df0001d70",
     task_name: "wipe floor in kitchen",
     description: "clean properly this time",
     room: "Villamontes",
     assignee: "Osgood",
-    due_time: {
-      $date: {
-        $numberLong: 164655518500,
-      },
-    },
+    due_time: 164655518500,
     complete: false,
     repeat: 1,
   },
   {
-    _id: {
-      $oid: "64055f38f032391df0001d71",
-    },
+    _id: "64055f38f032391df0001d71",
     task_name: "call maintenance",
     description: "wake up dog",
     room: "Sorriso",
     assignee: "Garvy",
-    due_time: {
-      $date: {
-        $numberLong: 164715321100,
-      },
-    },
+    due_time: 164715321100,
     complete: false,
     repeat: 1,
   },
   {
-    _id: {
-      $oid: "64055f38f032391df0001d72",
-    },
+    _id: "64055f38f032391df0001d72",
     task_name: "clean bathroom",
     description: "wake up dog",
     room: "Taganrog",
     assignee: "Shaine",
-    due_time: {
-      $date: {
-        $numberLong: 164684893500,
-      },
-    },
+    due_time: 164684893500,
     complete: true,
     repeat: 1,
   },

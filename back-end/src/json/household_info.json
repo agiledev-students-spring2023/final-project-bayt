@@ -1,44 +1,34 @@
 [
   {
-    "_id": {
-      "$oid": "64055f38f032391df0001d6a"
-    },
+    "_id": "64055f38f032391df0001d6ad",
     "member_name": "Zander",
     "username": "zander123",
     "role": "roomate",
     "contact": "555-555-5555"
   },
   {
-    "_id": {
-      "$oid": "64055f38f032391df0001d6b"
-    },
+    "_id": "64055f38f032391df0001d6bd",
     "member_name": "Rami",
     "username": "rami123",
     "role": "Admin",
     "contact": "666-666-6666"
   },
   {
-    "_id": {
-      "$oid": "64055f38f032391df0001d6c"
-    },
+    "_id": "64055f38f032391df0001d6cd",
     "member_name": "Jojo",
     "username": "jojo123",
     "role": "roomate",
     "contact": "666-666-6666"
   },
   {
-    "_id": {
-      "$oid": "64055f38f032391df0001d6d"
-    },
+    "_id": "64055f38f032391df0001d6dd",
     "member_name": "Zion",
     "username": "zion123",
     "role": "roomate",
     "contact": "666-666-6666"
   },
   {
-    "_id": {
-      "$oid": "64055f38f032391df0001d6e"
-    },
+    "_id": "64055f38f032391df0001d6ed",
     "member_name": "Diana",
     "username": "diana123",
     "role": "roomate",

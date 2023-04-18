@@ -3,9 +3,7 @@ const Schema = mongoose.Schema
 const bcrypt = require("bcryptjs");
 // Mongoose house schema following this json file format:
 // {
-//     "id": {
-//       "$oid": "64320bf0fc13ae1e696b0efc"
-//     },
+//     "_id": "64320bf0fc13ae1e696b0efc"
 //     "code": "12345",
 //     "name": "Gloriane",
 //     "users": [

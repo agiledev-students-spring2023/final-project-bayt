@@ -12,7 +12,7 @@ function RoomTemplate(props) {
 
   //Comparator for the sorting by the dates of API DATA elems
   const sortAscending = (a, b) => {
-    return a.due_time.$date.$numberLong - b.due_time.$date.$numberLong;
+    return a.due_time - b.due_time;
   };
   const filterFunctionn = (task_data) => {
     return task_data.room === roomName;
