@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
+const bcrypt = require("bcryptjs");
 // Mongoose house schema following this json file format:
 // {
 //     "id": {
@@ -36,13 +37,32 @@ const HouseSchema = new Schema({
         required: true
     },
     users: [{
-        type: mongoose.ObjectId,
+        type: Schema.Types.ObjectId,
         ref: 'user'
     }],
     rooms: [{
-        type: mongoose.ObjectId,
+        type: Schema.Types.ObjectId,
         ref: 'room'
     }]
 });
+
+// hash the password before the user is saved
+HouseSchema.pre("save", function (next) {
+    const house = this;
+    if (!house.isModified("code")) return next();
+    // otherwise, the password is being modified, so hash it
+    bcrypt.hash(house.code, 10, (err, hash) => {
+      if (err) return next(err);
+      house.code = hash; // update the password to the hashed version
+      next();
+    });
+});
+
+HouseSchema.methods.toAuthJSON = function () {
+    return {
+        name: this.name,
+        // token: this.generateJWT(),
+    };
+}
 
 module.exports = mongoose.model('House', HouseSchema);

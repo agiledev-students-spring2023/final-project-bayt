@@ -1,4 +1,5 @@
-import { useState} from "react";
+import { useState, useEffect } from "react";
+import { Navigate } from "react-router-dom";
 import ProfilePic from "../components/Profile_pic_component";
 import ProfInfo from "../components/Profile_info_component";
 import "../css/Profile_pic_component.css";
@@ -14,7 +15,6 @@ const NameInfo = () => {
   const [name, setName] = useState('');
   const [isEditing, setIsEditing] = useState(false);
   const [tempName, setTempName] = useState('');
-
 
   React.useEffect(() => {
     axios
@@ -108,19 +108,43 @@ const NameInfo = () => {
 
 //replace h1 with header and delete from css
 const Profile = () => {
-    return (
+  const jwtToken = localStorage.getItem("token");
+
+  const [isLoggedIn, setIsLoggedIn] = useState(jwtToken && true);
+
+  useEffect(() => {
+    // send the request to the server api, including the Authorization header with our JWT token in it
+    axios
+      .get('/api/protected/profile/', {
+        headers: { Authorization: `JWT ${jwtToken}` }, // pass the token, if any, to the server
+      })
+      .then(res => {
+        // do nothing
+      })
+      .catch(err => {
+        setIsLoggedIn(false); // update this state variable, so the component re-renders
+    });
+  }, []);
+
+  return (
     <>
-      <Header title="Profile"/>
-      <div>
-        <div className="outer">
-            <ProfilePic/>
-            <NameInfo/>
-            <ProfInfo/>
-        </div>
-      </div>
-      <Footer/>
-    </>  
-    );
+      {isLoggedIn ? (
+        <>
+          <Header title="Profile"/>
+          <div>
+            <div className="outer">
+                <ProfilePic/>
+                <NameInfo/>
+                <ProfInfo/>
+            </div>
+          </div>
+          <Footer/>
+        </>
+      ) : (
+        <Navigate to='/login?error=protected' />
+      )}
+    </>
+  );
 };
 
 export default Profile

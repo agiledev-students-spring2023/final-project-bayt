@@ -1,12 +1,31 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
+import axios from "axios";
 import Footer from "./Footer";
 import Header from "./Header";
 import "../css/alerts.css";
 import "../index.css";
 
 function Alerts() {
+  const jwtToken = localStorage.getItem("token");
+
+  const [isLoggedIn, setIsLoggedIn] = useState(jwtToken && true);
+
   const [alerts, setAlerts] = useState([]);
+
+  useEffect(() => {
+    // send the request to the server api, including the Authorization header with our JWT token in it
+    axios
+      .get('/api/protected/alerts/', {
+        headers: { Authorization: `JWT ${jwtToken}` }, // pass the token, if any, to the server
+      })
+      .then(res => {
+        // do nothing
+      })
+      .catch(err => {
+        setIsLoggedIn(false); // update this state variable, so the component re-renders
+    });
+  }, []);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -48,37 +67,43 @@ function Alerts() {
 
   return (
     <>
-      <Header title="Alerts" />
-      <div className="alerts-page-body">
-        {alerts.length === 0 ? (
-          <div className="no-alerts">
-            <p>No incomplete tasks! Good job : )</p>
-          </div>
-        ) : (
-          <div className="list">
-            <ul className="alertsList">
-              {alerts.map((alert, index) => (
-                <li key={index}>
-                  <div className="wrapper">
-                    <label className="control control-checkbox">
-                      <Link to={`/tasks/${alert._id.$oid}`}>
-                        {" "}
-                        {alert.task} due by {alert.date}{" "}
-                      </Link>
-                      <input
-                        type="checkbox"
-                        onClick={(event) => handleCheckboxClick(event, alert)}
-                      />
-                      <div className="indicator"></div>
-                    </label>
-                  </div>
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
-      </div>
-      <Footer />
+      {isLoggedIn ? (
+        <>
+        <Header title="Alerts" />
+        <div className="alerts-page-body">
+          {alerts.length === 0 ? (
+            <div className="no-alerts">
+              <p>{"No incomplete tasks! Good job : )"}</p>
+            </div>
+          ) : (
+            <div className="list">
+              <ul className="alertsList">
+                {alerts.map((alert, index) => (
+                  <li key={index}>
+                    <div className="wrapper">
+                      <label className="control control-checkbox">
+                        <Link to={`/tasks/${alert._id.$oid}`}>
+                          {" "}
+                          {alert.task} due by {alert.date}{" "}
+                        </Link>
+                        <input
+                          type="checkbox"
+                          onClick={(event) => handleCheckboxClick(event, alert)}
+                        />
+                        <div className="indicator"></div>
+                      </label>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </div>
+        <Footer />
+      </>
+      ) : (
+        <Navigate to='/login?error=protected' />
+      )}
     </>
   );
 }
