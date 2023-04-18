@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const jwtStrategy = require("../configs/jwt.config.js") // import setup options for using JWT in passport
 
 // Should be a schema for users of the form:
 // {

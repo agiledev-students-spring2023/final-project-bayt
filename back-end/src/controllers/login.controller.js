@@ -13,7 +13,6 @@ async function login(req, res) {
         const user = await userModel.findOne({ username: username }).exec();
         // check if user was found
         if (!user) {
-          console.log(`User not found.`)
           return res.status(401).json({
             success: false,
             message: "User not found.",
@@ -21,14 +20,12 @@ async function login(req, res) {
         }
         // if user exists, check if password is correct
         else if (!user.validPassword(password)) {
-          console.log(`Incorrect password.`);
           return res.status(401).json({
             success: false,
             message: "Incorrect password.",
           });
         }
         // user found and password is correct... send a success response
-        console.log("User logged in successfully.");
         const token = user.generateJWT(); // generate a signed token
         res.json({
           success: true,

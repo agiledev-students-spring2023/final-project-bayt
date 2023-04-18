@@ -37,8 +37,7 @@ const addMembersRouter = require('./routes/addmembers.route.js');
 const homeRouter = require('./routes/home.route.js');
 const alertsRouter = require('./routes/alerts.route.js');
 const signupRouter = require('./routes/signup.route.js');
-const authenticationRouter = require("./routes/authentication.route.js");
-const cookieRouter = require("./routes/cookie.route.js");
+// const cookieRouter = require("./routes/cookie.route.js");
 const protectedContentRouter = require("./routes/protectcontent.route.js");
 
 
@@ -48,6 +47,8 @@ app.use(cors())
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser()) // useful middleware for dealing with cookies
 
+// protect content
+app.use(`/protected`, protectedContentRouter);
 // parse profile data
 app.use('/Profile', profRouter);
 // parse task data

@@ -3,7 +3,7 @@ import Header from "./Header";
 import Footer from "./Footer";
 import Modal from "react-modal";
 import "../css/Settings.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "../index.css";
 import axios from "axios";
 
@@ -14,6 +14,11 @@ const Settings = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [selectedLink, setSelectedLink] = useState({});
   const [membersIsOpen, setmembersIsOpen] = useState(false);
+  const [loggedOut, setLoggedOut] = useState(false);
+
+  useEffect(() => {
+    localStorage.removeItem("token");
+  }, [loggedOut]);
 
   function formatMembersInfo(members) {
     let formattedString = "";
@@ -43,6 +48,7 @@ const Settings = () => {
     if (link === "Logout") {
       console.log("logging out");
       //code to disconnect/end session goes here
+      setLoggedOut(true);
       //navigate back to login page
       window.location.href = "/";
     } else {
@@ -111,7 +117,7 @@ const Settings = () => {
             </button>
           ))}
 
-          <button href="#/" onClick={() => handleLinkClick("Logout")}>
+          <button href="/" onClick={() => handleLinkClick("Logout")}>
             <li>{"Logout"}</li>
           </button>
         </ul>

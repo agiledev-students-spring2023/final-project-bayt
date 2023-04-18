@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import HouseCodeForm from '../components/HouseCodeForm';
 import CreateProfileForm from '../components/CreateProfileForm';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Navigate } from 'react-router-dom';
 import "../index.css";
 import Alert from '@mui/material/Alert';
 import axios from 'axios';
@@ -50,9 +50,17 @@ const defaultValues = {
 export default function Checkout() {
   const navigate = useNavigate();
 
-  const [formValues, setFormValues] = React.useState(defaultValues);
-  const [errorMessage, setErrorMessage] = React.useState(''); //finish this part
-  const [activeStep, setActiveStep] = React.useState(0);
+  const [formValues, setFormValues] = useState(defaultValues);
+  const [errorMessage, setErrorMessage] = useState(''); //finish this part
+  const [response, setResponse] = useState({}) // set JWT token, if the user logs in successfully
+  const [activeStep, setActiveStep] = useState(0);
+
+  useEffect(() => {
+    // if the user is logged-in, save the token to local storage
+    if (response.success && response.token) {
+        localStorage.setItem("token", response.token); // store the token into localStorage
+    }
+  }, [response]);
 
   const handleNext = () => {
     if ((formValues.houseName.length<1)||(formValues.password.length<1)){
@@ -75,41 +83,42 @@ export default function Checkout() {
     return navigate(-1);
   }
 
-  const handleFinish = () => {
+  const handleFinish = async () => {
     if ((formValues.username.length<1)||(formValues.email.length<1)||(formValues.role.length<1)){
       setErrorMessage(<Alert severity="error">{`Please fill out all fields`}</Alert>);
     }
     else{
-      axios
-      .post(`/api/signup/`, formValues)
-      .then((res) => {
-          setErrorMessage('');
-          navigate('/home');
-      })
-      .catch((err) => {
-          console.error(err);
-        })
+      try {
+        const response = await axios.post(`/api/signup/`, formValues);
+        setErrorMessage('');
+        setResponse(response.data);
+      } catch(err) {
+        setErrorMessage(<Alert severity="error">{`${err.response.data.message}`}</Alert>);
+      }
   };
 };
 
-  return (
-    <div className='signupPageContainer'>
-      <ThemeProvider theme={theme}>
-        <Container component="main" maxWidth="sm" sx={{ mb: 4 }}>
-          <Box sx={{ mt: 8, display: 'flex', flexDirection: 'column', alignItems: 'center', }}>
-            {
-              <>
-                {getStepContent(activeStep, formValues, setFormValues, errorMessage)}
-                <Box sx={{ width: '100%', display: 'flex', justifyContent: 'space-between', mt: 7 }}>
-                  {activeStep !== 0 ? (<button onClick={handleBack}>Back</button>) : (<button onClick={handleNavigate} >Back</button>)}
-                  {activeStep !== 1 ? (<button onClick={handleNext}>Next</button>) : (<button onClick={handleFinish} >Finish</button>)}
-                </Box>
-  
-              </>
-            }
-          </Box>
-        </Container>
-      </ThemeProvider>
-    </div>
-  );
+  if(!response.success) {
+    return (
+      <div className='signupPageContainer'>
+        <ThemeProvider theme={theme}>
+          <Container component="main" maxWidth="sm" sx={{ mb: 4 }}>
+            <Box sx={{ mt: 8, display: 'flex', flexDirection: 'column', alignItems: 'center', }}>
+              {
+                <>
+                  {getStepContent(activeStep, formValues, setFormValues, errorMessage)}
+                  <Box sx={{ width: '100%', display: 'flex', justifyContent: 'space-between', mt: 7 }}>
+                    {activeStep !== 0 ? (<button onClick={handleBack}>Back</button>) : (<button onClick={handleNavigate} >Back</button>)}
+                    {activeStep !== 1 ? (<button onClick={handleNext}>Next</button>) : (<button onClick={handleFinish} >Finish</button>)}
+                  </Box>
+    
+                </>
+              }
+            </Box>
+          </Container>
+        </ThemeProvider>
+      </div>
+    );
+  }
+  else return <Navigate to="/home" />
 } 

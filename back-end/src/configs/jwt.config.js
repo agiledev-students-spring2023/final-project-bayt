@@ -14,10 +14,10 @@ let jwtOptions = {
 
 // payload of JWT token
 const jwtVerifyToken = async function (jwt_payload, next) {
-  console.log("JWT payload received", jwt_payload) // debugging
+  // console.log("JWT payload received", jwt_payload) // debugging
 
   // find user in the database
-  const userId = ObjectId(jwt_payload.id) // convert the string id to an ObjectId
+  const userId = new ObjectId(jwt_payload.id) // convert the string id to an ObjectId
   const user = await userModel.findOne({ _id: userId }).exec()
   if (user) {
     // we found the user... keep going

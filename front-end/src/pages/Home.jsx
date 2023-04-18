@@ -3,7 +3,7 @@ import "../css/Home.css";
 import "../index.css";
 import Header from "./Header";
 import Footer from "./Footer";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import TextField from "@mui/material/TextField";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
@@ -24,10 +24,28 @@ const theme = createTheme({
 });
 
 const Home = (props) => {
+  const jwtToken = localStorage.getItem("token");
+
+  const [isLoggedIn, setIsLoggedIn] = useState(jwtToken && true);
+
   const [open, setOpen] = React.useState(false);
 
   const [rooms, setRooms] = useState([]);
   const [name, setName] = useState("");
+
+  useEffect(() => {
+    // send the request to the server api, including the Authorization header with our JWT token in it
+    axios
+      .get('/api/protected/home/', {
+        headers: { Authorization: `JWT ${jwtToken}` }, // pass the token, if any, to the server
+      })
+      .then(res => {
+        // do nothing
+      })
+      .catch(err => {
+        setIsLoggedIn(false); // update this state variable, so the component re-renders
+    });
+  }, []);
 
   function camelize(str) {
     return str.replace(/(?:^\w|[A-Z]|\b\w|\s+)/g, function (match, index) {
@@ -96,80 +114,86 @@ const Home = (props) => {
 
   return (
     <>
-      <Header title="Home" />
-      <div>
-        <div className="homeBody">
-        {rooms.map((room, index) => (<Link key={index} to={`/room/${room.url}`}>
-               <button key={index} className="roomButton" type="button">
-                 {room.roomName}
-               </button>
-             </Link>))}
-
-          <button
-            className="roomButton"
-            type="button"
-            onClick={handleClickOpen}>
-            Add Room
-          </button>
-
-          <ThemeProvider theme={theme}>
-            <Dialog maxWidth="xs" open={open} onClose={handleClose}>
-              <DialogTitle className="add-room-form">Add Your Room!</DialogTitle>
-
-              <form
-                method="post"
-                onSubmit={handleSubmit}
-                className="form-container">
-                <DialogContent>
-                  <input
-                    type="text"
-                    placeholder="Enter room name here"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                  />
-                </DialogContent>
-                <DialogActions>
-                  <button
-                  type="button"
-                    disableRipple
-                    disableElevation
-                    disableFocusRipple
-                    sx={{
-                      borderRadius: "0",
-                      "&:hover": {
-                        backgroundColor: "#6B8E23",
-                        border: "0px solid #fff",
-                      },
-                    }}
-                    variant="contained"
-                    onClick={handleClose}>
-                    Cancel
+      {isLoggedIn ? (
+        <>
+          <Header title="Home" />
+          <div>
+            <div className="homeBody">
+            {rooms.map((room, index) => (<Link key={index} to={`/room/${room.url}`}>
+                  <button key={index} className="roomButton" type="button">
+                    {room.roomName}
                   </button>
-                  <button
-                    type="submit"
-                    disableRipple
-                    disableElevation
-                    disableFocusRipple
-                    sx={{
-                      borderRadius: "0",
-                      "&:hover": {
-                        backgroundColor: "#6B8E23",
-                        border: "0px solid #fff",
-                      },
-                    }}
-                    variant="contained"
-                    onClick={handleClose}>
-                    Save
-                  </button>
-                </DialogActions>
-              </form>
-            </Dialog>
-          </ThemeProvider>
-        </div>
-      </div>
-      <Footer />
+                </Link>))}
+
+              <button
+                className="roomButton"
+                type="button"
+                onClick={handleClickOpen}>
+                Add Room
+              </button>
+
+              <ThemeProvider theme={theme}>
+                <Dialog maxWidth="xs" open={open} onClose={handleClose}>
+                  <DialogTitle className="add-room-form">Add Your Room!</DialogTitle>
+
+                  <form
+                    method="post"
+                    onSubmit={handleSubmit}
+                    className="form-container">
+                    <DialogContent>
+                      <input
+                        type="text"
+                        placeholder="Enter room name here"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                      />
+                    </DialogContent>
+                    <DialogActions>
+                      <button
+                      type="button"
+                        disableRipple
+                        disableElevation
+                        disableFocusRipple
+                        sx={{
+                          borderRadius: "0",
+                          "&:hover": {
+                            backgroundColor: "#6B8E23",
+                            border: "0px solid #fff",
+                          },
+                        }}
+                        variant="contained"
+                        onClick={handleClose}>
+                        Cancel
+                      </button>
+                      <button
+                        type="submit"
+                        disableRipple
+                        disableElevation
+                        disableFocusRipple
+                        sx={{
+                          borderRadius: "0",
+                          "&:hover": {
+                            backgroundColor: "#6B8E23",
+                            border: "0px solid #fff",
+                          },
+                        }}
+                        variant="contained"
+                        onClick={handleClose}>
+                        Save
+                      </button>
+                    </DialogActions>
+                  </form>
+                </Dialog>
+              </ThemeProvider>
+            </div>
+          </div>
+          <Footer />
+        </>
+      ) : (
+        <Navigate to='/login?error=protected'/>
+      )}
     </>
   );
-};
+}
 
 export default Home;
