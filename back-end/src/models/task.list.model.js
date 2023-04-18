@@ -31,7 +31,7 @@ const TaskSchema = new Schema({
         ref: 'user'
     },
     due_time: { // MongoDB date type
-        type: Date,
+        type: Number,
         required: true
     },
     complete: {
