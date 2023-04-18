@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Navigate } from "react-router-dom";
 import Header from "./Header";
 import Footer from "./Footer";
 import "../css/finances.css";
@@ -101,8 +102,26 @@ function TransactionForm({ onSubmit }) {
 }
 
 function Finances() {
+  const jwtToken = localStorage.getItem("token");
+
+  const [isLoggedIn, setIsLoggedIn] = useState(jwtToken && true);
+
   const [isFormVisible, setIsFormVisible] = useState(false);
   const [transactions, setTransactions] = useState([]);
+
+  useEffect(() => {
+    // send the request to the server api, including the Authorization header with our JWT token in it
+    axios
+      .get('/api/protected/finances/', {
+        headers: { Authorization: `JWT ${jwtToken}` }, // pass the token, if any, to the server
+      })
+      .then(res => {
+        // do nothing
+      })
+      .catch(err => {
+        setIsLoggedIn(false); // update this state variable, so the component re-renders
+    });
+  }, []);
 
   const handleButtonClick = () => {
     setIsFormVisible(true);
@@ -137,28 +156,34 @@ function Finances() {
 
   return (
     <>
-      <Header title="Finances" />
-      <div className="content">
-        <div className="finances-page-content">
-          <div className="transactionListContainer">
-            <TransactionList transactions={transactions} />
-          </div>
-          <div className="addTransactionButton">
-            <button className="button" onClick={handleButtonClick}>
-              Add new transaction
-            </button>
-          </div>
-
-          {isFormVisible && (
-            <div className="overlay" onClick={handleOverlayClick}>
-              <div className="form">
-                <TransactionForm onSubmit={handleAddTransaction} />
+      {isLoggedIn ? (
+        <>
+          <Header title="Finances" />
+          <div className="content">
+            <div className="finances-page-content">
+              <div className="transactionListContainer">
+                <TransactionList transactions={transactions} />
               </div>
+              <div className="addTransactionButton">
+                <button className="button" onClick={handleButtonClick}>
+                  Add new transaction
+                </button>
+              </div>
+    
+              {isFormVisible && (
+                <div className="overlay" onClick={handleOverlayClick}>
+                  <div className="form">
+                    <TransactionForm onSubmit={handleAddTransaction} />
+                  </div>
+                </div>
+              )}
             </div>
-          )}
-        </div>
-      </div>
-      <Footer />
+          </div>
+          <Footer />
+        </>
+      ) : (
+        <Navigate to='/login?error=protected' />
+      )}
     </>
   );
 }

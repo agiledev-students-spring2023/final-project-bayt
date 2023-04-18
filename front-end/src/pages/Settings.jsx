@@ -4,21 +4,39 @@ import Footer from "./Footer";
 import Modal from "react-modal";
 import "../css/Settings.css";
 import { useState, useEffect } from "react";
+import { Navigate } from "react-router-dom";
 import "../index.css";
 import axios from "axios";
 
 Modal.setAppElement("#root");
 
 const Settings = () => {
+  const jwtToken = localStorage.getItem("token");
+
+  const [isLoggedIn, setIsLoggedIn] = useState(jwtToken && true);
+
   const [membs, setMembs] = useState("");
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [selectedLink, setSelectedLink] = useState({});
   const [membersIsOpen, setmembersIsOpen] = useState(false);
-  const [loggedOut, setLoggedOut] = useState(false);
 
   useEffect(() => {
-    localStorage.removeItem("token");
-  }, [loggedOut]);
+    // send the request to the server api, including the Authorization header with our JWT token in it
+    axios
+      .get('/api/protected/settings/', {
+        headers: { Authorization: `JWT ${jwtToken}` }, // pass the token, if any, to the server
+      })
+      .then(res => {
+        // do nothing
+      })
+      .catch(err => {
+        setIsLoggedIn(false); // update this state variable, so the component re-renders
+    });
+  }, []);
+
+  // useEffect(() => {
+  //   localStorage.removeItem("token");
+  // }, [loggedOut]);
 
   function formatMembersInfo(members) {
     let formattedString = "";
@@ -28,7 +46,9 @@ const Settings = () => {
     return formattedString;
   }
 
-  const handleLinkClick = (link) => {
+  const handleLinkClick = (evt, link) => {
+    evt.preventDefault();
+
     if (link === "Household Information") {
       //code to fetch household data goes here.  Will probably just call a function that retreives using axios and whatnot
       //mock data for now
@@ -48,7 +68,7 @@ const Settings = () => {
     if (link === "Logout") {
       console.log("logging out");
       //code to disconnect/end session goes here
-      setLoggedOut(true);
+      localStorage.removeItem("token");
       //navigate back to login page
       window.location.href = "/";
     } else {
@@ -57,7 +77,8 @@ const Settings = () => {
     }
   };
 
-  const handleModalClose = () => {
+  const handleModalClose = (evt) => {
+    evt.preventDefault();
     setModalIsOpen(false);
     setmembersIsOpen(false);
   };
@@ -101,65 +122,71 @@ const Settings = () => {
   };
 
   return (
-    <div className="back">
-      <Header title={"Settings"} />
-
-      <div className="setts-info">
-        <ul className="links-container">
-          <button className=""
-            href="#/"
-            onClick={() => handleLinkClick("Household Information")}>
-            <li>{"Household Information"}</li>
-          </button>
-          {links.map((link, i) => (
-            <button key={i} href="#/" onClick={() => handleLinkClick(link)}>
-              <li key={link.name}>{link.name}</li>
+    <>
+      {isLoggedIn ? (
+        <div className="back">
+        <Header title={"Settings"} />
+  
+        <div className="setts-info">
+          <ul className="links-container">
+            <button className=""
+              href="#/"
+              onClick={(evt) => handleLinkClick(evt, "Household Information")}>
+              <li>{"Household Information"}</li>
             </button>
-          ))}
-
-          <button href="/" onClick={() => handleLinkClick("Logout")}>
-            <li>{"Logout"}</li>
-          </button>
-        </ul>
-      </div>
-
-      <Modal
-        style={customStyles}
-        isOpen={modalIsOpen}
-        onRequestClose={handleModalClose}>
-        <h2 className="title">{selectedLink.name}</h2>
-        <p style={{ whiteSpace: "pre-line" }}>{selectedLink.content}</p>
-        {/* display any other properties you added to the link object */}
-        <button className="modal-close" onClick={handleModalClose}>
-          Close
-        </button>
-      </Modal>
-
-      <Modal
-        style={customStyles}
-        isOpen={membersIsOpen}
-        onRequestClose={handleModalClose}>
-        <h2 className="title">Household Information</h2>
-        <h3>Household Name:</h3>
-        <p>Ravenclaw</p>
-        {/*delete hardcoded RavenClaw later and pull name from database*/}
-        <h3>Your Household Members:</h3>
-        <p style={{ whiteSpace: "pre-line" }}>{membs}</p>
-        <div className="add-member-button-container">
-          <h3>Add a Member</h3>
-          <p>This will allow everyone to stay connected and up to date</p>
-          <button
-            className="add-member-button"
-            onClick={() => (window.location.href = "/Addmembers")}>
-            <span>+</span>
-          </button>
+            {links.map((link, i) => (
+              <button key={i} href="#/" onClick={(evt) => handleLinkClick(evt, link)}>
+                <li key={link.name}>{link.name}</li>
+              </button>
+            ))}
+  
+            <button href="/" onClick={(evt) => handleLinkClick(evt, "Logout")}>
+              <li>{"Logout"}</li>
+            </button>
+          </ul>
         </div>
-        <button className="modal-close" onClick={handleModalClose}>
-          Close
-        </button>
-      </Modal>
-      <Footer />
-    </div>
+  
+        <Modal
+          style={customStyles}
+          isOpen={modalIsOpen}
+          onRequestClose={handleModalClose}>
+          <h2 className="title">{selectedLink.name}</h2>
+          <p style={{ whiteSpace: "pre-line" }}>{selectedLink.content}</p>
+          {/* display any other properties you added to the link object */}
+          <button className="modal-close" onClick={handleModalClose}>
+            Close
+          </button>
+        </Modal>
+  
+        <Modal
+          style={customStyles}
+          isOpen={membersIsOpen}
+          onRequestClose={handleModalClose}>
+          <h2 className="title">Household Information</h2>
+          <h3>Household Name:</h3>
+          <p>Ravenclaw</p>
+          {/*delete hardcoded RavenClaw later and pull name from database*/}
+          <h3>Your Household Members:</h3>
+          <p style={{ whiteSpace: "pre-line" }}>{membs}</p>
+          <div className="add-member-button-container">
+            <h3>Add a Member</h3>
+            <p>This will allow everyone to stay connected and up to date</p>
+            <button
+              className="add-member-button"
+              onClick={() => (window.location.href = "/Addmembers")}>
+              <span>+</span>
+            </button>
+          </div>
+          <button className="modal-close" onClick={handleModalClose}>
+            Close
+          </button>
+        </Modal>
+        <Footer />
+        </div>
+      ) : (
+        <Navigate to='/login?error=protected' />
+      )}
+    </>
   );
 };
 

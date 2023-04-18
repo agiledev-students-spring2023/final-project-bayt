@@ -1,4 +1,4 @@
-async function getHome(req, res) {
+async function getPage(req, res) {
     // send data to authenticated users
     res.json({
         success: true,
@@ -12,5 +12,5 @@ async function getHome(req, res) {
 }
 
 module.exports = {
-    getHome,
+    getPage,
 };
