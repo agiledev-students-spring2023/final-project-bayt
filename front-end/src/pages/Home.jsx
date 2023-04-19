@@ -94,12 +94,14 @@ const Home = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const roomUrl = camelize(name);
+    const roomUrl = camelize(name)
+    const homeName = "Ravenclaw"
 
     axios
       .post("/api/home", {
         roomName: name,
         url: roomUrl,
+        home: homeName,
       })
       .then((response) => {
         addRoomToList(response.data.room);
@@ -131,7 +133,6 @@ const Home = (props) => {
                 onClick={handleClickOpen}>
                 Add Room
               </button>
-
               <ThemeProvider theme={theme}>
                 <Dialog maxWidth="xs" open={open} onClose={handleClose}>
                   <DialogTitle className="add-room-form">Add Your Room!</DialogTitle>
@@ -151,9 +152,6 @@ const Home = (props) => {
                     <DialogActions>
                       <button
                       type="button"
-                        disableRipple
-                        disableElevation
-                        disableFocusRipple
                         sx={{
                           borderRadius: "0",
                           "&:hover": {
@@ -167,9 +165,6 @@ const Home = (props) => {
                       </button>
                       <button
                         type="submit"
-                        disableRipple
-                        disableElevation
-                        disableFocusRipple
                         sx={{
                           borderRadius: "0",
                           "&:hover": {
