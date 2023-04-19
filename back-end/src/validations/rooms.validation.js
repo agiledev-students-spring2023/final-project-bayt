@@ -17,14 +17,14 @@ const roomDataValidationSchema = {
         trim: true,
         errorMessage: "url did not generate",
     },
-    house: {
+    home: {
         in: ["body"],
         exists: true,
         isString: true,
         notEmpty: true,
         trim: true,
-        errorMessage: "url did not generate",
-    },
+        errorMessage: "home name not added",
+    }
 };
 
 module.exports = {

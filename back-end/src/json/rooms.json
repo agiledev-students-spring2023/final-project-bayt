@@ -1,6 +1,9 @@
 [
     {"roomName": "Living Room", 
-    "url": "livingRoom"},
+    "url": "livingRoom",
+    "house": "Ravenclaw"},
+
     {"roomName": "Bathroom",
-    "url": "bathroom"}
+    "url": "bathroom",
+    "house": "Ravenclaw"}
 ]

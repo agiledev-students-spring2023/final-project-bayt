@@ -94,12 +94,14 @@ const Home = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const roomUrl = camelize(name);
+    const roomUrl = camelize(name)
+    const homeName = "Ravenclaw"
 
     axios
       .post("/api/home", {
         roomName: name,
         url: roomUrl,
+        home: homeName,
       })
       .then((response) => {
         addRoomToList(response.data.room);
