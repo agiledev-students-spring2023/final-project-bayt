@@ -14,7 +14,7 @@ if (process.env.NODE_ENV === 'production') {
   };
 
   getTask = async (task_id) => {
-    return Task.findById(task_id).populate('assignee', 'first_name').populate('room','roomName').lean();
+    return Task.findById(task_id).populate('assignee', '-_id first_name').populate('room','-_id roomName').lean();
   };
 
   // make sure task doesnt exist in database then add the task to the Task
