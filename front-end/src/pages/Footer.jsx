@@ -7,7 +7,7 @@ import FormatListBulletedIcon from "@mui/icons-material/FormatListBulleted";
 import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 import HomeIcon from "@mui/icons-material/Home";
 import NotificationsIcon from "@mui/icons-material/Notifications";
-import TuneIcon from "@mui/icons-material/Tune";
+import SettingsIcon from '@mui/icons-material/Settings';
 
 const Footer = (props) => {
   const variant = "text";
@@ -15,6 +15,17 @@ const Footer = (props) => {
   return (
     <>
       <footer className="footer">
+        <div>
+          <Button
+            className="footer-buttons"
+            variant={variant}
+            component={Link}
+            to="/home"
+            startIcon={<HomeIcon />}
+          >
+
+          </Button>
+        </div>
         <div>
           <Button
             className="footer-buttons"
@@ -35,17 +46,7 @@ const Footer = (props) => {
           >
           </Button>
         </div>
-        <div>
-          <Button
-            className="footer-buttons"
-            variant={variant}
-            component={Link}
-            to="/home"
-            startIcon={<HomeIcon />}
-          >
-
-          </Button>
-        </div>
+        
         <div>
           <Button
             className="footer-buttons"
@@ -63,7 +64,7 @@ const Footer = (props) => {
             variant={variant}
             component={Link}
             to="/settings"
-            startIcon={<TuneIcon />}
+            startIcon={<SettingsIcon />}
           >
           </Button>
         </div>

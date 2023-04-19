@@ -6,7 +6,7 @@ import TaskComponent from "./Task_Component.jsx";
 import { CircularProgress } from "@mui/material";
 import "../index.css";
 
-const testing_mode = false;
+const testing_mode = true;
 const backend_route ='/api/tasks/';
 
 const TaskListComponent = ({filterFunction, sortComparator, enableCheckbox, centerButton}) => {
