@@ -37,8 +37,8 @@ const addMembersRouter = require('./routes/addmembers.route.js');
 const homeRouter = require('./routes/home.route.js');
 const alertsRouter = require('./routes/alerts.route.js');
 const signupRouter = require('./routes/signup.route.js');
-// const cookieRouter = require("./routes/cookie.route.js");
 const protectedContentRouter = require("./routes/protectcontent.route.js");
+const cookieRouter = require("./routes/cookie.route.js");
 
 
 // parse application/json
@@ -49,6 +49,8 @@ app.use(cookieParser()) // useful middleware for dealing with cookies
 
 // protect content
 app.use(`/protected`, protectedContentRouter);
+// set cookies
+app.use("/cookie", cookieRouter);
 // parse profile data
 app.use('/Profile', profRouter);
 // parse task data
@@ -68,8 +70,6 @@ app.use('/home', homeRouter);
 // parse signup data
 app.use(`/signup`,signupRouter);
 
-// app.use("/cookie", cookieRouter());
-// app.use("/protected", protectedContentRouter());
 
 // export the express app we created to make it available to other modules
 module.exports = app

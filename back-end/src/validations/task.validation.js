@@ -24,7 +24,6 @@ const taskDataValidationSchema = {
         in: ["body"],
         exists: true,
         isString: true,
-        notEmpty: true,
         trim: true,
         escape: true,
         errorMessage: "room must be a string",
