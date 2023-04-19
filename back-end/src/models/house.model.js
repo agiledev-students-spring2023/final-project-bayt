@@ -63,4 +63,4 @@ HouseSchema.methods.toAuthJSON = function () {
     };
 }
 
-module.exports = mongoose.model('House', HouseSchema);
+module.exports = mongoose.model('house', HouseSchema);

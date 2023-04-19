@@ -23,11 +23,11 @@ const TaskSchema = new Schema({
         required: true
     },
     room: { // have to populate these two
-        type: mongoose.ObjectId,
+        type: Schema.Types.ObjectId,
         ref: 'room'
     },
     assignee: {
-        type: mongoose.ObjectId,
+        type: Schema.Types.ObjectId,
         ref: 'user'
     },
     due_time: { // MongoDB date type
