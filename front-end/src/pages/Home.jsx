@@ -131,7 +131,6 @@ const Home = (props) => {
                 onClick={handleClickOpen}>
                 Add Room
               </button>
-
               <ThemeProvider theme={theme}>
                 <Dialog maxWidth="xs" open={open} onClose={handleClose}>
                   <DialogTitle className="add-room-form">Add Your Room!</DialogTitle>
@@ -151,9 +150,6 @@ const Home = (props) => {
                     <DialogActions>
                       <button
                       type="button"
-                        disableRipple
-                        disableElevation
-                        disableFocusRipple
                         sx={{
                           borderRadius: "0",
                           "&:hover": {
@@ -167,9 +163,6 @@ const Home = (props) => {
                       </button>
                       <button
                         type="submit"
-                        disableRipple
-                        disableElevation
-                        disableFocusRipple
                         sx={{
                           borderRadius: "0",
                           "&:hover": {
