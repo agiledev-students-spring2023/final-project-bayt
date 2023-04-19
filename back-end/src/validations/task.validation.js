@@ -1,4 +1,5 @@
 const { checkSchema } = require("express-validator");
+// Schema to validate data for task update so not all fields are required
 
 // Validate data using express-validator validator schemas following the schema defined in task.list.model.js
 const taskDataValidationSchema = {
@@ -24,7 +25,7 @@ const taskDataValidationSchema = {
         in: ["body"],
         exists: true,
         isString: true,
-        notEmpty: true,
+        // notEmpty: true,
         trim: true,
         escape: true,
         errorMessage: "room must be a string",
@@ -38,8 +39,8 @@ const taskDataValidationSchema = {
         errorMessage: "assignee must be a string",
     },
     //needs to be mongodb date type
-    $numberLong: {
-        in: ["body.due_time.$date"],
+    due_time: {
+        in: ["body"],
         exists: true,
         isInt: true,
         notEmpty: true,
@@ -61,6 +62,12 @@ const taskDataValidationSchema = {
     },
 };
 
+// Same like the json above but we set all fields to optional
+const taskDataUpdateValidationSchema = Object.keys(taskDataValidationSchema).reduce((acc, key) => {
+    acc[key] = { ...taskDataValidationSchema[key], optional: true };
+    return acc;
+}, {});
+
 // Schema to make sure a valid mongodb task id is provided
 const taskIDValidationSchema = {
     id: {
@@ -75,4 +82,5 @@ const taskIDValidationSchema = {
 module.exports = {
     taskDataValidationSchema: checkSchema(taskDataValidationSchema),
     taskIDValidationSchema: checkSchema(taskIDValidationSchema),
+    taskDataUpdateValidationSchema: checkSchema(taskDataUpdateValidationSchema),
 };

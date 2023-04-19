@@ -9,7 +9,7 @@ async function getAlerts() {
       return !alert.complete && alert.assignee === user.username;
     })
     .map((alert) => {
-      const timestamp = alert.due_time.$date.$numberLong;
+      const timestamp = alert.due_time;
       const date = new Date(timestamp).toLocaleDateString("en-US");
       return {
         task: alert.task_name,
@@ -22,7 +22,7 @@ async function getAlerts() {
 
 async function logAlertState(alertId, isChecked) {
   // console.log(`Alert ID: ${alertId}, Checked: ${isChecked}`);
-  const alertIndex = task_json.findIndex(alert => alert._id.$oid === alertId.$oid);
+  const alertIndex = task_json.findIndex(alert => alert._id === alertId);
   if (alertIndex>=0) {
     task_json[alertIndex].complete = isChecked;
   }

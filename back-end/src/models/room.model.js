@@ -1,4 +1,5 @@
-
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
 // Create Mongoose schema for a room of json format:
 // [
@@ -23,4 +24,4 @@ const RoomSchema = new Schema({
     }
 });
 
-module.exports = mongoose.model('Room', RoomSchema);
+module.exports = mongoose.model('room', RoomSchema);

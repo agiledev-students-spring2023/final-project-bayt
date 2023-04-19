@@ -31,18 +31,12 @@ function generateOId() {
 };
 
 const defaultValues = {
-    _id: {
-        $oid: generateOId(),
-    },
+    _id: generateOId(),
     task_name: "",
     room:"",
     assignee:"",
     repeat: "",
-    due_time: {
-        $date: {
-          $numberLong: new Date().valueOf(),
-        },
-    },
+    due_time: new Date().valueOf(),
     description: "",
     complete: false,
 };
@@ -70,6 +64,7 @@ function IndividualTask(props) {
         .get(backend_route + `${id}`)
         .then((response) => {
             const taskData = response.data;
+            console.log(taskData);
             return taskData;
         })
         .catch((err) => {
@@ -84,12 +79,12 @@ function IndividualTask(props) {
 
                 if (!taskData.response) {
                     setFormValues({
-                        _id: {$oid: id},
+                        _id: id,
                         task_name: taskData['task_name'] ? taskData['task_name'] : '',
                         room: taskData['room'] ? taskData['room'] : '',
                         assignee: taskData['assignee'] ? taskData['assignee'] : '',
                         repeat: taskData['repeat'] ? taskData['repeat'] : '',
-                        due_time: taskData['due_time']['$date']['$numberLong'] ? { $date: { $numberLong: taskData['due_time']['$date']['$numberLong'] } } : { $date: { $numberLong: new Date().valueOf() } },
+                        due_time: taskData['due_time'] ? taskData['due_time'] : new Date().valueOf(),
                         description: taskData['description'] ? taskData['description'] : '',
                         complete: taskData['complete'],
                     });
@@ -115,7 +110,7 @@ function IndividualTask(props) {
         if (e == null && date != null) {
             setFormValues({
                 ...formValues,
-                due_time: { $date: { $numberLong: new Date(date['$d']).valueOf() } },
+                due_time: new Date(date['$d']).valueOf(),
             });
         }
         else {
@@ -211,7 +206,7 @@ function IndividualTask(props) {
                         </FormControl>
 
                         <LocalizationProvider dateAdapter={AdapterDayjs}>
-                            <DatePicker disabled={formValues['complete']} value={dayjs(new Date(formValues['due_time']['$date']['$numberLong']))} required label="Select Date" sx={{mb: 2, width: '100%'}} slotProps={{ textField: { required: true, fullWidth: true } }} onChange={date => handleInputChange(null, date)} />
+                            <DatePicker disabled={formValues['complete']} value={dayjs(new Date(formValues['due_time']))} required label="Select Date" sx={{mb: 2, width: '100%'}} slotProps={{ textField: { required: true, fullWidth: true } }} onChange={date => handleInputChange(null, date)} />
                         </LocalizationProvider>
                         
                         <Button disabled={formValues['complete']} sx={{"&:hover": {color: '#fff', border: '0px #fff solid'}}} variant="contained" fullWidth={true} endIcon={<LibraryAddIcon />} color="primary" type="submit">Save</Button>

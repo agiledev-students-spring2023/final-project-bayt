@@ -1,3 +1,4 @@
+require('dotenv').config({ silent: true }) // load environmental variables from a hidden file named .env
 // import and instantiate express
 const express = require("express")
 const bodyParser = require('body-parser');
@@ -20,13 +21,18 @@ const app = express() // instantiate an Express object
 app.use(passport.initialize())
 
 // import and instantiate mongoose
-const mongoose = require("mongoose") 
+const mongoose = require("mongoose")
 
 // connect to database
-mongoose
-  .connect(`${process.env.DB_CONNECTION_STRING}`)
-  .then(() => console.log(`Connected to MongoDB`))
-  .catch(err => console.error(`Failed to connect to MongoDB: ${err}`));
+if (process.env.NODE_ENV === "production") {
+    console.log("Production mode activated.");
+    mongoose
+        .connect(`${process.env.DB_CONNECTION_STRING}`)
+        .then(data => console.log(`Connected to MongoDB`))
+        .catch(err => console.error(`Failed to connect to MongoDB: ${err}`));
+} else {
+    console.log("Testing mode activated.");
+}
 
 const taskRouter = require('./routes/task.route.js');
 const profRouter = require('./routes/prof.route.js');
@@ -58,15 +64,15 @@ app.use('/finances', financesRouter);
 //parse alerts data
 app.use('/alerts', alertsRouter);
 //parse settings data
-app.use('/settings',settingsRouter);
+app.use('/settings', settingsRouter);
 // parse login data
 app.use('/login', loginRouter);
 //parse addMembers data
-app.use('/addMembers',addMembersRouter);
+app.use('/addMembers', addMembersRouter);
 // parse home data
 app.use('/home', homeRouter);
 // parse signup data
-app.use(`/signup`,signupRouter);
+app.use(`/signup`, signupRouter);
 
 // app.use("/cookie", cookieRouter());
 // app.use("/protected", protectedContentRouter());

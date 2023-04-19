@@ -4,9 +4,9 @@
   "description": "The back-end of your project will live in this directory.",
   "main": "./src/server.js",
   "scripts": {
-    "start": "npx nodemon ./src/server.js",
-    "test": "npx mocha --recursive",
-    "coverage": "npx nyc npm test"
+    "start": "export NODE_ENV=production || set NODE_ENV=production&& nodemon ./src/server.js",
+    "test": "export NODE_ENV=test || set NODE_ENV=test&& npx mocha --recursive",
+    "coverage": "export NODE_ENV=test || set NODE_ENV=test&& npx nyc npm test"
   },
   "author": "",
   "license": "ISC",
@@ -15,12 +15,12 @@
     "chai": "^4.3.7",
     "chai-http": "^4.3.0",
     "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
     "express": "^4.18.2",
     "express-validator": "^7.0.0",
     "istanbul": "^0.4.5",
     "mongoose": "^7.0.3",
     "cookie-parser": "^1.4.5",
-    "dotenv": "^10.0.0",
     "passport": "^0.5.0",
     "passport-jwt": "^4.0.0",
     "bcryptjs": "^2.4.3",

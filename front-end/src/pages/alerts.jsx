@@ -67,43 +67,37 @@ function Alerts() {
 
   return (
     <>
-      {isLoggedIn ? (
-        <>
-        <Header title="Alerts" />
-        <div className="alerts-page-body">
-          {alerts.length === 0 ? (
-            <div className="no-alerts">
-              <p>{"No incomplete tasks! Good job : )"}</p>
-            </div>
-          ) : (
-            <div className="list">
-              <ul className="alertsList">
-                {alerts.map((alert, index) => (
-                  <li key={index}>
-                    <div className="wrapper">
-                      <label className="control control-checkbox">
-                        <Link to={`/tasks/${alert._id.$oid}`}>
-                          {" "}
-                          {alert.task} due by {alert.date}{" "}
-                        </Link>
-                        <input
-                          type="checkbox"
-                          onClick={(event) => handleCheckboxClick(event, alert)}
-                        />
-                        <div className="indicator"></div>
-                      </label>
-                    </div>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
-        </div>
-        <Footer />
-      </>
-      ) : (
-        <Navigate to='/login?error=protected' />
-      )}
+      <Header title="Alerts" />
+      <div className="alerts-page-body">
+        {alerts.length === 0 ? (
+          <div className="no-alerts">
+            <p>No incomplete tasks! Good job : )</p>
+          </div>
+        ) : (
+          <div className="list">
+            <ul className="alertsList">
+              {alerts.map((alert, index) => (
+                <li key={index}>
+                  <div className="wrapper">
+                    <label className="control control-checkbox">
+                      <Link to={`/tasks/${alert._id}`}>
+                        {" "}
+                        {alert.task} due by {alert.date}{" "}
+                      </Link>
+                      <input
+                        type="checkbox"
+                        onClick={(event) => handleCheckboxClick(event, alert)}
+                      />
+                      <div className="indicator"></div>
+                    </label>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </div>
+      <Footer />
     </>
   );
 }

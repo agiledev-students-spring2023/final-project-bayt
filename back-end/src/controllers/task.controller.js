@@ -3,8 +3,16 @@ const taskService = require("../services/task.service.js");
 // get task by id taskSer
 async function get(req, res) {
   try {
-    const task = await taskService.getTask(req.params.id);
-    if (task === undefined) throw new Error("Task not found");
+    let task = await taskService.getTask(req.params.id);
+
+    if (process.env.NODE_ENV === 'production') {
+      if (task === null) throw new Error("Task not found");
+      // Set assignee to the first name of the assignee and only access assignee if its not null
+      task.assignee = task.assignee?.first_name ?? "No Assignee";
+      task.room = task.room?.roomName;
+    } else {
+      if (task === undefined) throw new Error("Task not found");
+    }
     res.status(200).json(task);
   } catch (err) {
     res.status(500).json({ message: err.message });
@@ -14,7 +22,14 @@ async function get(req, res) {
 // list all tasks in the database
 async function gets(req, res) {
   try {
-    const tasks = await taskService.getTasks();
+    let tasks = await taskService.getTasks();
+    if (process.env.NODE_ENV === 'production') {
+      // Set assignee to the first name of the assignee and only access assignee if its not null
+      tasks.forEach((task) => {
+        task.assignee = task.assignee?.first_name ?? "No Assignee";
+        task.room = task.room?.roomName;
+      });
+    }
     res.status(200).json(tasks);
   } catch (err) {
     res.status(500).json({ message: err.message });
