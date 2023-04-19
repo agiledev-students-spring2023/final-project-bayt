@@ -6,11 +6,9 @@ import "../index.css";
 import {
   Room,
   PendingActions,
-  ArrowForwardIos,
   AlternateEmail,
+  Edit
 } from "@mui/icons-material";
-import Checkbox from "@mui/material/Checkbox";
-
 /**
  * A React component that represents the task box for listing tasks
  * @param {string} room location taks is assigned to
@@ -78,7 +76,7 @@ const TaskComponent = ({
           </div>
         </div>
 
-        <ArrowForwardIos className="next_button" />
+        <Edit className="next_button" />
       </div>
     </div>
   );
