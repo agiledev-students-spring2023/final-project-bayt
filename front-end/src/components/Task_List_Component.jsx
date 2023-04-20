@@ -67,6 +67,15 @@ const TaskListComponent = ({filterFunction, sortComparator, enableCheckbox, cent
     setSelected(selected.filter((x) => x._id !== taskID));
   };
 
+  // use effect on sort and filter
+  useEffect(() => {
+    if (loaded) {
+      let task_arr = data;
+      task_arr.sort(sortComparator);
+      setData(task_arr.filter(filterFunction));
+    }
+  }, [filterFunction, sortComparator, loaded]);
+
   const fetchData = () => {
     if (testing_mode) {
       task_json.sort(sortComparator);
@@ -102,7 +111,7 @@ const TaskListComponent = ({filterFunction, sortComparator, enableCheckbox, cent
       clearInterval(intervalHandle);
     };
     //eslint-disable-next-line
-  }, []);
+  }, [filterFunction, sortComparator]);
 
   let prev_day = "";
   const TaskDay = (due_time) => {
