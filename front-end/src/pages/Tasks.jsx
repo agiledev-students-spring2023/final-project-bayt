@@ -65,14 +65,6 @@ const Tasks = (props) => {
         <Navigate to='/login?error=protected' />
       )}
     </>
-
-    // <>
-    // {isLoggedIn ? (
-
-    // ) : (
-    //   <Navigate to='/login?error=protected' />
-    // )}
-    // </>
   );
 };
 export default Tasks;

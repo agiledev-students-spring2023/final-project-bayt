@@ -3,7 +3,7 @@ import { Checkbox, FormGroup, Icon, IconButton } from '@mui/material';
 import { FormControlLabel, Switch } from '@mui/material';
 import { Button } from '@mui/material';
 import SortIcon from '@mui/icons-material/Sort';
-import '../css/Task_Filter_Component.css';
+import '../css/task_filter_component.css';
 
 const TaskFilterComponent = ({ setFilterFunction, setSortFunction }) => {
     const [showCompleted, setShowCompleted] = useState(false);
