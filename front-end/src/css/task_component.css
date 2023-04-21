@@ -43,7 +43,6 @@
     align-items: center;
     justify-content: flex-start;
 }
-
 .checkbox-fix {
     position: relative;
     left: -2%;
@@ -84,8 +83,3 @@
     padding: 0.5em;
 
 }
-
-.task_box_comp .checkbox {
-    transform: translate(0,-25%);
-}
-
