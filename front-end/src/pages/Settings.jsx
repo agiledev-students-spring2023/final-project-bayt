@@ -55,7 +55,7 @@ const Settings = () => {
       axios
         .get(`/api/settings`)
         .then((response) => {
-          console.log(response);
+          console.log(response?.data);
           let membersString = formatMembersInfo(response.data);
           setMembs(membersString);
           setmembersIsOpen(true);
