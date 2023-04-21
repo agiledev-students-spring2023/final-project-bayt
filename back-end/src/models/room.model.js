@@ -18,9 +18,11 @@ const RoomSchema = new Schema({
         type: String,
         required: true
     },
-    house: {
-        type: mongoose.ObjectId,
-        ref: 'house'
+    home: {
+        // type: mongoose.ObjectId,
+        // ref: 'house'
+        type: String,
+        required: true
     }
 });
 
