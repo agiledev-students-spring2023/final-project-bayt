@@ -6,10 +6,14 @@
     justify-content: flex-start;
     margin-bottom: 1.2rem;
     background-color: #fac80160;
-    color: rgb(2, 2, 2);
 }
 
 .task_component:active {
+    filter: drop-shadow(0px 4px 4px rgb(0, 0, 0));
+}
+
+.task_component:hover {
+    cursor: pointer;
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
 
@@ -39,7 +43,6 @@
     align-items: center;
     justify-content: flex-start;
 }
-
 .checkbox-fix {
     position: relative;
     left: -2%;
@@ -78,9 +81,5 @@
 .task_component .next_button {
     margin-left: auto;
     padding: 0.5em;
-}
 
-.task_box_comp .checkbox {
-    transform: translate(0,-25%);
 }
-

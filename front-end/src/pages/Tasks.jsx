@@ -8,10 +8,17 @@ import Footer from "./Footer";
 import { useNavigate, Navigate } from "react-router-dom";
 import axios from "axios";
 import "../index.css";
+import TaskFilterComponent from "../components/Task_Filter_Component";
 
 const Tasks = (props) => {
   const jwtToken = localStorage.getItem("token");
-
+  const [filterFunctionn, setFilterFunctionn] = useState(() => (task_data) => {
+    return true;
+  });
+  const [sortFunctionn, setSortFunctionn] = useState(() => (a, b) => {
+    return a.due_time - b.due_time;
+  }
+  );
   const [isLoggedIn, setIsLoggedIn] = useState(jwtToken && true);
 
   useEffect(() => {
@@ -25,18 +32,10 @@ const Tasks = (props) => {
       })
       .catch(err => {
         setIsLoggedIn(false); // update this state variable, so the component re-renders
-    });
+      });
   }, []);
 
   const navigate = useNavigate();
-
-  const sortAscending = (a, b) => {
-    return a.due_time - b.due_time;
-  };
-
-  const filterFunctionn = (task_data) => {
-    return true;
-  };
 
   return (
     <>
@@ -44,17 +43,14 @@ const Tasks = (props) => {
         <>
           <Header title="Tasks" />
           <div className="tasks_page">
+            <TaskFilterComponent setFilterFunction={setFilterFunctionn} setSortFunction={setSortFunctionn} />
             <TaskListComponent
               filterFunction={filterFunctionn}
-              sortComparator={sortAscending}
+              sortComparator={sortFunctionn}
               enableCheckbox={true}
               centerButton={false}
             />
-    
-            {/* <a href="/tasks/add">
-              <img className="add_tasks_button" src={icon}></img>
-            </a> */}
-    
+
             <button
               className="add_tasks_button"
               variant="contained"
@@ -69,14 +65,6 @@ const Tasks = (props) => {
         <Navigate to='/login?error=protected' />
       )}
     </>
-
-    // <>
-    // {isLoggedIn ? (
-
-    // ) : (
-    //   <Navigate to='/login?error=protected' />
-    // )}
-    // </>
   );
 };
 export default Tasks;
