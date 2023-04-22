@@ -3,17 +3,24 @@ const fs = require('fs');
 const multer = require('multer');
 const path = require('path');
 const User = require('../models/users.model.js');
+ 
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, path.join(__dirname, '../uploads'))
   },
   filename: function (req, file, cb) {
-    cb(null, Date.now() + path.extname(file.originalname))
+    const username = req.params.username; 
+    const timestamp = Date.now();
+    const extension = path.extname(file.originalname);
+    const newFilename = `${timestamp}_${username}${extension}`;
+    cb(null, newFilename);
   }
 });
 
 const upload = multer({ storage: storage});
+
+
 
 //ideally we query with mongoose and pull object using ID
 async function gets(req, res) {
@@ -27,7 +34,17 @@ async function gets(req, res) {
         message: 'User not found',
       });
     }
-    res.json(userData);
+
+    const responseObject = { data: userData };
+
+    // If the user has a profile picture, send it back as an image
+    if (userData.profile_pic!='Default.svg') {
+      const imagePath = path.join(__dirname, '../uploads', userData.profile_pic);
+      const imageBuffer = await fs.promises.readFile(imagePath);
+      responseObject.image = imageBuffer.toString('base64');
+    }
+
+    res.json(responseObject);
   } 
   catch (err) {
     console.error(err);
@@ -38,26 +55,59 @@ async function gets(req, res) {
   }
   };
 
-  //handle user uploading files
-  async function store(req,res){
-    // Check if there are any existing files in the uploads folder
-    const uploadDir = path.join(__dirname, '../uploads');
-    const files = fs.readdirSync(uploadDir);
-    if (files.length > 0) {
-        // Delete all existing files
-        for (const file of files) {
-            fs.unlinkSync(path.join(uploadDir, file));
-        }
-    }
 
+
+
+  //handle user uploading files, updating db, removing previous file for user
+  async function store(req,res){
     // Handle file upload with Multer
-    upload.single('file')(req, res, function(err) {
+    upload.single('file')(req, res, async function(err) {
         if (err) {
           console.error(err);
           return res.status(500).send(err);
         }
-  })
-};
+
+        const username = req.params.username;
+        const file = req.file;
+
+        // Find the user by username
+        const user = await User.findOne({ username });
+          if (!user) {
+            return res.status(404).json({
+              error: 'User not found',
+              status: 'failed to update data',
+            });
+          }
+
+        // Get the current prof_pic filename for the user
+        const currentFilename = user.profile_pic;
+        
+        // If the current filename is 'default', update the prof_pic field and save the new file to the uploads folder
+        if (currentFilename === 'Default.svg') {
+          user.profile_pic = file.filename;
+          await user.save();
+          return res.status(200).send('File uploaded successfully');
+        }
+
+        // If the current filename is not 'default', delete the old file from the uploads folder
+        const oldFilePath = path.join(__dirname, '../uploads', currentFilename);
+        fs.unlink(oldFilePath, async (unlinkErr) => {
+          if (unlinkErr) {
+            console.error(unlinkErr);
+            return res.status(500).send(unlinkErr);
+          }
+
+          // Update the prof_pic field and save the new file to the uploads folder
+          user.profile_pic = file.filename;
+          await user.save();
+          return res.status(200).send('File uploaded successfully');
+        });
+
+    })
+  };
+
+
+
 
 
   //change all this when we use database.  Will be a lot simpler.

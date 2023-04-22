@@ -53,7 +53,7 @@ const Profile = () => {
           <Header title="Profile"/>
           <div>
             <div className="outer">
-                <ProfilePic/>
+                <ProfilePic username={username}/>
                 <NameInfo username={username}/>
                 <ProfInfo username={username}/>
             </div>

@@ -24,13 +24,13 @@ const ProfInfo = (props) => {
   React.useEffect(() => {
     if (username) {
       axios
-        .get(`/api/Profile/${username}`)
+        .get(`/api/Profile/${username}`, { responseType: 'json' })
         .then(response => {
-          setEmail(response.data.email);
-          setHouseholdRole(response.data.role);
-          setLastName(response.data.last_name || '');
-          setHouses(response.data.houses.map(obj => obj.name));
-          setFirstName(response.data.first_name || '');
+          setEmail(response.data.data.email);
+          setHouseholdRole(response.data.data.role);
+          setLastName(response.data.data.last_name || '');
+          setHouses(response.data.data.houses.map(obj => obj.name));
+          setFirstName(response.data.data.first_name || '');
         })
         .catch (err => {
           console.log(err);
