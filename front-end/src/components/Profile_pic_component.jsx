@@ -56,9 +56,12 @@ const ProfilePic = (props) => {
         // Create a FormData object and append the file to it
         const formData = new FormData();
         formData.append('file', selectedFile);
+
+
+        
         // Send a POST request to the /profile endpoint with the FormData object
         try {
-         
+          console.log(formData)
           const response = await axios.post(`/api/Profile/${username}`, formData, {
             headers: {
               'Content-Type': 'multipart/form-data'
