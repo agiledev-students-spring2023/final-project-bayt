@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import '../css/AddMember.css'
-import ProfilePic from "../components/Profile_pic_component";
+import AddMembersPic from "../components/AddMemberPic.jsx";
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
 import InputLabel from '@mui/material/InputLabel';
@@ -36,15 +36,24 @@ const theme = createTheme({
         const [isLoggedIn, setIsLoggedIn] = useState(jwtToken && true);
 
         const [age, setAge] = React.useState('');
+        const [loggeduser,setLoggedUser] = React.useState('');
+        const [userData, setUserData] = useState({});
+
+        const handleImageClick = (field, value) => {
+            // const newFormData = new FormData();
+            // newFormData.append(field, value);
+            // setFormData(newFormData);
+            setUserData( { [field]: value, ...userData} );
+        };
 
         useEffect(() => {
             // send the request to the server api, including the Authorization header with our JWT token in it
             axios
-            .get('/api/protected/addmembers/', {
+            .get('/api/protected/addmembers', {
                 headers: { Authorization: `JWT ${jwtToken}` }, // pass the token, if any, to the server
             })
             .then(res => {
-                // do nothing
+                setLoggedUser(res.data.user.username);
             })
             .catch(err => {
                 setIsLoggedIn(false); // update this state variable, so the component re-renders
@@ -56,27 +65,36 @@ const theme = createTheme({
         };
 
         const navigate = useNavigate();
-
         //change this to navigate back to most prev page (probs settings op)
         const handleFinish = () => {
-        
-        const username = document.getElementById('username').value;
-        const email = document.getElementById('email').value;
-        const role = age;
-      
-        axios.post(`/api/addMembers`, {username, email, role})
-            .then(response => {
-                console.log(response);
-                navigate('/home');
-            })
-            .catch(error => {
-                // Handle errors
-                console.log(error.response.data);
-                console.log("not getting through")
-            });
+            // formData.append('username',document.getElementById('username').value);
+            // formData.append('email',document.getElementById('email').value);
+            // formData.append('role',age);
+            /*for (const value of formData.values()) {
+                console.log(value);
+              }*/
+            let req = {
+                username: document.getElementById('username').value,
+                email: document.getElementById('email').value,
+                role: age,
+                ...userData,
+            };
+            // formData.forEach((value, key) => req[key] = value);
+            // console.log('req', req);
+            axios.post(`/api/addMembers/${loggeduser}`, req)
+            // axios.post(`/api/addMembers/${loggeduser}`, formData)
+                .then(response => {
+                    console.log(response);
+                    navigate('/home');
+                })
+                .catch(error => {
+                    // Handle errors
+                    console.log(error.response.data);
+                    console.log("not getting through")
+                });
 
 
-        return navigate('/home');
+            return navigate('/home');
         }
 
         const handleCancel = () => {
@@ -91,7 +109,7 @@ const theme = createTheme({
                     <Container component="main" maxWidth="sm" sx={{ mb: 4 }}>
                         <Box sx={{ mt: 8, display: 'flex', flexDirection: 'column', alignItems: 'center', }}>
                             <h1 className="text" sx={{mb: 4}}  >Add Family Member</h1>
-                            <ProfilePic />
+                            <AddMembersPic onImageClick={handleImageClick} />
                             <Grid container spacing={3} sx={{ mt: 1 }} >
                                 <Grid item xs={12}>
                                     <TextField required id="username" name="username" label="Enter roomate username" fullWidth />
