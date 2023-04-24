@@ -1,40 +1,73 @@
 //Profile_pic component
 import "../css/Profile_pic_component.css";
-import React, { useRef, useState } from 'react';
-import prof from "./../img.svg";
+import React, { useRef, useState,useEffect } from 'react';
+import prof from "./../Default.svg";
 import axios from "axios";
 
 
-const ProfilePic = () => {
-  //get image in local storage if already uploaded, otherwise undefined (maybe change to default profile svg)
-  const [image, setImage] = useState(localStorage.getItem('img') || prof);
+const ProfilePic = (props) => {
+  //get image  otherwise default profile svg)
+  const [image, setImage] = useState(null); 
   const fileInputRef = useRef(null);
+  const username = props.username;
+
+  useEffect(() => {
+      if (username){
+      // Make a GET request to the /api/Profile endpoint with the username as a parameter
+      axios.get(`/api/Profile/${username}`, { responseType: 'json' })
+        .then((response) => {
+          if (response.data.data.profile_pic ==='Default.svg'){
+            setImage(prof);
+          }
+          else
+          {
+            // Decode the Base64 image data to a binary format
+            const binaryData = atob(response.data.image);
+            const arrayBuffer = new ArrayBuffer(binaryData.length);
+            const uint8Array = new Uint8Array(arrayBuffer);
+            for (let i = 0; i < binaryData.length; i++) {
+              uint8Array[i] = binaryData.charCodeAt(i);
+            }
+  
+            // Create an object URL for the binary data
+            const blob = new Blob([arrayBuffer], { type: 'image/jpeg' });
+            const url = URL.createObjectURL(blob);
+            setImage(url);
+          }
+      })
+        .catch((error) => {
+          console.error(error);
+        })
+    };
+  }, [username]);
+
+
+
 
   const handleChange = async (event) => {
     const selectedFile = event.target.files[0];
-    
-    
     if (selectedFile) {
       let reader = new FileReader();
       reader.readAsDataURL(selectedFile);
-      //render image and we want it to persist so set to local storage (will change this when working with mockaroo)
+      //render image
       reader.onload =async (e) => {
         setImage(e.target.result);
-        localStorage.setItem('img', e.target.result);
 
         // Create a FormData object and append the file to it
         const formData = new FormData();
         formData.append('file', selectedFile);
 
+
+        
         // Send a POST request to the /profile endpoint with the FormData object
         try {
-          const response = await axios.post(`/api/Profile`, formData, {
+          console.log(formData)
+          const response = await axios.post(`/api/Profile/${username}`, formData, {
             headers: {
               'Content-Type': 'multipart/form-data'
             }
           });
           console.log(response.data);
-          console.log("yea word");
         }
         catch (error) {
           console.error(error);
@@ -42,14 +75,10 @@ const ProfilePic = () => {
       };
     }
 
-    else {
-      setImage(prof);
-      localStorage.removeItem('img');
-    }
-
-    fileInputRef.current.value = '';
-
+   fileInputRef.current.value = '';
   };
+
+
 
   return (
       <div>
@@ -63,35 +92,3 @@ const ProfilePic = () => {
 };
 
 export default ProfilePic;
-
-
-
-
-
-//will delete this later but playing with it for now
-/* cleaner code but keeps the ugly "no file chosen text" with input type file
-
-const Profile_pic = () => {
-  //
-  const [image, setImage] = useState(localStorage.getItem("img") || undefined)
-  
-  const handleChange = (event) => {
-    let reader = new FileReader();
-    reader.readAsDataURL(event.target.files[0]);
-
-    reader.onload = (e) => {
-      setImage(e.target.result);
-      localStorage.setItem("img", e.target.result );
-    };
-  };
-
-  return (
-          <div>
-          <div>
-              <img src={image} className="img" alt="" />
-          </div>
-           <input type='file' id="uploadPic"  onChange={handleChange} value="" />
-          </div>
-    );
-}
-*/

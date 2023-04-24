@@ -4,73 +4,92 @@ import TextField from '@mui/material/TextField';
 import EmailIcon from '@mui/icons-material/Email';
 import { Container } from '@mui/system';
 import Diversity3Icon from '@mui/icons-material/Diversity3';
-import LockIcon from '@mui/icons-material/Lock';
-import PhoneIcon from '@mui/icons-material/Phone';
+import SentimentSatisfiedAltIcon from '@mui/icons-material/SentimentSatisfiedAlt';
+import InsertEmoticonIcon from '@mui/icons-material/InsertEmoticon';
 import HomeIcon from '@mui/icons-material/Home';
 import Button from '@mui/material/Button';
 import DeleteAccountButton from './ProfileDelete';
 import axios from 'axios';
 
-const ProfInfo = () => {
+const ProfInfo = (props) => {
   const [isEditable, setIsEditable] = React.useState(false);
   const [email, setEmail] = React.useState('');
   const [householdRole, setHouseholdRole] = React.useState('');
-  const [housecode, setHousecode] = React.useState("password");
-  const [phone, setPhone] = React.useState('');
-  const [rooms, setRooms] = React.useState('');
+  const [firstname, setFirstName] = React.useState('');
+  const [lastname, setLastName] = React.useState('');
+  const [houses, setHouses] = React.useState([]);
+  const username = props.username;
 
-  //axios to get data fetched by backend
+  //axios to get data from backend database
   React.useEffect(() => {
+    if (username) {
       axios
-          .get(`/api/Profile`)
-          .then(response => {
-              setEmail(response.data.email);
-              setHouseholdRole(response.data.role);
-              setPhone(response.data.telephone);
-              setRooms(response.data.rooms);
-          })
-      .catch (err => {
-      console.log(err);
-      })
-  }, [])
+        .get(`/api/Profile/${username}`, { responseType: 'json' })
+        .then(response => {
+          setEmail(response.data.data.email);
+          setHouseholdRole(response.data.data.role);
+          setLastName(response.data.data.last_name || 'Set your last name');
+          setHouses(response.data.data.houses.map(obj => obj.name));
+          setFirstName(response.data.data.first_name || 'Set your first name');
+        })
+        .catch (err => {
+          console.log(err);
+        })
+    }
+  },[username]);
+
 
   const handleEditClick = () => {
     setIsEditable(true);
   };
 
+  //axios to store updated profile info
   const handleSaveClick = () => {
     setIsEditable(false);
-   //axios to update data in backend
     axios
-    .put(`/api/Profile`, {
-      email,
+    .put(`/api/Profile/${username}`, {
+      email: email,
       role: householdRole,
-      password: housecode,
-      telephone: phone,
-      rooms
+      first_name: firstname,
+      last_name: lastname,
     })
-
-    //this needs to be updated to reflect data recieved from database
+  
     .then(response => {
-      console.log(response);
-      // Update the state variables with the updated data from the response
-      //rn it doesnt actually do shit as we are using json file in backend and browser ignores updated values until new session
-      setEmail(response.data.email);
-      setHouseholdRole(response.data.role);
-      setPhone(response.data.telephone);
-      setRooms(response.data.rooms);
+      console.log(response)
     })
-
     .catch(error => {
       console.log(error);
     });
   };
 
 
-
   return (
     <Container maxWidth='lg'>
       <Box margin={'auto'} sx={{ width: '70%', maxWidth:'100%'}}>     
+        <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
+          <SentimentSatisfiedAltIcon sx={{ color: 'action.active', mr: 2, my: 0.5 }} />
+          <TextField
+            fullWidth
+            id="firstname"
+            label="First Name"
+            variant="standard"
+            value={firstname}
+            disabled={!isEditable}
+            onChange={(e) => setFirstName(e.target.value)}
+          />
+        </Box>
+        <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
+          <InsertEmoticonIcon sx={{ color: 'action.active', mr: 2, my: 0.5 }} />
+          <TextField
+            fullWidth
+            id="lastname"
+            label="Last Name"
+            variant="standard"
+            value={lastname}
+            disabled={!isEditable}
+            onChange={(e) => setLastName(e.target.value)}
+          />
+        </Box>
         <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
           <EmailIcon sx={{ color: 'action.active', mr: 2, my: 0.5 }} />
           <TextField
@@ -96,44 +115,19 @@ const ProfInfo = () => {
           />
         </Box>
         <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
-          <LockIcon sx={{ color: 'action.active', mr: 2, my: 0.5 }} />
-          <TextField
-            fullWidth
-            id="housecode"
-            label="Housecode"
-            type="password"
-            autoComplete="current-password"
-            variant="standard"
-            value={housecode}
-            disabled={!isEditable}
-            onChange={(e) => setHousecode(e.target.value)}
-          />
-        </Box>
-        <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
-          <PhoneIcon sx={{ color: 'action.active', mr: 2, my: 0.5 }} />
-          <TextField
-            fullWidth
-            id="phone"
-            label="xxx-xxx-xxxx"
-            variant="standard"
-            value={phone}
-            disabled={!isEditable}
-            onChange={(e) => setPhone(e.target.value)}
-          />
-        </Box>
-        <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
           <HomeIcon sx={{ color: 'action.active', mr: 2, my: 0.5 }} />
           <TextField
             fullWidth
-            id="rooms"
-            label="Rooms"
+            id="houses"
+            label="Houses"
             variant="standard"
-            value={rooms}
+            value={houses.join(', ')}
+            inputProps={{readOnly:true,}}
             disabled={!isEditable}
-            onChange={(e) => setRooms(e.target.value)}
+            onChange={(e) => setHouses(e.target.value)}
             />
         </Box>
-       
+
         <Box sx={{ display: 'flex', alignItems: 'center',flexDirection: 'column', justifyContent:'center', marginTop: '30px' }}>
             {isEditable ? (<Button variant="contained" sx={{ backgroundColor: '#3D405B', '&:hover': { backgroundColor: '#eaefe9' }  }} onClick={handleSaveClick}>Save</Button>):(<Button variant="contained" sx={{ backgroundColor: '#3D405B', '&:hover': { backgroundColor: '#eaefe9' }, width: '200px' }} onClick={handleEditClick}>Edit</Button>)}
             {isEditable && (
