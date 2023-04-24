@@ -1,7 +1,6 @@
 import "../css/AddMemberPic.css";
-import React, { useRef, useState,useEffect } from 'react';
+import React, { useRef, useState} from 'react';
 import prof from "./../Default.svg";
-import axios from "axios";
 
 
 const AddMembersPic = (props) => {
