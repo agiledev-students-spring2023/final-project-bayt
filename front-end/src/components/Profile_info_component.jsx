@@ -28,9 +28,9 @@ const ProfInfo = (props) => {
         .then(response => {
           setEmail(response.data.data.email);
           setHouseholdRole(response.data.data.role);
-          setLastName(response.data.data.last_name || '');
+          setLastName(response.data.data.last_name || 'Set your last name');
           setHouses(response.data.data.houses.map(obj => obj.name));
-          setFirstName(response.data.data.first_name || '');
+          setFirstName(response.data.data.first_name || 'Set your first name');
         })
         .catch (err => {
           console.log(err);

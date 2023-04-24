@@ -21,7 +21,6 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage});
 
 
-
 //ideally we query with mongoose and pull object using ID
 async function gets(req, res) {
   try {
@@ -60,13 +59,6 @@ async function gets(req, res) {
 
   //handle user uploading files, updating db, removing previous file for user
   async function store(req,res){
-    // Handle file upload with Multer
-    upload.single('file')(req, res, async function(err) {
-        if (err) {
-          console.error(err);
-          return res.status(500).send(err);
-        }
-
         const username = req.params.username;
         const file = req.file;
 
@@ -102,8 +94,6 @@ async function gets(req, res) {
           await user.save();
           return res.status(200).send('File uploaded successfully');
         });
-
-    })
   };
 
 
@@ -146,5 +136,6 @@ async function gets(req, res) {
   module.exports = {
     gets,
     update,
-    store
+    store,
+    upload
   };
