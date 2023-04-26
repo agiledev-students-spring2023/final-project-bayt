@@ -37,10 +37,17 @@ async function gets(req, res) {
     const responseObject = { data: userData };
 
     // If the user has a profile picture, send it back as an image
-    if (userData.profile_pic!='Default.svg') {
+    if (userData.profile_pic != 'Default.svg') {
       const imagePath = path.join(__dirname, '../uploads', userData.profile_pic);
-      const imageBuffer = await fs.promises.readFile(imagePath);
-      responseObject.image = imageBuffer.toString('base64');
+      try {
+        await fs.promises.access(imagePath, fs.constants.F_OK);
+        const imageBuffer = await fs.promises.readFile(imagePath);
+        responseObject.image = imageBuffer.toString('base64');
+      } catch (error) {
+        console.error(`File '${userData.profile_pic}' does not exist in the 'uploads' folder. Setting default profile now`);
+        responseObject.data.profile_pic = 'Default.svg';
+        await User.updateOne({ username}, { profile_pic: 'Default.svg' });
+      }
     }
 
     res.json(responseObject);
