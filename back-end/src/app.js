@@ -48,9 +48,9 @@ const protectedContentRouter = require("./routes/protectcontent.route.js");
 
 
 // parse application/json
-app.use(bodyParser.json())
+app.use(bodyParser.json({ limit: '10mb' }))
 app.use(cors())
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: false, limit: '10mb'  }));
 app.use(cookieParser()) // useful middleware for dealing with cookies
 
 // protect content

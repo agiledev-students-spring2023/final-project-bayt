@@ -3,14 +3,11 @@ import '../css/AddMember.css'
 import AddMembersPic from "../components/AddMemberPic.jsx";
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
 import Container from '@mui/material/Container';
 import { useNavigate, Navigate } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
+import Alert from '@mui/material/Alert';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import axios from "axios";
 
@@ -34,15 +31,11 @@ const theme = createTheme({
         const jwtToken = localStorage.getItem("token");
 
         const [isLoggedIn, setIsLoggedIn] = useState(jwtToken && true);
-
-        const [age, setAge] = React.useState('');
+        const [errorMessage, setErrorMessage] = useState('');
         const [loggeduser,setLoggedUser] = React.useState('');
         const [userData, setUserData] = useState({});
 
         const handleImageClick = (field, value) => {
-            // const newFormData = new FormData();
-            // newFormData.append(field, value);
-            // setFormData(newFormData);
             setUserData( { [field]: value, ...userData} );
         };
 
@@ -58,43 +51,29 @@ const theme = createTheme({
             .catch(err => {
                 setIsLoggedIn(false); // update this state variable, so the component re-renders
             });
-        }, []);
+        }, [/*errorMessage*/]);
 
-        const handleChange = (evt) => {
-            setAge(evt.target.value);
-        };
 
         const navigate = useNavigate();
         //change this to navigate back to most prev page (probs settings op)
-        const handleFinish = () => {
-            // formData.append('username',document.getElementById('username').value);
-            // formData.append('email',document.getElementById('email').value);
-            // formData.append('role',age);
-            /*for (const value of formData.values()) {
-                console.log(value);
-              }*/
+        const handleFinish = async () => {
+
             let req = {
                 username: document.getElementById('username').value,
                 email: document.getElementById('email').value,
-                role: age,
+                password: document.getElementById('password').value,
                 ...userData,
             };
-            // formData.forEach((value, key) => req[key] = value);
-            // console.log('req', req);
-            axios.post(`/api/addMembers/${loggeduser}`, req)
-            // axios.post(`/api/addMembers/${loggeduser}`, formData)
-                .then(response => {
-                    console.log(response);
-                    navigate('/home');
-                })
-                .catch(error => {
-                    // Handle errors
-                    console.log(error.response.data);
-                    console.log("not getting through")
-                });
 
+            try {
+                const response = await axios.post(`/api/addMembers/${loggeduser}`,req);
+                setErrorMessage('');
+                console.log(response)
+                navigate('/home');
 
-            return navigate('/home');
+              } catch(err) {
+                setErrorMessage(<Alert severity="error">{`${err.response.data.message}`}</Alert>);
+              }
         }
 
         const handleCancel = () => {
@@ -110,6 +89,9 @@ const theme = createTheme({
                         <Box sx={{ mt: 8, display: 'flex', flexDirection: 'column', alignItems: 'center', }}>
                             <h1 className="text" sx={{mb: 4}}  >Add Family Member</h1>
                             <AddMembersPic onImageClick={handleImageClick} />
+
+                            {errorMessage}
+
                             <Grid container spacing={3} sx={{ mt: 1 }} >
                                 <Grid item xs={12}>
                                     <TextField required id="username" name="username" label="Enter roomate username" fullWidth />
@@ -118,16 +100,11 @@ const theme = createTheme({
                                 <Grid item xs={12}>
                                     <TextField required fullWidth id="email" label="Enter roomate email address" name="email"/>
                                 </Grid>
-        
+
                                 <Grid item xs={12}>
-                                    <FormControl fullWidth>
-                                        <InputLabel id="role-select-label">Role</InputLabel>
-                                        <Select labelId="role-select-label" id="role-select" value={age} label="Role" onChange={handleChange}>
-                                            <MenuItem value={'admin'}>Admin</MenuItem>
-                                            <MenuItem value={'roomate'}>Roomate</MenuItem>
-                                        </Select>
-                                    </FormControl>
+                                    <TextField required fullWidth id="password" label="Enter shared housecode" name="password"/>
                                 </Grid>
+
                             
                             </Grid>
                             <Box sx={{ width: '100%', display: 'flex', justifyContent: 'space-between', mt: 7 }}>

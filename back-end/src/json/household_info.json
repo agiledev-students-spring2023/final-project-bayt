@@ -33,5 +33,11 @@
     "username": "diana123",
     "role": "roomate",
     "contact": "666-666-6666"
+  },
+  {
+    "username": "pigeon2",
+    "email": "pigeon@bird.com",
+    "password": "191138",
+    "profile_pic": "1682568076238_pigeon2.jpeg"
   }
 ]
