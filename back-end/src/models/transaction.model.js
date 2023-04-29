@@ -1,8 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema
 
-const mongoose = require('mongoose');
-
 const transactionSchema = new Schema({
   paidOrRequesting: {
     type: String,
@@ -30,7 +28,11 @@ const transactionSchema = new Schema({
   date: {
     type: Date,
     required: true
-  }
+  },
+  house: {
+    type: Schema.Types.ObjectId,
+    ref: 'house'
+},
 });
 
 const transaction = mongoose.model('transaction', transactionSchema);

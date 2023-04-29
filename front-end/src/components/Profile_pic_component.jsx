@@ -82,20 +82,19 @@ const ProfilePic = (props) => {
 
 
   return (
-    <div>
+    <><div>
       <div className="profileImg">
         <img src={image} className="img" alt="" />
       </div>
       <input type='file' id="uploadPic" ref={fileInputRef} onChange={handleChange} />
       <label htmlFor="uploadPic" className="custom-file-upload">Upload file</label>
-    </div>
-    <div>
-      <div className="profileImg">
-        <img src={image} className="img" alt="" />
-      </div>
-      <input type='file' id="uploadPic" ref={fileInputRef} onChange={handleChange} />
-      <label htmlFor="uploadPic" className="custom-file-upload">Upload file</label>
-    </div>
+    </div><div>
+        <div className="profileImg">
+          <img src={image} className="img" alt="" />
+        </div>
+        <input type='file' id="uploadPic" ref={fileInputRef} onChange={handleChange} />
+        <label htmlFor="uploadPic" className="custom-file-upload">Upload file</label>
+      </div></>
   );
 };
 
