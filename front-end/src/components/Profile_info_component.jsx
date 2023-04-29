@@ -24,7 +24,7 @@ const ProfInfo = (props) => {
   React.useEffect(() => {
     if (username) {
       axios
-        .get(`/api/Profile/${username}`, { responseType: 'json' })
+        .get(`/api/Profile/`, { responseType: 'json' }, { Headers: { 'Content-Type': 'application/json', 'Authorization': `JWT ${localStorage.getItem('token')}` }})
         .then(response => {
           setEmail(response.data.data.email);
           setHouseholdRole(response.data.data.role);
@@ -47,11 +47,16 @@ const ProfInfo = (props) => {
   const handleSaveClick = () => {
     setIsEditable(false);
     axios
-    .put(`/api/Profile/${username}`, {
+    .put(`/api/Profile/`, {
       email: email,
       role: householdRole,
       first_name: firstname,
       last_name: lastname,
+    }, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `JWT ${localStorage.getItem('token')}`
+      }
     })
   
     .then(response => {

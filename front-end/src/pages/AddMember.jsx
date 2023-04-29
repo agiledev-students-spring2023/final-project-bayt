@@ -67,22 +67,15 @@ function AddMembers() {
     const navigate = useNavigate();
     //change this to navigate back to most prev page (probs settings op)
     const handleFinish = () => {
-        // formData.append('username',document.getElementById('username').value);
-        // formData.append('email',document.getElementById('email').value);
-        // formData.append('role',age);
-        /*for (const value of formData.values()) {
-            console.log(value);
-          }*/
         let req = {
             username: document.getElementById('username').value,
             email: document.getElementById('email').value,
             role: age,
             ...userData,
         };
-        // formData.forEach((value, key) => req[key] = value);
-        // console.log('req', req);
-        axios.post(`/api/addMembers/${loggeduser}`, req)
-            // axios.post(`/api/addMembers/${loggeduser}`, formData)
+        axios.post(`/api/addMembers/${loggeduser}`, req, {
+            headers: { Authorization: `JWT ${jwtToken}` }, // pass the token, if any, to the server
+            })
             .then(response => {
                 console.log(response);
                 navigate('/home');
