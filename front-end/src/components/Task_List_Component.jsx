@@ -7,9 +7,9 @@ import { CircularProgress } from "@mui/material";
 import "../index.css";
 
 const testing_mode = false;
-const backend_route ='/api/tasks/';
+const backend_route = '/api/tasks/';
 
-const TaskListComponent = ({filterFunction, sortComparator, enableCheckbox, centerButton}) => {
+const TaskListComponent = ({ filterFunction, sortComparator, enableCheckbox, centerButton }) => {
   const [data, setData] = useState([]);
   const [loaded, setLoaded] = useState(false);
   const [error, setError] = useState("");
@@ -26,7 +26,7 @@ const TaskListComponent = ({filterFunction, sortComparator, enableCheckbox, cent
           backend_route + selectObject._id,
           {
             complete: true,
-          },
+          }
         )
         .then((response) => {
           // console.log(response); 
@@ -90,7 +90,7 @@ const TaskListComponent = ({filterFunction, sortComparator, enableCheckbox, cent
         });
     }
   };
-  
+
   useEffect(() => {
     fetchData();
 

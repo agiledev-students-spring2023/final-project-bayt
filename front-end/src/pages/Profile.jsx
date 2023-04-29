@@ -18,14 +18,14 @@ const NameInfo = () => {
 
   React.useEffect(() => {
     axios
-        .get(`/api/Profile`)
-        .then(response => {
-         setName(response.data.username);   
-        })
-    .catch (err => {
-    console.log(err);
-    })
-}, [])
+      .get(`/api/Profile`)
+      .then(response => {
+        setName(response.data.username);
+      })
+      .catch(err => {
+        console.log(err);
+      })
+  }, [])
 
 
   const handleNameClick = () => {
@@ -53,7 +53,7 @@ const NameInfo = () => {
           .catch((error) => {
             console.log(error);
           });
-      } 
+      }
 
       else {
         setTempName(name);
@@ -73,14 +73,14 @@ const NameInfo = () => {
         .catch((error) => {
           console.log(error);
         });
-    } 
+    }
 
     else {
       setTempName(name);
     }
 
   };
-  
+
   return (
     <div className="profile-container">
       {isEditing ? (
@@ -100,7 +100,7 @@ const NameInfo = () => {
       )}
     </div>
   );
-    
+
 }
 
 
@@ -115,30 +115,28 @@ const Profile = () => {
   useEffect(() => {
     // send the request to the server api, including the Authorization header with our JWT token in it
     axios
-      .get('/api/protected/profile/', {
-        headers: { Authorization: `JWT ${jwtToken}` }, // pass the token, if any, to the server
-      })
+      .get('/api/protected/profile/')
       .then(res => {
         // do nothing
       })
       .catch(err => {
         setIsLoggedIn(false); // update this state variable, so the component re-renders
-    });
+      });
   }, []);
 
   return (
     <>
       {isLoggedIn ? (
         <>
-          <Header title="Profile"/>
+          <Header title="Profile" />
           <div>
             <div className="outer">
-                <ProfilePic/>
-                <NameInfo/>
-                <ProfInfo/>
+              <ProfilePic />
+              <NameInfo />
+              <ProfInfo />
             </div>
           </div>
-          <Footer/>
+          <Footer />
         </>
       ) : (
         <Navigate to='/login?error=protected' />

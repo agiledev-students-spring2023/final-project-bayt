@@ -14,7 +14,7 @@ function TransactionForm({ onSubmit }) {
   const [user, setUser] = useState("@user");
   const [forWhat, setforWhat] = useState("purpose");
   const [date, setDate] = useState("");
-  
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     const transaction = {
@@ -112,15 +112,13 @@ function Finances() {
   useEffect(() => {
     // send the request to the server api, including the Authorization header with our JWT token in it
     axios
-      .get('/api/protected/finances/', {
-        headers: { Authorization: `JWT ${jwtToken}` }, // pass the token, if any, to the server
-      })
+      .get('/api/protected/finances/')
       .then(res => {
         // do nothing
       })
       .catch(err => {
         setIsLoggedIn(false); // update this state variable, so the component re-renders
-    });
+      });
   }, []);
 
   const handleButtonClick = () => {
@@ -169,7 +167,7 @@ function Finances() {
                   Add new transaction
                 </button>
               </div>
-    
+
               {isFormVisible && (
                 <div className="overlay" onClick={handleOverlayClick}>
                   <div className="form">

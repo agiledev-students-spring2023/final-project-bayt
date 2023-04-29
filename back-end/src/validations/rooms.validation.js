@@ -16,14 +16,6 @@ const roomDataValidationSchema = {
         notEmpty: true,
         trim: true,
         errorMessage: "url did not generate",
-    },
-    home: {
-        in: ["body"],
-        exists: true,
-        isString: true,
-        notEmpty: true,
-        trim: true,
-        errorMessage: "home name not added",
     }
 };
 

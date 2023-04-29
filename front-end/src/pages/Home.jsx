@@ -33,19 +33,21 @@ const Home = (props) => {
   const [rooms, setRooms] = useState([]);
   const [name, setName] = useState("");
 
-  useEffect(() => {
-    // send the request to the server api, including the Authorization header with our JWT token in it
-    axios
-      .get('/api/protected/home/', {
-        headers: { Authorization: `JWT ${jwtToken}` }, // pass the token, if any, to the server
-      })
-      .then(res => {
-        // do nothing
-      })
-      .catch(err => {
-        setIsLoggedIn(false); // update this state variable, so the component re-renders
-    });
-  }, []);
+  // useEffect(() => {
+  //   // send the request to the server api, including the Authorization header with our JWT token in it
+  //   axios
+  //     .get('/api/protected/home/',
+  //       {
+  //         headers: { Authorization: `JWT ${jwtToken}` }, // pass the token, if any, to the server
+  //       }
+  //     )
+  //     .then(res => {
+  //       // do nothing
+  //     })
+  //     .catch(err => {
+  //       setIsLoggedIn(false); // update this state variable, so the component re-renders
+  //     });
+  // }, []);
 
   function camelize(str) {
     return str.replace(/(?:^\w|[A-Z]|\b\w|\s+)/g, function (match, index) {
@@ -58,20 +60,27 @@ const Home = (props) => {
     setOpen(true);
   };
 
+  // Get the id of the room we added and post using house id
   const handleClose = () => {
     setOpen(false);
   };
 
   const fetchRooms = () => {
     axios
-      .get("/api/home")
+      .get("/api/home",
+        {
+          headers: { Authorization: `JWT ${jwtToken}` }, // pass the token, if any, to the server
+        })
       .then((response) => {
+        console.log("Good room fetch");
         const rooms = response.data;
         setRooms(rooms);
       })
       .catch((err) => {
-        console.log("Bad room fetch");
+        console.log("Bad room fetch", err);
       });
+
+    console.log("FETCHED");
   };
 
   const addRoomToList = (room) => {
@@ -92,26 +101,31 @@ const Home = (props) => {
   }, []);
 
   const handleSubmit = (e) => {
+
+    console.log("SUBMITTING");
     e.preventDefault();
-
-    const roomUrl = camelize(name)
-    const homeName = "Ravenclaw"
-
+    const roomUrl = camelize(name);
     axios
       .post("/api/home", {
         roomName: name,
-        url: roomUrl,
-        home: homeName,
-      })
+        url: roomUrl
+      },
+        {
+          headers: { Authorization: `JWT ${jwtToken}` } // pass the token, if any, to the server
+        }
+      )
       .then((response) => {
+        console.log("Submit success");
         addRoomToList(response.data.room);
       })
       .catch((err) => {
+        console.log(err)
         console.log("Submit error");
       });
 
+    console.log("SUBMITTED");
+
     setName("");
-    window.location.reload();
   };
 
   return (
@@ -121,11 +135,11 @@ const Home = (props) => {
           <Header title="Home" />
           <div>
             <div className="homeBody">
-            {rooms.map((room, index) => (<Link key={index} to={`/room/${room.url}`}>
-                  <button key={index} className="roomButton" type="button">
-                    {room.roomName}
-                  </button>
-                </Link>))}
+              {rooms.map((room, index) => (<Link key={index} to={`/room/${room?.url}`}>
+                <button key={index} className="roomButton" type="button">
+                  {room?.roomName}
+                </button>
+              </Link>))}
 
               <button
                 className="roomButton"
@@ -151,7 +165,7 @@ const Home = (props) => {
                     </DialogContent>
                     <DialogActions>
                       <button
-                      type="button"
+                        type="button"
                         sx={{
                           borderRadius: "0",
                           "&:hover": {
@@ -185,7 +199,7 @@ const Home = (props) => {
           <Footer />
         </>
       ) : (
-        <Navigate to='/login?error=protected'/>
+        <Navigate to='/login?error=protected' />
       )}
     </>
   );

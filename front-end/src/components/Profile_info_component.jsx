@@ -21,16 +21,16 @@ const ProfInfo = () => {
 
   //axios to get data fetched by backend
   React.useEffect(() => {
-      axios
-          .get(`/api/Profile`)
-          .then(response => {
-              setEmail(response.data.email);
-              setHouseholdRole(response.data.role);
-              setPhone(response.data.telephone);
-              setRooms(response.data.rooms);
-          })
-      .catch (err => {
-      console.log(err);
+    axios
+      .get(`/api/Profile`)
+      .then(response => {
+        setEmail(response.data.email);
+        setHouseholdRole(response.data.role);
+        setPhone(response.data.telephone);
+        setRooms(response.data.rooms);
+      })
+      .catch(err => {
+        console.log(err);
       })
   }, [])
 
@@ -40,37 +40,37 @@ const ProfInfo = () => {
 
   const handleSaveClick = () => {
     setIsEditable(false);
-   //axios to update data in backend
+    //axios to update data in backend
     axios
-    .put(`/api/Profile`, {
-      email,
-      role: householdRole,
-      password: housecode,
-      telephone: phone,
-      rooms
-    })
+      .put(`/api/Profile`, {
+        email,
+        role: householdRole,
+        password: housecode,
+        telephone: phone,
+        rooms
+      })
 
-    //this needs to be updated to reflect data recieved from database
-    .then(response => {
-      console.log(response);
-      // Update the state variables with the updated data from the response
-      //rn it doesnt actually do shit as we are using json file in backend and browser ignores updated values until new session
-      setEmail(response.data.email);
-      setHouseholdRole(response.data.role);
-      setPhone(response.data.telephone);
-      setRooms(response.data.rooms);
-    })
+      //this needs to be updated to reflect data recieved from database
+      .then(response => {
+        console.log(response);
+        // Update the state variables with the updated data from the response
+        //rn it doesnt actually do shit as we are using json file in backend and browser ignores updated values until new session
+        setEmail(response.data.email);
+        setHouseholdRole(response.data.role);
+        setPhone(response.data.telephone);
+        setRooms(response.data.rooms);
+      })
 
-    .catch(error => {
-      console.log(error);
-    });
+      .catch(error => {
+        console.log(error);
+      });
   };
 
 
 
   return (
     <Container maxWidth='lg'>
-      <Box margin={'auto'} sx={{ width: '70%', maxWidth:'100%'}}>     
+      <Box margin={'auto'} sx={{ width: '70%', maxWidth: '100%' }}>
         <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
           <EmailIcon sx={{ color: 'action.active', mr: 2, my: 0.5 }} />
           <TextField
@@ -131,19 +131,19 @@ const ProfInfo = () => {
             value={rooms}
             disabled={!isEditable}
             onChange={(e) => setRooms(e.target.value)}
-            />
+          />
         </Box>
-       
-        <Box sx={{ display: 'flex', alignItems: 'center',flexDirection: 'column', justifyContent:'center', marginTop: '30px' }}>
-            {isEditable ? (<Button variant="contained" sx={{ backgroundColor: '#3D405B', '&:hover': { backgroundColor: '#eaefe9' }  }} onClick={handleSaveClick}>Save</Button>):(<Button variant="contained" sx={{ backgroundColor: '#3D405B', '&:hover': { backgroundColor: '#eaefe9' }, width: '200px' }} onClick={handleEditClick}>Edit</Button>)}
-            {isEditable && (
+
+        <Box sx={{ display: 'flex', alignItems: 'center', flexDirection: 'column', justifyContent: 'center', marginTop: '30px' }}>
+          {isEditable ? (<Button variant="contained" sx={{ backgroundColor: '#3D405B', '&:hover': { backgroundColor: '#eaefe9' } }} onClick={handleSaveClick}>Save</Button>) : (<Button variant="contained" sx={{ backgroundColor: '#3D405B', '&:hover': { backgroundColor: '#eaefe9' }, width: '200px' }} onClick={handleEditClick}>Edit</Button>)}
+          {isEditable && (
             <>
-            <DeleteAccountButton/>
-            </> 
-            )}
+              <DeleteAccountButton />
+            </>
+          )}
         </Box>
-        </Box>
-        </Container>
+      </Box>
+    </Container>
   );
 }
 

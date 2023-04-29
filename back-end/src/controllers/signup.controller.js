@@ -22,7 +22,7 @@ async function signup(req, res) {
         const house = await new houseModel({ code: code, name: houseName }).save();
 
         try {
-            const user = await new userModel({ username: username, first_name: "Set your first name", last_name: "Set your last name", email: email, password: code, role: role, houses: [house] }).save();
+            const user = await new userModel({ username: username, first_name: "Set your first name", last_name: "Set your last name", email: email, password: code, role: role, houses: house }).save();
             house.users.push(user);
             await house.save();
 
