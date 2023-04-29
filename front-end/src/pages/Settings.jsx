@@ -53,7 +53,11 @@ const Settings = () => {
       //code to fetch household data goes here.  Will probably just call a function that retreives using axios and whatnot
       //mock data for now
       axios
-        .get(`/api/settings`)
+        .get(`/api/settings`, {
+          headers: {
+            Authorization: `JWT ${localStorage.getItem("token")}`,
+          },
+        })
         .then((response) => {
           console.log(response);
           let membersString = formatMembersInfo(response.data);

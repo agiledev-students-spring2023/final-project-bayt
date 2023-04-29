@@ -13,6 +13,19 @@ import Finances from "./pages/finances";
 import Alerts from "./pages/alerts";
 import Settings from './pages/Settings';
 import AddMembers from './pages/AddMember';
+// import axios from 'axios';
+
+// axios.interceptors.request.use(function (config) {
+//   // Check if the request is not login or signup routes
+//   if (!config.url.startsWith('/api/login') && !config.url.startsWith('/api/signup')) {
+//     console.log('intercepted request');
+//     const token = localStorage.getItem('token');
+//     if (token) {
+//       config.headers.Authorization = `JWT ${token}`;
+//     }
+//   }
+//   return config;
+// });
 
 function App() {
   return (
