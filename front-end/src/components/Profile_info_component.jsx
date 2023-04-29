@@ -54,7 +54,12 @@ const ProfInfo = (props) => {
         password: housecode,
         telephone: phone,
         rooms
-      })
+      },
+        {
+          headers: {
+            Authorization: `JWT ${localStorage.getItem("token")}`,
+          },
+        })
 
       //this needs to be updated to reflect data recieved from database
       .then(response => {
