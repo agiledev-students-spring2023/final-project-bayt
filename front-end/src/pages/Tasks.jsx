@@ -9,6 +9,8 @@ import Footer from "./Footer";
 import { useNavigate, Navigate } from "react-router-dom";
 import "../index.css";
 import TaskFilterComponent from "../components/Task_Filter_Component";
+import { useEffect } from "react";
+import axios from "axios";
 
 const Tasks = (props) => {
   const jwtToken = localStorage.getItem("token");
