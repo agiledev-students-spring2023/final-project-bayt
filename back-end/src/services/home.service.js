@@ -6,7 +6,7 @@ let getAllRooms, addRoom;
 if (process.env.NODE_ENV === 'production') {
     getAllRooms = async (house_id) => {
         // Return rooms with a specific house id
-        return Room.find({ home: house_id }).lean();
+        return Room.find({ house: house_id }).populate('assignee', '-_id first_name').populate('room', '-_id roomName').lean();
     };
 
     addRoom = async (house_id, room) => {

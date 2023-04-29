@@ -61,11 +61,7 @@ function IndividualTask(props) {
 
     const fetchData = async (id) => {
         return await axios
-            .get(backend_route + `${id}`, {
-                headers: {
-                    Authorization: `JWT ${localStorage.getItem("token")}`,
-                },
-            })
+            .get(backend_route + `${id}`)
             .then((response) => {
                 const taskData = response.data;
                 console.log(taskData);
@@ -131,11 +127,7 @@ function IndividualTask(props) {
 
         if (id) {
             axios
-                .put(backend_route + `${id}`, formValues, {
-                    headers: {
-                        Authorization: `JWT ${localStorage.getItem("token")}`,
-                    },
-                })
+                .put(backend_route + `${id}`, formValues)
                 .then((res) => {
                     console.log(res);
                 })
@@ -146,11 +138,7 @@ function IndividualTask(props) {
         else {
             console.log(formValues);
             axios
-                .post(backend_route, formValues, {
-                    headers: {
-                        Authorization: `JWT ${localStorage.getItem("token")}`,
-                    },
-                })
+                .post(backend_route, formValues)
                 .then((res) => {
                     console.log(res);
                 })

@@ -23,11 +23,7 @@ const ProfInfo = (props) => {
   //axios to get data from backend database
   React.useEffect(() => {
     axios
-      .get(`/api/Profile`, {
-        headers: {
-          Authorization: `JWT ${localStorage.getItem("token")}`,
-        },
-      })
+      .get(`/api/Profile`)
       .then(response => {
         setEmail(response.data.email);
         setHouseholdRole(response.data.role);
@@ -47,6 +43,7 @@ const ProfInfo = (props) => {
   const handleSaveClick = () => {
     setIsEditable(false);
     //axios to update data in backend
+    //axios to update data in backend
     axios
       .put(`/api/Profile`, {
         email,
@@ -54,12 +51,7 @@ const ProfInfo = (props) => {
         password: housecode,
         telephone: phone,
         rooms
-      },
-        {
-          headers: {
-            Authorization: `JWT ${localStorage.getItem("token")}`,
-          },
-        })
+      })
 
       //this needs to be updated to reflect data recieved from database
       .then(response => {
@@ -81,30 +73,6 @@ const ProfInfo = (props) => {
   return (
     <Container maxWidth='lg'>
       <Box margin={'auto'} sx={{ width: '70%', maxWidth: '100%' }}>
-        <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
-          <SentimentSatisfiedAltIcon sx={{ color: 'action.active', mr: 2, my: 0.5 }} />
-          <TextField
-            fullWidth
-            id="firstname"
-            label="First Name"
-            variant="standard"
-            value={firstname}
-            disabled={!isEditable}
-            onChange={(e) => setFirstName(e.target.value)}
-          />
-        </Box>
-        <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
-          <InsertEmoticonIcon sx={{ color: 'action.active', mr: 2, my: 0.5 }} />
-          <TextField
-            fullWidth
-            id="lastname"
-            label="Last Name"
-            variant="standard"
-            value={lastname}
-            disabled={!isEditable}
-            onChange={(e) => setLastName(e.target.value)}
-          />
-        </Box>
         <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
           <EmailIcon sx={{ color: 'action.active', mr: 2, my: 0.5 }} />
           <TextField
@@ -141,8 +109,13 @@ const ProfInfo = (props) => {
             disabled={!isEditable}
             onChange={(e) => setRooms(e.target.value)}
           />
+            onChange={(e) => setRooms(e.target.value)}
+          />
         </Box>
 
+        <Box sx={{ display: 'flex', alignItems: 'center', flexDirection: 'column', justifyContent: 'center', marginTop: '30px' }}>
+          {isEditable ? (<Button variant="contained" sx={{ backgroundColor: '#3D405B', '&:hover': { backgroundColor: '#eaefe9' } }} onClick={handleSaveClick}>Save</Button>) : (<Button variant="contained" sx={{ backgroundColor: '#3D405B', '&:hover': { backgroundColor: '#eaefe9' }, width: '200px' }} onClick={handleEditClick}>Edit</Button>)}
+          {isEditable && (
         <Box sx={{ display: 'flex', alignItems: 'center', flexDirection: 'column', justifyContent: 'center', marginTop: '30px' }}>
           {isEditable ? (<Button variant="contained" sx={{ backgroundColor: '#3D405B', '&:hover': { backgroundColor: '#eaefe9' } }} onClick={handleSaveClick}>Save</Button>) : (<Button variant="contained" sx={{ backgroundColor: '#3D405B', '&:hover': { backgroundColor: '#eaefe9' }, width: '200px' }} onClick={handleEditClick}>Edit</Button>)}
           {isEditable && (
@@ -150,7 +123,12 @@ const ProfInfo = (props) => {
               <DeleteAccountButton />
             </>
           )}
+              <DeleteAccountButton />
+            </>
+          )}
         </Box>
+      </Box>
+    </Container>
       </Box>
     </Container>
   );

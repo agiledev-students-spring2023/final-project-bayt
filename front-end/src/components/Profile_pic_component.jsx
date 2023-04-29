@@ -63,11 +63,7 @@ const ProfilePic = (props) => {
         
         // Send a POST request to the /profile endpoint with the FormData object
         try {
-          const response = await axios.post(`/api/Profile`, formData, {
-            headers: {
-              Authorization: `JWT ${localStorage.getItem("token")}`,
-            },
-          });
+          const response = await axios.post(`/api/Profile`, formData);
           console.log(response.data);
         }
         catch (error) {
