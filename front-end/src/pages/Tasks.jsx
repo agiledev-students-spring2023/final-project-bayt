@@ -1,7 +1,6 @@
 import "../css/tasks.css";
 import "../index.css";
 import React, { useState} from "react";
-import React, { useState} from "react";
 import TaskListComponent from "../components/Task_List_Component";
 import AddIcon from "@mui/icons-material/Add";
 import Header from "./Header";
