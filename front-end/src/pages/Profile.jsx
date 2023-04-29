@@ -18,7 +18,11 @@ const NameInfo = () => {
 
   React.useEffect(() => {
     axios
-      .get(`/api/Profile`)
+      .get(`/api/Profile`, {
+        headers: {
+          Authorization: `JWT ${localStorage.getItem("token")}`,
+        },
+      })
       .then(response => {
         setName(response.data.username);
       })
@@ -113,7 +117,11 @@ const Profile = () => {
   useEffect(() => {
     // send the request to the server api, including the Authorization header with our JWT token in it
     axios
-      .get('/api/protected/profile/')
+      .get('/api/protected/profile/', {
+        headers: {
+          Authorization: `JWT ${localStorage.getItem("token")}`,
+        },
+      })
       .then(res => {
         setUsername(res.data.user.username);
       

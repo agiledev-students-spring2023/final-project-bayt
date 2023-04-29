@@ -22,18 +22,6 @@ const Tasks = (props) => {
   );
   const [isLoggedIn, setIsLoggedIn] = useState(jwtToken && true);
 
-  useEffect(() => {
-    // send the request to the server api, including the Authorization header with our JWT token in it
-    axios
-      .get('/api/protected/tasks/')
-      .then(res => {
-        // do nothing
-      })
-      .catch(err => {
-        setIsLoggedIn(false); // update this state variable, so the component re-renders
-    });
-  }, []);
-
   const navigate = useNavigate();
 
   return (

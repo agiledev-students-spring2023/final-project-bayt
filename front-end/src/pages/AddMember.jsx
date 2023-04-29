@@ -52,7 +52,11 @@ function AddMembers() {
     useEffect(() => {
         // send the request to the server api, including the Authorization header with our JWT token in it
         axios
-            .get('/api/protected/addmembers/')
+            .get('/api/protected/addmembers/', {
+                headers: {
+                    Authorization: `JWT ${localStorage.getItem("token")}`,
+                },
+            })
             .then(res => {
                 setLoggedUser(res.data.user.username);
             })
@@ -78,7 +82,11 @@ function AddMembers() {
         const email = document.getElementById('email').value;
         const role = age;
 
-        axios.post(`/api/addMembers`, { username, email, role })
+        axios.post(`/api/addMembers`, { username, email, role }, {
+            headers: {
+                Authorization: `JWT ${localStorage.getItem("token")}`,
+            },
+        })
             .then(response => {
                 console.log(response);
                 navigate('/home');
