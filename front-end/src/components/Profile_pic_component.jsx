@@ -61,12 +61,7 @@ const ProfilePic = (props) => {
         
         // Send a POST request to the /profile endpoint with the FormData object
         try {
-          console.log(formData)
-          const response = await axios.post(`/api/Profile/${username}`, formData, {
-            headers: {
-              'Content-Type': 'multipart/form-data'
-            }
-          });
+          const response = await axios.post(`/api/Profile`, formData);
           console.log(response.data);
         }
         catch (error) {

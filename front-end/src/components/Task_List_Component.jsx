@@ -6,10 +6,10 @@ import TaskComponent from "./Task_Component.jsx";
 import { CircularProgress } from "@mui/material";
 import "../index.css";
 
-const testing_mode = true;
-const backend_route ='/api/tasks/';
+const testing_mode = false;
+const backend_route = '/api/tasks/';
 
-const TaskListComponent = ({filterFunction, sortComparator, enableCheckbox, centerButton}) => {
+const TaskListComponent = ({ filterFunction, sortComparator, enableCheckbox, centerButton }) => {
   const [data, setData] = useState([]);
   const [loaded, setLoaded] = useState(false);
   const [error, setError] = useState("");
@@ -26,11 +26,7 @@ const TaskListComponent = ({filterFunction, sortComparator, enableCheckbox, cent
           backend_route + selectObject._id,
           {
             complete: true,
-          }, {
-          headers: {
-            Authorization: `JWT ${localStorage.getItem("token")}`,
-          },
-        }
+          }
         )
         .then((response) => {
           // console.log(response); 
@@ -107,7 +103,7 @@ const TaskListComponent = ({filterFunction, sortComparator, enableCheckbox, cent
         });
     }
   };
-  
+
   useEffect(() => {
     fetchData();
 

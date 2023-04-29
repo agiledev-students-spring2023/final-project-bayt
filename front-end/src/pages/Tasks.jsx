@@ -23,9 +23,7 @@ const Tasks = (props) => {
   useEffect(() => {
     // send the request to the server api, including the Authorization header with our JWT token in it
     axios
-      .get('/api/protected/tasks/', {
-        headers: { Authorization: `JWT ${jwtToken}` }, // pass the token, if any, to the server
-      })
+      .get('/api/protected/tasks/')
       .then(res => {
         // do nothing
       })
