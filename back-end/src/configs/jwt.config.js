@@ -43,7 +43,7 @@ function protectContentMiddleware(req, res, next) {
     next();
   } else {
 
-    console.log(req);
+    // console.log(req);
     // Otherwise, authenticate user request token
     // console.log(req);
     passport.authenticate("jwt", { session: false })(req, res, next);

@@ -16,7 +16,11 @@ function Alerts() {
   useEffect(() => {
     // send the request to the server api, including the Authorization header with our JWT token in it
     axios
-      .get('/api/protected/alerts/')
+      .get('/api/protected/alerts/', {
+        headers: {
+          Authorization: `JWT ${localStorage.getItem("token")}`,
+        },
+      })
       .then(res => {
         // do nothing
       })
