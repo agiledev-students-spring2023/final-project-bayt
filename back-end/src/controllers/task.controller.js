@@ -2,8 +2,9 @@ const taskService = require("../services/task.service.js");
 
 // get task by id taskSer
 async function get(req, res) {
+  console.log("get")
   try {
-    let task = await taskService.getTask(req.params.id);
+    let task = await taskService.getTask(req.user.houses._id, req.params.id);
 
     if (process.env.NODE_ENV === 'production') {
       if (task === null) throw new Error("Task not found");
@@ -22,7 +23,7 @@ async function get(req, res) {
 // list all tasks in the database
 async function gets(req, res) {
   try {
-    let tasks = await taskService.getTasks();
+    let tasks = await taskService.getTasks(req.user.houses._id);
     if (process.env.NODE_ENV === 'production') {
       // Set assignee to the first name of the assignee and only access assignee if its not null
       tasks.forEach((task) => {
@@ -39,7 +40,7 @@ async function gets(req, res) {
 // create a task and add it to the database
 async function create(req, res) {
   try {
-    const task = await taskService.createTask(req.body);
+    const task = await taskService.createTask(req.user.houses._id, req.body);
     res.status(200).json(task);
   } catch (err) {
     res.status(500).json({ message: err.message });

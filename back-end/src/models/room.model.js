@@ -19,11 +19,21 @@ const RoomSchema = new Schema({
         required: true
     },
     home: {
-        // type: mongoose.ObjectId,
-        // ref: 'house'
-        type: String,
-        required: true
+        type: mongoose.ObjectId,
+        ref: 'house'
     }
+});
+
+// When creating new room add it to the house
+RoomSchema.post('create', function (next) {
+    this.model('house').updateOne({
+        _id: this.home
+    }, {
+        $push: {
+            rooms: this._id
+        }
+    });
+    next();
 });
 
 module.exports = mongoose.model('room', RoomSchema);
