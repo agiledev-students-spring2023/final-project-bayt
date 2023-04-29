@@ -18,7 +18,7 @@ import AddMembers from './pages/AddMember';
 // axios.interceptors.request.use(function (config) {
 //   // Check if the request is not login or signup routes
 //   if (!config.url.startsWith('/api/login') && !config.url.startsWith('/api/signup')) {
-//     console.log('intercepted request')
+//     console.log('intercepted request');
 //     const token = localStorage.getItem('token');
 //     if (token) {
 //       config.headers.Authorization = `JWT ${token}`;

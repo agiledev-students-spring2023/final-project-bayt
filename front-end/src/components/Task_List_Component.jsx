@@ -26,7 +26,11 @@ const TaskListComponent = ({ filterFunction, sortComparator, enableCheckbox, cen
           backend_route + selectObject._id,
           {
             complete: true,
-          }
+          }, {
+          headers: {
+            Authorization: `JWT ${localStorage.getItem("token")}`,
+          },
+        }
         )
         .then((response) => {
           // console.log(response); 
@@ -74,7 +78,11 @@ const TaskListComponent = ({ filterFunction, sortComparator, enableCheckbox, cen
       setLoaded(true);
     } else {
       axios
-        .get(backend_route)
+        .get(backend_route, {
+          headers: {
+            Authorization: `JWT ${localStorage.getItem("token")}`,
+          },
+        })
         .then((response) => {
           let task_arr = response.data;
 

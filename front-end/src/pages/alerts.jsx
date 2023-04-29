@@ -16,13 +16,17 @@ function Alerts() {
   useEffect(() => {
     // send the request to the server api, including the Authorization header with our JWT token in it
     axios
-      .get('/api/protected/alerts/')
+      .get('/api/protected/alerts/', {
+        headers: {
+          Authorization: `JWT ${localStorage.getItem("token")}`,
+        },
+      })
       .then(res => {
         // do nothing
       })
       .catch(err => {
         setIsLoggedIn(false); // update this state variable, so the component re-renders
-    });
+      });
   }, []);
 
   useEffect(() => {
@@ -32,7 +36,11 @@ function Alerts() {
   useEffect(() => {
     const fetchAlerts = async () => {
       try {
-        const response = await fetch("/api/alerts");
+        const response = await fetch("/api/alerts", {
+          headers: {
+            Authorization: `JWT ${localStorage.getItem("token")}`,
+          },
+        });
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }

@@ -23,7 +23,11 @@ const Settings = () => {
   useEffect(() => {
     // send the request to the server api, including the Authorization header with our JWT token in it
     axios
-      .get('/api/protected/settings/')
+      .get('/api/protected/settings/', {
+        headers: {
+          Authorization: `JWT ${localStorage.getItem("token")}`,
+        },
+      })
       .then(res => {
         // do nothing
       })
@@ -51,7 +55,11 @@ const Settings = () => {
       //code to fetch household data goes here.  Will probably just call a function that retreives using axios and whatnot
       //mock data for now
       axios
-        .get(`/api/settings`)
+        .get(`/api/settings`, {
+          headers: {
+            Authorization: `JWT ${localStorage.getItem("token")}`,
+          },
+        })
         .then((response) => {
           console.log(response);
           let membersString = formatMembersInfo(response.data);
