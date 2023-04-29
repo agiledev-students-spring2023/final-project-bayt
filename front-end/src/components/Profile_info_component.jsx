@@ -22,25 +22,18 @@ const ProfInfo = (props) => {
 
   //axios to get data from backend database
   React.useEffect(() => {
-    if (username) {
-      axios.get(`/api/Profile/`, {
-        headers: {
-          Authorization: `JWT ${localStorage.getItem("token")}`
-        }
+    axios
+      .get(`/api/Profile`)
+      .then(response => {
+        setEmail(response.data.email);
+        setHouseholdRole(response.data.role);
+        setPhone(response.data.telephone);
+        setRooms(response.data.rooms);
       })
-        .then(response => {
-          setEmail(response.data.data.email);
-          setHouseholdRole(response.data.data.role);
-          setLastName(response.data.data.last_name || 'Set your last name');
-          setHouses(response.data.data.houses);
-          setFirstName(response.data.data.first_name || 'Set your first name');
-        })
-        .catch(err => {
-          console.log(err);
-        });
-    }
-  }, [username]);
-
+      .catch(err => {
+        console.log(err);
+      })
+  }, [])
 
   const handleEditClick = () => {
     setIsEditable(true);
@@ -51,20 +44,25 @@ const ProfInfo = (props) => {
     setIsEditable(false);
     //axios to update data in backend
     axios
-      .put(`/api/Profile/`, {
-        email: email,
+      .put(`/api/Profile`, {
+        email,
         role: householdRole,
-        first_name: firstname,
-        last_name: lastname,
-      }, {
-        headers: {
-          Authorization: `JWT ${localStorage.getItem("token")}`,
-        },
+        password: housecode,
+        telephone: phone,
+        rooms
       })
 
+      //this needs to be updated to reflect data recieved from database
       .then(response => {
-        console.log(response)
+        console.log(response);
+        // Update the state variables with the updated data from the response
+        //rn it doesnt actually do shit as we are using json file in backend and browser ignores updated values until new session
+        setEmail(response.data.email);
+        setHouseholdRole(response.data.role);
+        setPhone(response.data.telephone);
+        setRooms(response.data.rooms);
       })
+
       .catch(error => {
         console.log(error);
       });
@@ -104,13 +102,16 @@ const ProfInfo = (props) => {
             fullWidth
             id="houses"
             variant="standard"
-            value={houses.name}
-            inputProps={{ readOnly: true, }}
-            disabled={true}
-            onChange={(e) => setHouses(e.target.value)}
+            value={houses.join(', ')}
+            inputProps={{readOnly:true,}}
+            disabled={!isEditable}
+            onChange={(e) => setRooms(e.target.value)}
           />
         </Box>
 
+        <Box sx={{ display: 'flex', alignItems: 'center', flexDirection: 'column', justifyContent: 'center', marginTop: '30px' }}>
+          {isEditable ? (<Button variant="contained" sx={{ backgroundColor: '#3D405B', '&:hover': { backgroundColor: '#eaefe9' } }} onClick={handleSaveClick}>Save</Button>) : (<Button variant="contained" sx={{ backgroundColor: '#3D405B', '&:hover': { backgroundColor: '#eaefe9' }, width: '200px' }} onClick={handleEditClick}>Edit</Button>)}
+          {isEditable && (
         <Box sx={{ display: 'flex', alignItems: 'center', flexDirection: 'column', justifyContent: 'center', marginTop: '30px' }}>
           {isEditable ? (<Button variant="contained" sx={{ backgroundColor: '#3D405B', '&:hover': { backgroundColor: '#eaefe9' } }} onClick={handleSaveClick}>Save</Button>) : (<Button variant="contained" sx={{ backgroundColor: '#3D405B', '&:hover': { backgroundColor: '#eaefe9' }, width: '200px' }} onClick={handleEditClick}>Edit</Button>)}
           {isEditable && (

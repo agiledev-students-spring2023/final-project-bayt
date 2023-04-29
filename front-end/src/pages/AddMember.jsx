@@ -34,16 +34,28 @@ const theme = createTheme({
             main: '#81b29a',
             contrastText: '#fff',
         },
+        primary: {
+            main: '#81b29a',
+            contrastText: '#fff',
+        },
+        secondary: {
+            main: '#81b29a',
+            contrastText: '#fff',
+        },
     },
 });
 });
+});
 
 
 function AddMembers() {
     const jwtToken = localStorage.getItem("token");
 function AddMembers() {
     const jwtToken = localStorage.getItem("token");
+function AddMembers() {
+    const jwtToken = localStorage.getItem("token");
 
+    const [isLoggedIn, setIsLoggedIn] = useState(jwtToken && true);
     const [isLoggedIn, setIsLoggedIn] = useState(jwtToken && true);
     const [isLoggedIn, setIsLoggedIn] = useState(jwtToken && true);
 
@@ -52,11 +64,7 @@ function AddMembers() {
     useEffect(() => {
         // send the request to the server api, including the Authorization header with our JWT token in it
         axios
-            .get('/api/protected/addmembers/', {
-                headers: {
-                    Authorization: `JWT ${localStorage.getItem("token")}`,
-                },
-            })
+            .get('/api/protected/addmembers/')
             .then(res => {
                 setLoggedUser(res.data.user.username);
             })
@@ -65,7 +73,11 @@ function AddMembers() {
             });
     }, []);
     }, []);
+    }, []);
 
+    const handleChange = (evt) => {
+        setAge(evt.target.value);
+    };
     const handleChange = (evt) => {
         setAge(evt.target.value);
     };
@@ -75,17 +87,15 @@ function AddMembers() {
 
     const navigate = useNavigate();
 
+
     //change this to navigate back to most prev page (probs settings op)
     const handleFinish = () => {
-        let req = {
-            username: document.getElementById('username').value,
-            email: document.getElementById('email').value,
-            role: age,
-            ...userData,
-        };
-        axios.post(`/api/addMembers/${loggeduser}`, req, {
-            headers: { Authorization: `JWT ${jwtToken}` }, // pass the token, if any, to the server
-            })
+
+        const username = document.getElementById('username').value;
+        const email = document.getElementById('email').value;
+        const role = age;
+
+        axios.post(`/api/addMembers`, { username, email, role })
             .then(response => {
                 console.log(response);
                 navigate('/home');
@@ -99,6 +109,7 @@ function AddMembers() {
 
         return navigate('/home');
     }
+        return navigate('/home');
     }
 
     const handleCancel = () => {
@@ -107,7 +118,14 @@ function AddMembers() {
     const handleCancel = () => {
         return navigate('/Settings');
     }
+    const handleCancel = () => {
+        return navigate('/Settings');
+    }
 
+    return (
+        <>
+            {isLoggedIn ? (
+                <div className="addMembersContainer">
     return (
         <>
             {isLoggedIn ? (
@@ -120,6 +138,7 @@ function AddMembers() {
                         <Container component="main" maxWidth="sm" sx={{ mb: 4 }}>
                             <Box sx={{ mt: 8, display: 'flex', flexDirection: 'column', alignItems: 'center', }}>
                                 <h1 className="text" sx={{ mb: 4 }}  >Add Family Member</h1>
+                                <ProfilePic />
                                 <ProfilePic />
                                 <Grid container spacing={3} sx={{ mt: 1 }} >
                                     <Grid item xs={12}>
@@ -140,6 +159,7 @@ function AddMembers() {
                                         </FormControl>
                                     </Grid>
 
+
                                 </Grid>
                                 <Box sx={{ width: '100%', display: 'flex', justifyContent: 'space-between', mt: 7 }}>
                                     <Button fullWidth variant="contained" onClick={handleCancel} sx={{ mt: 3 }}>Cancel</Button>
@@ -147,6 +167,9 @@ function AddMembers() {
                                 </Box>
                             </Box>
                         </Container>
+                    </ThemeProvider>
+                </div>
+            ) : (
                     </ThemeProvider>
                 </div>
             ) : (
@@ -162,5 +185,10 @@ function AddMembers() {
         </>
     )
 };
+            )}
+        </>
+    )
+};
 
+export default AddMembers;
 export default AddMembers;

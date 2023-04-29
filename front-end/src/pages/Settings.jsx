@@ -23,11 +23,7 @@ const Settings = () => {
   useEffect(() => {
     // send the request to the server api, including the Authorization header with our JWT token in it
     axios
-      .get('/api/protected/settings/', {
-        headers: {
-          Authorization: `JWT ${localStorage.getItem("token")}`,
-        },
-      })
+      .get('/api/protected/settings/')
       .then(res => {
         // do nothing
       })
@@ -172,12 +168,13 @@ const Settings = () => {
             onRequestClose={handleModalClose}>
             <h2 className="title">Household Information</h2>
             <h3>Household Name:</h3>
-            <p>{houseName}</p>
+            <p>Ravenclaw</p>
+            {/*delete hardcoded RavenClaw later and pull name from database*/}
             <h3>Your Household Members:</h3>
             <p style={{ whiteSpace: "pre-line" }}>{membs}</p>
             <div className="add-member-button-container">
               <h3>Add a Member</h3>
-              <p>This will allIow everyone to stay connected and up to date</p>
+              <p>This will allow everyone to stay connected and up to date</p>
               <button
                 className="add-member-button"
                 onClick={() => (window.location.href = "/Addmembers")}>

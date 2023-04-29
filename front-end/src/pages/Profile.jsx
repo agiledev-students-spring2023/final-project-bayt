@@ -18,11 +18,7 @@ const NameInfo = () => {
 
   React.useEffect(() => {
     axios
-      .get(`/api/Profile`, {
-        headers: {
-          Authorization: `JWT ${localStorage.getItem("token")}`,
-        },
-      })
+      .get(`/api/Profile`)
       .then(response => {
         setName(response.data.username);
       })
@@ -50,18 +46,13 @@ const NameInfo = () => {
       if (tempName.trim() !== '') {
         setName(tempName.trim());
         axios
-          .put(`/api/Profile`, { username: tempName.trim() }, {
-            headers: {
-              Authorization: `JWT ${localStorage.getItem("token")}`,
-            },
-          })
+          .put(`/api/Profile`, { username: tempName.trim() })
           .then((response) => {
             console.log(response.data);
           })
           .catch((error) => {
             console.log(error);
           });
-      }
       }
 
       else {
@@ -75,18 +66,13 @@ const NameInfo = () => {
     if (tempName.trim() !== '') {
       setName(tempName.trim());
       axios
-        .put(`/api/Profile`, { username: tempName.trim() }, {
-          headers: {
-            Authorization: `JWT ${localStorage.getItem("token")}`,
-          },
-        })
+        .put(`/api/Profile`, { username: tempName.trim() })
         .then((response) => {
           console.log(response.data);
         })
         .catch((error) => {
           console.log(error);
         });
-    }
     }
 
     else {
@@ -95,7 +81,6 @@ const NameInfo = () => {
 
   };
 
-
   return (
     <div className="profile-container">
         <h2 className="name-display">
@@ -103,7 +88,6 @@ const NameInfo = () => {
         </h2>
     </div>
   );
-
 
 }
 
@@ -117,16 +101,13 @@ const Profile = () => {
   useEffect(() => {
     // send the request to the server api, including the Authorization header with our JWT token in it
     axios
-      .get('/api/protected/profile/', {
-        headers: {
-          Authorization: `JWT ${localStorage.getItem("token")}`,
-        },
-      })
+      .get('/api/protected/profile/')
       .then(res => {
         setUsername(res.data.user.username);
       })
       .catch(err => {
         setIsLoggedIn(false); // update this state variable, so the component re-renders
+      });
       });
       });
   }, []);
@@ -137,16 +118,15 @@ const Profile = () => {
         <>
           <Header title="Profile" />
           <Header title="Profile" />
+          <Header title="Profile" />
           <div>
             <div className="outer">
               <ProfilePic />
               <NameInfo />
               <ProfInfo />
-              <ProfilePic />
-              <NameInfo />
-              <ProfInfo />
             </div>
           </div>
+          <Footer />
           <Footer />
           <Footer />
         </>

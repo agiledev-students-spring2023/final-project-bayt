@@ -61,6 +61,7 @@ const UserSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'house',
     },
+    },
 });
 
 // hash the password before the user is saved
@@ -89,6 +90,8 @@ UserSchema.methods.generateJWT = function () {
     return jwt.sign(
         {
             id: this._id,
+            user_id: this._id,
+            house_id: this.houses._id,
             user_id: this._id,
             house_id: this.houses._id,
             username: this.username,

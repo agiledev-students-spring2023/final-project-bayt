@@ -32,7 +32,23 @@ const Home = (props) => {
 
   const [rooms, setRooms] = useState([]);
   const [name, setName] = useState("");
-  
+
+  // useEffect(() => {
+  //   // send the request to the server api, including the Authorization header with our JWT token in it
+  //   axios
+  //     .get('/api/protected/home/',
+  //       {
+  //         headers: { Authorization: `JWT ${jwtToken}` }, // pass the token, if any, to the server
+  //       }
+  //     )
+  //     .then(res => {
+  //       // do nothing
+  //     })
+  //     .catch(err => {
+  //       setIsLoggedIn(false); // update this state variable, so the component re-renders
+  //     });
+  // }, []);
+
   function camelize(str) {
     return str.replace(/(?:^\w|[A-Z]|\b\w|\s+)/g, function (match, index) {
       if (+match === 0) return ""; // or if (/\s+/.test(match)) for white spaces
@@ -61,6 +77,7 @@ const Home = (props) => {
           headers: { Authorization: `JWT ${jwtToken}` }, // pass the token, if any, to the server
         })
       .then((response) => {
+        console.log("Good room fetch");
         const rooms = response.data;
         setRooms(rooms);
       })
@@ -68,6 +85,8 @@ const Home = (props) => {
         console.log("Bad room fetch", err);
         console.log("Bad room fetch", err);
       });
+
+    console.log("FETCHED");
   };
 
   const addRoomToList = (room) => {
@@ -88,6 +107,8 @@ const Home = (props) => {
   }, []);
 
   const handleSubmit = (e) => {
+
+    console.log("SUBMITTING");
     e.preventDefault();
     const roomUrl = camelize(name);
     const roomUrl = camelize(name);
@@ -107,7 +128,7 @@ const Home = (props) => {
         }
       )
       .then((response) => {
-        console.log("Submit success", response.data);
+        console.log("Submit success");
         addRoomToList(response.data.room);
       })
       .catch((err) => {
@@ -115,6 +136,8 @@ const Home = (props) => {
         console.log(err)
         console.log("Submit error");
       });
+
+    console.log("SUBMITTED");
 
     setName("");
   };
