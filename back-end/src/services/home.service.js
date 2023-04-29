@@ -8,6 +8,8 @@ if(process.env.NODE_ENV === 'production') {
     };
     
     addRoom = async(room) => {
+        // const newRoom = room;
+        // rooms_json.push(newRoom);
         await Room.create(room)
         return newRoom;
     }
