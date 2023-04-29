@@ -9,77 +9,10 @@ import '../css/Profile.css';
 import * as React from 'react';
 import axios from 'axios';
 
-//editable Name part of profile.  It renders and updates each time user changes it. 
-const NameInfo = () => {
-
-  const [name, setName] = useState('');
-  const [isEditing, setIsEditing] = useState(false);
-  const [tempName, setTempName] = useState('');
-
-  React.useEffect(() => {
-    axios
-      .get(`/api/Profile`)
-      .then(response => {
-        setName(response.data.username);
-      })
-      .catch(err => {
-        console.log(err);
-      })
-  }, [])
-
-
-  const handleNameClick = () => {
-    setIsEditing(true);
-    setTempName(name);
-  };
-
-
-  const handleNameChange = (event) => {
-    setTempName(event.target.value);
-  };
-
-
-  const handleNameKeyPress = (event) => {
-    if (event.key === 'Enter') {
-      setIsEditing(false);
-
-      if (tempName.trim() !== '') {
-        setName(tempName.trim());
-        axios
-          .put(`/api/Profile`, { username: tempName.trim() })
-          .then((response) => {
-            console.log(response.data);
-          })
-          .catch((error) => {
-            console.log(error);
-          });
-      }
-
-      else {
-        setTempName(name);
-      }
-    }
-  };
-
-  const handleNameBlur = () => {
-    setIsEditing(false);
-    if (tempName.trim() !== '') {
-      setName(tempName.trim());
-      axios
-        .put(`/api/Profile`, { username: tempName.trim() })
-        .then((response) => {
-          console.log(response.data);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    }
-
-    else {
-      setTempName(name);
-    }
-
-  };
+//We do not want to change username mid session.
+//May add code for this later but we don't want it to be editable on profile page
+const NameInfo = (props) => {
+  const name =props.username;
 
   return (
     <div className="profile-container">
@@ -87,10 +20,7 @@ const NameInfo = () => {
           {name}
         </h2>
     </div>
-  );
-
-  );
-
+  );  
 }
 
 
@@ -103,14 +33,18 @@ const Profile = () => {
   useEffect(() => {
     // send the request to the server api, including the Authorization header with our JWT token in it
     axios
-      .get('/api/protected/profile/')
+      .get('/api/protected/profile/', {
+        headers: {
+          Authorization: `JWT ${localStorage.getItem("token")}`,
+        },
+      })
+      //store the username response as var to send back to backend 
       .then(res => {
         setUsername(res.data.user.username);
       
       })
       .catch(err => {
         setIsLoggedIn(false); // update this state variable, so the component re-renders
-      });
       });
   }, []);
 
@@ -119,18 +53,13 @@ const Profile = () => {
       {isLoggedIn ? (
         <>
           <Header title="Profile" />
-          <Header title="Profile" />
           <div>
             <div className="outer">
-              <ProfilePic />
-              <NameInfo />
-              <ProfInfo />
-              <ProfilePic />
-              <NameInfo />
-              <ProfInfo />
+                <ProfilePic username={username}/>
+                <NameInfo username={username}/>
+                <ProfInfo username={username}/>
             </div>
           </div>
-          <Footer />
           <Footer />
         </>
       ) : (
