@@ -28,9 +28,19 @@ const jwtVerifyToken = async function (jwt_payload, next) {
   }
 }
 
-const jwtStrategy = jwtOptions => {
-  const strategy = new JwtStrategy(jwtOptions, jwtVerifyToken)
-  return strategy
+const jwtStrategy = new JwtStrategy(jwtOptions, jwtVerifyToken);
+
+function protectContentMiddleware(req, res, next) {
+  if (req.path.startsWith('/login') || req.path.startsWith('/signup')) {
+    // If the request path starts with /login or /signup,
+    // skip this middleware and continue to the next one.
+    next();
+  } else {
+
+    // console.log(req);
+    // Otherwise, authenticate user request token
+    passport.authenticate("jwt", { session: false })(req, res, next);
+  }
 }
 
 module.exports = jwtStrategy(jwtOptions, jwtVerifyToken)
