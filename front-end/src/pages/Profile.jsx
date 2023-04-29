@@ -41,7 +41,6 @@ const Profile = () => {
       //store the username response as var to send back to backend 
       .then(res => {
         setUsername(res.data.user.username);
-      
       })
       .catch(err => {
         setIsLoggedIn(false); // update this state variable, so the component re-renders

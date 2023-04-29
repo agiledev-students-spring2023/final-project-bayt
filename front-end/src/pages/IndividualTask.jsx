@@ -66,7 +66,6 @@ function IndividualTask(props) {
 
 
     const fetchHouseResidents = async () => {
-        console.log("fetching house residents");
         return axios
             .get(settings_route,
                 {
@@ -76,7 +75,7 @@ function IndividualTask(props) {
                     }
                 })
             .then((response) => {
-                console.log(response?.data);
+                // console.log(response?.data);
                 return response?.data;
             })
             .catch((err) => {
