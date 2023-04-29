@@ -74,12 +74,7 @@ function Login(props) {
         evt.preventDefault();
 
         try {
-            const response = await axios.post(backend_route, formValues,
-                {
-                    headers: {
-                        Authorization: `JWT ${localStorage.getItem("token")}`,
-                    },
-                });
+            const response = await axios.post(backend_route, formValues);
             setErrorMessage('');
             setResponse(response.data);
         } catch (err) {
