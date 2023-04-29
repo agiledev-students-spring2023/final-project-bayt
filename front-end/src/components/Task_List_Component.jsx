@@ -26,7 +26,11 @@ const TaskListComponent = ({ filterFunction, sortComparator, enableCheckbox, cen
           backend_route + selectObject._id,
           {
             complete: true,
-          }
+          }, {
+          headers: {
+            Authorization: `JWT ${localStorage.getItem("token")}`,
+          },
+        }
         )
         .then((response) => {
           // console.log(response); 

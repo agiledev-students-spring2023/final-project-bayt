@@ -23,7 +23,11 @@ const ProfInfo = (props) => {
   //axios to get data from backend database
   React.useEffect(() => {
     axios
-      .get(`/api/Profile`)
+      .get(`/api/Profile`, {
+        headers: {
+          Authorization: `JWT ${localStorage.getItem("token")}`,
+        },
+      })
       .then(response => {
         setEmail(response.data.email);
         setHouseholdRole(response.data.role);

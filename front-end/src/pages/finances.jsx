@@ -117,7 +117,12 @@ function Finances() {
   useEffect(() => {
     // send the request to the server api, including the Authorization header with our JWT token in it
     axios
-      .get('/api/protected/finances/')
+      .get('/api/protected/finances/',
+        {
+          headers: {
+            Authorization: `JWT ${localStorage.getItem("token")}`,
+          },
+        })
       .then(res => {
         // do nothing
       })
