@@ -32,21 +32,7 @@ const Home = (props) => {
 
   const [rooms, setRooms] = useState([]);
   const [name, setName] = useState("");
-
-  useEffect(() => {
-    // send the request to the server api, including the Authorization header with our JWT token in it
-    axios
-      .get('/api/protected/home/', {
-        headers: { Authorization: `JWT ${jwtToken}` }, // pass the token, if any, to the server
-      })
-      .then(res => {
-        // do nothing
-      })
-      .catch(err => {
-        setIsLoggedIn(false); // update this state variable, so the component re-renders
-    });
-  }, []);
-
+  
   function camelize(str) {
     return str.replace(/(?:^\w|[A-Z]|\b\w|\s+)/g, function (match, index) {
       if (+match === 0) return ""; // or if (/\s+/.test(match)) for white spaces
@@ -104,6 +90,7 @@ const Home = (props) => {
         home: homeName,
       })
       .then((response) => {
+        console.log("Submit success", response.data);
         addRoomToList(response.data.room);
       })
       .catch((err) => {
