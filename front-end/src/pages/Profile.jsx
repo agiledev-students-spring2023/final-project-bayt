@@ -124,7 +124,6 @@ const Profile = () => {
       })
       .then(res => {
         setUsername(res.data.user.username);
-      
       })
       .catch(err => {
         setIsLoggedIn(false); // update this state variable, so the component re-renders

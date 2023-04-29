@@ -14,12 +14,11 @@ const ProfilePic = (props) => {
   useEffect(() => {
     if (username) {
       // Make a GET request to the /api/Profile endpoint with the username as a parameter
-      axios.get(`/api/Profile/`, { responseType: 'json' },
-        {
-          headers: {
-            Authorization: `JWT ${localStorage.getItem("token")}`,
-          },
-        })
+      axios.get(`/api/Profile/`, {
+        headers: {
+          Authorization: `JWT ${localStorage.getItem("token")}`,
+        },
+      })
         .then((response) => {
           if (response.data.data.profile_pic === 'Default.svg') {
             setImage(prof);
@@ -42,7 +41,7 @@ const ProfilePic = (props) => {
         .catch((error) => {
           console.error(error);
         })
-    };
+    }
   }, [username]);
 
 
@@ -78,7 +77,7 @@ const ProfilePic = (props) => {
           console.log(response.data);
         }
         catch (error) {
-          console.error(error);
+          console.error("error");
         }
       };
     }

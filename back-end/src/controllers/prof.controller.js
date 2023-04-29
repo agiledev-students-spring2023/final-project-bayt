@@ -25,7 +25,6 @@ const upload = multer({ storage: storage});
 async function gets(req, res) {
   try {
     const userData = await User.findById(req.user._id).populate('houses','name');
-
     // If no user is found, return a 404 error
     if (!userData) {
       return res.status(404).json({
@@ -37,6 +36,7 @@ async function gets(req, res) {
 
     // If the user has a profile picture, send it back as an image
     if (userData.profile_pic != 'Default.svg') {
+      console.log(userData.profile_pic);
       const imagePath = path.join(__dirname, '../uploads', userData.profile_pic);
       try {
         await fs.promises.access(imagePath, fs.constants.F_OK);
