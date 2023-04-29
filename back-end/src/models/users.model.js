@@ -45,6 +45,10 @@ const UserSchema = new Schema({
         type: String,
         required: true,
     },
+    contact: {
+        type: String,
+        required: false
+    },
     assigned_tasks: [{
         type: Schema.Types.ObjectId,
         ref: 'task',

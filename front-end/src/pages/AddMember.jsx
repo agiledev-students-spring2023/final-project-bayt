@@ -77,16 +77,15 @@ function AddMembers() {
 
     //change this to navigate back to most prev page (probs settings op)
     const handleFinish = () => {
-
-        const username = document.getElementById('username').value;
-        const email = document.getElementById('email').value;
-        const role = age;
-
-        axios.post(`/api/addMembers`, { username, email, role }, {
-            headers: {
-                Authorization: `JWT ${localStorage.getItem("token")}`,
-            },
-        })
+        let req = {
+            username: document.getElementById('username').value,
+            email: document.getElementById('email').value,
+            role: age,
+            ...userData,
+        };
+        axios.post(`/api/addMembers/${loggeduser}`, req, {
+            headers: { Authorization: `JWT ${jwtToken}` }, // pass the token, if any, to the server
+            })
             .then(response => {
                 console.log(response);
                 navigate('/home');

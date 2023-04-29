@@ -60,7 +60,10 @@ function Alerts() {
       const alertId = alert._id; // Extract the id value from the alert object
       const response = await fetch(`/api/alerts/update`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `JWT ${localStorage.getItem("token")}`,
+        },
         body: JSON.stringify({ alertId, isChecked }),
       });
       if (!response.ok) {
