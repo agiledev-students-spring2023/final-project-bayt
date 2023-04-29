@@ -2,9 +2,10 @@ let rooms_json = require('../json/rooms.json')
 const Room = require('../models/room.model.js')
 let getAllRooms, addRoom
 
-if(process.env.NODE_ENV === 'production') {
-    getAllRooms = async() => {
-        return Room.find({}).lean();
+if (process.env.NODE_ENV === 'production') {
+    getAllRooms = async (house_id) => {
+        // Return rooms with a specific house id
+        return Room.find({ home: house_id }).lean();
     };
     
     addRoom = async(room) => {

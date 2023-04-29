@@ -61,15 +61,19 @@ function IndividualTask(props) {
 
     const fetchData =  async (id) => {
         return await axios
-        .get(backend_route + `${id}`)
-        .then((response) => {
-            const taskData = response.data;
-            console.log(taskData);
-            return taskData;
-        })
-        .catch((err) => {
-            return err;
-        });
+            .get(backend_route + `${id}`, {
+                headers: {
+                    Authorization: `JWT ${localStorage.getItem("token")}`,
+                },
+            })
+            .then((response) => {
+                const taskData = response.data;
+                console.log(taskData);
+                return taskData;
+            })
+            .catch((err) => {
+                return err;
+            });
     };
 
     useEffect(() => {
@@ -127,24 +131,32 @@ function IndividualTask(props) {
 
         if (id) {
             axios
-            .put(backend_route + `${id}`, formValues)
-            .then((res) => {
-                console.log(res);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
+                .put(backend_route + `${id}`, formValues, {
+                    headers: {
+                        Authorization: `JWT ${localStorage.getItem("token")}`,
+                    },
+                })
+                .then((res) => {
+                    console.log(res);
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
         }
         else {
             console.log(formValues);
             axios
-            .post(backend_route, formValues)
-            .then((res) => {
-                console.log(res);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
+                .post(backend_route, formValues, {
+                    headers: {
+                        Authorization: `JWT ${localStorage.getItem("token")}`,
+                    },
+                })
+                .then((res) => {
+                    console.log(res);
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
         }
 
         setFormValues(defaultValues);
