@@ -46,11 +46,13 @@ const ProfilePic = (props) => {
 
   const handleChange = async (event) => {
     const selectedFile = event.target.files[0];
+
+
     if (selectedFile) {
       let reader = new FileReader();
       reader.readAsDataURL(selectedFile);
-      //render image
-      reader.onload =async (e) => {
+      //render image and we want it to persist so set to local storage (will change this when working with mockaroo)
+      reader.onload = async (e) => {
         setImage(e.target.result);
 
         // Create a FormData object and append the file to it
@@ -61,7 +63,11 @@ const ProfilePic = (props) => {
         
         // Send a POST request to the /profile endpoint with the FormData object
         try {
-          const response = await axios.post(`/api/Profile`, formData);
+          const response = await axios.post(`/api/Profile`, formData, {
+            headers: {
+              Authorization: `JWT ${localStorage.getItem("token")}`,
+            },
+          });
           console.log(response.data);
         }
         catch (error) {
@@ -76,6 +82,13 @@ const ProfilePic = (props) => {
 
 
   return (
+    <div>
+      <div className="profileImg">
+        <img src={image} className="img" alt="" />
+      </div>
+      <input type='file' id="uploadPic" ref={fileInputRef} onChange={handleChange} />
+      <label htmlFor="uploadPic" className="custom-file-upload">Upload file</label>
+    </div>
     <div>
       <div className="profileImg">
         <img src={image} className="img" alt="" />
