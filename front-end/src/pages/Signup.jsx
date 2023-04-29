@@ -8,15 +8,16 @@ import { useNavigate, Navigate } from 'react-router-dom';
 import "../index.css";
 import Alert from '@mui/material/Alert';
 import axios from 'axios';
+import jwt_decode from 'jwt-decode';
 
 import '../css/Signup.css';
 
 function getStepContent(step, formValues, setFormValues, errorMessage) {
   switch (step) {
     case 0:
-      return <HouseCodeForm formValues={formValues} setFormValues={setFormValues} errorMessage={errorMessage}/>;
+      return <HouseCodeForm formValues={formValues} setFormValues={setFormValues} errorMessage={errorMessage} />;
     case 1:
-      return <CreateProfileForm formValues={formValues} setFormValues={setFormValues} errorMessage={errorMessage}/>;
+      return <CreateProfileForm formValues={formValues} setFormValues={setFormValues} errorMessage={errorMessage} />;
     default:
       throw new Error('Unknown step');
   }
@@ -39,11 +40,11 @@ const theme = createTheme({
 
 const defaultValues = {
   houseName: '',
-  password:'',
+  password: '',
   passwordConfirm: '',
-  username:'',
-  email:'',
-  role:''
+  username: '',
+  email: '',
+  role: ''
 };
 
 
@@ -58,18 +59,25 @@ export default function Checkout() {
   useEffect(() => {
     // if the user is logged-in, save the token to local storage
     if (response.success && response.token) {
-        localStorage.setItem("token", response.token); // store the token into localStorage
+      localStorage.setItem("token", response.token); // store the token into localStorage
+      // Decode information in jwt token and store in localStorage
+      const decoded = jwt_decode(response.token);
+
+      // For each element, stringify its key and store its value in localStorage
+      Object.keys(decoded).forEach(key => {
+        localStorage.setItem(key, decoded[key]); // Store stuff like user_id, house_id, etc.
+      });
     }
   }, [response]);
 
   const handleNext = () => {
-    if ((formValues.houseName.length<1)||(formValues.password.length<1)){
+    if ((formValues.houseName.length < 1) || (formValues.password.length < 1)) {
       setErrorMessage(<Alert severity="error">{`Please fill out all fields`}</Alert>);
     }
-    else if (formValues.passwordConfirm!==formValues.password){
+    else if (formValues.passwordConfirm !== formValues.password) {
       setErrorMessage(<Alert severity="error">{`Passwords do not match`}</Alert>);
     }
-    else{
+    else {
       setErrorMessage('');
       setActiveStep(activeStep + 1);
     }
@@ -84,21 +92,21 @@ export default function Checkout() {
   }
 
   const handleFinish = async () => {
-    if ((formValues.username.length<1)||(formValues.email.length<1)||(formValues.role.length<1)){
+    if ((formValues.username.length < 1) || (formValues.email.length < 1) || (formValues.role.length < 1)) {
       setErrorMessage(<Alert severity="error">{`Please fill out all fields`}</Alert>);
     }
-    else{
+    else {
       try {
         const response = await axios.post(`/api/signup/`, formValues);
         setErrorMessage('');
         setResponse(response.data);
-      } catch(err) {
+      } catch (err) {
         setErrorMessage(<Alert severity="error">{`${err.response.data.message}`}</Alert>);
       }
+    };
   };
-};
 
-  if(!response.success) {
+  if (!response.success) {
     return (
       <div className='signupPageContainer'>
         <ThemeProvider theme={theme}>
@@ -111,7 +119,7 @@ export default function Checkout() {
                     {activeStep !== 0 ? (<button onClick={handleBack}>Back</button>) : (<button onClick={handleNavigate} >Back</button>)}
                     {activeStep !== 1 ? (<button onClick={handleNext}>Next</button>) : (<button onClick={handleFinish} >Finish</button>)}
                   </Box>
-    
+
                 </>
               }
             </Box>

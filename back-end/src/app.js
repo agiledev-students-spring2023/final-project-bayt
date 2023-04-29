@@ -1,27 +1,25 @@
-require('dotenv').config({ silent: true }) // load environmental variables from a hidden file named .env
+require('dotenv').config({ silent: true }); // load environmental variables from a hidden file named .env
 // import and instantiate express
-const express = require("express")
+const express = require("express");
 const bodyParser = require('body-parser');
 const cors = require('cors') // middleware for enabling CORS (Cross-Origin Resource Sharing) requests.
-const cookieParser = require("cookie-parser") // middleware for parsing cookies in requests
-require("dotenv").config({ silent: true })
+require("dotenv").config({ silent: true });
 
-// the following are used for authentication with JSON Web Tokens
-// const _ = require("lodash") // the lodash module has some convenience functions for arrays that we use to sift through our mock user data... you don't need this if using a real database with user info
-const jwt = require("jsonwebtoken")
-const passport = require("passport")
+// The following are used for authentication with JSON Web Tokens
+const passport = require("passport");
 
-// use JWT strategy for authentication
-const jwtStrategy = require("./configs/jwt.config.js")
-passport.use(jwtStrategy)
+// Import JWT 
+const jwtConfig = require("./configs/jwt.config.js");
+passport.use(jwtConfig.jwtStrategy);
 
-const app = express() // instantiate an Express object
+const app = express(); // instantiate an Express object
 
 // use passport middleware
-app.use(passport.initialize())
+app.use(passport.initialize());
+app.use(jwtConfig.protectContentMiddleware);
 
 // import and instantiate mongoose
-const mongoose = require("mongoose")
+const mongoose = require("mongoose");
 
 // connect to database
 if (process.env.NODE_ENV === "production") {
@@ -43,15 +41,13 @@ const addMembersRouter = require('./routes/addmembers.route.js');
 const homeRouter = require('./routes/home.route.js');
 const alertsRouter = require('./routes/alerts.route.js');
 const signupRouter = require('./routes/signup.route.js');
-// const cookieRouter = require("./routes/cookie.route.js");
 const protectedContentRouter = require("./routes/protectcontent.route.js");
 
 
 // parse application/json
-app.use(bodyParser.json())
-app.use(cors())
+app.use(bodyParser.json());
+app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser()) // useful middleware for dealing with cookies
 
 // protect content
 app.use(`/protected`, protectedContentRouter);
@@ -73,9 +69,6 @@ app.use('/addMembers', addMembersRouter);
 app.use('/home', homeRouter);
 // parse signup data
 app.use(`/signup`, signupRouter);
-
-// app.use("/cookie", cookieRouter());
-// app.use("/protected", protectedContentRouter());
 
 // export the express app we created to make it available to other modules
 module.exports = app
