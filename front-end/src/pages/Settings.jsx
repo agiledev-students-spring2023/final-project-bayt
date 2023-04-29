@@ -19,7 +19,7 @@ const Settings = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [selectedLink, setSelectedLink] = useState({});
   const [membersIsOpen, setmembersIsOpen] = useState(false);
-
+  const [houseName, setHouseName] = useState("");
   useEffect(() => {
     // send the request to the server api, including the Authorization header with our JWT token in it
     axios
@@ -36,9 +36,9 @@ const Settings = () => {
       });
   }, []);
 
-  // useEffect(() => {
-  //   localStorage.removeItem("token");
-  // }, [loggedOut]);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   function formatMembersInfo(members) {
     let formattedString = "";
@@ -61,9 +61,10 @@ const Settings = () => {
           },
         })
         .then((response) => {
-          console.log(response);
+          console.log(response?.data);
           let membersString = formatMembersInfo(response.data);
           setMembs(membersString);
+          setHouseName(response.data[0].houseName);
           setmembersIsOpen(true);
         })
         .catch((err) => {
@@ -170,13 +171,12 @@ const Settings = () => {
             onRequestClose={handleModalClose}>
             <h2 className="title">Household Information</h2>
             <h3>Household Name:</h3>
-            <p>Ravenclaw</p>
-            {/*delete hardcoded RavenClaw later and pull name from database*/}
+            <p>{houseName}</p>
             <h3>Your Household Members:</h3>
             <p style={{ whiteSpace: "pre-line" }}>{membs}</p>
             <div className="add-member-button-container">
               <h3>Add a Member</h3>
-              <p>This will allow everyone to stay connected and up to date</p>
+              <p>This will allIow everyone to stay connected and up to date</p>
               <button
                 className="add-member-button"
                 onClick={() => (window.location.href = "/Addmembers")}>
