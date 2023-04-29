@@ -1,8 +1,10 @@
 const mydata = require('../json/household_info.json');
+const usersModel = require('../models/users.model');
 
+// Get users in home and their info
 async function gets(req, res) {
     try{
-        res.json(mydata)
+        return await usersModel.find({houses: req?.user.houses});
       }
       catch (err) {
         console.error(err)
