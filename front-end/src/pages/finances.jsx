@@ -14,7 +14,7 @@ function TransactionForm({ onSubmit }) {
   const [user, setUser] = useState("@user");
   const [forWhat, setforWhat] = useState("purpose");
   const [date, setDate] = useState("");
-  
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     const transaction = {
@@ -128,7 +128,7 @@ function Finances() {
       })
       .catch(err => {
         setIsLoggedIn(false); // update this state variable, so the component re-renders
-    });
+      });
   }, []);
 
   const handleButtonClick = () => {
@@ -181,7 +181,7 @@ function Finances() {
                   Add new transaction
                 </button>
               </div>
-    
+
               {isFormVisible && (
                 <div className="overlay" onClick={handleOverlayClick}>
                   <div className="form">

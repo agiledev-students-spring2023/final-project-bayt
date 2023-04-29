@@ -44,19 +44,23 @@ const Home = (props) => {
     setOpen(true);
   };
 
+  // Get the id of the room we added and post using house id
   const handleClose = () => {
     setOpen(false);
   };
 
   const fetchRooms = () => {
     axios
-      .get("/api/home")
+      .get("/api/home",
+        {
+          headers: { Authorization: `JWT ${jwtToken}` }, // pass the token, if any, to the server
+        })
       .then((response) => {
         const rooms = response.data;
         setRooms(rooms);
       })
       .catch((err) => {
-        console.log("Bad room fetch");
+        console.log("Bad room fetch", err);
       });
   };
 
@@ -79,26 +83,26 @@ const Home = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    const roomUrl = camelize(name)
-    const homeName = "Ravenclaw"
-
+    const roomUrl = camelize(name);
     axios
       .post("/api/home", {
         roomName: name,
-        url: roomUrl,
-        home: homeName,
-      })
+        url: roomUrl
+      },
+        {
+          headers: { Authorization: `JWT ${jwtToken}` } // pass the token, if any, to the server
+        }
+      )
       .then((response) => {
         console.log("Submit success", response.data);
         addRoomToList(response.data.room);
       })
       .catch((err) => {
+        console.log(err)
         console.log("Submit error");
       });
 
     setName("");
-    window.location.reload();
   };
 
   return (
@@ -108,11 +112,11 @@ const Home = (props) => {
           <Header title="Home" />
           <div>
             <div className="homeBody">
-            {rooms.map((room, index) => (<Link key={index} to={`/room/${room.url}`}>
-                  <button key={index} className="roomButton" type="button">
-                    {room.roomName}
-                  </button>
-                </Link>))}
+              {rooms.map((room, index) => (<Link key={index} to={`/room/${room?.url}`}>
+                <button key={index} className="roomButton" type="button">
+                  {room?.roomName}
+                </button>
+              </Link>))}
 
               <button
                 className="roomButton"
@@ -138,7 +142,7 @@ const Home = (props) => {
                     </DialogContent>
                     <DialogActions>
                       <button
-                      type="button"
+                        type="button"
                         sx={{
                           borderRadius: "0",
                           "&:hover": {
@@ -172,7 +176,7 @@ const Home = (props) => {
           <Footer />
         </>
       ) : (
-        <Navigate to='/login?error=protected'/>
+        <Navigate to='/login?error=protected' />
       )}
     </>
   );

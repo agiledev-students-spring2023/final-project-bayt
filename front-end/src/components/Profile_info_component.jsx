@@ -65,7 +65,7 @@ const ProfInfo = (props) => {
 
   return (
     <Container maxWidth='lg'>
-      <Box margin={'auto'} sx={{ width: '70%', maxWidth:'100%'}}>     
+      <Box margin={'auto'} sx={{ width: '70%', maxWidth: '100%' }}>
         <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
           <SentimentSatisfiedAltIcon sx={{ color: 'action.active', mr: 2, my: 0.5 }} />
           <TextField
@@ -132,12 +132,12 @@ const ProfInfo = (props) => {
             {isEditable ? (<Button variant="contained" sx={{ backgroundColor: '#3D405B', '&:hover': { backgroundColor: '#eaefe9' }  }} onClick={handleSaveClick}>Save</Button>):(<Button variant="contained" sx={{ backgroundColor: '#3D405B', '&:hover': { backgroundColor: '#eaefe9' }, width: '200px' }} onClick={handleEditClick}>Edit</Button>)}
             {isEditable && (
             <>
-            <DeleteAccountButton/>
-            </> 
-            )}
+              <DeleteAccountButton />
+            </>
+          )}
         </Box>
-        </Box>
-        </Container>
+      </Box>
+    </Container>
   );
 }
 

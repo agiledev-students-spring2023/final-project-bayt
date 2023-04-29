@@ -64,8 +64,8 @@ const ProfilePic = (props) => {
           console.log(formData)
           const response = await axios.post(`/api/Profile/${username}`, formData, {
             headers: {
-              'Content-Type': 'multipart/form-data'
-            }
+              Authorization: `JWT ${localStorage.getItem("token")}`,
+            },
           });
           console.log(response.data);
         }
