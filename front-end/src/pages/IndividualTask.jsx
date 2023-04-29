@@ -66,9 +66,17 @@ function IndividualTask(props) {
 
 
     const fetchHouseResidents = async () => {
+        console.log("fetching house residents");
         return axios
-            .get(settings_route)
+            .get(settings_route,
+                {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `JWT ${localStorage.getItem('token')}`
+                    }
+                })
             .then((response) => {
+                console.log(response?.data);
                 return response?.data;
             })
             .catch((err) => {
@@ -78,7 +86,13 @@ function IndividualTask(props) {
 
     const fetchHouseRooms = async () => {
         return axios
-            .get(home_route)
+            .get(home_route,
+                {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `JWT ${localStorage.getItem('token')}`
+                    }
+                })
             .then((response) => {
                 // console.log(response?.data);
                 return response?.data;
@@ -90,7 +104,14 @@ function IndividualTask(props) {
 
     const fetchTaskData = async (id) => {
         return axios
-            .get(task_route + `${id}`)
+            .get(task_route + `${id}`,
+                {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `JWT ${localStorage.getItem('token')}`
+                    }
+                }
+            )
             .then((response) => {
                 const taskData = response.data;
                 // console.log(taskData);
@@ -171,7 +192,7 @@ function IndividualTask(props) {
             }
 
             axios
-                .put(task_route + `${id}`, formValues)
+                .put(task_route + `${id}`, formValues, { headers: { 'Content-Type': 'application/json', 'Authorization': `JWT ${localStorage.getItem('token')}` } })
                 .then((res) => {
                     console.log(res);
                 })
@@ -182,7 +203,12 @@ function IndividualTask(props) {
         else {
             console.log(formValues);
             axios
-                .post(task_route, formValues)
+                .post(task_route, formValues, {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `JWT ${localStorage.getItem('token')}`
+                    }
+                })
                 .then((res) => {
                     console.log(res);
                 })
@@ -234,7 +260,7 @@ function IndividualTask(props) {
                                 {id ? <MenuItem key={'unique_Id'} value={`${formValues.assignee}`}>{`${formValues.assignee}`}</MenuItem> : <MenuItem key={'unique_id'}></MenuItem>}
                                 {people.map((person) => (
                                     <MenuItem key={person._id} value={person._id}>
-                                        {person.member_name}
+                                        {person.first_name + ' ' + person.last_name}
                                     </MenuItem>
                                 ))}
                             </Select>

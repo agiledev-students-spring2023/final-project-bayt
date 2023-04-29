@@ -17,7 +17,7 @@ const ProfInfo = (props) => {
   const [householdRole, setHouseholdRole] = React.useState('');
   const [firstname, setFirstName] = React.useState('');
   const [lastname, setLastName] = React.useState('');
-  const [houses, setHouses] = React.useState([]);
+  const [houses, setHouses] = React.useState('');
   const username = props.username;
 
   //axios to get data from backend database
@@ -29,7 +29,7 @@ const ProfInfo = (props) => {
           setEmail(response.data.data.email);
           setHouseholdRole(response.data.data.role);
           setLastName(response.data.data.last_name || 'Set your last name');
-          setHouses(response.data.data.houses.map(obj => obj.name));
+          setHouses(response.data.data.houses);
           setFirstName(response.data.data.first_name || 'Set your first name');
         })
         .catch (err => {
@@ -103,11 +103,11 @@ const ProfInfo = (props) => {
             id="houses"
             label="Houses"
             variant="standard"
-            value={houses.join(', ')}
+            value={houses}
             inputProps={{readOnly:true,}}
-            disabled={!isEditable}
-            onChange={(e) => setRooms(e.target.value)}
-          />
+            disabled={true}
+            onChange={(e) => setHouses(e.target.value)}
+            />
         </Box>
 
         <Box sx={{ display: 'flex', alignItems: 'center', flexDirection: 'column', justifyContent: 'center', marginTop: '30px' }}>

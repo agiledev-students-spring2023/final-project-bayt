@@ -4,7 +4,8 @@ const usersModel = require('../models/users.model');
 // Get users in home and their info
 async function gets(req, res) {
     try{
-        return await usersModel.find({houses: req?.user.houses});
+        const users = await usersModel.find({houses: req?.user.houses}).lean();
+        res.status(200).json(users);
       }
       catch (err) {
         console.error(err)
