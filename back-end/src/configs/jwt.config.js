@@ -4,6 +4,7 @@ const userModel = require("../models/users.model.js")
 
 const passportJWT = require("passport-jwt")
 const passport = require("passport")
+const passport = require("passport")
 const ExtractJwt = passportJWT.ExtractJwt
 const JwtStrategy = passportJWT.Strategy
 
@@ -20,6 +21,8 @@ const jwtVerifyToken = async function (jwt_payload, next) {
   // find user in the database
   const userId = new ObjectId(jwt_payload.id) // convert the string id to an ObjectId
   const user = await userModel.findOne({ _id: userId }).exec()
+
+  // Populate user house and ass
 
   // Populate user house and ass
   if (user) {
@@ -40,10 +43,11 @@ function protectContentMiddleware(req, res, next) {
     next();
   } else {
 
-    // console.log(req);
+    console.log(req);
     // Otherwise, authenticate user request token
     passport.authenticate("jwt", { session: false })(req, res, next);
   }
 }
 
+module.exports = { jwtStrategy, protectContentMiddleware };
 module.exports = { jwtStrategy, protectContentMiddleware };

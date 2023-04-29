@@ -18,11 +18,7 @@ const NameInfo = () => {
 
   React.useEffect(() => {
     axios
-      .get(`/api/Profile`, {
-        headers: {
-          Authorization: `JWT ${localStorage.getItem("token")}`,
-        },
-      })
+      .get(`/api/Profile`)
       .then(response => {
         setName(response.data.username);
       })
@@ -62,6 +58,7 @@ const NameInfo = () => {
             console.log(error);
           });
       }
+      }
 
       else {
         setTempName(name);
@@ -86,12 +83,14 @@ const NameInfo = () => {
           console.log(error);
         });
     }
+    }
 
     else {
       setTempName(name);
     }
 
   };
+
 
   return (
     <div className="profile-container">
@@ -100,6 +99,7 @@ const NameInfo = () => {
         </h2>
     </div>
   );
+
 
 }
 
@@ -113,17 +113,14 @@ const Profile = () => {
   useEffect(() => {
     // send the request to the server api, including the Authorization header with our JWT token in it
     axios
-      .get('/api/protected/profile/', {
-        headers: {
-          Authorization: `JWT ${localStorage.getItem("token")}`,
-        },
-      })
+      .get('/api/protected/profile/')
       .then(res => {
         setUsername(res.data.user.username);
       
       })
       .catch(err => {
         setIsLoggedIn(false); // update this state variable, so the component re-renders
+      });
       });
   }, []);
 
@@ -132,13 +129,18 @@ const Profile = () => {
       {isLoggedIn ? (
         <>
           <Header title="Profile" />
+          <Header title="Profile" />
           <div>
             <div className="outer">
               <ProfilePic />
               <NameInfo />
               <ProfInfo />
+              <ProfilePic />
+              <NameInfo />
+              <ProfInfo />
             </div>
           </div>
+          <Footer />
           <Footer />
         </>
       ) : (

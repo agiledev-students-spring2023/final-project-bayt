@@ -8,7 +8,9 @@ import "../index.css";
 
 const testing_mode = false;
 const backend_route = '/api/tasks/';
+const backend_route = '/api/tasks/';
 
+const TaskListComponent = ({ filterFunction, sortComparator, enableCheckbox, centerButton }) => {
 const TaskListComponent = ({ filterFunction, sortComparator, enableCheckbox, centerButton }) => {
   const [data, setData] = useState([]);
   const [loaded, setLoaded] = useState(false);
@@ -26,11 +28,7 @@ const TaskListComponent = ({ filterFunction, sortComparator, enableCheckbox, cen
           backend_route + selectObject._id,
           {
             complete: true,
-          }, {
-          headers: {
-            Authorization: `JWT ${localStorage.getItem("token")}`,
-          },
-        }
+          }
         )
         .then((response) => {
           // console.log(response); 
@@ -107,6 +105,7 @@ const TaskListComponent = ({ filterFunction, sortComparator, enableCheckbox, cen
         });
     }
   };
+
 
   useEffect(() => {
     fetchData();
