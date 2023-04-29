@@ -8,10 +8,11 @@ if (process.env.NODE_ENV === 'production') {
         // Return rooms with a specific house id
         return Room.find({ house: house_id }).populate('assignee', '-_id first_name').populate('room', '-_id roomName').lean();
     };
-
-    addRoom = async (house_id, room) => {
-        room.home = house_id; // Add house id to room data
-        const newRoom = await Room.create(room); // Add room and append to the correct house
+    
+    addRoom = async(room) => {
+        // const newRoom = room;
+        // rooms_json.push(newRoom);
+        await Room.create(room)
         return newRoom;
     }
 }
