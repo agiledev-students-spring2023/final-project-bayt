@@ -51,7 +51,7 @@ const TaskSchema = new Schema({
 // Add Cascading remove to delete all references to tasks when a task is deleted
 TaskSchema.pre('remove', function (next) {
     // Remove all the assignment docs that reference the removed task
-    this.model('user').updateMany({
+    this.model('user').updateOne({
         _id: this.assignee // Task may not be assigned to anyone
     }, {
         $pull: {
@@ -59,7 +59,7 @@ TaskSchema.pre('remove', function (next) {
         }
     });
 
-    this.model('room').updateMany({
+    this.model('room').updateOne({
         _id: this.room
     }, { // Task may not be assigned to any room
         $pull: {
@@ -67,7 +67,7 @@ TaskSchema.pre('remove', function (next) {
         }
     });
 
-    this.model('house').updateMany({
+    this.model('house').updateOne({
         _id: this.house
     }, { // Filter by house id
         $pull: {
