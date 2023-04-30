@@ -9,8 +9,8 @@ import axios from "axios";
 // paid/requesting $[amount] to/from @user for [text]
 function TransactionForm({ onSubmit }) {
   const [paidOrRequesting, setPaidOrRequesting] = useState("Paid");
-  const [amount, setAmount] = useState("");
-  const [toOrFrom, settoOrFrom] = useState("");
+  const [amount, setAmount] = useState("0");
+  const [toOrFrom, settoOrFrom] = useState("to");
   const [user, setUser] = useState("@user");
   const [forWhat, setforWhat] = useState("purpose");
   const [date, setDate] = useState("");
@@ -25,16 +25,23 @@ function TransactionForm({ onSubmit }) {
       forWhat,
       date,
     };
+    if (
+      !paidOrRequesting ||
+      !amount ||
+      !toOrFrom ||
+      !user ||
+      !forWhat ||
+      !date
+    ) {
+      alert("Please complete all fields");
+      return;
+    }
     try {
-      const response = await axios.post(
-        "/api/finances",
-        transaction,
-        {
-          headers: {
-            Authorization: `JWT ${localStorage.getItem("token")}`,
-          }
-        }
-      );
+      const response = await axios.post("/api/finances", transaction, {
+        headers: {
+          Authorization: `JWT ${localStorage.getItem("token")}`,
+        },
+      });
       onSubmit(response.data);
     } catch (error) {
       console.error(error);
@@ -46,7 +53,8 @@ function TransactionForm({ onSubmit }) {
       <div className="form-items">
         <div className="pay">
           <label>
-            <select className="sendorreceive-field"
+            <select
+              className="sendorreceive-field"
               value={paidOrRequesting}
               onChange={(event) => setPaidOrRequesting(event.target.value)}>
               <option value="Paid">Paid</option>
@@ -117,16 +125,15 @@ function Finances() {
   useEffect(() => {
     // send the request to the server api, including the Authorization header with our JWT token in it
     axios
-      .get('/api/protected/finances/',
-        {
-          headers: {
-            Authorization: `JWT ${localStorage.getItem("token")}`,
-          },
-        })
-      .then(res => {
+      .get("/api/protected/finances/", {
+        headers: {
+          Authorization: `JWT ${localStorage.getItem("token")}`,
+        },
+      })
+      .then((res) => {
         // do nothing
       })
-      .catch(err => {
+      .catch((err) => {
         setIsLoggedIn(false); // update this state variable, so the component re-renders
       });
   }, []);
@@ -159,7 +166,7 @@ function Finances() {
       }
     };
     fetchTransactions();
-  }, []);
+  }, [transactions]);
 
   const handleAddTransaction = (transaction) => {
     setTransactions([...transactions, transaction]);
@@ -194,7 +201,7 @@ function Finances() {
           <Footer />
         </>
       ) : (
-        <Navigate to='/login?error=protected' />
+        <Navigate to="/login?error=protected" />
       )}
     </>
   );
@@ -236,7 +243,8 @@ function TransactionList({ transactions }) {
                 }>
                 {transaction.paidOrRequesting} ${transaction.amount}{" "}
                 {transaction.toOrFrom} {transaction.user} for{" "}
-                {transaction.forWhat} on {transaction.date}
+                {transaction.forWhat} on{" "}
+                {new Date(transaction.date).toLocaleDateString()}
               </p>
             </div>
           </li>
