@@ -75,7 +75,6 @@ function IndividualTask(props) {
                     }
                 })
             .then((response) => {
-                // console.log(response?.data);
                 return response?.data;
             })
             .catch((err) => {
@@ -93,7 +92,6 @@ function IndividualTask(props) {
                     }
                 })
             .then((response) => {
-                // console.log(response?.data);
                 return response?.data;
             })
             .catch((err) => {
@@ -113,7 +111,6 @@ function IndividualTask(props) {
             )
             .then((response) => {
                 const taskData = response.data;
-                // console.log(taskData);
                 return taskData;
             })
             .catch((err) => {
