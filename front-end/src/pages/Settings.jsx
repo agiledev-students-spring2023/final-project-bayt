@@ -61,7 +61,6 @@ const Settings = () => {
           },
         })
         .then((response) => {
-          console.log(response?.data);
           let membersString = formatMembersInfo(response.data);
           setMembs(membersString);
           setHouseName(response.data[0].houseName);

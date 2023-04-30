@@ -15,7 +15,6 @@ let jwtOptions = {
 
 // payload of JWT token
 const jwtVerifyToken = async function (jwt_payload, next) {
-  // console.log("JWT payload received", jwt_payload) // debugging
 
   // find user in the database
   const userId = new ObjectId(jwt_payload.id) // convert the string id to an ObjectId
@@ -39,10 +38,6 @@ function protectContentMiddleware(req, res, next) {
     // skip this middleware and continue to the next one.
     next();
   } else {
-
-    // console.log(req);
-    // Otherwise, authenticate user request token
-    // console.log(req);
     passport.authenticate("jwt", { session: false })(req, res, next);
   }
 }
