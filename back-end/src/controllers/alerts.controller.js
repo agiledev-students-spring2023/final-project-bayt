@@ -2,7 +2,7 @@ const alertsService = require("../services/alerts.service.js");
 
 const getAlerts = async (req, res, next) => {
   try {
-    const alerts = await alertsService.getAlerts();
+    const alerts = await alertsService.getAlerts(req.user.houses._id, req.user.username);
     res.json(alerts);
   } catch (error) {
     next(error);
