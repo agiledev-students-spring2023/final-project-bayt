@@ -148,28 +148,30 @@ function Finances() {
     }
   };
 
-  useEffect(() => {
-    const fetchTransactions = async () => {
-      try {
-        const response = await fetch("/api/finances", {
-          headers: {
-            Authorization: `JWT ${localStorage.getItem("token")}`,
-          },
-        });
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        const transactions = await response.json();
-        setTransactions(transactions);
-      } catch (error) {
-        console.error(error);
+  const fetchTransactions = async () => {
+    try {
+      const response = await fetch("/api/finances", {
+        headers: {
+          Authorization: `JWT ${localStorage.getItem("token")}`,
+        },
+      });
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
       }
-    };
+      const transactions = await response.json();
+      setTransactions(transactions);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
     fetchTransactions();
-  }, [transactions]);
+  }, []);
 
   const handleAddTransaction = (transaction) => {
     setTransactions([...transactions, transaction]);
+    fetchTransactions();
     setIsFormVisible(false);
   };
 
