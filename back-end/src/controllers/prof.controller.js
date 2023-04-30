@@ -24,9 +24,7 @@ const upload = multer({ storage: storage});
 //ideally we query with mongoose and pull object using ID
 async function gets(req, res) {
   try {
-    const username = req.params.username;
-    const userData = await User.findOne({ username } ).populate('houses','name');
-
+    const userData = await User.findById(req.user._id).populate('houses','name');
     // If no user is found, return a 404 error
     if (!userData) {
       return res.status(404).json({
@@ -38,6 +36,7 @@ async function gets(req, res) {
 
     // If the user has a profile picture, send it back as an image
     if (userData.profile_pic != 'Default.svg') {
+      console.log(userData.profile_pic);
       const imagePath = path.join(__dirname, '../uploads', userData.profile_pic);
       try {
         await fs.promises.access(imagePath, fs.constants.F_OK);
@@ -66,17 +65,8 @@ async function gets(req, res) {
 
   //handle user uploading files, updating db, removing previous file for user
   async function store(req,res){
-        const username = req.params.username;
         const file = req.file;
-
-        // Find the user by username
-        const user = await User.findOne({ username });
-          if (!user) {
-            return res.status(404).json({
-              error: 'User not found',
-              status: 'failed to update data',
-            });
-          }
+        const user = req.user;
 
         // Get the current prof_pic filename for the user
         const currentFilename = user.profile_pic;
@@ -110,7 +100,7 @@ async function gets(req, res) {
   //change all this when we use database.  Will be a lot simpler.
   async function update(req, res) {
     try {
-      const username = req.params.username;
+      const username = req.user.username;
       const updatedData = req.body;
       // Find the user by username
       const user = await User.findOne({ username });

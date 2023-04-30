@@ -14,7 +14,7 @@ function TransactionForm({ onSubmit }) {
   const [user, setUser] = useState("@user");
   const [forWhat, setforWhat] = useState("purpose");
   const [date, setDate] = useState("");
-  
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     const transaction = {
@@ -28,7 +28,12 @@ function TransactionForm({ onSubmit }) {
     try {
       const response = await axios.post(
         "/api/finances",
-        transaction
+        transaction,
+        {
+          headers: {
+            Authorization: `JWT ${localStorage.getItem("token")}`,
+          }
+        }
       );
       onSubmit(response.data);
     } catch (error) {
@@ -112,15 +117,18 @@ function Finances() {
   useEffect(() => {
     // send the request to the server api, including the Authorization header with our JWT token in it
     axios
-      .get('/api/protected/finances/', {
-        headers: { Authorization: `JWT ${jwtToken}` }, // pass the token, if any, to the server
-      })
+      .get('/api/protected/finances/',
+        {
+          headers: {
+            Authorization: `JWT ${localStorage.getItem("token")}`,
+          },
+        })
       .then(res => {
         // do nothing
       })
       .catch(err => {
         setIsLoggedIn(false); // update this state variable, so the component re-renders
-    });
+      });
   }, []);
 
   const handleButtonClick = () => {
@@ -136,7 +144,11 @@ function Finances() {
   useEffect(() => {
     const fetchTransactions = async () => {
       try {
-        const response = await fetch("/api/finances");
+        const response = await fetch("/api/finances", {
+          headers: {
+            Authorization: `JWT ${localStorage.getItem("token")}`,
+          },
+        });
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
@@ -169,7 +181,7 @@ function Finances() {
                   Add new transaction
                 </button>
               </div>
-    
+
               {isFormVisible && (
                 <div className="overlay" onClick={handleOverlayClick}>
                   <div className="form">

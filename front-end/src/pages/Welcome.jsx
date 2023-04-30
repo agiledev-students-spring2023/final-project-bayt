@@ -10,11 +10,6 @@ function Welcome(props) {
 
   const handleClick = (evt) => {
     evt.preventDefault();
-    // const data = new FormData(evt.currentTarget);
-    // console.log({
-    //   email: data.get('email'),
-    //   password: data.get('password'),
-    // });
     navigate(`/${evt.target.id}`);
   };
 

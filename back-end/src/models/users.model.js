@@ -45,6 +45,10 @@ const UserSchema = new Schema({
         type: String,
         required: true,
     },
+    contact: {
+        type: String,
+        required: false
+    },
     assigned_tasks: [{
         type: Schema.Types.ObjectId,
         ref: 'task',
@@ -57,10 +61,10 @@ const UserSchema = new Schema({
         type: String,
         required: true
     },
-    houses: [{
+    houses: {
         type: Schema.Types.ObjectId,
         ref: 'house',
-    }],
+    },
 });
 
 // hash the password before the user is saved
@@ -89,6 +93,8 @@ UserSchema.methods.generateJWT = function () {
     return jwt.sign(
         {
             id: this._id,
+            user_id: this._id,
+            house_id: this.houses._id,
             username: this.username,
             exp: parseInt(exp.getTime() / 1000),
         },

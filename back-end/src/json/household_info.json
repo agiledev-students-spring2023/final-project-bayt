@@ -33,5 +33,10 @@
     "username": "diana123",
     "role": "roomate",
     "contact": "666-666-6666"
+  },
+  {
+    "username": "hames",
+    "email": "rir8190@nyu.edu",
+    "role": "admin"
   }
 ]

@@ -12,21 +12,22 @@ import { Navigate, useSearchParams } from "react-router-dom";
 import axios from "axios";
 import "../index.css";
 import "../css/Login.css";
+import jwt_decode from "jwt-decode";
 
 const theme = createTheme({
     palette: {
-      primary: {
-        main: '#81b29a',
-        contrastText: '#fff',
-      },
-      secondary: {
-        main: '#81b29a',
-        contrastText: '#fff',
-      },
+        primary: {
+            main: '#81b29a',
+            contrastText: '#fff',
+        },
+        secondary: {
+            main: '#81b29a',
+            contrastText: '#fff',
+        },
     },
 });
 
-const backend_route =`/api/login/`;
+const backend_route = `/api/login/`;
 
 const defaultValues = {
     username: '',
@@ -50,6 +51,14 @@ function Login(props) {
         // if the user is logged-in, save the token to local storage
         if (response.success && response.token) {
             localStorage.setItem("token", response.token); // store the token into localStorage
+
+            // Decode user_id and hosuse_id from token and store it in localStorage
+            const decoded = jwt_decode(response.token);
+
+            // For each element, stringify its key and store its value in localStorage
+            Object.keys(decoded).forEach(key => {
+                localStorage.setItem(key, decoded[key]); // Store stuff like user_id, house_id, etc.
+            });
         }
     }, [response]);
 
@@ -68,7 +77,7 @@ function Login(props) {
             const response = await axios.post(backend_route, formValues);
             setErrorMessage('');
             setResponse(response.data);
-        } catch(err) {
+        } catch (err) {
             setErrorMessage(<Alert severity="error">{`${err.response.data.message}`}</Alert>);
         }
     };
@@ -80,16 +89,16 @@ function Login(props) {
                     <Container component="main" maxWidth="xs">
                         <Box sx={{ mt: 8, display: 'flex', flexDirection: 'column', alignItems: 'center' }} >
                             <h1>Login</h1>
-    
+
                             {errorMessage}
-    
+
                             <Box component="form" onSubmit={handleSubmit} sx={{ mt: 1 }}>
-                                <TextField margin="normal" required fullWidth id="username" label="Username" name="username" onChange={handleInputChange}/>
-    
-                                <TextField margin="normal" required fullWidth name="password" label="House Code" type="password" id="password" onChange={handleInputChange}/>
-    
+                                <TextField margin="normal" required fullWidth id="username" label="Username" name="username" onChange={handleInputChange} />
+
+                                <TextField margin="normal" required fullWidth name="password" label="House Code" type="password" id="password" onChange={handleInputChange} />
+
                                 <button type="submit" >Log In</button>
-    
+
                                 <Grid container>
                                     <Grid item xs={9}></Grid>
                                     <Grid item>
