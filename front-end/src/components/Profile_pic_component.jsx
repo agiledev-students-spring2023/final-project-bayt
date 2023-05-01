@@ -88,7 +88,7 @@ const ProfilePic = (props) => {
       <div className="profileImg">
         <img src={image} className="img" alt="" />
       </div>
-      <input type='file' id="uploadPic" ref={fileInputRef} onChange={handleChange} />
+      <input type='file' id="uploadPic" ref={fileInputRef} value="" onChange={handleChange} />
       <label htmlFor="uploadPic" className="custom-file-upload">Upload file</label>
     </div>
   );
