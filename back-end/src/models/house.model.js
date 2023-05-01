@@ -48,7 +48,7 @@ const HouseSchema = new Schema({
     }],
     finances: [{
         type: Schema.Types.ObjectId,
-        ref: 'finance'
+        ref: 'transactions'
     }]
 });
 
