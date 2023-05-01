@@ -5,7 +5,7 @@
     align-items: center;
     justify-content: flex-start;
     margin-bottom: 1.2rem;
-    background-color: #fac80160;
+    background: linear-gradient(to right, #f2994a, #f2c94c);;
 }
 
 .task_component:active {

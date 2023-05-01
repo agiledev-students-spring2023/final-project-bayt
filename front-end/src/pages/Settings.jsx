@@ -23,15 +23,15 @@ const Settings = () => {
   useEffect(() => {
     // send the request to the server api, including the Authorization header with our JWT token in it
     axios
-      .get('/api/protected/settings/', {
+      .get("/api/protected/settings/", {
         headers: {
           Authorization: `JWT ${localStorage.getItem("token")}`,
         },
       })
-      .then(res => {
+      .then((res) => {
         // do nothing
       })
-      .catch(err => {
+      .catch((err) => {
         setIsLoggedIn(false); // update this state variable, so the component re-renders
       });
   }, []);
@@ -121,7 +121,8 @@ const Settings = () => {
       transform: "translate(-50%, -50%)",
       border: "2px solid #ccc",
       background: "white",
-      width: "calc(0.85 * var(--max-width))" /* set the width to 85% of the max display width */,
+      width:
+        "calc(0.85 * var(--max-width))" /* set the width to 85% of the max display width */,
       maxWidth: "600px",
       overflow: "auto" /* add overflow property for scrolling */,
     },
@@ -134,22 +135,30 @@ const Settings = () => {
           <Header title={"Settings"} />
 
           <div className="setts-info">
-            <ul className="links-container">
-              <button className=""
+            <div className="links-container">
+              <button
+                className=""
                 href="#/"
-                onClick={(evt) => handleLinkClick(evt, "Household Information")}>
-                <li>{"Household Information"}</li>
+                onClick={(evt) =>
+                  handleLinkClick(evt, "Household Information")
+                }>
+                {"Household Information"}
               </button>
               {links.map((link, i) => (
-                <button key={i} href="#/" onClick={(evt) => handleLinkClick(evt, link)}>
-                  <li key={link.name}>{link.name}</li>
+                <button
+                  key={i}
+                  href="#/"
+                  onClick={(evt) => handleLinkClick(evt, link)}>
+                  {link.name}
                 </button>
               ))}
 
-              <button href="/" onClick={(evt) => handleLinkClick(evt, "Logout")}>
-                <li>{"Logout"}</li>
+              <button
+                href="/"
+                onClick={(evt) => handleLinkClick(evt, "Logout")}>
+                {"Logout"}
               </button>
-            </ul>
+            </div>
           </div>
 
           <Modal
@@ -189,7 +198,7 @@ const Settings = () => {
           <Footer />
         </div>
       ) : (
-        <Navigate to='/login?error=protected' />
+        <Navigate to="/login?error=protected" />
       )}
     </>
   );
