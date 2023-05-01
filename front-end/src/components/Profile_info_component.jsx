@@ -17,7 +17,7 @@ const ProfInfo = (props) => {
   const [householdRole, setHouseholdRole] = React.useState('');
   const [firstname, setFirstName] = React.useState('');
   const [lastname, setLastName] = React.useState('');
-  const [houses, setHouses] = React.useState('');
+  const [houses, setHouses] = React.useState({ name: "" });
   const username = props.username;
 
   //axios to get data from backend database
