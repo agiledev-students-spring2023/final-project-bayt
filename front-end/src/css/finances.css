@@ -13,11 +13,11 @@
   width: 100%;
 }
 
-.list li {
+.finances-page-content .list li {
   border-bottom: 1px solid #ccc;
 }
 
-.list {
+.finances-page-content .list {
   border-top: 1px solid #ccc;
   margin: 1rem;
 }
