@@ -34,31 +34,31 @@ const Profile = () => {
     // send the request to the server api, including the Authorization header with our JWT token in it
     axios
       .get('/api/protected/profile/', {
-        headers: { Authorization: `JWT ${jwtToken}` }, // pass the token, if any, to the server
+        headers: {
+          Authorization: `JWT ${localStorage.getItem("token")}`,
+        },
       })
-      //store the username response as var to send back to backend 
       .then(res => {
         setUsername(res.data.user.username);
-      
       })
       .catch(err => {
         setIsLoggedIn(false); // update this state variable, so the component re-renders
-    });
+      });
   }, []);
 
   return (
     <>
       {isLoggedIn ? (
         <>
-          <Header title="Profile"/>
+          <Header title="Profile" />
           <div>
             <div className="outer">
-                <ProfilePic username={username}/>
+                <ProfilePic />
                 <NameInfo username={username}/>
-                <ProfInfo username={username}/>
+                <ProfInfo/>
             </div>
           </div>
-          <Footer/>
+          <Footer />
         </>
       ) : (
         <Navigate to='/login?error=protected' />

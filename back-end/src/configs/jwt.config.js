@@ -3,6 +3,7 @@ const ObjectId = mongoose.Types.ObjectId
 const userModel = require("../models/users.model.js")
 
 const passportJWT = require("passport-jwt")
+const passport = require("passport")
 const ExtractJwt = passportJWT.ExtractJwt
 const JwtStrategy = passportJWT.Strategy
 
@@ -14,11 +15,12 @@ let jwtOptions = {
 
 // payload of JWT token
 const jwtVerifyToken = async function (jwt_payload, next) {
-  // console.log("JWT payload received", jwt_payload) // debugging
 
   // find user in the database
   const userId = new ObjectId(jwt_payload.id) // convert the string id to an ObjectId
   const user = await userModel.findOne({ _id: userId }).exec()
+
+  // Populate user house and ass
   if (user) {
     // we found the user... keep going
     next(null, user)
@@ -28,9 +30,16 @@ const jwtVerifyToken = async function (jwt_payload, next) {
   }
 }
 
-const jwtStrategy = jwtOptions => {
-  const strategy = new JwtStrategy(jwtOptions, jwtVerifyToken)
-  return strategy
+const jwtStrategy = new JwtStrategy(jwtOptions, jwtVerifyToken);
+
+function protectContentMiddleware(req, res, next) {
+  if (req.path.startsWith('/login') || req.path.startsWith('/signup')) {
+    // If the request path starts with /login or /signup,
+    // skip this middleware and continue to the next one.
+    next();
+  } else {
+    passport.authenticate("jwt", { session: false })(req, res, next);
+  }
 }
 
-module.exports = jwtStrategy(jwtOptions, jwtVerifyToken)
+module.exports = { jwtStrategy, protectContentMiddleware };

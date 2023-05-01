@@ -41,6 +41,14 @@ const HouseSchema = new Schema({
     rooms: [{
         type: Schema.Types.ObjectId,
         ref: 'room'
+    }],
+    tasks: [{
+        type: Schema.Types.ObjectId,
+        ref: 'task'
+    }],
+    finances: [{
+        type: Schema.Types.ObjectId,
+        ref: 'transactions'
     }]
 });
 

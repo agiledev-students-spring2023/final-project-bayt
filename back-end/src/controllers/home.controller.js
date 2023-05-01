@@ -2,7 +2,7 @@ const homeService = require("../services/home.service.js");
 
 async function getRooms(req, res) {
     try {
-        const rooms = await homeService.getAllRooms()
+        const rooms = await homeService.getAllRooms(req?.user.houses)
         res.status(200).json(rooms)
     }
     catch(err) {
@@ -15,7 +15,7 @@ async function getRooms(req, res) {
 
 async function addRoom(req, res) {
     try {
-        const room = await homeService.addRoom(req.body)
+        const room = await homeService.addRoom(req?.user.houses, req.body)
         res.status(200).json(room)
     }
     catch(err) {

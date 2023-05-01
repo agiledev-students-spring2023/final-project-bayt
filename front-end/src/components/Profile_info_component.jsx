@@ -11,32 +11,32 @@ import Button from '@mui/material/Button';
 import DeleteAccountButton from './ProfileDelete';
 import axios from 'axios';
 
-const ProfInfo = (props) => {
+const ProfInfo = () => {
   const [isEditable, setIsEditable] = React.useState(false);
   const [email, setEmail] = React.useState('');
   const [householdRole, setHouseholdRole] = React.useState('');
   const [firstname, setFirstName] = React.useState('');
   const [lastname, setLastName] = React.useState('');
-  const [houses, setHouses] = React.useState([]);
-  const username = props.username;
+  const [houses, setHouses] = React.useState('');
 
   //axios to get data from backend database
   React.useEffect(() => {
-    if (username) {
-      axios
-        .get(`/api/Profile/${username}`, { responseType: 'json' })
+      axios.get(`/api/Profile/`, {
+        headers: {
+          Authorization: `JWT ${localStorage.getItem("token")}`
+        }
+      })
         .then(response => {
           setEmail(response.data.data.email);
           setHouseholdRole(response.data.data.role);
           setLastName(response.data.data.last_name || 'Set your last name');
-          setHouses(response.data.data.houses.map(obj => obj.name));
+          setHouses(response.data.data.houses);
           setFirstName(response.data.data.first_name || 'Set your first name');
         })
-        .catch (err => {
+        .catch(err => {
           console.log(err);
-        })
-    }
-  },[username]);
+        });
+  }, []);
 
 
   const handleEditClick = () => {
@@ -47,25 +47,29 @@ const ProfInfo = (props) => {
   const handleSaveClick = () => {
     setIsEditable(false);
     axios
-    .put(`/api/Profile/${username}`, {
-      email: email,
-      role: householdRole,
-      first_name: firstname,
-      last_name: lastname,
-    })
-  
-    .then(response => {
-      console.log(response)
-    })
-    .catch(error => {
-      console.log(error);
-    });
+      .put(`/api/Profile/`, {
+        email: email,
+        role: householdRole,
+        first_name: firstname,
+        last_name: lastname,
+      }, {
+        headers: {
+          Authorization: `JWT ${localStorage.getItem("token")}`,
+        },
+      })
+
+      .then(response => {
+        console.log(response)
+      })
+      .catch(error => {
+        console.log(error);
+      });
   };
 
 
   return (
     <Container maxWidth='lg'>
-      <Box margin={'auto'} sx={{ width: '70%', maxWidth:'100%'}}>     
+      <Box margin={'auto'} sx={{ width: '70%', maxWidth: '100%' }}>
         <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
           <SentimentSatisfiedAltIcon sx={{ color: 'action.active', mr: 2, my: 0.5 }} />
           <TextField
@@ -119,25 +123,24 @@ const ProfInfo = (props) => {
           <TextField
             fullWidth
             id="houses"
-            label="Houses"
             variant="standard"
-            value={houses.join(', ')}
-            inputProps={{readOnly:true,}}
-            disabled={!isEditable}
+            value={houses.name}
+            inputProps={{ readOnly: true, }}
+            disabled={true}
             onChange={(e) => setHouses(e.target.value)}
-            />
+          />
         </Box>
 
-        <Box sx={{ display: 'flex', alignItems: 'center',flexDirection: 'column', justifyContent:'center', marginTop: '30px' }}>
-            {isEditable ? (<Button variant="contained" sx={{ backgroundColor: '#3D405B', '&:hover': { backgroundColor: '#eaefe9' }  }} onClick={handleSaveClick}>Save</Button>):(<Button variant="contained" sx={{ backgroundColor: '#3D405B', '&:hover': { backgroundColor: '#eaefe9' }, width: '200px' }} onClick={handleEditClick}>Edit</Button>)}
-            {isEditable && (
+        <Box sx={{ display: 'flex', alignItems: 'center', flexDirection: 'column', justifyContent: 'center', marginTop: '30px' }}>
+          {isEditable ? (<Button variant="contained" sx={{ backgroundColor: '#3D405B', '&:hover': { backgroundColor: '#eaefe9' } }} onClick={handleSaveClick}>Save</Button>) : (<Button variant="contained" sx={{ backgroundColor: '#3D405B', '&:hover': { backgroundColor: '#eaefe9' }, width: '200px' }} onClick={handleEditClick}>Edit</Button>)}
+          {isEditable && (
             <>
-            <DeleteAccountButton/>
-            </> 
-            )}
+              <DeleteAccountButton />
+            </>
+          )}
         </Box>
-        </Box>
-        </Container>
+      </Box>
+    </Container>
   );
 }
 

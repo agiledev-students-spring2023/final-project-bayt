@@ -25,16 +25,15 @@ import Footer from './Footer.jsx';
 
 function generateOId() {
     let timestamp = (new Date().getTime() / 1000 | 0).toString(16);
-    return timestamp + 'xxxxxxxxxxxxxxxx'.replace(/[x]/g, function() {
+    return timestamp + 'xxxxxxxxxxxxxxxx'.replace(/[x]/g, function () {
         return (Math.random() * 16 | 0).toString(16);
     }).toLowerCase();
 };
 
 const defaultValues = {
-    _id: generateOId(),
     task_name: "",
-    room:"",
-    assignee:"",
+    room: "",
+    assignee: "",
     repeat: "",
     due_time: new Date().valueOf(),
     description: "",
@@ -43,42 +42,94 @@ const defaultValues = {
 
 const theme = createTheme({
     palette: {
-      primary: {
-        main: '#6B8E23',
-        contrastText: '#fff',
-      },
+        primary: {
+            main: '#6B8E23',
+            contrastText: '#fff',
+        },
     },
 });
 
-const backend_route =`/api/tasks/`;
+const task_route = `/api/tasks/`;
+const home_route = `/api/home/`; // gets rooms
+const settings_route = `/api/settings/`; // gets people
 
 function IndividualTask(props) {
     const navigate = useNavigate();
     const { id } = useParams();
 
+    const [rooms, setRooms] = useState([]);
+    const [people, setPeople] = useState([]);
+
     const [formValues, setFormValues] = useState(defaultValues);
+    const [oldFormValues, setOldFormValues] = useState(defaultValues);
     const [errorMessage, setErrorMessage] = useState('');
 
-    const fetchData =  async (id) => {
-        return await axios
-        .get(backend_route + `${id}`)
-        .then((response) => {
-            const taskData = response.data;
-            console.log(taskData);
-            return taskData;
-        })
-        .catch((err) => {
-            return err;
-        });
+
+    const fetchHouseResidents = async () => {
+        return axios
+            .get(settings_route,
+                {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `JWT ${localStorage.getItem('token')}`
+                    }
+                })
+            .then((response) => {
+                return response?.data;
+            })
+            .catch((err) => {
+                return err;
+            });
+    };
+
+    const fetchHouseRooms = async () => {
+        return axios
+            .get(home_route,
+                {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `JWT ${localStorage.getItem('token')}`
+                    }
+                })
+            .then((response) => {
+                return response?.data;
+            })
+            .catch((err) => {
+                return err;
+            });
+    };
+
+    const fetchTaskData = async (id) => {
+        return axios
+            .get(task_route + `${id}`,
+                {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `JWT ${localStorage.getItem('token')}`
+                    }
+                }
+            )
+            .then((response) => {
+                const taskData = response.data;
+                return taskData;
+            })
+            .catch((err) => {
+                // log the id
+                console.log(id);
+                console.log(err);
+                return err;
+            });
     };
 
     useEffect(() => {
-        if (id) {
-            async function fetchAndSet() {
-                const taskData = await fetchData(id);
+        async function fetchAndSet() {
+            setRooms(await fetchHouseRooms());
+            setPeople(await fetchHouseResidents());
 
+            if (id) {
+                const taskData = await fetchTaskData(id);
                 if (!taskData.response) {
-                    setFormValues({
+                    const temp = {
                         _id: id,
                         task_name: taskData['task_name'] ? taskData['task_name'] : '',
                         room: taskData['room'] ? taskData['room'] : '',
@@ -87,19 +138,20 @@ function IndividualTask(props) {
                         due_time: taskData['due_time'] ? taskData['due_time'] : new Date().valueOf(),
                         description: taskData['description'] ? taskData['description'] : '',
                         complete: taskData['complete'],
-                    });
+                    };
+                    setFormValues(temp);
+                    setOldFormValues(temp);
                 }
                 else {
                     setErrorMessage(<Alert severity="error">{`${taskData.response.data.message}`}</Alert>);
-                    
+
                     setTimeout(() => {
                         navigate('/tasks');
                     }, 2000);
                 }
             }
-
-            fetchAndSet();
-        }
+        };
+        fetchAndSet();
     }, []);
 
     const handleNavigate = () => {
@@ -115,7 +167,7 @@ function IndividualTask(props) {
         }
         else {
             const { name, value } = e.target;
-                setFormValues({
+            setFormValues({
                 ...formValues,
                 [name]: value,
             });
@@ -126,25 +178,39 @@ function IndividualTask(props) {
         e.preventDefault();
 
         if (id) {
+            // if rooms or assignees are not equal to initially fetched task data then include oid, else don't in formValues because we dont have its oid
+            // and shouldnt call put without the id values
+            if (formValues['room'] === oldFormValues['room']) {
+                delete formValues['room'];
+            }
+            if (formValues['assignee'] === oldFormValues['assignee']) {
+                delete formValues['assignee'];
+            }
+
             axios
-            .put(backend_route + `${id}`, formValues)
-            .then((res) => {
-                console.log(res);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
+                .put(task_route + `${id}`, formValues, { headers: { 'Content-Type': 'application/json', 'Authorization': `JWT ${localStorage.getItem('token')}` } })
+                .then((res) => {
+                    console.log(res);
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
         }
         else {
             console.log(formValues);
             axios
-            .post(backend_route, formValues)
-            .then((res) => {
-                console.log(res);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
+                .post(task_route, formValues, {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `JWT ${localStorage.getItem('token')}`
+                    }
+                })
+                .then((res) => {
+                    console.log(res);
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
         }
 
         setFormValues(defaultValues);
@@ -157,7 +223,7 @@ function IndividualTask(props) {
 
             <ThemeProvider theme={theme}>
                 <Box maxWidth='xs' sx={{ height: 70, mx: 3, pb: 0, display: 'flex', alignItems: 'flex-end' }}>
-                    <Button onClick={handleNavigate} sx={{"&:hover": {color: 'rgb(74, 99, 24)', backgroundColor: "transparent", border: '0px #fff solid'}}} disableRipple disableElevation disableFocusRipple variant="text" startIcon={<ArrowBackIosIcon />}>
+                    <Button onClick={handleNavigate} sx={{ "&:hover": { color: 'rgb(74, 99, 24)', backgroundColor: "transparent", border: '0px #fff solid' } }} disableRipple disableElevation disableFocusRipple variant="text" startIcon={<ArrowBackIosIcon />}>
                         Back
                     </Button>
                 </Box>
@@ -167,35 +233,39 @@ function IndividualTask(props) {
 
             <form className='taskFormContainer' onSubmit={handleSubmit}>
                 <ThemeProvider theme={theme}>
-                    <Box sx={{m: 3, mt: 1, pt: 4, maxWidth: '100%'}}>
-                        <TextField disabled={formValues['complete']} required sx={{mb: 2}} variant="standard" fullWidth id="task_name_input" name="task_name" label="Task Title" type="text" value={formValues.task_name} onChange={handleInputChange} />
+                    <Box sx={{ m: 3, mt: 1, pt: 4, maxWidth: '100%' }}>
+                        <TextField disabled={formValues['complete']} required sx={{ mb: 2 }} variant="standard" fullWidth id="task_name_input" name="task_name" label="Task Title" type="text" value={formValues.task_name} onChange={handleInputChange} />
 
-                        <TextField disabled={formValues['complete']} value={formValues.description} sx={{mb: 2}} fullWidth required id="description" name='description' label="Enter Task Description" multiline rows={4} variant="standard" onChange={handleInputChange}/>
-                        
-                        <FormControl variant="standard" sx={{mb: 2, width: '100%'}}>
+                        <TextField disabled={formValues['complete']} value={formValues.description} sx={{ mb: 2 }} fullWidth required id="description" name='description' label="Enter Task Description" multiline rows={4} variant="standard" onChange={handleInputChange} />
+
+                        <FormControl variant="standard" sx={{ mb: 2, width: '100%' }}>
                             <InputLabel id="room-label">Select Room</InputLabel>
                             <Select disabled={formValues['complete']} defaultValue={defaultValues.room} name="room" labelId="room-label" id="room-select-helper" value={formValues.room} label="room" onChange={handleInputChange}>
-                                {id ? <MenuItem value={`${formValues.room}`}>{`${formValues.room}`}</MenuItem> : ''}
-                                <MenuItem value={'bathroom'}>Bathroom</MenuItem>
-                                <MenuItem value={'kitchen'}>Kitchen</MenuItem>
-                                <MenuItem value={'livingroom'}>Living Room</MenuItem>
+                                {id ? <MenuItem key={'unique_id'} value={`${formValues.room}`}>{`${formValues.room}`}</MenuItem> : <MenuItem key={'unique_id'}></MenuItem>}
+                                {rooms.filter((room) => room?.roomName !== '').map((room) => (
+                                    <MenuItem key={room?._id} value={room?._id}>
+                                        {room?.roomName}
+                                    </MenuItem>
+                                ))}
                             </Select>
                         </FormControl>
 
-                        <FormControl required variant="standard" sx={{mb: 2, width: '100%'}}>
+                        <FormControl required variant="standard" sx={{ mb: 2, width: '100%' }}>
                             <InputLabel id="assign-label">Assign To</InputLabel>
                             <Select disabled={formValues['complete']} required name="assignee" labelId="assign-label" id="assign-select-helper" value={formValues.assignee} label="assign" onChange={handleInputChange}>
-                                {id ? <MenuItem value={`${formValues.assignee}`}>{`${formValues.assignee}`}</MenuItem> : ''}
-                                <MenuItem value={'tom'}>Tom</MenuItem>
-                                <MenuItem value={'james'}>James</MenuItem>
-                                <MenuItem value={'aaron'}>Aaron</MenuItem>
+                                {id ? <MenuItem key={'unique_Id'} value={`${formValues.assignee}`}>{`${formValues.assignee}`}</MenuItem> : <MenuItem key={'unique_id'}></MenuItem>}
+                                {people.map((person) => (
+                                    <MenuItem key={person._id} value={person._id}>
+                                        {person.first_name + ' ' + person.last_name}
+                                    </MenuItem>
+                                ))}
                             </Select>
                         </FormControl>
 
-                        <FormControl required variant="standard" sx={{mb: 2, width: '100%'}}>
+                        <FormControl required variant="standard" sx={{ mb: 2, width: '100%' }}>
                             <InputLabel id="repeat-label">Repeat Every</InputLabel>
                             <Select disabled={formValues['complete']} required name="repeat" labelId="repeat-label" id="repeat-select-helper" value={formValues.repeat} label="repeat" onChange={handleInputChange}>
-                                {id && [0,1,7,14,30,365].indexOf(formValues.repeat) === -1 ? <MenuItem value={formValues.repeat}>{`Every ${formValues.repeat} Day`}</MenuItem> : ''}
+                                {id && [0, 1, 7, 14, 30, 365].indexOf(formValues.repeat) === -1 ? <MenuItem value={formValues.repeat}>{`Every ${formValues.repeat} Day`}</MenuItem> : ''}
                                 <MenuItem value={0}>Never</MenuItem>
                                 <MenuItem value={1}>Every Day</MenuItem>
                                 <MenuItem value={7}>Every Week</MenuItem>
@@ -206,10 +276,10 @@ function IndividualTask(props) {
                         </FormControl>
 
                         <LocalizationProvider dateAdapter={AdapterDayjs}>
-                            <DatePicker disabled={formValues['complete']} value={dayjs(new Date(formValues['due_time']))} required label="Select Date" sx={{mb: 2, width: '100%'}} slotProps={{ textField: { required: true, fullWidth: true } }} onChange={date => handleInputChange(null, date)} />
+                            <DatePicker disabled={formValues['complete']} value={dayjs(new Date(formValues['due_time']))} required label="Select Date" sx={{ mb: 2, width: '100%' }} slotProps={{ textField: { required: true, fullWidth: true } }} onChange={date => handleInputChange(null, date)} />
                         </LocalizationProvider>
-                        
-                        <Button disabled={formValues['complete']} sx={{"&:hover": {color: '#fff', border: '0px #fff solid'}}} variant="contained" fullWidth={true} endIcon={<LibraryAddIcon />} color="primary" type="submit">Save</Button>
+
+                        <Button disabled={formValues['complete']} sx={{ "&:hover": { color: '#fff', border: '0px #fff solid' } }} variant="contained" fullWidth={true} endIcon={<LibraryAddIcon />} color="primary" type="submit">Save</Button>
                     </Box>
                 </ThemeProvider>
             </form>

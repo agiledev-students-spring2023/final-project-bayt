@@ -9,12 +9,12 @@ import axios from "axios";
 // paid/requesting $[amount] to/from @user for [text]
 function TransactionForm({ onSubmit }) {
   const [paidOrRequesting, setPaidOrRequesting] = useState("Paid");
-  const [amount, setAmount] = useState("");
-  const [toOrFrom, settoOrFrom] = useState("");
+  const [amount, setAmount] = useState("0");
+  const [toOrFrom, settoOrFrom] = useState("to");
   const [user, setUser] = useState("@user");
   const [forWhat, setforWhat] = useState("purpose");
   const [date, setDate] = useState("");
-  
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     const transaction = {
@@ -25,11 +25,23 @@ function TransactionForm({ onSubmit }) {
       forWhat,
       date,
     };
+    if (
+      !paidOrRequesting ||
+      !amount ||
+      !toOrFrom ||
+      !user ||
+      !forWhat ||
+      !date
+    ) {
+      alert("Please complete all fields");
+      return;
+    }
     try {
-      const response = await axios.post(
-        "/api/finances",
-        transaction
-      );
+      const response = await axios.post("/api/finances", transaction, {
+        headers: {
+          Authorization: `JWT ${localStorage.getItem("token")}`,
+        },
+      });
       onSubmit(response.data);
     } catch (error) {
       console.error(error);
@@ -41,7 +53,8 @@ function TransactionForm({ onSubmit }) {
       <div className="form-items">
         <div className="pay">
           <label>
-            <select className="sendorreceive-field"
+            <select
+              className="sendorreceive-field"
               value={paidOrRequesting}
               onChange={(event) => setPaidOrRequesting(event.target.value)}>
               <option value="Paid">Paid</option>
@@ -112,15 +125,17 @@ function Finances() {
   useEffect(() => {
     // send the request to the server api, including the Authorization header with our JWT token in it
     axios
-      .get('/api/protected/finances/', {
-        headers: { Authorization: `JWT ${jwtToken}` }, // pass the token, if any, to the server
+      .get("/api/protected/finances/", {
+        headers: {
+          Authorization: `JWT ${localStorage.getItem("token")}`,
+        },
       })
-      .then(res => {
+      .then((res) => {
         // do nothing
       })
-      .catch(err => {
+      .catch((err) => {
         setIsLoggedIn(false); // update this state variable, so the component re-renders
-    });
+      });
   }, []);
 
   const handleButtonClick = () => {
@@ -133,24 +148,30 @@ function Finances() {
     }
   };
 
-  useEffect(() => {
-    const fetchTransactions = async () => {
-      try {
-        const response = await fetch("/api/finances");
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        const transactions = await response.json();
-        setTransactions(transactions);
-      } catch (error) {
-        console.error(error);
+  const fetchTransactions = async () => {
+    try {
+      const response = await fetch("/api/finances", {
+        headers: {
+          Authorization: `JWT ${localStorage.getItem("token")}`,
+        },
+      });
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
       }
-    };
+      const transactions = await response.json();
+      setTransactions(transactions);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
     fetchTransactions();
   }, []);
 
   const handleAddTransaction = (transaction) => {
     setTransactions([...transactions, transaction]);
+    fetchTransactions();
     setIsFormVisible(false);
   };
 
@@ -169,7 +190,7 @@ function Finances() {
                   Add new transaction
                 </button>
               </div>
-    
+
               {isFormVisible && (
                 <div className="overlay" onClick={handleOverlayClick}>
                   <div className="form">
@@ -182,7 +203,7 @@ function Finances() {
           <Footer />
         </>
       ) : (
-        <Navigate to='/login?error=protected' />
+        <Navigate to="/login?error=protected" />
       )}
     </>
   );
@@ -224,7 +245,8 @@ function TransactionList({ transactions }) {
                 }>
                 {transaction.paidOrRequesting} ${transaction.amount}{" "}
                 {transaction.toOrFrom} {transaction.user} for{" "}
-                {transaction.forWhat} on {transaction.date}
+                {transaction.forWhat} on{" "}
+                {new Date(transaction.date).toLocaleDateString()}
               </p>
             </div>
           </li>
