@@ -38,7 +38,6 @@ const Profile = () => {
           Authorization: `JWT ${localStorage.getItem("token")}`,
         },
       })
-      //store the username response as var to send back to backend 
       .then(res => {
         setUsername(res.data.user.username);
       })
@@ -54,9 +53,9 @@ const Profile = () => {
           <Header title="Profile" />
           <div>
             <div className="outer">
-                <ProfilePic username={username}/>
+                <ProfilePic />
                 <NameInfo username={username}/>
-                <ProfInfo username={username}/>
+                <ProfInfo/>
             </div>
           </div>
           <Footer />

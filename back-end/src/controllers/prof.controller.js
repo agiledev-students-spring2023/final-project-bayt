@@ -10,10 +10,10 @@ const storage = multer.diskStorage({
     cb(null, path.join(__dirname, '../uploads'))
   },
   filename: function (req, file, cb) {
-    const username = req.params.username; 
+    const userid = req.user._id; 
     const timestamp = Date.now();
     const extension = path.extname(file.originalname);
-    const newFilename = `${timestamp}_${username}${extension}`;
+    const newFilename = `${timestamp}_${userid}${extension}`;
     cb(null, newFilename);
   }
 });
@@ -45,7 +45,7 @@ async function gets(req, res) {
       } catch (error) {
         console.error(`File '${userData.profile_pic}' does not exist in the 'uploads' folder. Setting default profile now`);
         responseObject.data.profile_pic = 'Default.svg';
-        await User.updateOne({ username}, { profile_pic: 'Default.svg' });
+        await User.updateOne({ _id: req.user.id}, { profile_pic: 'Default.svg' });
       }
     }
 
