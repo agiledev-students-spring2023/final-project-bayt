@@ -3,7 +3,6 @@
   --primary-color: white;
   --secondary-color: blue;
   --tertiary-color: green;
-  --background-color: rgb(226, 226, 226);
   --footer-height: 50px;
   --header-height: 80px;
   --max-width: 100%;
@@ -65,7 +64,6 @@ alt {
 
 body {
   margin: 0;
-  background-color: white;
   font-family: "Body", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -77,8 +75,7 @@ code {
 }
 
 button {
-  align-items: center;
-  background: #6B8E23;
+  background: linear-gradient(to right, #6a9113, #052d16);
   border: 0;
   border-radius: 0.5rem;
   box-sizing: border-box;
@@ -86,9 +83,8 @@ button {
   cursor: pointer;
   font-family: "Regular";
   font-size: medium;
-  justify-content: center;
   line-height: 1rem;
-  padding: 10px;
+  padding: 1rem;
   text-align: left;
   transition: 0.2s;
   user-select: none;

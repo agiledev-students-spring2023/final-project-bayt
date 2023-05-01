@@ -32,7 +32,7 @@ const Home = (props) => {
 
   const [rooms, setRooms] = useState([]);
   const [name, setName] = useState("");
-  
+
   function camelize(str) {
     return str.replace(/(?:^\w|[A-Z]|\b\w|\s+)/g, function (match, index) {
       if (+match === 0) return ""; // or if (/\s+/.test(match)) for white spaces
@@ -51,10 +51,9 @@ const Home = (props) => {
 
   const fetchRooms = () => {
     axios
-      .get("/api/home",
-        {
-          headers: { Authorization: `JWT ${jwtToken}` }, // pass the token, if any, to the server
-        })
+      .get("/api/home", {
+        headers: { Authorization: `JWT ${jwtToken}` }, // pass the token, if any, to the server
+      })
       .then((response) => {
         const rooms = response.data;
         setRooms(rooms);
@@ -85,12 +84,14 @@ const Home = (props) => {
     e.preventDefault();
     const roomUrl = camelize(name);
     axios
-      .post("/api/home", {
-        roomName: name,
-        url: roomUrl
-      },
+      .post(
+        "/api/home",
         {
-          headers: { Authorization: `JWT ${jwtToken}` } // pass the token, if any, to the server
+          roomName: name,
+          url: roomUrl,
+        },
+        {
+          headers: { Authorization: `JWT ${jwtToken}` }, // pass the token, if any, to the server
         }
       )
       .then((response) => {
@@ -98,7 +99,7 @@ const Home = (props) => {
         addRoomToList(response.data.room);
       })
       .catch((err) => {
-        console.log(err)
+        console.log(err);
         console.log("Submit error");
       });
 
@@ -112,21 +113,28 @@ const Home = (props) => {
           <Header title="Home" />
           <div>
             <div className="homeBody">
-              {rooms.map((room, index) => (<Link key={index} to={`/room/${room?.url}`}>
-                <button key={index} className="roomButton" type="button">
-                  {room?.roomName}
-                </button>
-              </Link>))}
+              <div className="homeButtons">
+                {rooms.map((room, index) => (
+                  <Link key={index} to={`/room/${room?.url}`}>
+                    <button key={index} className="roomButton" type="button">
+                      {room?.roomName}
+                    </button>
+                  </Link>
+                ))}
 
-              <button
-                className="roomButton"
-                type="button"
-                onClick={handleClickOpen}>
-                Add Room
-              </button>
+                <button
+                  className="roomButton"
+                  type="button"
+                  onClick={handleClickOpen}>
+                  Add Room
+                </button>
+              </div>
+
               <ThemeProvider theme={theme}>
                 <Dialog maxWidth="xs" open={open} onClose={handleClose}>
-                  <DialogTitle className="add-room-form">Add Your Room!</DialogTitle>
+                  <DialogTitle className="add-room-form">
+                    Add Your Room!
+                  </DialogTitle>
 
                   <form
                     method="post"
@@ -176,10 +184,10 @@ const Home = (props) => {
           <Footer />
         </>
       ) : (
-        <Navigate to='/login?error=protected' />
+        <Navigate to="/login?error=protected" />
       )}
     </>
   );
-}
+};
 
 export default Home;

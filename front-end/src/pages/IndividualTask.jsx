@@ -218,7 +218,7 @@ function IndividualTask(props) {
     };
 
     return (
-        <>
+        <div className='individual-task-container'>
             <Header />
 
             <ThemeProvider theme={theme}>
@@ -284,7 +284,7 @@ function IndividualTask(props) {
                 </ThemeProvider>
             </form>
             <Footer />
-        </>
+        </div>
     )
 }
 
