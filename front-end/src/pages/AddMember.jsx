@@ -3,14 +3,11 @@ import '../css/AddMember.css'
 import AddMembersPic from "../components/AddMemberPic.jsx";
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
 import Container from '@mui/material/Container';
 import { useNavigate, Navigate } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
+import Alert from '@mui/material/Alert';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import axios from "axios";
 
@@ -34,16 +31,12 @@ function AddMembers() {
     const jwtToken = localStorage.getItem("token");
 
     const [isLoggedIn, setIsLoggedIn] = useState(jwtToken && true);
-
-    const [age, setAge] = React.useState('');
-    const [loggeduser, setLoggedUser] = React.useState('');
+    const [errorMessage, setErrorMessage] = useState('');
     const [userData, setUserData] = useState({});
 
     const handleImageClick = (field, value) => {
-        // const newFormData = new FormData();
-        // newFormData.append(field, value);
-        // setFormData(newFormData);
         setUserData({ [field]: value, ...userData });
+
     };
 
     useEffect(() => {
@@ -53,41 +46,36 @@ function AddMembers() {
                 headers: { Authorization: `JWT ${jwtToken}` }, // pass the token, if any, to the server
             })
             .then(res => {
-                setLoggedUser(res.data.user.username);
             })
             .catch(err => {
                 setIsLoggedIn(false); // update this state variable, so the component re-renders
             });
     }, []);
 
-    const handleChange = (evt) => {
-        setAge(evt.target.value);
-    };
-
     const navigate = useNavigate();
-    //change this to navigate back to most prev page (probs settings op)
-    const handleFinish = () => {
+    //navigate back to most prev page
+    const handleFinish = async () => {
         let req = {
             username: document.getElementById('username').value,
             email: document.getElementById('email').value,
-            role: age,
+            password: document.getElementById('password').value,
             ...userData,
         };
-        axios.post(`/api/addMembers/${loggeduser}`, req, {
-            headers: { Authorization: `JWT ${jwtToken}` }, // pass the token, if any, to the server
-            })
-            .then(response => {
-                console.log(response);
-                navigate('/home');
-            })
-            .catch(error => {
-                // Handle errors
-                console.log(error.response.data);
-                console.log("not getting through")
-            });
 
+        try {
+            const response = await axios.post(`/api/addMembers/`,req, { headers: { Authorization: `JWT ${jwtToken}` },});
+            setErrorMessage('');
+            console.log(response)
+            navigate('/home');
 
-        return navigate('/home');
+        } catch(err) {
+            if (err.response.data.errors){
+                setErrorMessage(<Alert severity="error">{`${err.response.data.errors[0].msg}`}</Alert>);
+            }
+            else{
+                setErrorMessage(<Alert severity="error">{`${err.response.data.message}`}</Alert>);
+            }
+      }
     }
 
     const handleCancel = () => {
@@ -103,6 +91,9 @@ function AddMembers() {
                             <Box sx={{ mt: 8, display: 'flex', flexDirection: 'column', alignItems: 'center', }}>
                                 <h1 className="text" sx={{ mb: 4 }}  >Add Family Member</h1>
                                 <AddMembersPic onImageClick={handleImageClick} />
+
+                                {errorMessage}
+
                                 <Grid container spacing={3} sx={{ mt: 1 }} >
                                     <Grid item xs={12}>
                                         <TextField required id="username" name="username" label="Enter roomate username" fullWidth />
@@ -113,13 +104,7 @@ function AddMembers() {
                                     </Grid>
 
                                     <Grid item xs={12}>
-                                        <FormControl fullWidth>
-                                            <InputLabel id="role-select-label">Role</InputLabel>
-                                            <Select labelId="role-select-label" id="role-select" value={age} label="Role" onChange={handleChange}>
-                                                <MenuItem value={'admin'}>Admin</MenuItem>
-                                                <MenuItem value={'roomate'}>Roomate</MenuItem>
-                                            </Select>
-                                        </FormControl>
+                                    <TextField required fullWidth id="password" label="Enter shared housecode" type="password" name="password" />
                                     </Grid>
                                 </Grid>
                                 <Box sx={{ width: '100%', display: 'flex', justifyContent: 'space-between', mt: 7 }}>
