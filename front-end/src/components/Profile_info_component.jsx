@@ -11,18 +11,16 @@ import Button from '@mui/material/Button';
 import DeleteAccountButton from './ProfileDelete';
 import axios from 'axios';
 
-const ProfInfo = (props) => {
+const ProfInfo = () => {
   const [isEditable, setIsEditable] = React.useState(false);
   const [email, setEmail] = React.useState('');
   const [householdRole, setHouseholdRole] = React.useState('');
   const [firstname, setFirstName] = React.useState('');
   const [lastname, setLastName] = React.useState('');
   const [houses, setHouses] = React.useState('');
-  const username = props.username;
 
   //axios to get data from backend database
   React.useEffect(() => {
-    if (username) {
       axios.get(`/api/Profile/`, {
         headers: {
           Authorization: `JWT ${localStorage.getItem("token")}`
@@ -38,8 +36,7 @@ const ProfInfo = (props) => {
         .catch(err => {
           console.log(err);
         });
-    }
-  }, [username]);
+  }, []);
 
 
   const handleEditClick = () => {

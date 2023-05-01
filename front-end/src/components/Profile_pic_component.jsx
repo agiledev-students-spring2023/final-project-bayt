@@ -5,14 +5,12 @@ import prof from "./../Default.svg";
 import axios from "axios";
 
 
-const ProfilePic = (props) => {
+const ProfilePic = () => {
   //get image  otherwise default profile svg)
   const [image, setImage] = useState(null);
   const fileInputRef = useRef(null);
-  const username = props.username;
 
   useEffect(() => {
-    if (username) {
       // Make a GET request to the /api/Profile endpoint with the username as a parameter
       axios.get(`/api/Profile/`, {
         headers: {
@@ -41,8 +39,7 @@ const ProfilePic = (props) => {
         .catch((error) => {
           console.error(error);
         })
-    }
-  }, [username]);
+  }, []);
 
 
 
