@@ -3,8 +3,8 @@ let { task_json } = require("./task.service.js");
 const userData = require("../json/hardcode.json");
 const tasks = require("../models/task.list.model.js");
 
-async function getAlerts(house_id, username) {
-  const tasks = await Task.find({ house: house_id, assignee: username }).lean();
+async function getAlerts(house_id, user_id) {
+  const tasks = await Task.find({ house: house_id, assignee: user_id }).lean();
   const filteredAlerts = tasks
     .filter((task) => !task.complete)
     .map((task) => {
@@ -38,7 +38,11 @@ async function logAlertState(alertId, isChecked) {
   // if (alertIndex >= 0) {
   //   task_json[alertIndex].complete = isChecked;
   // }
-  const task = await Task.findByIdAndUpdate(alertId, { complete: isChecked }, { new: true });
+  const task = await Task.findByIdAndUpdate(
+    alertId,
+    { complete: isChecked },
+    { new: true }
+  );
 }
 
 module.exports = {
