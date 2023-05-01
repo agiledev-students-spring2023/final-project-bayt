@@ -13,10 +13,10 @@ import axios from "axios";
 
 const ProfInfo = () => {
   const [isEditable, setIsEditable] = React.useState(false);
-  const [email, setEmail] = React.useState('');
-  const [householdRole, setHouseholdRole] = React.useState('');
-  const [firstname, setFirstName] = React.useState('');
-  const [lastname, setLastName] = React.useState('');
+  const [email, setEmail] = React.useState("");
+  const [householdRole, setHouseholdRole] = React.useState("");
+  const [firstname, setFirstName] = React.useState("");
+  const [lastname, setLastName] = React.useState("");
   const [houses, setHouses] = React.useState({ name: "" });
   const username = props.username;
   
