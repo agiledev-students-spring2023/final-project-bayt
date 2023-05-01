@@ -1,10 +1,14 @@
-let transaction_json = require('../json/transactions.json');
+let transaction_json = require("../json/transactions.json");
+const Transaction = require("../models/transaction.model.js");
+const House = require("../models/house.model.js");
 
-async function getAllTransactions() {
-  return transaction_json;
+async function getAllTransactions(house_id) {
+  // return transaction_json;
+  const transactions = await Transaction.find({ house: house_id }).lean();
+  return transactions;
 }
 
-async function addTransaction(transaction) {
+async function addTransaction(transaction, house_id) {
   const newTransaction = {
     paidOrRequesting: transaction.paidOrRequesting,
     amount: transaction.amount,
@@ -13,8 +17,9 @@ async function addTransaction(transaction) {
     forWhat: transaction.forWhat,
     date: transaction.date,
   };
-  transaction_json.push(newTransaction);
-  return newTransaction;
+  newTransaction.house = house_id;
+  // transaction_json.push(newTransaction);
+  Transaction.create(newTransaction);
 }
 
 module.exports = {
