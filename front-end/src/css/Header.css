@@ -5,7 +5,7 @@
   z-index: 10;
   align-items: center;
   height: var(--header-height);
-  background-color: rgba(34, 80, 149, 0.8);
+  background: linear-gradient(to right, rgba(30, 60, 114, 0.95), rgba(42, 82, 152, 0.95));
   backdrop-filter: blur(10px);
   width: var(--max-width);
 }
@@ -24,6 +24,7 @@
   width: 100%;
   color: #EAEFE9;
   font-size: 1.5rem;
+  opacity: 1;
 }
 
 .profile {
@@ -36,4 +37,5 @@
   color: #fac901;
   width: 2rem;
   height: 2rem;
+  opacity: 1;
 }

@@ -1,4 +1,8 @@
 .taskFormContainer {
     width: 100%;
-    background-color: white;
+    padding-bottom: 5rem;
+}
+
+.individual-task-container Button {
+    color: white;
 }

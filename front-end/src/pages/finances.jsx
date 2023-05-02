@@ -187,7 +187,7 @@ function Finances() {
               </div>
               <div className="addTransactionButton">
                 <button className="button" onClick={handleButtonClick}>
-                  Add new transaction
+                  +
                 </button>
               </div>
 
@@ -229,26 +229,21 @@ function TransactionList({ transactions }) {
   return (
     <div className="finances-content">
       <div className="sort-by-container">
-        <label htmlFor="sort-by">Sort by date: </label>
+        <label htmlFor="sort-by">Sort by date:</label>
         <select id="sort-by" value={sortOrder} onChange={handleSortByChange}>
           <option value="asc">ascending</option>
           <option value="desc">descending</option>
         </select>
       </div>
-      <ul>
+      <ul className="list">
         {sortedTransactions.map((transaction, index) => (
           <li key={index}>
-            <div className="imessage">
-              <p
-                className={
-                  transaction.toOrFrom === "to" ? "from-me" : "from-them"
-                }>
-                {transaction.paidOrRequesting} ${transaction.amount}{" "}
-                {transaction.toOrFrom} {transaction.user} for{" "}
-                {transaction.forWhat} on{" "}
-                {new Date(transaction.date).toLocaleDateString()}
-              </p>
-            </div>
+            <p>
+              {transaction.paidOrRequesting} ${transaction.amount}{" "}
+              {transaction.toOrFrom} {transaction.user} for{" "}
+              {transaction.forWhat} on{" "}
+              {new Date(transaction.date).toLocaleDateString()}
+            </p>
           </li>
         ))}
       </ul>
