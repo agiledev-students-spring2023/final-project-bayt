@@ -12,5 +12,5 @@ jobs:
           ls # for debugging: show sub-directories in here
       - run: |
           cd front-end
-          npm ci --legacy-peer-deps # install all dependencies listed in package-lock.json
+          npm ci # install all dependencies listed in package-lock.json
           npm run build # have react build the stand-alone front-end code
