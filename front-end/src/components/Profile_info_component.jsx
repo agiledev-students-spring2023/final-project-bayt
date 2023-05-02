@@ -18,7 +18,7 @@ const ProfInfo = () => {
   const [firstname, setFirstName] = React.useState('');
   const [lastname, setLastName] = React.useState('');
   const [houses, setHouses] = React.useState({ name: "" });
-  const username = props.username;
+  
   
 
   //axios to get data from backend database
@@ -40,6 +40,8 @@ const ProfInfo = () => {
         .catch((err) => {
           console.log(err);
         });
+
+    }
   }, []);
 
   const handleEditClick = () => {
