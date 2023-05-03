@@ -1,3 +1,8 @@
+@font-face {
+    font-family: "Regular";
+    src: url("../fonts/Regular.otf") format("opentype");
+  }
+
 .profileImg {
     display: block;
     margin-left: auto;
@@ -18,6 +23,7 @@
 }
 
 .custom-file-upload {
+    font-family: "Regular";
     display: block;
     margin: 10px auto;
     text-align: center;

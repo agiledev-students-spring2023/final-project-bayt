@@ -75,7 +75,7 @@ code {
 }
 
 button {
-  background: linear-gradient(to right, #6a9113, #052d16);
+  background: radial-gradient( #6a9113, #7aa21b);
   border: 0;
   border-radius: 0.5rem;
   box-sizing: border-box;
