@@ -12,7 +12,7 @@ function RoomTemplate(props) {
   const { roomName } = useParams();
 
   const [filterFunctionn, ] = useState(() => (task_data) => {
-    return task_data.room.toLowerCase() === roomName.toLowerCase();;
+    return task_data.room.toLowerCase() === roomName.toLowerCase();
   });
   const [sortFunctionn, ] = useState(() => (a, b) => {
     return a.due_time - b.due_time;
