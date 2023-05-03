@@ -1,4 +1,6 @@
 # Bayt - A shared housing app
+## Website deployed!
+Link: http://www.baytmatesfor.life/
 
 ## Product Vision Statement
 We foresee our **Minimum Viable Product(MVP)** as one that makes the issue of accountability and delegation of responsibility in shared accommodations significantly easier than without the app. The product in essence should solve issues in shared accountability through **quick** generation or writing of tasks required based on rooms in the house. The signup process of the app must be incredibly easy if not non-existent in order to encourage ease of use. Roommates should also be able to at least share and keep track of some form of shared purchases made for the dorm such as furniture and kitchen items. The app should provide more value than the energy needed to use it and set it up to encourage people with busy schedules to use it and see it as a tool that saves time rather than wastes.
