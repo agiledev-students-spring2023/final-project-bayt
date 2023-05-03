@@ -256,7 +256,7 @@ function IndividualTask(props) {
                                 {id ? <MenuItem key={'unique_Id'} value={`${formValues.assignee}`}>{`${formValues.assignee}`}</MenuItem> : <MenuItem key={'unique_id'}></MenuItem>}
                                 {people.map((person) => (
                                     <MenuItem key={person._id} value={person._id}>
-                                        {person.first_name + ' ' + person.last_name}
+                                        {person.username}
                                     </MenuItem>
                                 ))}
                             </Select>
