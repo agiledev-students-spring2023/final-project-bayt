@@ -5,6 +5,7 @@
   },
   "dependencies": {
     "@material-ui/core": "^4.12.4",
-    "@material-ui/styles": "^4.11.5"
+    "@material-ui/styles": "^4.11.5",
+    "react-helmet": "^6.1.0"
   }
 }

@@ -75,7 +75,7 @@ code {
 }
 
 button {
-  background: linear-gradient(to right, #6a9113, #052d16);
+  background: radial-gradient( #6a9113, #7aa21b);
   border: 0;
   border-radius: 0.5rem;
   box-sizing: border-box;
@@ -94,6 +94,8 @@ button {
   width: max-content;
   word-break: normal;
   word-spacing: normal;
+  -webkit-filter: drop-shadow(2px 2px 5px rgba(0, 0, 0, 0.2));
+  filter: drop-shadow(2px 2px 5px rgba(0, 0, 0, 0.2));
 }
 
 button:hover {
@@ -118,11 +120,11 @@ button:hover {
 
 .wrapper .indicator {
   position: absolute;
-  top: 2px;
+  top: 0px;
   left: 0;
   height: 20px;
   width: 20px;
-  background: #e6e6e6;
+  background: #747474;
 }
 
 .wrapper .control:hover input ~ .indicator,

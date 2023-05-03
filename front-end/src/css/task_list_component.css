@@ -1,3 +1,7 @@
+@font-face {
+  font-family: "Heading2";
+  src: url("../fonts/DemiBold.otf") format("opentype");
+}
 
 .task_box {
   position: relative;
@@ -55,6 +59,7 @@
 }
 
 .task_box .day_title {
+  font-family: "Heading2", sans-serif;
   display: block;
   background-size: 100px;
   padding-bottom: 1rem;

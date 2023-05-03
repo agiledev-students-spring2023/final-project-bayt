@@ -19,7 +19,6 @@
 }
 
 .homeBody button:hover{
-  background-color: #eaefe9;
   transition: background-color 0s ease-in-out;
 }
 
