@@ -124,7 +124,7 @@ button:hover {
   left: 0;
   height: 20px;
   width: 20px;
-  background: #e6e6e6;
+  background: #747474;
 }
 
 .wrapper .control:hover input ~ .indicator,
