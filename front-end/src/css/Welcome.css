@@ -29,7 +29,7 @@
   position: relative;
   display: flex;
   margin-bottom: 10rem;
-  font-size: 4rem;
+  font-size: 3rem;
   right: 10rem;
   transform: translateX(50%);
   text-shadow: 3px 3px 20px rgba(0, 0, 0, 0.3);
@@ -44,11 +44,11 @@
 .welcomeLogo {
   position: relative;
   display: flex;
-  width: 5rem;
+  width: 8rem;
   right: 10rem;
   transform: translateX(50%);
-  -webkit-filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.2));
-  filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.2));
+  -webkit-filter: drop-shadow(10px 10px 10px rgba(0, 0, 0, 0.1));
+  filter: drop-shadow(10px 10px 10px rgba(0, 0, 0, 0.1));
 }
 
 .welcomePageButtons {

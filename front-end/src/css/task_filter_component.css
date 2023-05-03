@@ -12,6 +12,7 @@
   background: white;
   color: black;
   width: 5rem;
+  filter: none;
 }
 
 input[type="checkbox"] {

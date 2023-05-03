@@ -94,6 +94,8 @@ button {
   width: max-content;
   word-break: normal;
   word-spacing: normal;
+  -webkit-filter: drop-shadow(2px 2px 5px rgba(0, 0, 0, 0.2));
+  filter: drop-shadow(2px 2px 5px rgba(0, 0, 0, 0.2));
 }
 
 button:hover {
