@@ -66,6 +66,7 @@ const Home = (props) => {
   const addRoomToList = (room) => {
     const newRooms = [...rooms, room];
     setRooms(newRooms);
+    window.location.reload();
   };
 
   useEffect(() => {
