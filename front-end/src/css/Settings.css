@@ -1,0 +1,86 @@
+/*setts-info refer to the div container that holds the list of modal links*/
+.setts-info {
+  text-align: center;
+  margin: 1rem;
+}
+
+/*get rid of bullet points from list*/
+.links-container {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  text-align: center;
+  flex-wrap: wrap;
+  padding: 0;
+  gap: 0.1rem;
+}
+
+/* give each link a border and pad it*/
+.setts-info button {
+  padding: 1rem;
+  border-radius: 0.5rem;
+  width: calc(50% - 1rem);
+  height: 6rem;
+  box-sizing: border-box;
+  margin: 0.4rem;
+}
+
+.setts-info button:hover{
+  background-color: #eaefe9;
+  transition: background-color 0s ease-in-out;
+}
+
+.setts-info button:hover li {
+  background-color: #eaefe9;
+  transition: background-color 0s ease-in-out;
+}
+
+.setts-info li {
+  font-family: "Heading2";
+  background-color: #6B8E23;
+}
+
+.title {
+  text-decoration: underline;
+}
+
+.add-member-button {
+  border-color: #5b7a1e;
+  padding: 5px 10px;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  transition-duration: 0.4s;
+  margin-left: 0;
+  margin-top: 5px;
+  margin-bottom: 25px;
+}
+
+.add-member-button:hover {
+  background-color: #6B8E23;
+}
+
+.add-member-button span {
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 20px;
+}
+
+.modal-close {
+  background-color: #e07a5f;
+  border: none;
+  color: white;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 15px;
+  cursor: pointer;
+  transition-duration: 0.4s;
+  margin: 0 auto;
+}
+
+.links-container {
+  text-align: center;
+}

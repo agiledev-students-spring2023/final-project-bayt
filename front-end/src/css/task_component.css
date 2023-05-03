@@ -1,0 +1,85 @@
+.task_component {
+    display: flex;
+    flex: 1 0 0;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 1.2rem;
+    background: linear-gradient(to right, #f2994a, #f2c94c);;
+}
+
+.task_component:active {
+    filter: drop-shadow(0px 4px 4px rgb(0, 0, 0));
+}
+
+.task_component:hover {
+    cursor: pointer;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+.task_component .selected {
+    background-color: lightblue;
+    transition: 0.1s;
+}
+
+.task_component .deselected {
+    background-color: lightgray;
+    transition: 0.1s;
+}
+
+.task_component,.complete{
+    opacity:0.5;
+    transition: 0.1s;
+}
+.task_component,.incomplete{
+    opacity:1;
+    transition: 0.1s;
+}
+
+.task_box_comp {
+    margin-left: 2rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+}
+.checkbox-fix {
+    position: relative;
+    left: -2%;
+    bottom: 1rem;
+}
+
+.task_component .task_information {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-height: 4.2rem;
+    padding: 0.7rem 0.9rem;
+    line-height: 25px;
+}
+
+.task_component .task_name {
+    font-weight: 600;
+    font-size: 1.4rem;
+}
+
+.task_component .task_text {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.2rem;
+    color: #000000;
+}
+.task_component .task_text_icon {
+    display: relative;
+    transform: translate(0,+18%);
+    margin-right: 0.2em;
+}
+
+.task_component .next_button {
+    margin-left: auto;
+    padding: 0.5em;
+
+}

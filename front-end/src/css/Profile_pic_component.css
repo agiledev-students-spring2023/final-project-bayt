@@ -1,0 +1,35 @@
+@font-face {
+    font-family: "Regular";
+    src: url("../fonts/Regular.otf") format("opentype");
+  }
+
+.profileImg {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 130px;
+    height: 130px;
+  } 
+
+.profileImg img {
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+    border-radius: 70px;  
+}
+
+#uploadPic {
+    display: none;  
+}
+
+.custom-file-upload {
+    font-family: "Regular";
+    display: block;
+    margin: 10px auto;
+    text-align: center;
+    background-color: #3D405B;
+    color: white;
+    width: 5rem;
+    padding: 0.5rem;
+}
+

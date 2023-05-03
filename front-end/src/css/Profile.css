@@ -1,0 +1,99 @@
+@font-face {
+  font-family: "Regular";
+  src: url("../fonts/Regular.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "Heading";
+  src: url("../fonts/Bold.otf") format("opentype");
+}
+
+
+.outer {
+  font-family: "Regular";
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
+.profile-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5px;
+}
+
+.edit-input {
+  font-family: "Regular";
+  width: 150px;
+  font-size: 18px;
+  padding: 5px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  background-color: transparent;
+}
+
+.name-display {
+  font-family: "Heading", sans-serif;
+  font-size: 25px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+
+.delete-account-button {
+display: block;
+background-color: #3D405B;
+color: white;
+padding: 10px;
+border-radius: 5px;
+border: none;
+width: 70%;
+text-align: center;
+margin: 30px auto;
+}
+
+.modal {
+  background-color: #3d405b;
+  padding: 20px;
+  border-radius: 10px;
+  width: 'auto';
+  text-align: center;
+
+}
+
+.warn {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: aliceblue;
+}
+
+.content {
+  margin-bottom: 10px;
+  color: aliceblue;
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+}
+
+.button {
+  color: white;
+  padding: 10px;
+  border: none;
+  margin-right: 10px;
+}
+
+.button.danger {
+  background-color:  #E07A5f;
+  color: white;
+}

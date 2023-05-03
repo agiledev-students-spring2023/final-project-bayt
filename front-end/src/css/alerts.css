@@ -1,0 +1,28 @@
+.alerts-page-body {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
+.alertsList {
+  position: absolute;
+  top: calc(var(--header-height) + 1rem);
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1vh;
+  margin-right: 1rem;
+}
+
+.no-alerts {
+  width: 100%;
+  height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.alertsList li a {
+  text-decoration: none;
+}
