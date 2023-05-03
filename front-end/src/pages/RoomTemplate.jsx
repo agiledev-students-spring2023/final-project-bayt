@@ -6,17 +6,18 @@ import RoomHeader from "../components/Room_Header";
 import TaskListComponent from "../components/Task_List_Component.jsx";
 import AddRoom from "../components/Room_Add";
 import Footer from "./Footer";
+import { useState } from "react";
 
 function RoomTemplate(props) {
   const { roomName } = useParams();
 
-  //Comparator for the sorting by the dates of API DATA elems
-  const sortAscending = (a, b) => {
-    return a.due_time - b.due_time;
-  };
-  const filterFunctionn = (task_data) => {
+  const [filterFunctionn, ] = useState(() => (task_data) => {
     return task_data.room === roomName;
-  };
+  });
+  const [sortFunctionn, ] = useState(() => (a, b) => {
+    return a.due_time - b.due_time;
+  }
+  );
   return (
     <>
       <RoomHeader room={roomName}></RoomHeader>
@@ -28,7 +29,7 @@ function RoomTemplate(props) {
           <AddRoom></AddRoom>
           <TaskListComponent
             filterFunction={filterFunctionn}
-            sortComparator={sortAscending}
+            sortComparator={sortFunctionn}
             enableCheckbox={true}
             centerButton={true}
           />
