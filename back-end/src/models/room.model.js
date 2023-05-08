@@ -25,14 +25,14 @@ const RoomSchema = new Schema({
 });
 
 // When creating new room add it to the house
-RoomSchema.post('create', function (next) {
-    this.model('house').updateOne({
+RoomSchema.post('create', async function (next) {
+    await this.model('house').updateOne({
         _id: this.home
     }, {
         $push: {
             rooms: this._id
         }
-    });
+    }).exec();
     next();
 });
 

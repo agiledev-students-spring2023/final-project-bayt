@@ -2,14 +2,13 @@ const taskService = require("../services/task.service.js");
 
 // get task by id taskSer
 async function get(req, res) {
-  console.log("get")
   try {
     let task = await taskService.getTask(req.user.houses._id, req.params.id);
 
     if (process.env.NODE_ENV === 'production') {
       if (task === null) throw new Error("Task not found");
       // Set assignee to the first name of the assignee and only access assignee if its not null
-      task.assignee = task.assignee?.first_name ?? "No Assignee";
+      task.assignee = task.assignee?.username ?? "No Assignee";
       task.room = task.room?.roomName;
     } else {
       if (task === undefined) throw new Error("Task not found");
