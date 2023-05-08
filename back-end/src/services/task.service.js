@@ -13,7 +13,7 @@ if (process.env.NODE_ENV === 'production') {
 
   getTask = async (house_id, task_id) => {
     // Find task with house id and task id and return it
-    return Task.findOne({ house: house_id, _id: task_id });
+    return Task.findOne({ house: house_id, _id: task_id }).lean();
   };
 
   // make sure task doesnt exist in database then add the task to the Task

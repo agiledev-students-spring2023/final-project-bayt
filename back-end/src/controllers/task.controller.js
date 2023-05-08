@@ -26,7 +26,7 @@ async function gets(req, res) {
     if (process.env.NODE_ENV === 'production') {
       // Set assignee to the first name of the assignee and only access assignee if its not null
       tasks.forEach((task) => {
-        task.assignee = task.assignee?.first_name ?? "No Assignee";
+        task.assignee = task.assignee?.username ?? "No Assignee";
         task.room = task.room?.roomName;
       });
     }
