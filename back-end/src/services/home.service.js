@@ -1,6 +1,5 @@
 let rooms_json = require('../json/rooms.json')
 const Room = require('../models/room.model.js')
-const House = require('../models/house.model.js')
 let getAllRooms, addRoom;
 
 if (process.env.NODE_ENV === 'production') {

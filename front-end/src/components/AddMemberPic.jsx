@@ -21,7 +21,6 @@ const AddMembersPic = (props) => {
                 setImage(e.target.result);
                 //append to parent formData
                 const imageData = {'base64': base64Image, 'filename': selectedFile.name}
-                console.log(imageData);
                 props.onImageClick('file', imageData);
             }
         } 

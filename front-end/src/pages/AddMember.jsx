@@ -63,9 +63,8 @@ function AddMembers() {
         };
 
         try {
-            const response = await axios.post(`/api/addMembers/`,req, { headers: { Authorization: `JWT ${jwtToken}` },});
+            await axios.post(`/api/addMembers/`,req, { headers: { Authorization: `JWT ${jwtToken}` },});
             setErrorMessage('');
-            console.log(response)
             navigate('/home');
 
         } catch(err) {

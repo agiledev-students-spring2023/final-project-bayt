@@ -1,6 +1,4 @@
-let transaction_json = require("../json/transactions.json");
 const Transaction = require("../models/transaction.model.js");
-const House = require("../models/house.model.js");
 
 async function getAllTransactions(house_id) {
   // return transaction_json;
@@ -18,7 +16,6 @@ async function addTransaction(transaction, house_id) {
     date: transaction.date,
   };
   newTransaction.house = house_id;
-  // transaction_json.push(newTransaction);
   Transaction.create(newTransaction);
 }
 

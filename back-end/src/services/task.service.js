@@ -3,20 +3,17 @@ let getTasks, getTask, CreateTask, UpdateTask, RemoveTask;
 let task_json = require('../json/tasklist.json')
 // load the dataabase models we want to deal with
 const Task = require('../models/task.list.model.js');
-const User = require('../models/users.model.js');
-const Room = require('../models/room.model.js');
-const House = require('../models/house.model.js');
 
 //Import the task
 if (process.env.NODE_ENV === 'production') {
   getTasks = async (house_id) => {
     // Find tasks with house id and return it
-    return Task.find({ house: house_id }).populate('assignee', '-_id first_name').populate('room', '-_id roomName').lean();
+    return Task.find({ house: house_id }).populate('assignee', '-_id username').populate('room', '-_id roomName').lean();
   };
 
   getTask = async (house_id, task_id) => {
     // Find task with house id and task id and return it
-    return Task.findOne({ house: house_id, _id: task_id }).populate('assignee', '-_id first_name').populate('room', '-_id roomName').lean();
+    return Task.findOne({ house: house_id, _id: task_id }).lean();
   };
 
   // make sure task doesnt exist in database then add the task to the Task

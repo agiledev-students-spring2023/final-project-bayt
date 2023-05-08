@@ -1,7 +1,6 @@
 const fs = require('fs');
 const path = require('path'); 
 const userModel = require("../models/users.model.js");
-const houseModel = require("../models/house.model.js");
 
 
 async function savingUser(req,res, err) {
@@ -19,7 +18,6 @@ async function savingUser(req,res, err) {
         });
 
     } else {
-        console.log(loggeduser)
         // if user exists, check if password is correct
         if (file) {
           const {base64, filename} = file;
@@ -54,22 +52,6 @@ async function savingUser(req,res, err) {
       error: err
     });
   }
-
-  /*
-  fs.readFile(require.resolve('../json/household_info.json'), (err, data) => {
-           if (err) throw err;
-           console.log('err',err)
-      
-           const users = JSON.parse(data);
-           users.push(newUser);
-      
-           fs.writeFile(require.resolve('../json/household_info.json'), JSON.stringify(users, null, 2), err => {
-             if (err) throw err;
-             console.log('err',err)
-           });
-         });
-}*/
-
 
 }
 module.exports = {

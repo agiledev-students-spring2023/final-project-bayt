@@ -32,6 +32,8 @@ if (process.env.NODE_ENV === "production") {
     console.log("Testing mode activated.");
 }
 
+const job = require('./cron/task.update.js');
+
 const taskRouter = require('./routes/task.route.js');
 const profRouter = require('./routes/prof.route.js');
 const financesRouter = require('./routes/finances.route.js');
