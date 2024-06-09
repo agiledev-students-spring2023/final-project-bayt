@@ -67,7 +67,6 @@ const ProfilePic = () => {
               Authorization: `JWT ${localStorage.getItem("token")}`,
             },
           });
-          console.log(response.data);
         }
         catch (error) {
           console.error("error");

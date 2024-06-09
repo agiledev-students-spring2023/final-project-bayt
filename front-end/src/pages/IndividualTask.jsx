@@ -61,7 +61,6 @@ function IndividualTask(props) {
     const [people, setPeople] = useState([]);
 
     const [formValues, setFormValues] = useState(defaultValues);
-    const [oldFormValues, setOldFormValues] = useState(defaultValues);
     const [errorMessage, setErrorMessage] = useState('');
 
 
@@ -110,8 +109,7 @@ function IndividualTask(props) {
                 }
             )
             .then((response) => {
-                const taskData = response.data;
-                return taskData;
+                return response?.data;
             })
             .catch((err) => {
                 // log the id
@@ -140,7 +138,6 @@ function IndividualTask(props) {
                         complete: taskData['complete'],
                     };
                     setFormValues(temp);
-                    setOldFormValues(temp);
                 }
                 else {
                     setErrorMessage(<Alert severity="error">{`${taskData.response.data.message}`}</Alert>);
@@ -178,15 +175,6 @@ function IndividualTask(props) {
         e.preventDefault();
 
         if (id) {
-            // if rooms or assignees are not equal to initially fetched task data then include oid, else don't in formValues because we dont have its oid
-            // and shouldnt call put without the id values
-            if (formValues['room'] === oldFormValues['room']) {
-                delete formValues['room'];
-            }
-            if (formValues['assignee'] === oldFormValues['assignee']) {
-                delete formValues['assignee'];
-            }
-
             axios
                 .put(task_route + `${id}`, formValues, { headers: { 'Content-Type': 'application/json', 'Authorization': `JWT ${localStorage.getItem('token')}` } })
                 .then((res) => {
@@ -197,7 +185,6 @@ function IndividualTask(props) {
                 });
         }
         else {
-            console.log(formValues);
             axios
                 .post(task_route, formValues, {
                     headers: {
@@ -240,8 +227,7 @@ function IndividualTask(props) {
 
                         <FormControl variant="standard" sx={{ mb: 2, width: '100%' }}>
                             <InputLabel id="room-label">Select Room</InputLabel>
-                            <Select disabled={formValues['complete']} defaultValue={defaultValues.room} name="room" labelId="room-label" id="room-select-helper" value={formValues.room} label="room" onChange={handleInputChange}>
-                                {id ? <MenuItem key={'unique_id'} value={`${formValues.room}`}>{`${formValues.room}`}</MenuItem> : <MenuItem key={'unique_id'}></MenuItem>}
+                            <Select disabled={formValues['complete']} defaultValue={defaultValues.room} name="room" labelId="room-label" id="room-select-helper" value={formValues.room ?? ""} label="room" onChange={handleInputChange}>
                                 {rooms.filter((room) => room?.roomName !== '').map((room) => (
                                     <MenuItem key={room?._id} value={room?._id}>
                                         {room?.roomName}
@@ -252,8 +238,7 @@ function IndividualTask(props) {
 
                         <FormControl required variant="standard" sx={{ mb: 2, width: '100%' }}>
                             <InputLabel id="assign-label">Assign To</InputLabel>
-                            <Select disabled={formValues['complete']} required name="assignee" labelId="assign-label" id="assign-select-helper" value={formValues.assignee} label="assign" onChange={handleInputChange}>
-                                {id ? <MenuItem key={'unique_Id'} value={`${formValues.assignee}`}>{`${formValues.assignee}`}</MenuItem> : <MenuItem key={'unique_id'}></MenuItem>}
+                            <Select disabled={formValues['complete']} required name="assignee" labelId="assign-label" id="assign-select-helper" value={formValues.assignee ?? ""} label="assign" onChange={handleInputChange}>
                                 {people.map((person) => (
                                     <MenuItem key={person._id} value={person._id}>
                                         {person.username}
