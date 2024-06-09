@@ -1,0 +1,41 @@
+.header {
+  display: flex;
+  position: fixed;
+  top: 0;
+  z-index: 10;
+  align-items: center;
+  height: var(--header-height);
+  background: linear-gradient(to right, rgba(30, 60, 114, 0.95), rgba(42, 82, 152, 0.95));
+  backdrop-filter: blur(10px);
+  width: var(--max-width);
+}
+
+.header + * {
+  padding-top: var(--header-height);
+  padding-bottom: var(--footer-height);
+  height: calc(100vh - var(--header-height) - var(--footer-height));
+}
+
+.houseName {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  color: #EAEFE9;
+  font-size: 1.5rem;
+  opacity: 1;
+}
+
+.profile {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  right: 2rem;
+  align-items: center;
+  position: absolute;
+  color: #fac901;
+  width: 2rem;
+  height: 2rem;
+  opacity: 1;
+}

@@ -1,3 +1,8 @@
+# zion's files #
+update_repo.sh
+pm2.config.json
+package.json
+package-lock.json
 # Compiled source #
 ###################
 *.com
@@ -38,6 +43,9 @@ Thumbs.db
 
 # Typical Node.js artifacts #
 #############################
+
+#ignore lock file to reduce git log stats bloat 
+package-lock.json
 
 # Logs
 logs
@@ -124,3 +132,6 @@ typings/
 ## Jekyll artifacts
 **/.jekyll-cache
 **/_site/
+
+## VScode
+.vscode

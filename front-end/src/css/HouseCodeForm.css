@@ -1,0 +1,21 @@
+.houseCodePromptContainer {
+    text-align: center;
+}
+
+.houseCodePrompt {
+    margin: 0;
+    padding: 0;
+    font-size: 1rem;
+}
+
+#houseName,
+#password,
+#passwordConfirm {
+    font-family: "Heading2";
+}
+
+#houseName::before,
+#password::before,
+#passwordConfirm::before {
+    font-family: "Heading2";
+}

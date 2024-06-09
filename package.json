@@ -1,0 +1,11 @@
+{
+  "devDependencies": {
+    "chai": "^4.3.7",
+    "mocha": "^10.2.0"
+  },
+  "dependencies": {
+    "@material-ui/core": "^4.12.4",
+    "@material-ui/styles": "^4.11.5",
+    "react-helmet": "^6.1.0"
+  }
+}

@@ -1,4 +1,39 @@
-# Project Repository
+# Bayt - A shared housing app
+## ~~Website deployed!~~ (Currently Unavaliable)
+Link: `http://www.baytmatesfor.life/`
+
+## Product Vision Statement
+We foresee our **Minimum Viable Product(MVP)** as one that makes the issue of accountability and delegation of responsibility in shared accommodations significantly easier than without the app. The product in essence should solve issues in shared accountability through **quick** generation or writing of tasks required based on rooms in the house. The signup process of the app must be incredibly easy if not non-existent in order to encourage ease of use. Roommates should also be able to at least share and keep track of some form of shared purchases made for the dorm such as furniture and kitchen items. The app should provide more value than the energy needed to use it and set it up to encourage people with busy schedules to use it and see it as a tool that saves time rather than wastes.
+
+## What and why?
+When living in shared accomodations, it becomes difficult to delegate house chores, decide grocery options, and split finances for shares household purchases. Purchases such as that mop you might've bought for everybody to clean the residence or that air fryer you bought and decided to split the payment for. With the IOS app Bayt, you can view who's purchased what, and decide how payment should be handled such as one roommate buying the toilet paper next time or just paying outright cash. You should also be able to generate grocery lists that just make sense, based off meal preferences and dietary restrictions of your roommates. Another important feature is to draft living agreements that arent 200 lines long and straight to the point. In summary, Bayt should make living with people much easier by tackling those common issues across roommates.
+
+## For whom?
+The main users would be students in dormitories, families that work together to take care of their home, or anyone that has shared accomodation. This might also be useful for property managers to manage shared housing when it comes to agreements and disputes.
+
+## How?
+- Payment management
+- Chore scheduling
+- Alerts for tasks
+
+## Who are we? 
+- JoJo Yang: https://github.com/jojo1042
+- Rami Richani: https://github.com/dolf321
+- Diana Yepes: https://github.com/dianaYepes
+- Zander Chen: https://github.com/ccczy-czy
+- Atib Jawad Zion: https://github.com/zion-off
+
+## Setup instructions
+- [Frontend setup](./front-end/README.md)
+- [Backend setup](./back-end/README.md)
+
+PLease note if you are facing any issues connecting to the Backend from the Frontend on **Mac** do the following:
+- Enter the frontend directory.
+- Delete its node_modules folder.
+- Run `npm install`.
+- Then restart your computer.
+
+## Project Repository
 
 This repository will be used for team projects.
 
@@ -17,3 +52,4 @@ Several sets of instructions are included in this repository. They should each b
 1. See the [Database Integration instructions](./instructions-3-database.md) for the requirements of integrating a database into the back-end.
 
 1. See the [Deployment instructions](./instructions-4-deployment.md) for the requirements of deploying an app.
+

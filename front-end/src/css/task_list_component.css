@@ -1,0 +1,69 @@
+@font-face {
+  font-family: "Heading2";
+  src: url("../fonts/DemiBold.otf") format("opentype");
+}
+
+.task_box {
+  position: relative;
+  text-align: left;
+  padding-top: 1rem;
+  padding-bottom: 4rem;
+  width: 100%;
+}
+
+.loading_icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.task_box > .transparent_box {
+  position: fixed;
+  z-index: 100;
+  bottom: var(--footer-height);
+  left: 50%;
+  width: var(--max-width);
+  height: 10vh;
+  transform: translate(-50%, 0);
+  background-image: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0),
+    rgba(255, 255, 255, 1) 90%
+  );
+}
+
+.task_box > .left_button {
+  position: fixed;
+  z-index: 9999;
+  bottom: var(--footer-height);
+  left: calc(50% - var(--max-width) * 0.2);
+  height: 3rem;
+  width: 12rem;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.task_box > .center_button {
+  position: fixed;
+  z-index: 9999;
+  bottom: var(--footer-height);
+  left: 50%;
+  width: 12rem;
+  transform: translate(-50%, -50%);
+}
+
+.task_box .line {
+  height: 0.2rem;
+  background: repeating-linear-gradient(90deg, #8a772a60 0 2rem, #0000 0 4rem);
+}
+
+.task_box .day_title {
+  font-family: "Heading2", sans-serif;
+  display: block;
+  background-size: 100px;
+  padding-bottom: 1rem;
+  padding-left: 1rem;
+  text-align: left;
+  margin: 0.8rem;
+}
